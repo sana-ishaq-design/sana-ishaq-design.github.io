@@ -26,7 +26,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 if (!prefersReducedMotion) {
     const dot = document.getElementById('c-dot');
     const ring = document.getElementById('c-ring');
-    const spot = document.getElementById('spotlight');
+    // const spot = document.getElementById('spotlight');
     let mx = window.innerWidth / 2,
         my = window.innerHeight / 2;
     let rx = mx,
@@ -36,8 +36,8 @@ if (!prefersReducedMotion) {
     const updateCursor = () => {
         dot.style.left = mx + 'px';
         dot.style.top = my + 'px';
-        spot.style.setProperty('--mx', mx + 'px');
-        spot.style.setProperty('--my', my + 'px');
+        // spot.style.setProperty('--mx', mx + 'px');
+        // spot.style.setProperty('--my', my + 'px');
         ticking = false;
     };
 
