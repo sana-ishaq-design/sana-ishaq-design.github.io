@@ -1827,7 +1827,7 @@ HaierMall Case Study Css
 ═══════════════════════════════════════ */
 
 
-/* margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box}
 :root{
   --navy:   #060f1a;
   --navy2:  #091626;
@@ -1845,7 +1845,7 @@ HaierMall Case Study Css
   --serif:  'DM Serif Display',serif;
   --body:   'Inter',sans-serif;
   --ease:   cubic-bezier(0.25,0.46,0.45,0.94);
-} */
+}
 
 html{scroll-behavior:smooth}
 body{
