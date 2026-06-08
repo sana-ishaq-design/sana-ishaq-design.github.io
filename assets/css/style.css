@@ -1827,7 +1827,7 @@ HaierMall Case Study Css
 ═══════════════════════════════════════ */
 
 
-*{margin:0;padding:0;box-sizing:border-box}
+/* {margin:0;padding:0;box-sizing:border-box}
 :root{
   --navy:   #060f1a;
   --navy2:  #091626;
@@ -1856,7 +1856,7 @@ body{
   line-height:1.7;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
-}
+} */
 
 /* ── PROGRESS ──────────────────────────────────── */
 .progress-bar{
