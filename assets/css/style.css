@@ -419,8 +419,8 @@ section {
 }
 
 .wrap {
-    max-width: 1140px;
-    margin: 0 auto;
+    max-width: 1220px;
+    margin: 0 96px;
 }
 
 .eyebrow {
@@ -1888,7 +1888,7 @@ nav.scrolled{
 .nav-right{font-size:11px;color:var(--white3);letter-spacing:.1em;text-transform:uppercase}
 
 /* ── LAYOUT ────────────────────────────────────── */
-.wrap{max-width:960px;margin:0 auto;padding:0 40px}
+.wrap{max-width:880px;margin:0 auto;padding:0 40px}
 
 /* ── HERO ──────────────────────────────────────── */
 .hero{
