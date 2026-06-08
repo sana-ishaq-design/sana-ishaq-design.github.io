@@ -420,7 +420,7 @@ section {
 
 .wrap {
     max-width: 1140px;
-    margin: 0 auto;
+    margin: 0 96px;
 }
 
 .eyebrow {
@@ -1923,7 +1923,7 @@ nav.scrolled {
 /* ── LAYOUT ────────────────────────────────────── */
 .wrap {
     max-width: 1140px;
-    margin: 0 96px;
+    margin: 0 auto;
     padding: 0 40px
 }
 
