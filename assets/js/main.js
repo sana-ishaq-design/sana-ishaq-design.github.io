@@ -144,3 +144,146 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
         }
     });
 });
+
+/* ══════════════════════════════════════
+HaierMall Case Study
+══════════════════════════════════════ */
+
+<script>
+const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ── PROGRESS BAR ──────────────────────────────── */
+const bar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = pct + '%';
+}, { passive: true });
+
+/* ── NAV SCROLL ────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+if (noMotion) {
+  document.querySelectorAll('.reveal, .callout-item, .hero-eyebrow, .hero h1, .hero-sub, .hero-meta').forEach(el => {
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  });
+} else {
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ── HERO ────────────────────────────────────── */
+  gsap.timeline({ delay: 0.1 })
+    .to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
+    .to('.hero h1',      { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.45')
+    .to('.hero-sub',     { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.45')
+    .to('.hero-meta',    { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.35');
+
+  /* ── GENERIC REVEALS ─────────────────────────── */
+  document.querySelectorAll('.reveal').forEach(el => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 87%', once: true },
+      opacity: 1, y: 0, duration: 0.7, ease: 'power2.out'
+    });
+  });
+
+  /* ── PSO STAGGER ─────────────────────────────── */
+  gsap.fromTo('.pso-card',
+    { opacity: 0, y: 20 },
+    {
+      scrollTrigger: { trigger: '.pso-grid', start: 'top 85%', once: true },
+      opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1
+    }
+  );
+
+  /* ── AUDIT STAGGER ───────────────────────────── */
+  gsap.fromTo('.audit-card',
+    { opacity: 0, y: 18 },
+    {
+      scrollTrigger: { trigger: '.audit-grid', start: 'top 85%', once: true },
+      opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.07
+    }
+  );
+
+  /* ── DECISIONS STAGGER ───────────────────────── */
+  gsap.fromTo('.dec',
+    { opacity: 0, y: 16 },
+    {
+      scrollTrigger: { trigger: '.decisions', start: 'top 85%', once: true },
+      opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08
+    }
+  );
+
+  /* ── BEFORE/AFTER SCALE ──────────────────────── */
+  gsap.fromTo('.ba-grid',
+    { opacity: 0, scale: 0.98 },
+    {
+      scrollTrigger: { trigger: '.ba-grid', start: 'top 86%', once: true },
+      opacity: 1, scale: 1, duration: 0.65, ease: 'power2.out'
+    }
+  );
+
+  /* ── CALLOUTS ────────────────────────────────── */
+  ScrollTrigger.create({
+    trigger: '#callouts',
+    start: 'top 82%',
+    once: true,
+    onEnter: () => {
+      gsap.to('.callout-item', {
+        opacity: 1, x: 0,
+        duration: 0.45, ease: 'power2.out', stagger: 0.08, delay: 0.2
+      });
+    }
+  });
+
+  /* ── SCREEN CARDS ────────────────────────────── */
+  document.querySelectorAll('.screen-card').forEach((card, i) => {
+    gsap.fromTo(card,
+      { opacity: 0, y: 20, scale: 0.99 },
+      {
+        scrollTrigger: { trigger: card, start: 'top 88%', once: true },
+        opacity: 1, y: 0, scale: 1,
+        duration: 0.65, ease: 'power2.out', delay: i * 0.05
+      }
+    );
+  });
+
+  /* ── RESULTS COUNT-UP ────────────────────────── */
+  ScrollTrigger.create({
+    trigger: '#results-grid',
+    start: 'top 80%',
+    once: true,
+    onEnter: () => {
+      document.querySelectorAll('.result-num[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: target,
+          duration: 1.4,
+          ease: 'power2.out',
+          delay: 0.15,
+          onUpdate() {
+            el.textContent = prefix + Math.round(obj.val) + suffix;
+          },
+          onComplete() {
+            el.textContent = prefix + target + suffix;
+            el.closest('.result-cell').classList.add('counted');
+          }
+        });
+      });
+    }
+  });
+
+  /* ── LEARNINGS ───────────────────────────────── */
+  gsap.fromTo('.learning',
+    { opacity: 0, y: 18 },
+    {
+      scrollTrigger: { trigger: '.learnings-grid', start: 'top 85%', once: true },
+      opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', stagger: 0.09
+    }
+  );
+}
+</script>
