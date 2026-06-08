@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HaierMall — Purchase Journey Redesign</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/case-study.css" />
+  </head>
+  <body>
+    <div class="progress-bar" id="progress"></div>
+
+    <nav id="nav">
+      <div class="nav-logo">Haier<span>Mall</span></div>
+      <div class="nav-right">Case Study</div>
+    </nav>
+
+    <!-- ══ HERO ════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          Case Study — HaierMall.com
+        </div>
+        <h1>Redesigning the<br /><em>Purchase Journey</em></h1>
+        <p class="hero-sub">
+          A full UI/UX redesign of Pakistan's official Haier appliance
+          e-commerce platform. Zero functionality changes. Maximum conversion
+          impact. +25% online sales in 3 months, through design alone.
+        </p>
+        <div class="hero-meta">
+          <div class="hero-meta-cell">
+            <div class="meta-lbl">Role</div>
+            <div class="meta-val">
+              Lead UI/UX Designer<small>Sole designer</small>
+            </div>
+          </div>
+          <div class="hero-meta-cell">
+            <div class="meta-lbl">Timeline</div>
+            <div class="meta-val">
+              Phase 1<small>Delivered &amp; live</small>
+            </div>
+          </div>
+          <div class="hero-meta-cell">
+            <div class="meta-lbl">Deliverables</div>
+            <div class="meta-val">
+              Design system<small>50+ components</small>
+            </div>
+          </div>
+          <div class="hero-meta-cell">
+            <div class="meta-lbl">Focus</div>
+            <div class="meta-val">
+              CRO · Brand trust<small>Visual hierarchy</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CONTEXT ═════════════════════════════════════ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-tag">01 — Context</div>
+        <h2 class="reveal">The challenge, the approach,<br />the outcome</h2>
+        <p class="reveal">
+          Every decision traced through a single thread: trust is a design
+          variable, not a functional one.
+        </p>
+        <div class="constraint reveal">
+          <p>
+            <strong>Phase 1 constraint:</strong> No functionality changes. No
+            new features, no checkout flow rewrites, no recommendation engines,
+            no personalisation. Every interaction, backend flow, and data
+            structure stayed untouched. The only lever was design — visual
+            language, layout, hierarchy, component quality.
+            <strong
+              >How much conversion improvement can great design deliver without
+              touching a single line of functional code?</strong
+            >
+          </p>
+        </div>
+        <div class="pso-grid">
+          <div class="pso-card problem reveal">
+            <div class="pso-kicker">Problem</div>
+            <div class="pso-title">
+              A premium brand undermined by its own platform
+            </div>
+            <div class="pso-text">
+              40 years of global brand equity — invisible on the website. Black
+              and white UI. No brand system. Navigation with zero hierarchy.
+              Reviews buried below fold. Checkout visually detached from the
+              rest of the site.
+            </div>
+          </div>
+          <div class="pso-card solution reveal">
+            <div class="pso-kicker">Approach</div>
+            <div class="pso-title">Redesign within hard constraints</div>
+            <div class="pso-text">
+              Phase 1 prohibited all functionality changes. The only lever:
+              visual language, layout, hierarchy, component quality. A full
+              design system applied to optimised information architecture across
+              every surface.
+            </div>
+          </div>
+          <div class="pso-card outcome reveal">
+            <div class="pso-kicker">Outcome</div>
+            <div class="pso-title">25% sales increase in 3 months</div>
+            <div class="pso-text">
+              Post-launch data confirmed the hypothesis: trust and clarity are
+              conversion variables. Users cited ease, clarity, and
+              trustworthiness as the three primary improvements — mapping
+              exactly to Baymard's core conversion drivers.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ UX AUDIT ════════════════════════════════════ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-tag">02 — UX Audit</div>
+        <h2 class="reveal">
+          Five structural failures,<br />one shared root cause
+        </h2>
+        <p class="reveal">
+          Heuristic audit against Nielsen's 10 principles, competitive analysis
+          across five premium appliance brands, and Baymard Institute research
+          as the quantitative foundation.
+        </p>
+        <div class="audit-grid" style="margin-top: 32px">
+          <div class="audit-card reveal">
+            <div class="audit-num">Finding 01</div>
+            <div class="audit-title">Zero brand identity on platform</div>
+            <div class="audit-body">
+              Entirely black and white. No Haier brand colours, no visual
+              system, no premium signals. A consumer familiar with Haier from
+              retail would land and find nothing confirming they were on the
+              right platform.
+            </div>
+          </div>
+          <div class="audit-card reveal">
+            <div class="audit-num">Finding 02</div>
+            <div class="audit-title">Navigation with no hierarchy</div>
+            <div class="audit-body">
+              All paths carried equal visual weight. Product discovery was
+              failing early in the funnel — users couldn't orient themselves or
+              determine which categories were relevant to their needs.
+            </div>
+          </div>
+          <div class="audit-card reveal">
+            <div class="audit-num">Finding 03</div>
+            <div class="audit-title">Purchase-confidence signals buried</div>
+            <div class="audit-body">
+              Reviews sat below fold. CTAs competed with surrounding elements.
+              The information hierarchy on product pages worked against how
+              users actually make high-consideration appliance decisions.
+            </div>
+          </div>
+          <div class="audit-card reveal">
+            <div class="audit-num">Finding 04</div>
+            <div class="audit-title">Checkout visually detached</div>
+            <div class="audit-body">
+              Payment pages looked completely disconnected from the rest of the
+              site — a pattern Baymard directly links to checkout abandonment.
+              The brand thread broke exactly where trust mattered most.
+            </div>
+          </div>
+          <div class="audit-card reveal">
+            <div class="audit-num">Finding 05</div>
+            <div class="audit-title">Mobile experience unoptimised</div>
+            <div class="audit-body">
+              Below-spec tap targets, thumbnails too small for high-value
+              appliance evaluation, navigation requiring horizontal scroll.
+              Failed at the first mobile moment of product consideration.
+            </div>
+          </div>
+          <div class="audit-card reveal">
+            <div class="audit-num">Root Cause</div>
+            <div class="audit-title">A brand trust restoration problem</div>
+            <div class="audit-body">
+              Every failure traced to the same origin: the visual design
+              actively communicated the opposite of what the Haier brand
+              represents. Solvable entirely within Phase 1 — because trust is a
+              design variable, not a functional one.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BEFORE / AFTER ══════════════════════════════ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-tag">03 — Before / After</div>
+        <h2 class="reveal">
+          From product catalog to<br />guided purchase journey
+        </h2>
+        <p class="reveal">
+          The redesign shifted the experience from a flat inventory display to a
+          structured journey that orients, guides, and builds confidence at
+          every stage.
+        </p>
+        <div class="ba-container">
+          <div class="ba-grid reveal">
+            <div class="ba-block">
+              <div class="ba-head before-h">Before — original hierarchy</div>
+              <div class="ba-body">
+                <div class="ba-row dim">
+                  Hero — no brand, black &amp; white<span class="ba-badge"
+                    >No identity</span
+                  >
+                </div>
+                <div class="ba-row dim">
+                  Flat navigation, equal weight<span class="ba-badge"
+                    >No hierarchy</span
+                  >
+                </div>
+                <div class="ba-row dim">
+                  Price + weak CTA<span class="ba-badge">Low dominance</span>
+                </div>
+                <div class="ba-row dim">
+                  Long technical specs above fold<span class="ba-badge"
+                    >Wrong order</span
+                  >
+                </div>
+                <div class="ba-row dim">
+                  Reviews below fold<span class="ba-badge">Buried</span>
+                </div>
+                <div class="ba-row dim">
+                  Checkout — visually detached<span class="ba-badge"
+                    >Trust break</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="ba-block">
+              <div class="ba-head after-h">After — decision sequence</div>
+              <div class="ba-body">
+                <div class="ba-row lit">
+                  Brand-led hero + flash sale sub-header<span class="ba-badge"
+                    >↑ Identity</span
+                  >
+                </div>
+                <div class="ba-row lit">
+                  Mega menu with weighted hierarchy<span class="ba-badge"
+                    >↑ Discovery</span
+                  >
+                </div>
+                <div class="ba-row cta-row">Dominant CTA — primary action</div>
+                <div class="ba-row lit">
+                  Featured reviews elevated above specs<span class="ba-badge"
+                    >↑ Confidence</span
+                  >
+                </div>
+                <div class="ba-row lit">
+                  Specs below the decision trigger<span class="ba-badge"
+                    >↑ Clarity</span
+                  >
+                </div>
+                <div class="ba-row lit">
+                  Checkout — brand-consistent<span class="ba-badge"
+                    >↑ Trust</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="callouts-list" id="callouts">
+            <div class="callout-item">
+              <span class="callout-num">01</span
+              ><span class="callout-text"
+                >Improved visual hierarchy — clear CTA dominance with brand
+                colour system</span
+              ><span class="callout-pip"></span>
+            </div>
+            <div class="callout-item">
+              <span class="callout-num">02</span
+              ><span class="callout-text"
+                >Reduced promotional clutter — promotions integrated into
+                hierarchy, not competing with it</span
+              ><span class="callout-pip"></span>
+            </div>
+            <div class="callout-item">
+              <span class="callout-num">03</span
+              ><span class="callout-text"
+                >Enhanced product discovery — mega menu with weighted category
+                architecture</span
+              ><span class="callout-pip"></span>
+            </div>
+            <div class="callout-item">
+              <span class="callout-num">04</span
+              ><span class="callout-text"
+                >Strengthened trust signals — security indicators and reviews
+                elevated to decision position</span
+              ><span class="callout-pip"></span>
+            </div>
+            <div class="callout-item">
+              <span class="callout-num">05</span
+              ><span class="callout-text"
+                >Optimised content flow — decision sequence restructured around
+                how users actually evaluate appliances</span
+              ><span class="callout-pip"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ DESIGN DECISIONS ════════════════════════════ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-tag">04 — Design Decisions</div>
+        <h2 class="reveal">
+          Six decisions.<br />Each one a conversion decision.
+        </h2>
+        <p class="reveal">
+          Every design choice evaluated on its measurable impact on conversion
+          potential, trust signals, or user orientation — not aesthetics alone.
+        </p>
+        <div class="decisions">
+          <div class="dec reveal">
+            <div class="dec-num"><span>01</span></div>
+            <div class="dec-body">
+              <div class="dec-problem">Problem — zero brand recognition</div>
+              <div class="dec-title">
+                Brand colour system applied end-to-end
+              </div>
+              <div class="dec-desc">
+                Haier red as primary CTA colour, key navigational actions, and
+                promotional signifiers. Critical application: checkout pages,
+                previously disconnected from the rest of the site. An unbroken
+                visual identity thread from first impression to order
+                confirmation.
+              </div>
+              <span class="dec-impact"
+                >↑ Trust continuity across all touchpoints</span
+              >
+            </div>
+          </div>
+          <div class="dec reveal">
+            <div class="dec-num"><span>02</span></div>
+            <div class="dec-body">
+              <div class="dec-problem">
+                Problem — flat navigation, no hierarchy
+              </div>
+              <div class="dec-title">
+                Mega menu with sticky header and weighted hierarchy
+              </div>
+              <div class="dec-desc">
+                Existing navigation links retained exactly — Phase 1 constraint.
+                What changed: their visual architecture. Primary appliance
+                categories given highest visual weight. Sub-categories grouped.
+                Promotional links visually distinguished. Sticky header
+                maintained access during long product page scrolls.
+              </div>
+              <span class="dec-impact"
+                >↑ Product discoverability +40% faster</span
+              >
+            </div>
+          </div>
+          <div class="dec reveal">
+            <div class="dec-num"><span>03</span></div>
+            <div class="dec-body">
+              <div class="dec-problem">
+                Problem — wrong information sequence
+              </div>
+              <div class="dec-title">
+                Product pages rebuilt around the purchase decision sequence
+              </div>
+              <div class="dec-desc">
+                Layout restructured: hero imagery → price and key specs above
+                fold → dominant CTA → featured reviews → detailed specs →
+                upsells. Reviews elevated from below specs to above — based on
+                Baymard's finding that 95% of users rely on reviews during
+                product evaluation.
+              </div>
+              <span class="dec-impact"
+                >↑ Purchase confidence, reduced abandonment</span
+              >
+            </div>
+          </div>
+          <div class="dec reveal">
+            <div class="dec-num"><span>04</span></div>
+            <div class="dec-body">
+              <div class="dec-problem">
+                Problem — checkout looked untrustworthy
+              </div>
+              <div class="dec-title">
+                Checkout trust signal overhaul within existing flow logic
+              </div>
+              <div class="dec-desc">
+                Couldn't change checkout steps or logic. Changed everything the
+                user sees. Baymard enclosed field treatment. Trust seals above
+                the payment input. Persistent order summary. Full brand system
+                through every checkout screen — eliminating the visual trust
+                break at the most critical moment.
+              </div>
+              <span class="dec-impact"
+                >↑ Payment confidence — addresses 17% abandonment cause</span
+              >
+            </div>
+          </div>
+          <div class="dec reveal">
+            <div class="dec-num"><span>05</span></div>
+            <div class="dec-body">
+              <div class="dec-problem">
+                Problem — mobile unusable for appliance evaluation
+              </div>
+              <div class="dec-title">
+                Mobile-first, WCAG 2.1 AA compliant component system
+              </div>
+              <div class="dec-desc">
+                44px minimum tap targets. Single-column dominant product grids
+                for major appliances — 2-column thumbnails were too small to
+                evaluate product quality. 2-column retained for accessories. All
+                colour contrast ratios verified against WCAG 2.1 AA.
+              </div>
+              <span class="dec-impact"
+                >↑ Mobile conversion, full accessibility compliance</span
+              >
+            </div>
+          </div>
+          <div class="dec reveal">
+            <div class="dec-num"><span>06</span></div>
+            <div class="dec-body">
+              <div class="dec-problem">
+                Problem — cross-cultural handoff ambiguity
+              </div>
+              <div class="dec-title">
+                50+ component Figma system for zero-ambiguity dev handoff
+              </div>
+              <div class="dec-desc">
+                Simultaneous handoff to Chinese and Pakistani development teams.
+                Consistent component naming taxonomy. All interactive states
+                documented: focus, error, loading, empty. Spacing in px and rem.
+                Built to be extended by developers independently — no designer
+                interpretation required at implementation.
+              </div>
+              <span class="dec-impact"
+                >↑ Implementation fidelity, reduced revision cycles</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ UI SHOWCASE ══════════════════════════════════ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-tag">05 — UI Showcase</div>
+        <h2 class="reveal">Selected screens</h2>
+        <p class="reveal">
+          Hover each screen to reveal the design decision and CRO reasoning.
+        </p>
+        <div class="screens">
+          <div class="screen-card reveal">
+            <div class="screen-chrome">
+              <div class="chrome-dots">
+                <div class="chrome-dot"></div>
+                <div class="chrome-dot"></div>
+                <div class="chrome-dot"></div>
+              </div>
+              <div class="chrome-url">haiermall.com</div>
+            </div>
+            <div class="screen-img">
+              <div class="screen-ph">
+                <div class="screen-ph-icon">⌂</div>
+                <div class="screen-ph-lbl">Homepage — Image placeholder</div>
+              </div>
+              <div class="screen-overlay">
+                <div class="overlay-inner">
+                  <div class="overlay-tag">Homepage redesign</div>
+                  <div class="overlay-text">
+                    Brand-led hero with Haier colour system applied throughout.
+                    Flash sale moved to persistent sub-header — the primary
+                    engagement hook was invisible below the fold in the original
+                    design.
+                  </div>
+                  <div class="overlay-pill">
+                    −32% bounce rate from homepage to category
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="screen-meta">
+              <div class="sm-cell">
+                <div class="sm-lbl">What changed</div>
+                <div class="sm-val">
+                  Brand-led hero, weighted mega menu navigation, flash sale
+                  sub-header.
+                </div>
+              </div>
+              <div class="sm-cell">
+                <div class="sm-lbl">Why it changed</div>
+                <div class="sm-val">
+                  Flash sale was the primary engagement hook — invisible below
+                  fold in original.
+                </div>
+              </div>
+              <div class="sm-cell">
+                <div class="sm-lbl">CRO impact</div>
+                <div class="sm-val">
+                  −32% bounce rate, homepage to category pages.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="screen-card reveal">
+            <div class="screen-chrome">
+              <div class="chrome-dots">
+                <div class="chrome-dot"></div>
+                <div class="chrome-dot"></div>
+                <div class="chrome-dot"></div>
+              </div>
+              <div class="chrome-url">haiermall.com / refrigerators</div>
+            </div>
+            <div class="screen-img">
+              <div class="screen-ph">
+                <div class="screen-ph-icon">⊞</div>
+                <div class="screen-ph-lbl">
+                  Product Listing Page — Image placeholder
+                </div>
+              </div>
+              <div class="screen-overlay">
+                <div class="overlay-inner">
+                  <div class="overlay-tag">Product listing page</div>
+                  <div class="overlay-text">
+                    Single-column dominant cards for major appliances. 2-column
+                    grid produced thumbnails too small to evaluate product
+                    quality for large appliances on mobile — grid logic matched
+                    to category and evaluation needs.
+                  </div>
+                  <div class="overlay-pill">
+                    +40% faster product discovery in testing
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="screen-meta">
+              <div class="sm-cell">
+                <div class="sm-lbl">What changed</div>
+                <div class="sm-val">
+                  Single-column dominant cards for major appliances on mobile.
+                </div>
+              </div>
+              <div class="sm-cell">
+                <div class="sm-lbl">Why it changed</div>
+                <div class="sm-val">
+                  2-column thumbnails too small to evaluate quality for large
+                  appliances.
+                </div>
+              </div>
+              <div class="sm-cell">
+                <div class="sm-lbl">CRO impact</div>
+                <div class="sm-val">
+                  +40% faster product discovery in usability testing.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="screen-card reveal">
+            <div class="screen-chrome">
+              <div class="chrome-dots">
+                <div class="chrome-dot"></div>
+                <div class="chrome-dot"></div>
+                <div class="chrome-dot"></div>
+              </div>
+              <div class="chrome-url">
+                haiermall.com / refrigerators / model
+              </div>
+            </div>
+            <div class="screen-img">
+              <div class="screen-ph">
+                <div class="screen-ph-icon">▭</div>
+                <div class="screen-ph-lbl">
+                  Product Detail Page — Image placeholder
+                </div>
+              </div>
+              <div class="screen-overlay">
+                <div class="overlay-inner">
+                  <div class="overlay-tag">Product detail page</div>
+                  <div class="overlay-text">
+                    Reviews elevated above specifications. Dominant CTA. Key
+                    specs above fold. Decision sequence restructured around the
+                    premium purchase journey: imagery → price → CTA → reviews →
+                    specs → upsells.
+                  </div>
+                  <div class="overlay-pill">
+                    Primary driver of +25% sales increase
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="screen-meta">
+              <div class="sm-cell">
+                <div class="sm-lbl">What changed</div>
+                <div class="sm-val">
+                  Reviews elevated above specs. Dominant CTA. Decision sequence
+                  restructured.
+                </div>
+              </div>
+              <div class="sm-cell">
+                <div class="sm-lbl">Why it changed</div>
+                <div class="sm-val">
+                  95% of users rely on reviews during evaluation — original
+                  layout buried them.
+                </div>
+              </div>
+              <div class="sm-cell">
+                <div class="sm-lbl">CRO impact</div>
+                <div class="sm-val">
+                  Primary driver of purchase confidence improvement and sales
+                  uplift.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="screen-card reveal">
+            <div class="screen-chrome">
+              <div class="chrome-dots">
+                <div class="chrome-dot"></div>
+                <div class="chrome-dot"></div>
+                <div class="chrome-dot"></div>
+              </div>
+              <div class="chrome-url">haiermall.com / checkout</div>
+            </div>
+            <div class="screen-img">
+              <div class="screen-ph">
+                <div class="screen-ph-icon">☐</div>
+                <div class="screen-ph-lbl">Checkout — Image placeholder</div>
+              </div>
+              <div class="screen-overlay">
+                <div class="overlay-inner">
+                  <div class="overlay-tag">Checkout redesign</div>
+                  <div class="overlay-text">
+                    Trust seals above payment input. Enclosed field treatment.
+                    Persistent order summary throughout. Brand system running
+                    unbroken through every checkout screen — eliminating the
+                    visual trust break at the most critical moment.
+                  </div>
+                  <div class="overlay-pill">
+                    Addresses 17% of checkout abandonment cause
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="screen-meta">
+              <div class="sm-cell">
+                <div class="sm-lbl">What changed</div>
+                <div class="sm-val">
+                  Trust seals, enclosed fields, persistent order summary, brand
+                  system applied.
+                </div>
+              </div>
+              <div class="sm-cell">
+                <div class="sm-lbl">Why it changed</div>
+                <div class="sm-val">
+                  Original checkout looked detached — Baymard links this to
+                  payment abandonment.
+                </div>
+              </div>
+              <div class="sm-cell">
+                <div class="sm-lbl">CRO impact</div>
+                <div class="sm-val">
+                  Addresses 17% of users who abandon due to visual mistrust.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ RESULTS ══════════════════════════════════════ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-tag">06 — Results</div>
+        <h2 class="reveal">Three months.<br />Design as the only lever.</h2>
+        <p class="reveal">
+          No new features. No checkout flow modifications. No personalisation.
+          Every metric from visual design quality, layout architecture, brand
+          system application, and component hierarchy alone.
+        </p>
+        <div class="results-grid" id="results-grid">
+          <div class="result-cell">
+            <div
+              class="result-num"
+              data-target="25"
+              data-prefix="+"
+              data-suffix="%"
+            >
+              +0%
+            </div>
+            <div class="result-label">Online sales</div>
+            <div class="result-sub">3 months post-launch</div>
+          </div>
+          <div class="result-cell">
+            <div
+              class="result-num"
+              data-target="32"
+              data-prefix="−"
+              data-suffix="%"
+            >
+              −0%
+            </div>
+            <div class="result-label">Bounce rate</div>
+            <div class="result-sub">Homepage → category</div>
+          </div>
+          <div class="result-cell">
+            <div
+              class="result-num"
+              data-target="40"
+              data-prefix="+"
+              data-suffix="%"
+            >
+              +0%
+            </div>
+            <div class="result-label">Faster product discovery</div>
+            <div class="result-sub">Usability testing</div>
+          </div>
+          <div class="result-cell">
+            <div
+              class="result-num"
+              data-target="15"
+              data-prefix="+"
+              data-suffix="%"
+            >
+              +0%
+            </div>
+            <div class="result-label">Session duration</div>
+            <div class="result-sub">Average session</div>
+          </div>
+        </div>
+        <div class="result-note reveal" style="margin-top: 20px">
+          <div class="result-note-lbl">Post-launch user feedback</div>
+          <div class="result-note-text">
+            Customer feedback cited
+            <strong style="color: var(--white); font-weight: 500"
+              >ease, clarity, and trustworthiness</strong
+            >
+            as the three primary improvements — mapping precisely to Baymard's
+            three core drivers of e-commerce conversion confidence.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ KEY LEARNINGS ═══════════════════════════════ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-tag">07 — Key Learnings</div>
+        <h2 class="reveal">
+          What this project taught about<br />high-consideration purchase design
+        </h2>
+        <div class="learnings-grid">
+          <div class="learning reveal">
+            <div class="learning-title">Trust is a design variable</div>
+            <div class="learning-text">
+              17% of checkout abandonment is caused by visual distrust — a
+              design problem with a design solution. Visual credibility is
+              purchase permission, and it's entirely within the designer's
+              control regardless of functional constraints.
+            </div>
+          </div>
+          <div class="learning reveal">
+            <div class="learning-title">
+              Information hierarchy is conversion architecture
+            </div>
+            <div class="learning-text">
+              Placing reviews above specs wasn't aesthetic preference — it was
+              restructuring the page to match how users actually make appliance
+              decisions. Layout is the product. Sequence is as consequential as
+              the content itself.
+            </div>
+          </div>
+          <div class="learning reveal">
+            <div class="learning-title">
+              Documentation is a design deliverable
+            </div>
+            <div class="learning-text">
+              Cross-cultural handoff revealed that naming intuitive to one team
+              created ambiguity in another. A dedicated annotation layer should
+              have been part of the design system from day one — not added
+              mid-project.
+            </div>
+          </div>
+          <div class="learning reveal">
+            <div class="learning-title">Constraints sharpen the hypothesis</div>
+            <div class="learning-text">
+              The prohibition on new functionality forced a precise question:
+              how much conversion improvement can design deliver alone? The
+              answer — 25% in 3 months — validates that great layout and
+              hierarchy are not decoration. They are the product experience.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ═══════════════════════════════════════ -->
+    <footer>
+      <div class="wrap">
+        <div class="footer-name">HaierMall · E-Commerce Redesign</div>
+        <div class="footer-sub">
+          Designed by Sana Ishaq · Lead UI/UX Designer
+        </div>
+        <a
+          class="footer-link"
+          href="https://www.figma.com/design/5TsYjxtEwc8BKGf34lGxGa/VD-Haier-Mall"
+          target="_blank"
+          rel="noopener"
+          >Open Figma source file →</a
+        >
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="./assets/js/case-study.js"></script>
+  </body>
+</html>
