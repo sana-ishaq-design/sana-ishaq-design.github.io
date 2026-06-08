@@ -2260,7 +2260,7 @@ footer{padding:64px 0 48px;text-align:center;border-top:1px solid var(--line)}
 }
 
 /* ── RESPONSIVE ────────────────────────────────── */
-@media(max-width:720px){
+@media(max-width:960px){
   .wrap{padding:0 20px}
   nav{padding:18px 20px}
   .hero{padding:110px 0 80px}
