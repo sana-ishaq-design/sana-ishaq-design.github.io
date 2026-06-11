@@ -2435,7 +2435,7 @@ nav.scrolled {
 }
 
 .screen-chrome {
-    background: red;
+    background: var(--navy3);
     padding: 11px 16px;
     display: flex;
     align-items: center;
