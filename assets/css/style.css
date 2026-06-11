@@ -2481,8 +2481,8 @@ nav.scrolled {
 }
 
 .screen-ph-icon {
-    width: 1058px;
-    height: 64px;
+    width: 44px;
+    height: 44px;
     border-radius: 8px;
     background: var(--navy4);
     border: 1px solid var(--line2);
