@@ -2424,7 +2424,7 @@ nav.scrolled {
     border: 1px solid var(--line2);
     border-radius: 12px;
     overflow: hidden;
-    background: red;
+    background: var(--navy2);
     transition: border-color .3s, transform .3s var(--ease), box-shadow .3s;
 }
 
@@ -2435,7 +2435,7 @@ nav.scrolled {
 }
 
 .screen-chrome {
-    background: var(--navy3);
+    background: red;
     padding: 11px 16px;
     display: flex;
     align-items: center;
