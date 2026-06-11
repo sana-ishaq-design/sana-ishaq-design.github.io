@@ -1,0 +1,357 @@
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#020B16;
+  --surface:#071422;
+  --surface2:#0a1c2e;
+  --teal:#2dd4bf;
+  --teal-dim:rgba(45,212,191,0.07);
+  --teal-border:rgba(45,212,191,0.15);
+  --white:#e8f0f8;
+  --white2:#7a9ab5;
+  --white3:#3a5a72;
+  --line:rgba(255,255,255,0.055);
+  --line2:rgba(255,255,255,0.09);
+  --serif:'DM Serif Display',serif;
+  --sans:'Inter',sans-serif;
+}
+body{background:var(--bg);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scanline{from{transform:translateY(-100%)}to{transform:translateY(500px)}}
+@keyframes blink{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.6}}
+
+.page{max-width:900px;margin:0 auto;padding:80px 48px 100px;min-height:100vh}
+
+/* ── EYEBROW ── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:32px;
+  opacity:0;animation:fadeUp .6s .1s ease both;
+}
+.eyebrow-line{width:20px;height:1px;background:var(--teal);opacity:.6}
+
+/* ── HEADLINE ── */
+.headline{
+  font-family:var(--serif);
+  font-size:clamp(36px,5vw,62px);
+  font-weight:400;line-height:1.05;
+  letter-spacing:-.015em;color:var(--white);
+  max-width:700px;margin-bottom:24px;
+  opacity:0;animation:fadeUp .7s .2s ease both;
+}
+.headline em{color:var(--teal);font-style:italic}
+
+/* ── BODY ── */
+.lead{
+  font-size:15px;color:var(--white2);font-weight:300;
+  line-height:1.78;max-width:580px;margin-bottom:56px;
+  opacity:0;animation:fadeUp .65s .35s ease both;
+}
+.lead strong{color:var(--white);font-weight:500}
+
+/* ── DIVIDER ── */
+.divider{
+  width:100%;height:1px;background:var(--line2);
+  margin-bottom:56px;position:relative;overflow:hidden;
+  opacity:0;animation:fadeIn .5s .5s ease both;
+}
+.divider::after{
+  content:'';position:absolute;top:0;left:0;width:80px;height:100%;
+  background:var(--teal);opacity:.4;
+  animation:scanline 3.5s 1s ease both;
+}
+
+/* ── BLUEPRINT STAGE ── */
+.blueprint{
+  margin-bottom:64px;
+  opacity:0;animation:fadeIn .8s .6s ease both;
+}
+
+/* grid container */
+.grid-bg{
+  position:relative;width:100%;height:320px;
+  background:var(--surface);
+  border:1px solid var(--line2);border-radius:14px;
+  overflow:hidden;
+}
+
+/* dot grid */
+.dot-grid{
+  position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(45,212,191,.12) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+
+/* teal glow orb */
+.glow-orb{
+  position:absolute;top:40%;left:50%;
+  transform:translate(-50%,-50%);
+  width:300px;height:200px;
+  background:radial-gradient(ellipse,rgba(45,212,191,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+/* wireframe cards */
+.wf-card{
+  position:absolute;
+  background:rgba(7,20,34,.8);
+  border:1px solid var(--line2);border-radius:8px;
+  backdrop-filter:blur(4px);
+  transition:border-color .3s,transform .3s;
+}
+.wf-card:hover{border-color:var(--teal-border);transform:translateY(-3px)}
+
+.wf-c1{width:220px;height:130px;top:24px;left:32px}
+.wf-c2{width:180px;height:110px;top:24px;left:270px;opacity:.7}
+.wf-c3{width:200px;height:125px;top:30px;right:32px;opacity:.5}
+.wf-c4{width:240px;height:95px;bottom:32px;left:32px;opacity:.6}
+.wf-c5{width:195px;height:90px;bottom:32px;right:32px;opacity:.45}
+
+.wf-header{
+  height:10px;background:var(--line2);border-radius:4px;
+  margin:16px 16px 10px;
+}
+.wf-line{
+  height:6px;border-radius:3px;background:var(--line);
+  margin:6px 16px;
+}
+.wf-line.short{width:55%}
+.wf-line.med{width:72%}
+.wf-line.full{margin:6px 16px}
+.wf-tag{
+  display:inline-flex;align-items:center;
+  height:16px;border-radius:20px;
+  background:var(--teal-dim);border:1px solid var(--teal-border);
+  margin:8px 16px 0;width:60px;
+}
+.wf-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--teal);opacity:.4;margin:0 5px;
+  animation:blink 2s ease-in-out infinite;
+}
+.wf-thumb{
+  width:40px;height:40px;border-radius:6px;
+  background:var(--line);float:left;margin:12px 10px 10px 16px;
+}
+.wf-thumb-lines{overflow:hidden}
+.wf-badge{
+  position:absolute;top:-8px;right:12px;
+  font-family:var(--sans);font-size:9px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:var(--bg);border:1px solid var(--teal-border);
+  color:var(--teal);padding:2px 8px;border-radius:20px;
+  animation:pulse 3s ease-in-out infinite;
+}
+
+/* progress bars inside cards */
+.wf-prog-track{
+  height:4px;background:var(--line);border-radius:2px;
+  margin:8px 16px 0;
+}
+.wf-prog-fill{
+  height:100%;border-radius:2px;background:rgba(45,212,191,.3);
+}
+
+/* connector lines */
+.connectors{position:absolute;inset:0;pointer-events:none}
+
+/* center status */
+.status-center{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;pointer-events:none;
+}
+.status-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--teal);margin:0 auto 10px;
+  animation:blink 1.8s ease-in-out infinite;
+}
+.status-label{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal);opacity:.7;
+  display:block;margin-bottom:4px;
+}
+.status-sub{
+  font-family:var(--sans);font-size:11px;color:var(--white3);
+  font-weight:300;letter-spacing:.04em;
+}
+
+/* ── DOCUMENTING ── */
+.documenting{
+  margin-bottom:60px;
+  opacity:0;animation:fadeUp .6s .75s ease both;
+}
+.doc-label{
+  font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--white3);margin-bottom:16px;
+}
+.doc-pills{display:flex;flex-wrap:wrap;gap:8px}
+.doc-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:12px;font-weight:400;color:var(--white2);
+  background:var(--surface2);border:1px solid var(--line2);
+  border-radius:6px;padding:7px 14px;
+  transition:border-color .25s,color .25s;
+  letter-spacing:.01em;
+}
+.doc-pill:hover{border-color:var(--teal-border);color:var(--white)}
+.doc-pill-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--teal);opacity:.5;flex-shrink:0;
+}
+
+/* ── CTA ── */
+.cta-row{
+  display:flex;align-items:center;gap:20px;
+  opacity:0;animation:fadeUp .6s .9s ease both;
+}
+.cta-link{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:13px;font-weight:500;color:var(--teal);
+  text-decoration:none;letter-spacing:.01em;
+  transition:gap .25s;cursor:pointer;
+  background:none;border:none;padding:0;
+}
+.cta-link:hover{gap:13px}
+.cta-link:hover .cta-arrow{transform:translateX(-3px)}
+.cta-arrow{transition:transform .25s;font-size:14px}
+.cta-divider{width:1px;height:16px;background:var(--line2)}
+.cta-meta{font-size:12px;color:var(--white3);font-weight:300;letter-spacing:.02em}
+
+/* SVG connectors */
+svg.conn{position:absolute;inset:0;width:100%;height:100%}
+
+@media(max-width:600px){
+  .page{padding:60px 24px 80px}
+  .grid-bg{height:260px}
+  .wf-c2,.wf-c3,.wf-c5{display:none}
+  .wf-c1{width:160px;height:100px;left:16px;top:16px}
+  .wf-c4{width:165px;bottom:16px;left:16px}
+}
+</style>
+
+<div class="page">
+
+  <div class="eyebrow">
+    <span class="eyebrow-line"></span>
+    Case Studies Archive
+  </div>
+
+  <h1 class="headline">More work. More outcomes.<br><em>Currently being documented.</em></h1>
+
+  <p class="lead">
+    <strong>The projects are complete. The results are real.</strong><br><br>
+    I'm currently documenting additional redesigns, UX audits, CRO engagements, and product design work — capturing the research, decisions, constraints, and measurable outcomes behind each project.<br><br>
+    Rather than publishing rushed case studies, I focus on creating detailed breakdowns that show how design decisions translated into business impact. New case studies are added as they're completed.
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- BLUEPRINT VISUAL -->
+  <div class="blueprint">
+    <div class="grid-bg">
+      <div class="dot-grid"></div>
+      <div class="glow-orb"></div>
+
+      <!-- SVG connector lines -->
+      <svg class="conn connectors" viewBox="0 0 900 320" preserveAspectRatio="none">
+        <line x1="252" y1="89" x2="420" y2="160" stroke="rgba(45,212,191,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="650" y1="87" x2="480" y2="160" stroke="rgba(45,212,191,0.07)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="272" y1="248" x2="420" y2="160" stroke="rgba(45,212,191,0.06)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="695" y1="242" x2="480" y2="160" stroke="rgba(45,212,191,0.06)" stroke-width="1" stroke-dasharray="4 4"/>
+        <circle cx="420" cy="160" r="28" fill="none" stroke="rgba(45,212,191,0.1)" stroke-width="1"/>
+        <circle cx="420" cy="160" r="38" fill="none" stroke="rgba(45,212,191,0.05)" stroke-width="1" stroke-dasharray="3 6"/>
+      </svg>
+
+      <!-- Card 1: E-commerce Redesign -->
+      <div class="wf-card wf-c1">
+        <div class="wf-badge">Documenting</div>
+        <div class="wf-header"></div>
+        <div class="wf-line full"></div>
+        <div class="wf-line short"></div>
+        <div class="wf-prog-track"><div class="wf-prog-fill" style="width:65%"></div></div>
+        <div class="wf-tag"><div class="wf-dot"></div></div>
+      </div>
+
+      <!-- Card 2: UX Audit -->
+      <div class="wf-card wf-c2">
+        <div class="wf-thumb" style="width:32px;height:32px;margin:12px 10px 8px 14px"></div>
+        <div class="wf-thumb-lines">
+          <div class="wf-line" style="margin-top:14px;margin-left:0;width:calc(100% - 60px);float:left"></div>
+          <div class="wf-line short" style="margin-left:0;float:left;clear:both;margin-top:4px;width:40%"></div>
+          <div style="clear:both"></div>
+        </div>
+        <div class="wf-prog-track" style="margin-top:10px"><div class="wf-prog-fill" style="width:40%"></div></div>
+      </div>
+
+      <!-- Card 3: CRO Engagement -->
+      <div class="wf-card wf-c3">
+        <div class="wf-header" style="margin-bottom:8px"></div>
+        <div class="wf-line full"></div>
+        <div class="wf-line med"></div>
+        <div style="display:flex;gap:5px;margin:8px 16px 0">
+          <div style="flex:1;height:20px;background:var(--line);border-radius:4px"></div>
+          <div style="flex:1;height:20px;background:var(--teal-dim);border:1px solid var(--teal-border);border-radius:4px"></div>
+        </div>
+      </div>
+
+      <!-- Card 4: Product Design -->
+      <div class="wf-card wf-c4">
+        <div style="display:flex;gap:0">
+          <div style="width:28px;height:28px;border-radius:4px;background:var(--line);margin:12px 10px 10px 16px;flex-shrink:0"></div>
+          <div style="flex:1;padding-top:12px">
+            <div class="wf-line" style="margin:0 16px 0 0;width:70%"></div>
+            <div class="wf-line short" style="margin:5px 16px 0 0;width:45%"></div>
+          </div>
+        </div>
+        <div class="wf-prog-track"><div class="wf-prog-fill" style="width:82%"></div></div>
+      </div>
+
+      <!-- Card 5: Mobile App -->
+      <div class="wf-card wf-c5">
+        <div class="wf-header" style="width:50%;margin-bottom:8px"></div>
+        <div class="wf-line full"></div>
+        <div class="wf-line short"></div>
+      </div>
+
+      <!-- Center status indicator -->
+      <div class="status-center">
+        <div class="status-dot"></div>
+        <span class="status-label">In documentation</span>
+        <span class="status-sub">4 projects active</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CURRENTLY DOCUMENTING -->
+  <div class="documenting">
+    <div class="doc-label">Currently documenting</div>
+    <div class="doc-pills">
+      <div class="doc-pill"><span class="doc-pill-dot"></span>UX Audits</div>
+      <div class="doc-pill"><span class="doc-pill-dot"></span>E-commerce Redesigns</div>
+      <div class="doc-pill"><span class="doc-pill-dot"></span>Conversion Optimisation</div>
+      <div class="doc-pill"><span class="doc-pill-dot"></span>Product Design</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-row">
+    <button class="cta-link" onclick="sendPrompt('Take me back to the featured case studies')">
+      <span class="cta-arrow">←</span>
+      Back to Featured Case Studies
+    </button>
+    <div class="cta-divider"></div>
+    <span class="cta-meta">Updated as each study is completed</span>
+  </div>
+
+</div>
