@@ -11,6 +11,21 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../assets/css/style.css" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-FD8QZNCLK0"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-FD8QZNCLK0');
+    </script>
   </head>
 
   <body class="case_study">
@@ -474,10 +489,11 @@
             </div>
             <div class="screen-img">
               <div class="screen-ph">
-                <div class="screen-ph-icon">
+                <div class="">
                   <img
                     src="/assets/img/Haier homepage.png"
                     alt="haier homepage"
+                    style="object-fit: contain; width: 100%"
                   />
                 </div>
                 <div class="screen-ph-lbl">Homepage — Image placeholder</div>
@@ -820,14 +836,15 @@
       <div class="wrap">
         <div class="footer-name">HaierMall · E-Commerce Redesign</div>
         <div class="footer-sub">
-          Designed by Sana Ishaq · Lead UI/UX Designer
+          Designed by Sana Ishaq · Lead UI/UX Designer · Developed by
+          <span
+            ><a class="footer-link" href="https://github.com/zfhassan"
+              >Hassaan Ali →</a
+            ></span
+          >
         </div>
-        <a
-          class="footer-link"
-          href="https://www.figma.com/design/5TsYjxtEwc8BKGf34lGxGa/VD-Haier-Mall"
-          target="_blank"
-          rel="noopener"
-          >Open Figma source file →</a
+        <a class="footer-link" href="" target="_blank" rel="noopener"
+          >Figma File Available On Request. →</a
         >
       </div>
     </footer>
