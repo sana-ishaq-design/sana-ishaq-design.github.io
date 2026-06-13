@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Subscribe Me — Product Design Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#060f1a;
+  --navy2:#091626;
+  --navy3:#0d1e34;
+  --navy4:#122440;
+  --teal:#2dd4bf;
+  --teal2:#14b8a6;
+  --teal-dim:rgba(45,212,191,0.07);
+  --teal-border:rgba(45,212,191,0.16);
+  --white:#edf2f7;
+  --white2:#94afc8;
+  --white3:#4d6a85;
+  --green:#34d399;
+  --green-dim:rgba(52,211,153,0.07);
+  --green-border:rgba(52,211,153,0.18);
+  --red-dim:rgba(248,113,113,0.07);
+  --red-border:rgba(248,113,113,0.18);
+  --amber:rgba(251,191,36,0.28);
+  --line:rgba(255,255,255,0.055);
+  --line2:rgba(255,255,255,0.09);
+  --serif:'DM Serif Display',serif;
+  --body:'Inter',sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--navy);color:var(--white);font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ─── PROGRESS ───────────────────────────────── */
+.progress-bar{position:fixed;top:0;left:0;height:1px;background:var(--teal);z-index:200;width:0%;opacity:.7;transition:width .1s linear}
+
+/* ─── NAV ────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;transition:background .45s,border-color .45s,backdrop-filter .45s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(6,15,26,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line2)}
+.nav-logo{font-size:13px;font-weight:500;color:var(--white);letter-spacing:.02em}
+.nav-logo span{color:var(--teal)}
+.nav-right{display:flex;gap:4px}
+.nav-pill{padding:6px 12px;font-size:11px;color:var(--white3);border-radius:6px;text-decoration:none;transition:color .2s,background .2s;letter-spacing:.02em}
+.nav-pill:hover{color:var(--teal);background:var(--teal-dim)}
+
+/* ─── LAYOUT ─────────────────────────────────── */
+.wrap{max-width:860px;margin:0 auto;padding:0 40px}
+.wrap-wide{max-width:1020px;margin:0 auto;padding:0 40px}
+
+/* ─── HERO ───────────────────────────────────── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 96px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:28px;opacity:0;transform:translateY(16px)}
+.hero-eyebrow-line{width:18px;height:1px;background:var(--teal);opacity:.5}
+.hero h1{font-family:var(--serif);font-size:clamp(40px,5.5vw,72px);font-weight:400;line-height:1.0;letter-spacing:-.015em;color:var(--white);opacity:0;transform:translateY(20px)}
+.hero h1 em{color:var(--teal);font-style:italic}
+.hero-sub{font-size:16px;color:var(--white2);font-weight:300;max-width:560px;line-height:1.72;margin:22px 0 52px;opacity:0;transform:translateY(20px)}
+.hero-meta{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:10px;overflow:hidden;opacity:0;transform:translateY(20px);max-width:780px}
+.mc{background:var(--navy2);padding:16px 18px}
+.ml{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3);margin-bottom:5px}
+.mv{font-size:13px;font-weight:500;color:var(--white);line-height:1.35}
+.mv small{font-weight:300;color:var(--white2);font-size:11px;display:block;margin-top:2px}
+
+/* ─── HERO MOCKUP COLLAGE ────────────────────── */
+.hero-collage{margin-top:56px;opacity:0;transform:scale(.97);display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:end}
+.ph{border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:var(--navy2);position:relative}
+.ph-label{position:absolute;bottom:10px;left:10px;right:10px;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);background:rgba(6,15,26,.8);padding:6px 10px;border-radius:6px;border:1px solid var(--line2);text-align:center}
+.ph-upload-hint{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.ph-upload-icon{width:32px;height:32px;border-radius:8px;border:1px dashed var(--line2);display:flex;align-items:center;justify-content:center}
+.ph-upload-text{font-size:10px;color:var(--white3);font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.ph-upload-sub{font-size:9px;color:var(--white3);opacity:.5;letter-spacing:.06em}
+.ph.tall{aspect-ratio:9/17}
+.ph.med{aspect-ratio:9/16}
+.ph.short{aspect-ratio:9/15}
+.ph.wide{aspect-ratio:16/9}
+/* teal accent corner */
+.ph::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--teal);opacity:.3}
+.ph.active::before{opacity:.7}
+
+/* ─── SECTION ────────────────────────────────── */
+.sec{padding:88px 0;border-bottom:1px solid var(--line)}
+.pl{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);opacity:.8;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.pl::after{content:'';flex:1;height:1px;background:var(--line2)}
+.pt{font-family:var(--serif);font-size:clamp(26px,3.5vw,42px);font-weight:400;line-height:1.08;letter-spacing:-.01em;color:var(--white);margin-bottom:16px}
+.pt em{color:var(--teal);font-style:italic}
+.body-text{font-size:14px;color:var(--white2);line-height:1.8;margin-bottom:1rem;font-weight:300;max-width:620px}
+.body-text strong{color:var(--white);font-weight:500}
+.reveal{opacity:0;transform:translateY(22px);will-change:opacity,transform}
+
+/* ─── CHALLENGE CARDS ────────────────────────── */
+.ch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+.ch-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:26px 22px;border-top:2px solid transparent;transition:border-color .25s,transform .25s var(--ease)}
+.ch-card:hover{transform:translateY(-3px)}
+.ch-card.c1{border-top-color:rgba(248,113,113,.35)}
+.ch-card.c2{border-top-color:rgba(251,191,36,.3)}
+.ch-card.c3{border-top-color:var(--teal2)}
+.ch-num{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--white3);margin-bottom:10px}
+.ch-title{font-family:var(--serif);font-size:19px;font-weight:400;color:var(--white);margin-bottom:8px;line-height:1.25}
+.ch-prob{font-size:13px;color:var(--white2);line-height:1.65;font-weight:300;margin-bottom:12px}
+.ch-resp-lbl{font-size:10px;font-weight:500;letter-spacing:.11em;text-transform:uppercase;color:var(--teal);margin-bottom:5px;opacity:.75}
+.ch-resp{font-size:13px;color:rgba(45,212,191,.6);line-height:1.6;font-weight:300}
+
+/* ─── JOURNEY FLOW ───────────────────────────── */
+.flow-bar{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.fstep{background:var(--navy2);padding:12px 8px;text-align:center}
+.fstep.on{background:var(--teal-dim);border-top:2px solid var(--teal)}
+.fs-n{font-size:9px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--white3);margin-bottom:3px}
+.fstep.on .fs-n{color:var(--teal)}
+.fs-l{font-size:11px;color:var(--white2);line-height:1.35}
+.fstep.on .fs-l{color:var(--white);font-weight:500}
+
+/* journey screen row — 2-col: image left, text right */
+.jrow{display:grid;grid-template-columns:1fr 1.4fr;gap:20px;margin-bottom:16px;align-items:center}
+.jrow.flip{grid-template-columns:1.4fr 1fr}
+.jr-ph{border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:var(--navy2);position:relative;transition:border-color .28s,transform .28s var(--ease)}
+.jr-ph:hover{border-color:var(--teal-border);transform:translateY(-3px)}
+.jr-ph.tall{aspect-ratio:9/16}
+.jr-ph.wide{aspect-ratio:16/9}
+.jr-stage{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);opacity:.75;margin-bottom:6px}
+.jr-title{font-family:var(--serif);font-size:22px;color:var(--white);margin-bottom:10px;font-weight:400;line-height:1.2}
+.jr-text{font-size:13px;color:var(--white2);line-height:1.72;font-weight:300}
+.jr-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--teal);background:var(--teal-dim);border:1px solid var(--teal-border);padding:3px 10px;border-radius:20px;margin-top:12px}
+
+/* 3-col screen grid */
+.screen-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.screen-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.screen-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sg-ph{border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:var(--navy2);position:relative;transition:border-color .28s,transform .28s var(--ease)}
+.sg-ph:hover{border-color:var(--teal-border);transform:translateY(-3px)}
+.sg-ph.port{aspect-ratio:9/16}
+.sg-ph.sq{aspect-ratio:1/1}
+.sg-ph.wide{aspect-ratio:16/9}
+.sg-cap{padding:12px 14px;border-top:1px solid var(--line2)}
+.sg-cap-title{font-size:12px;font-weight:500;color:var(--white);margin-bottom:2px}
+.sg-cap-sub{font-size:11px;color:var(--white3);font-weight:300}
+
+/* ─── MGMT SECTION ───────────────────────────── */
+.mgmt-hero{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-top:32px;align-items:start}
+.mgmt-main-ph{border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:var(--navy2);aspect-ratio:9/17;position:relative;transition:border-color .28s}
+.mgmt-main-ph:hover{border-color:var(--teal-border)}
+.mgmt-side{display:flex;flex-direction:column;gap:10px}
+.mgmt-side-ph{border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:var(--navy2);aspect-ratio:9/13;position:relative;transition:border-color .28s,transform .28s var(--ease)}
+.mgmt-side-ph:hover{border-color:var(--teal-border);transform:translateY(-2px)}
+
+/* ─── DESIGN SYSTEM ──────────────────────────── */
+.ds-frame{background:var(--navy2);border:1px solid var(--line2);border-radius:12px;overflow:hidden;margin-top:32px}
+.ds-frame-hdr{background:var(--navy3);padding:14px 20px;border-bottom:1px solid var(--line2);display:flex;align-items:center;justify-content:space-between}
+.ds-frame-title{font-size:12px;font-weight:500;color:var(--white);letter-spacing:.04em}
+.ds-frame-meta{font-size:11px;color:var(--white3)}
+.ds-ph-wide{aspect-ratio:21/9;background:var(--navy3);position:relative}
+
+/* ─── KEY SCREENS ────────────────────────────── */
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+.showcase-ph{border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:var(--navy2);position:relative;transition:border-color .28s,transform .28s var(--ease)}
+.showcase-ph:hover{border-color:var(--teal-border);transform:translateY(-3px)}
+.showcase-ph.tall{aspect-ratio:9/16}
+.showcase-ph.wide{aspect-ratio:4/3}
+.showcase-cap{padding:14px 16px;border-top:1px solid var(--line2)}
+.sc-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:3px}
+.sc-sub{font-size:12px;color:var(--white3);font-weight:300}
+
+/* upload placeholder shared ─────────────────── */
+.ph-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px}
+.ph-icon{width:36px;height:36px;border-radius:8px;border:1px dashed rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ph-icon svg{opacity:.35}
+.ph-name{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3);opacity:.7;text-align:center;line-height:1.5}
+.ph-hint{font-size:9px;color:var(--white3);opacity:.35;letter-spacing:.06em;text-align:center}
+/* teal top accent on placeholder */
+.ph-acc{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);opacity:.25}
+
+/* ─── DECISIONS ──────────────────────────────── */
+.dec-list{display:flex;flex-direction:column;gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:10px;overflow:hidden;margin-top:32px}
+.dec{display:grid;grid-template-columns:56px 1fr;background:var(--navy2);transition:background .2s,border-left-color .2s;border-left:2px solid transparent}
+.dec:hover{background:var(--navy3);border-left-color:var(--teal)}
+.dec-n{background:var(--navy3);display:flex;align-items:flex-start;justify-content:center;padding:22px 0 0;border-right:1px solid var(--line2)}
+.dec-n span{font-size:11px;font-weight:500;color:var(--white3)}
+.dec-b{padding:20px 24px}
+.dec-prob{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3);margin-bottom:5px}
+.dec-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:9px;line-height:1.4}
+.dec-desc{font-size:13px;color:var(--white2);line-height:1.72;font-weight:300;margin-bottom:11px}
+.dec-impact{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--teal);background:var(--teal-dim);border:1px solid var(--teal-border);padding:3px 10px;border-radius:20px}
+
+/* ─── OUTCOMES ───────────────────────────────── */
+.outcome-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--teal-border);border:1px solid var(--teal-border);border-radius:10px;overflow:hidden;margin-top:32px}
+.oc{background:var(--navy2);padding:32px 14px;text-align:center;position:relative;overflow:hidden}
+.oc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease);opacity:.5}
+.oc.counted::after{transform:scaleX(1)}
+.on{font-family:var(--serif);font-size:clamp(30px,3.5vw,46px);font-weight:400;color:var(--teal);line-height:1;margin-bottom:8px;letter-spacing:-.01em}
+.ol{font-size:12px;color:var(--white2);font-weight:400;line-height:1.45}
+.os{font-size:11px;color:var(--white3);margin-top:4px}
+.outcome-qual{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.oq{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:18px 20px;border-left:2px solid var(--teal-border)}
+.oq-lbl{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);opacity:.8;margin-bottom:7px}
+.oq p{font-size:13px;color:var(--white2);line-height:1.7;font-weight:300}
+
+/* ─── REVIEWS ────────────────────────────────── */
+.rv-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.rv{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:16px}
+.rv.pos{border-top:2px solid var(--green)}
+.rv.neg{border-top:2px solid rgba(248,113,113,.6)}
+.rv-l{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.rv.pos .rv-l{color:var(--green)}
+.rv.neg .rv-l{color:rgba(248,113,113,.8)}
+.rv p{font-size:12px;color:var(--white2);line-height:1.65;font-style:italic;font-weight:300}
+.rv-attr{font-size:11px;color:var(--white3);margin-top:8px}
+
+/* ─── REFLECTION ─────────────────────────────── */
+.ri-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+.ri{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:24px;transition:border-color .25s}
+.ri:hover{border-color:var(--teal-border)}
+.ri h4{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--white);margin-bottom:10px;line-height:1.3}
+.ri p{font-size:13px;color:var(--white2);line-height:1.72;font-weight:300}
+.ri p strong{color:var(--white);font-weight:500}
+
+/* ─── CALLOUT ────────────────────────────────── */
+.cb{border-left:2px solid rgba(45,212,191,.35);padding:20px 24px;background:var(--teal-dim);border-radius:0 10px 10px 0;margin-top:20px}
+.cb-lbl{font-size:10px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.cb p{font-size:14px;color:var(--white2);line-height:1.78;font-weight:300}
+.cb p strong{color:var(--white);font-weight:500}
+
+/* ─── FOOTER ─────────────────────────────────── */
+footer{padding:60px 0 48px;border-top:1px solid var(--line)}
+.footer-name{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--white);margin-bottom:6px}
+.footer-sub{font-size:13px;color:var(--white3)}
+.footer-link{color:var(--teal);text-decoration:none;font-size:13px;margin-top:12px;display:inline-block;position:relative}
+.footer-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--teal);transition:width .3s var(--ease)}
+.footer-link:hover::after{width:100%}
+
+/* ─── REDUCED MOTION ─────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  .reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-meta,.hero-collage{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* ─── RESPONSIVE ─────────────────────────────── */
+@media(max-width:720px){
+  .wrap,.wrap-wide{padding:0 20px}
+  nav{padding:16px 20px}
+  .nav-right{display:none}
+  .hero{padding:110px 0 80px}
+  .sec{padding:64px 0}
+  .hero-meta{grid-template-columns:1fr 1fr}
+  .hero-collage{grid-template-columns:1fr 1fr}
+  .ch-grid,.ri-grid{grid-template-columns:1fr}
+  .outcome-grid{grid-template-columns:1fr 1fr}
+  .outcome-qual,.rv-grid,.screen-grid-2,.mgmt-hero,.showcase-grid{grid-template-columns:1fr}
+  .screen-grid-3{grid-template-columns:1fr 1fr}
+  .screen-grid-4{grid-template-columns:1fr 1fr}
+  .jrow,.jrow.flip{grid-template-columns:1fr}
+  .flow-bar{grid-template-columns:repeat(3,1fr)}
+  .dec{grid-template-columns:1fr}
+  .dec-n{display:none}
+}
+@media(max-width:460px){
+  .hero-meta,.hero-collage,.screen-grid-3,.screen-grid-4{grid-template-columns:1fr}
+  .outcome-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Subscribe<span>Me</span></div>
+  <div class="nav-right">
+    <a class="nav-pill" href="#challenge">Challenge</a>
+    <a class="nav-pill" href="#journey">Journey</a>
+    <a class="nav-pill" href="#management">Management</a>
+    <a class="nav-pill" href="#system">Design System</a>
+    <a class="nav-pill" href="#outcomes">Outcomes</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════ HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      Product Design · Mobile App · Subscription Platform
+    </div>
+    <h1>Designing a vehicle subscription<br>platform built to earn<br><em>monthly trust.</em></h1>
+    <p class="hero-sub">End-to-end UI design of Subscribe Me — AW Rostamani Group's car subscription app. Covering discovery, booking, payment, and ongoing subscription management. Live in the UAE with 100,000+ downloads.</p>
+    <div class="hero-meta">
+      <div class="mc"><div class="ml">Client</div><div class="mv">AW Rostamani<small>Dubai, UAE</small></div></div>
+      <div class="mc"><div class="ml">Agency</div><div class="mv">RBB Global<small>Product delivery</small></div></div>
+      <div class="mc"><div class="ml">Role</div><div class="mv">Lead UI Designer<small>Sprint 4–6 + audit</small></div></div>
+      <div class="mc"><div class="ml">Scope</div><div class="mv">Mobile App<small>+ Design system</small></div></div>
+      <div class="mc"><div class="ml">Result</div><div class="mv">Live · 100K+<small>downloads · 3.9★</small></div></div>
+    </div>
+
+    <!-- HERO COLLAGE — 3 phone mockup placeholders -->
+    <div class="hero-collage">
+      <div class="ph tall active">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div class="ph-name">Browse Cars Screen</div>
+          <div class="ph-hint">Upload actual screen here</div>
+        </div>
+      </div>
+      <div class="ph tall">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="ph-name">Vehicle Details Screen</div>
+          <div class="ph-hint">Upload actual screen here</div>
+        </div>
+      </div>
+      <div class="ph med">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h8M8 16h5"/></svg>
+          </div>
+          <div class="ph-name">Dashboard Screen</div>
+          <div class="ph-hint">Upload actual screen here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ CHALLENGE -->
+<section class="sec" id="challenge">
+  <div class="wrap">
+    <p class="pl">01 — The Challenge</p>
+    <h2 class="pt reveal">A new platform. No prior<br>reputation. <em>Trust built screen by screen.</em></h2>
+    <p class="body-text reveal">Subscribe Me launched as Dubai's first digital-native car subscription platform — one all-inclusive monthly payment covering vehicle, insurance, maintenance, and delivery. The product was compelling. The design problem was foundational: <strong>users were being asked to commit a recurring monthly payment through an interface they had never seen before, from a brand with no established digital reputation.</strong></p>
+    <p class="body-text reveal">Every design decision had to resolve one of three core anxieties before users could move forward.</p>
+
+    <div class="ch-grid">
+      <div class="ch-card c1 reveal">
+        <div class="ch-num">Challenge 01</div>
+        <div class="ch-title">Pricing Transparency</div>
+        <div class="ch-prob">Users couldn't parse which package covered what. "All-inclusive" meant different things across tiers, causing drop-off before users reached the booking flow.</div>
+        <div class="ch-resp-lbl">Design response</div>
+        <div class="ch-resp">Plan cards with full inclusion lists surfaced above fold. Every benefit visible before a user commits to evaluate.</div>
+      </div>
+      <div class="ch-card c2 reveal">
+        <div class="ch-num">Challenge 02</div>
+        <div class="ch-title">Booking Friction</div>
+        <div class="ch-prob">High-value subscription checkout creates commitment anxiety. Multiple decision points without visible progress led to mid-flow abandonment.</div>
+        <div class="ch-resp-lbl">Design response</div>
+        <div class="ch-resp">3-stage named checkout with persistent progress indicator. Stage language chosen specifically to reduce anxiety at each commitment point.</div>
+      </div>
+      <div class="ch-card c3 reveal">
+        <div class="ch-num">Challenge 03</div>
+        <div class="ch-title">Ongoing Management</div>
+        <div class="ch-prob">After subscribing, users needed to manage services, request support, and handle vehicle issues — all through a platform with no existing operational interface.</div>
+        <div class="ch-resp-lbl">Design response</div>
+        <div class="ch-resp">Centralised dashboard combining bookings, services, documents, and support into a single management hub.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ JOURNEY -->
+<section class="sec" id="journey">
+  <div class="wrap">
+    <p class="pl">02 — The Subscription Journey</p>
+    <h2 class="pt reveal">Designing for the decision,<br>not the <em>transaction.</em></h2>
+    <p class="body-text reveal">The booking flow was structured to reduce anxiety at each stage — not just complete a checkout. Every screen answers one silent user question before they can move forward.</p>
+
+    <div class="flow-bar reveal">
+      <div class="fstep on"><div class="fs-n">01</div><div class="fs-l">Browse Cars</div></div>
+      <div class="fstep on"><div class="fs-n">02</div><div class="fs-l">Vehicle Details</div></div>
+      <div class="fstep on"><div class="fs-n">03</div><div class="fs-l">Packages</div></div>
+      <div class="fstep on"><div class="fs-n">04</div><div class="fs-l">Review Order</div></div>
+      <div class="fstep on"><div class="fs-n">05</div><div class="fs-l">Payment</div></div>
+      <div class="fstep on"><div class="fs-n">06</div><div class="fs-l">Confirmed</div></div>
+    </div>
+
+    <!-- Step 1 — Browse Cars -->
+    <div class="jrow reveal" style="margin-bottom:24px">
+      <div class="jr-ph tall">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div class="ph-name">Browse / Listing Screen</div>
+          <div class="ph-hint">Upload actual screen here</div>
+        </div>
+      </div>
+      <div>
+        <div class="jr-stage">Stage 01</div>
+        <div class="jr-title">Browse Cars</div>
+        <div class="jr-text">Category-first navigation — filter by budget, car class, and mileage — reduces cognitive load before users evaluate individual vehicles. Users orient their budget before committing attention to a specific model.</div>
+        <div class="jr-tag">↓ Reduces comparison overload</div>
+      </div>
+    </div>
+
+    <!-- Step 2 — Vehicle Details -->
+    <div class="jrow flip reveal" style="margin-bottom:24px">
+      <div>
+        <div class="jr-stage">Stage 02</div>
+        <div class="jr-title">Vehicle Details</div>
+        <div class="jr-text">Pricing, specifications, and package benefits consolidated into one decision-making view. Key inclusions surfaced above fold so users understand total value before scrolling — addressing the "what am I actually paying for" anxiety directly.</div>
+        <div class="jr-tag">↓ Inclusion transparency before commitment</div>
+      </div>
+      <div class="jr-ph tall">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
+          <div class="ph-name">Vehicle Details Screen</div>
+          <div class="ph-hint">Upload actual screen here</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Steps 3–6 — Checkout flow -->
+    <div class="reveal">
+      <p class="body-text" style="margin-bottom:16px"><strong>Stages 3–6: Package Selection → Review → Payment → Confirmation</strong><br>Named progress steps (Create Account → Invoice Details → Booking Confirmed) make the endpoint visible. Cancellation terms surfaced at each commitment point — reducing the leading cause of subscription checkout abandonment.</p>
+      <div class="screen-grid-3">
+        <div class="sg-ph port">
+          <div class="ph-acc"></div>
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
+            <div class="ph-name">Package Selection</div>
+            <div class="ph-hint">Upload actual screen here</div>
+          </div>
+          <div class="sg-cap"><div class="sg-cap-title">Package Selection</div><div class="sg-cap-sub">Plan cards with full inclusion list</div></div>
+        </div>
+        <div class="sg-ph port">
+          <div class="ph-acc"></div>
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M15 11H9m6 4H9"/></svg></div>
+            <div class="ph-name">Review Order Screen</div>
+            <div class="ph-hint">Upload actual screen here</div>
+          </div>
+          <div class="sg-cap"><div class="sg-cap-title">Review & Pay</div><div class="sg-cap-sub">Step indicator + cancellation clarity</div></div>
+        </div>
+        <div class="sg-ph port">
+          <div class="ph-acc"></div>
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <div class="ph-name">Booking Confirmation</div>
+            <div class="ph-hint">Upload actual screen here</div>
+          </div>
+          <div class="sg-cap"><div class="sg-cap-title">Booking Confirmed</div><div class="sg-cap-sub">Next steps and delivery timeline</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ MANAGEMENT -->
+<section class="sec" id="management">
+  <div class="wrap">
+    <p class="pl">03 — Beyond Booking</p>
+    <h2 class="pt reveal">Managing the subscription<br><em>experience.</em></h2>
+    <p class="body-text reveal">The experience extended beyond booking. Users needed a centralised hub to manage subscriptions, request services, and access support — without relying on manual customer service channels. A subscription a user actively manages is one they maintain.</p>
+
+    <div class="mgmt-hero reveal">
+      <div class="mgmt-main-ph">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div class="ph-name">Dashboard — Primary Screen</div>
+          <div class="ph-hint">Upload dashboard screen here (full-height)</div>
+        </div>
+      </div>
+      <div class="mgmt-side">
+        <div class="mgmt-side-ph">
+          <div class="ph-acc"></div>
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/></svg></div>
+            <div class="ph-name">My Bookings</div>
+            <div class="ph-hint">Upload screen here</div>
+          </div>
+        </div>
+        <div class="mgmt-side-ph">
+          <div class="ph-acc"></div>
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+            <div class="ph-name">Service Request</div>
+            <div class="ph-hint">Upload screen here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional mgmt screens -->
+    <div class="screen-grid-4 reveal" style="margin-top:12px">
+      <div class="sg-ph port">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7h12M8 12h12M8 17h12M4 7h.01M4 12h.01M4 17h.01"/></svg></div>
+          <div class="ph-name">Vehicle Swap</div>
+          <div class="ph-hint">Upload screen</div>
+        </div>
+      </div>
+      <div class="sg-ph port">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>
+          <div class="ph-name">Accident Report</div>
+          <div class="ph-hint">Upload screen</div>
+        </div>
+      </div>
+      <div class="sg-ph port">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M12 12h.01"/></svg></div>
+          <div class="ph-name">Booking Documents</div>
+          <div class="ph-hint">Upload screen</div>
+        </div>
+      </div>
+      <div class="sg-ph port">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/></svg></div>
+          <div class="ph-name">My Profile</div>
+          <div class="ph-hint">Upload screen</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cb reveal" style="margin-top:20px">
+      <div class="cb-lbl">Design rationale</div>
+      <p>Services & Requests was elevated to primary navigation after the UX team's research confirmed it was the highest-frequency post-subscription action. One tap instead of two for the most common subscriber journey — a structural change with measurable impact on daily usability and support dependency.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ DESIGN SYSTEM -->
+<section class="sec" id="system">
+  <div class="wrap">
+    <p class="pl">04 — Design System</p>
+    <h2 class="pt reveal">Built to scale beyond<br><em>a single sprint.</em></h2>
+    <p class="body-text reveal">Created a reusable design system to ensure visual consistency across booking, dashboard, and support workflows — while accelerating future product development. Every component ships with all interaction states documented for zero-ambiguity dev handoff.</p>
+
+    <div class="ds-frame reveal">
+      <div class="ds-frame-hdr">
+        <span class="ds-frame-title">Subscribe Me — Component Library</span>
+        <span class="ds-frame-meta">50+ components · All states documented</span>
+      </div>
+      <div class="ds-ph-wide">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <div class="ph-name">Design System Overview — Figma Screenshot</div>
+          <div class="ph-hint">Upload component library overview, button states, pricing modules, and form patterns here</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component highlights -->
+    <div class="screen-grid-2 reveal" style="margin-top:12px">
+      <div class="sg-ph wide">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M7 12h10"/></svg></div>
+          <div class="ph-name">Button States & Form Patterns</div>
+          <div class="ph-hint">Upload component screenshot</div>
+        </div>
+        <div class="sg-cap"><div class="sg-cap-title">Buttons & Forms</div><div class="sg-cap-sub">All interactive states · Default · Hover · Active · Disabled · Error</div></div>
+      </div>
+      <div class="sg-ph wide">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M12 9v12"/></svg></div>
+          <div class="ph-name">Pricing Modules & Card Components</div>
+          <div class="ph-hint">Upload component screenshot</div>
+        </div>
+        <div class="sg-cap"><div class="sg-cap-title">Pricing Modules & Cards</div><div class="sg-cap-sub">Plan cards · Price footer · Status components</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ KEY SCREENS SHOWCASE -->
+<section class="sec" id="screens">
+  <div class="wrap">
+    <p class="pl">05 — Key Screens</p>
+    <h2 class="pt reveal">The strongest moments<br>in the <em>product.</em></h2>
+    <p class="body-text reveal">Selected screens that demonstrate the design decisions in context.</p>
+
+    <div class="showcase-grid">
+      <div class="showcase-ph tall reveal">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
+          <div class="ph-name">Vehicle Details</div>
+          <div class="ph-hint">Upload high-resolution screen</div>
+        </div>
+        <div class="showcase-cap"><div class="sc-title">Vehicle Details</div><div class="sc-sub">Pricing, specs, and benefits in one decision view</div></div>
+      </div>
+      <div class="showcase-ph tall reveal">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2"/></svg></div>
+          <div class="ph-name">Package Selection</div>
+          <div class="ph-hint">Upload high-resolution screen</div>
+        </div>
+        <div class="showcase-cap"><div class="sc-title">Package Selection</div><div class="sc-sub">Plan cards with full inclusion transparency</div></div>
+      </div>
+      <div class="showcase-ph wide reveal">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div class="ph-name">Pricing Breakdown</div>
+          <div class="ph-hint">Upload high-resolution screen</div>
+        </div>
+        <div class="showcase-cap"><div class="sc-title">Pricing Breakdown</div><div class="sc-sub">Line-item transparency before payment commitment</div></div>
+      </div>
+      <div class="showcase-ph wide reveal">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h8M8 16h5"/></svg></div>
+          <div class="ph-name">Dashboard</div>
+          <div class="ph-hint">Upload high-resolution screen</div>
+        </div>
+        <div class="showcase-cap"><div class="sc-title">Dashboard</div><div class="sc-sub">Centralised subscription management hub</div></div>
+      </div>
+    </div>
+
+    <!-- Bottom row — service request + confirmation -->
+    <div class="screen-grid-2 reveal" style="margin-top:12px">
+      <div class="sg-ph port">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="ph-name">Service Request</div>
+          <div class="ph-hint">Upload high-resolution screen</div>
+        </div>
+        <div class="sg-cap"><div class="sg-cap-title">Service Request</div><div class="sg-cap-sub">In-app support without calling customer service</div></div>
+      </div>
+      <div class="sg-ph port">
+        <div class="ph-acc"></div>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div class="ph-name">Booking Confirmation</div>
+          <div class="ph-hint">Upload high-resolution screen</div>
+        </div>
+        <div class="sg-cap"><div class="sg-cap-title">Booking Confirmed</div><div class="sg-cap-sub">Delivery timeline and subscription summary</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ OUTCOMES -->
+<section class="sec" id="outcomes">
+  <div class="wrap">
+    <p class="pl">06 — Outcomes</p>
+    <h2 class="pt reveal">Live. Downloaded. <em>Reviewed.</em></h2>
+    <p class="body-text reveal">Every metric is from a live product — not a prototype, not a case study fabrication. The app is available on Google Play and the App Store in the UAE under AW Rostamani Group.</p>
+
+    <div class="outcome-grid" id="outcomes-grid">
+      <div class="oc">
+        <div class="on" data-target="100" data-suffix="K+">100K+</div>
+        <div class="ol">Downloads</div>
+        <div class="os">Google Play · verified</div>
+      </div>
+      <div class="oc">
+        <div class="on" data-target-str="3.9★">3.9★</div>
+        <div class="ol">App rating</div>
+        <div class="os">217+ reviews</div>
+      </div>
+      <div class="oc">
+        <div class="on" data-target="6" data-suffix="">0</div>
+        <div class="ol">Sprints</div>
+        <div class="os">On-time delivery</div>
+      </div>
+      <div class="oc">
+        <div class="on" data-target="50" data-suffix="+">0+</div>
+        <div class="ol">Components</div>
+        <div class="os">Design system</div>
+      </div>
+    </div>
+
+    <div class="outcome-qual reveal">
+      <div class="oq">
+        <div class="oq-lbl">What the reviews confirm — design working</div>
+        <p>Positive reviews cite ease of use and a seamless booking journey. No reviewer complains about navigation confusion, unclear pricing, or a broken checkout — the three problems the design was built to solve.</p>
+      </div>
+      <div class="oq">
+        <div class="oq-lbl">What the reviews flag — next design frontier</div>
+        <p>Critical reviews identify operational failures — car swaps, deposit delays, unreachable support. These are service problems, not interface problems. Version 2's design scope: in-app dispute resolution and transparent billing history.</p>
+      </div>
+    </div>
+
+    <div class="rv-grid reveal">
+      <div class="rv pos">
+        <div class="rv-l">Interface working</div>
+        <p>"Exceptional support... seamless journey... the process was straightforward."</p>
+        <div class="rv-attr">— Shifali Kawatra, Google Play</div>
+      </div>
+      <div class="rv neg">
+        <div class="rv-l">Operations gap (not UX)</div>
+        <p>"Charged me without notice... customer service unreachable... they switched my car after I paid."</p>
+        <div class="rv-attr">— Alex I, Google Play</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ REFLECTION -->
+<section class="sec" id="reflection">
+  <div class="wrap">
+    <p class="pl">07 — Reflection</p>
+    <h2 class="pt reveal">What this project reinforced<br>about designing <em>under pressure.</em></h2>
+
+    <div class="ri-grid">
+      <div class="ri reveal">
+        <h4>Design system literacy is as important as design skill</h4>
+        <p>Joining at Sprint 4 demanded reading another designer's decisions and extending them faithfully. I now build a system-reading session into every project I join — regardless of whether I'm starting from scratch or inheriting existing work.</p>
+      </div>
+      <div class="ri reveal">
+        <h4>Evidence turns a preference into a recommendation</h4>
+        <p>Defending the checkout progress bar in a stakeholder meeting taught me the difference between a design conversation and a design negotiation. <strong>Stakeholders can override opinions. Research is harder to dismiss.</strong></p>
+      </div>
+      <div class="ri reveal">
+        <h4>Design doesn't end at handoff</h4>
+        <p>The post-launch UI audit found cumulative visual drift — small decisions under deadline pressure, consequential in aggregate. <strong>A design system is only as valuable as its implementation.</strong></p>
+      </div>
+      <div class="ri reveal">
+        <h4>The interface is the brand — when there's no other brand to lean on</h4>
+        <p>For a new platform with no prior reputation, visual design quality was the primary trust proxy. Designing for trust through pricing clarity, commitment transparency, and visual consistency isn't a UX concern. It's a business one.</p>
+      </div>
+    </div>
+
+    <div class="cb reveal" style="margin-top:28px">
+      <div class="cb-lbl">Closing thought</div>
+      <p>This project challenged me to balance complex subscription workflows with simplicity. Designing both the customer journey and the underlying design system reinforced the importance of scalable patterns, clear information architecture, and outcome-focused product design — within real professional constraints.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap" style="text-align:center">
+    <div class="footer-name">Subscribe Me — Product Design Case Study</div>
+    <div class="footer-sub">UI Design by Sana Ishaq · AW Rostamani Group · RBB Global · UAE</div>
+    <a class="footer-link" href="https://play.google.com/store/apps/details?id=com.awrostamani.subscribeme" target="_blank" rel="noopener">View live app on Google Play →</a>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+window.addEventListener('scroll', () => {
+  document.getElementById('progress').style.width =
+    (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+}, { passive: true });
+
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* Active nav pill */
+const sections = document.querySelectorAll('.sec[id]');
+const pills = document.querySelectorAll('.nav-pill');
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      pills.forEach(p => p.style.color = '');
+      const a = document.querySelector(`.nav-pill[href="#${e.target.id}"]`);
+      if (a) a.style.color = 'var(--teal)';
+    }
+  });
+}, { threshold: 0.3 }).observe;
+sections.forEach(s => {
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        pills.forEach(p => p.style.color = '');
+        const a = document.querySelector(`.nav-pill[href="#${e.target.id}"]`);
+        if (a) a.style.color = 'var(--teal)';
+      }
+    });
+  }, { threshold: 0.3 }).observe(s);
+});
+
+if (noMotion) {
+  document.querySelectorAll('.reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-meta,.hero-collage').forEach(el => {
+    el.style.opacity = '1'; el.style.transform = 'none';
+  });
+} else {
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* HERO */
+  gsap.timeline({ delay: 0.1 })
+    .to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out' })
+    .to('.hero h1',      { opacity: 1, y: 0, duration: 0.8,  ease: 'power2.out' }, '-=0.4')
+    .to('.hero-sub',     { opacity: 1, y: 0, duration: 0.7,  ease: 'power2.out' }, '-=0.45')
+    .to('.hero-meta',    { opacity: 1, y: 0, duration: 0.6,  ease: 'power2.out' }, '-=0.4')
+    .to('.hero-collage', { opacity: 1, scale: 1, duration: 0.7, ease: 'power2.out' }, '-=0.3');
+
+  /* Generic reveals */
+  document.querySelectorAll('.reveal').forEach(el => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top 87%', once: true },
+      opacity: 1, y: 0, duration: 0.65, ease: 'power2.out'
+    });
+  });
+
+  /* Challenge cards stagger */
+  gsap.fromTo('.ch-card',
+    { opacity: 0, y: 20 },
+    { scrollTrigger: { trigger: '.ch-grid', start: 'top 85%', once: true },
+      opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', stagger: 0.1 }
+  );
+
+  /* Journey rows */
+  document.querySelectorAll('.jrow').forEach((el, i) => {
+    gsap.fromTo(el, { opacity: 0, y: 18 },
+      { scrollTrigger: { trigger: el, start: 'top 87%', once: true },
+        opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: i * 0.05 }
+    );
+  });
+
+  /* Screen grids */
+  document.querySelectorAll('.screen-grid-3, .screen-grid-4, .screen-grid-2').forEach(grid => {
+    gsap.fromTo(grid.children,
+      { opacity: 0, y: 16 },
+      { scrollTrigger: { trigger: grid, start: 'top 86%', once: true },
+        opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08 }
+    );
+  });
+
+  /* Showcase grid */
+  gsap.fromTo('.showcase-ph',
+    { opacity: 0, y: 16 },
+    { scrollTrigger: { trigger: '.showcase-grid', start: 'top 85%', once: true },
+      opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.09 }
+  );
+
+  /* Reflection cards */
+  gsap.fromTo('.ri',
+    { opacity: 0, y: 18 },
+    { scrollTrigger: { trigger: '.ri-grid', start: 'top 85%', once: true },
+      opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.09 }
+  );
+
+  /* Callouts */
+  document.querySelectorAll('.cb').forEach(el => {
+    gsap.fromTo(el, { opacity: 0, x: -12 },
+      { scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        opacity: 1, x: 0, duration: 0.55, ease: 'power2.out' }
+    );
+  });
+
+  /* Outcomes count-up */
+  ScrollTrigger.create({
+    trigger: '#outcomes-grid', start: 'top 80%', once: true,
+    onEnter: () => {
+      gsap.fromTo('.oc',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out', stagger: 0.1, delay: 0.1 }
+      );
+      document.querySelectorAll('.on[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: target, duration: 1.35, ease: 'power2.out', delay: 0.2,
+          onUpdate() { el.textContent = Math.round(obj.val) + suffix; },
+          onComplete() {
+            el.textContent = target + suffix;
+            el.closest('.oc').classList.add('counted');
+          }
+        });
+      });
+    }
+  });
+}
+</script>
+</body>
+</html>
