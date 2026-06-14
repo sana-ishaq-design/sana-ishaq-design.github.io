@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>UTWorX — Enterprise Redesign Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#060f1a;
+  --navy2:#091626;
+  --navy3:#0d1e34;
+  --navy4:#122440;
+  --teal:#2dd4bf;
+  --teal-dim:rgba(45,212,191,0.07);
+  --teal-border:rgba(45,212,191,0.16);
+  /* UTWorX green palette */
+  --green:#3b7a1e;
+  --green2:#2d5a16;
+  --green-dim:rgba(59,122,30,0.09);
+  --green-border:rgba(59,122,30,0.22);
+  --green-glow:rgba(59,122,30,0.14);
+  --olive:#6b8a2a;
+  --olive-dim:rgba(107,138,42,0.08);
+  --amber:#c4820f;
+  --amber-dim:rgba(196,130,15,0.08);
+  --white:#edf2f7;
+  --white2:#94afc8;
+  --white3:#4d6a85;
+  --line:rgba(255,255,255,0.055);
+  --line2:rgba(255,255,255,0.09);
+  --serif:'DM Serif Display',serif;
+  --body:'Inter',sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--navy);color:var(--white);font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── PROGRESS ─────────────────────────────── */
+.progress-bar{position:fixed;top:0;left:0;height:1px;background:var(--green);z-index:200;width:0%;opacity:.7;transition:width .1s linear}
+
+/* ── NAV ──────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;transition:background .45s,border-color .45s,backdrop-filter .45s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(6,15,26,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line2)}
+.nav-logo{font-size:13px;font-weight:500;color:var(--white);letter-spacing:.02em}
+.nav-logo span{color:var(--green)}
+.nav-right{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-right::-webkit-scrollbar{display:none}
+.nav-pill{padding:6px 11px;font-size:11px;color:var(--white3);border-radius:6px;text-decoration:none;transition:color .2s,background .2s;white-space:nowrap}
+.nav-pill:hover{color:var(--green);background:var(--green-dim)}
+
+/* ── LAYOUT ───────────────────────────────── */
+.wrap{max-width:860px;margin:0 auto;padding:0 40px}
+
+/* ── IMAGE PLACEHOLDER ────────────────────── */
+.img-ph{background:var(--navy2);border:1px solid var(--line2);border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+.img-ph::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent);opacity:.35}
+.img-ph .ph-icon{width:36px;height:36px;border-radius:8px;border:1px dashed rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
+.img-ph .ph-icon svg{opacity:.3}
+.img-ph .ph-label{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3);opacity:.6;text-align:center;padding:0 20px;line-height:1.5}
+.img-ph .ph-sub{font-size:9px;color:var(--white3);opacity:.3;letter-spacing:.06em;text-align:center}
+/* Size helpers */
+.ph-full{width:100%;aspect-ratio:16/7}
+.ph-wide{width:100%;aspect-ratio:16/8}
+.ph-med{width:100%;aspect-ratio:16/9}
+.ph-port{width:100%;aspect-ratio:4/3}
+.ph-sq{width:100%;aspect-ratio:1/1}
+
+/* ── HERO ─────────────────────────────────── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 96px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:28px;opacity:0;transform:translateY(16px)}
+.hero-eyebrow-line{width:18px;height:1px;background:var(--green);opacity:.5}
+.hero h1{font-family:var(--serif);font-size:clamp(38px,5.5vw,70px);font-weight:400;line-height:1.0;letter-spacing:-.015em;color:var(--white);opacity:0;transform:translateY(20px)}
+.hero h1 em{color:var(--green);font-style:italic}
+.hero-sub{font-size:16px;color:var(--white2);font-weight:300;max-width:560px;line-height:1.72;margin:22px 0 52px;opacity:0;transform:translateY(20px)}
+.hero-meta{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:10px;overflow:hidden;opacity:0;transform:translateY(20px);max-width:780px}
+.mc{background:var(--navy2);padding:16px 18px}
+.ml{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3);margin-bottom:5px}
+.mv{font-size:13px;font-weight:500;color:var(--white);line-height:1.35}
+.mv small{font-weight:300;color:var(--white2);font-size:11px;display:block;margin-top:2px}
+
+/* Hero dashboard image */
+.hero-dash{margin-top:52px;opacity:0;transform:scale(.97)}
+
+/* ── SECTION ──────────────────────────────── */
+.sec{padding:88px 0;border-bottom:1px solid var(--line)}
+.pl{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--green);opacity:.8;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.pl::after{content:'';flex:1;height:1px;background:var(--line2)}
+.pt{font-family:var(--serif);font-size:clamp(26px,3.5vw,42px);font-weight:400;line-height:1.08;letter-spacing:-.01em;color:var(--white);margin-bottom:16px}
+.pt em{color:var(--green);font-style:italic}
+.body-text{font-size:14px;color:var(--white2);line-height:1.8;margin-bottom:1rem;font-weight:300;max-width:660px}
+.body-text strong{color:var(--white);font-weight:500}
+.reveal{opacity:0;transform:translateY(22px);will-change:opacity,transform}
+
+/* ── USER CHIPS ───────────────────────────── */
+.user-chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 8px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--white2);background:var(--navy2);border:1px solid var(--line2);border-radius:6px;padding:6px 12px;font-weight:400}
+.chip-dot{width:5px;height:5px;border-radius:50%;background:var(--green);opacity:.6;flex-shrink:0}
+
+/* ── USER ROLE CARDS ──────────────────────── */
+.user-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0}
+.user-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:20px;border-top:2px solid transparent;transition:border-color .25s,transform .25s var(--ease)}
+.user-card:hover{transform:translateY(-3px)}
+.user-card.op{border-top-color:rgba(59,122,30,.5)}
+.user-card.sv{border-top-color:rgba(107,138,42,.5)}
+.user-card.mg{border-top-color:rgba(45,212,191,.35)}
+.user-role-lbl{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.op .user-role-lbl{color:var(--green)}
+.sv .user-role-lbl{color:var(--olive)}
+.mg .user-role-lbl{color:var(--teal)}
+.user-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:8px}
+.user-pain{font-size:12px;color:var(--white2);line-height:1.65;font-weight:300}
+
+/* ── CHALLENGE CARDS ──────────────────────── */
+.ch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.ch-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:24px 20px;border-top:2px solid transparent;transition:border-color .25s,transform .25s var(--ease)}
+.ch-card:hover{transform:translateY(-3px)}
+.ch1{border-top-color:rgba(248,113,113,.35)}
+.ch2{border-top-color:rgba(251,191,36,.3)}
+.ch3{border-top-color:rgba(59,122,30,.45)}
+.ch-num{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--white3);margin-bottom:10px}
+.ch-icon{font-size:20px;margin-bottom:10px;display:block}
+.ch-title{font-size:16px;font-weight:500;color:var(--white);margin-bottom:8px;font-family:var(--serif)}
+.ch-desc{font-size:13px;color:var(--white2);line-height:1.65;font-weight:300}
+
+/* ── GOAL CARDS ───────────────────────────── */
+.goal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}
+.goal-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:20px 16px;text-align:center;transition:border-color .25s,transform .25s var(--ease)}
+.goal-card:hover{border-color:var(--green-border);transform:translateY(-3px)}
+.goal-icon{font-size:22px;margin-bottom:10px;display:block}
+.goal-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:6px}
+.goal-desc{font-size:12px;color:var(--white2);line-height:1.55;font-weight:300}
+
+/* ── ANNOTATED SCREEN ─────────────────────── */
+.annotated-block{margin:32px 0}
+.annotation-list{display:flex;flex-direction:column;gap:6px;margin-top:16px}
+.ann-row{display:flex;align-items:center;gap:12px;padding:11px 16px;background:var(--navy2);border:1px solid var(--line2);border-radius:8px;transition:border-color .25s,transform .25s var(--ease)}
+.ann-row:hover{border-color:var(--green-border);transform:translateX(4px)}
+.ann-arrow{font-size:11px;color:var(--green);font-weight:600;flex-shrink:0}
+.ann-text{font-size:13px;color:var(--white2);font-weight:300}
+.ann-text strong{color:var(--white);font-weight:500}
+
+/* ── WORKFLOW BAR ─────────────────────────── */
+.workflow{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:10px;overflow:hidden;margin:28px 0}
+.wf-step{background:var(--navy2);padding:14px 8px;text-align:center;transition:background .2s}
+.wf-step.on{background:var(--green-dim);border-top:2px solid var(--green)}
+.wf-n{font-size:9px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--white3);margin-bottom:4px}
+.wf-step.on .wf-n{color:var(--green)}
+.wf-l{font-size:11px;color:var(--white2);line-height:1.35}
+.wf-step.on .wf-l{color:var(--white);font-weight:500}
+
+/* ── DECISION TABLE ───────────────────────── */
+.dt-w{overflow-x:auto;margin:28px 0;border:1px solid var(--line2);border-radius:10px}
+.dt{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}
+.dt th{text-align:left;padding:10px 16px;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);border-bottom:1px solid var(--line2);background:var(--navy3)}
+.dt td{padding:13px 16px;color:var(--white2);border-bottom:1px solid var(--line);vertical-align:top;line-height:1.65;font-weight:300;font-size:13px}
+.dt tr:last-child td{border-bottom:none}
+.dt tr.chosen{background:rgba(59,122,30,.04)}
+.dt td:first-child{color:var(--white);font-weight:500}
+.dt-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;white-space:nowrap;margin-bottom:4px}
+.b-ch{background:var(--green-dim);color:var(--green);border:1px solid var(--green-border)}
+
+/* ── SCREEN GRIDS ─────────────────────────── */
+.sg2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.sg3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.sg-ph{border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:var(--navy2);position:relative;transition:border-color .28s,transform .28s var(--ease)}
+.sg-ph:hover{border-color:var(--green-border);transform:translateY(-3px)}
+.sg-ph.port{aspect-ratio:4/3}
+.sg-ph.sq{aspect-ratio:1/1}
+.sg-ph.wide{aspect-ratio:16/9}
+.sg-ph.tall{aspect-ratio:3/4}
+/* inner placeholder content */
+.sg-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px}
+.sg-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent);opacity:.25}
+.sg-icon{width:28px;height:28px;border-radius:6px;border:1px dashed rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
+.sg-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);opacity:.6;text-align:center;line-height:1.4}
+.sg-sub{font-size:9px;color:var(--white3);opacity:.3;letter-spacing:.05em;text-align:center}
+.sg-cap{padding:10px 12px;border-top:1px solid var(--line2)}
+.sg-cap-title{font-size:12px;font-weight:500;color:var(--white);margin-bottom:2px}
+.sg-cap-sub{font-size:11px;color:var(--white3);font-weight:300}
+
+/* gallery grid for additional screens */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+.gal-ph{border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:var(--navy2);position:relative;aspect-ratio:4/3;transition:border-color .3s,transform .3s var(--ease),box-shadow .3s;cursor:zoom-in}
+.gal-ph:hover{border-color:var(--green-border);transform:translateY(-4px) scale(1.01);box-shadow:0 12px 32px rgba(0,0,0,.28)}
+.gal-ph .sg-inner::before{opacity:.2}
+.gal-num{position:absolute;bottom:8px;right:10px;font-size:10px;font-weight:600;color:var(--green);opacity:.5;letter-spacing:.08em}
+
+/* ── OUTCOMES ─────────────────────────────── */
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}
+.im-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:22px 16px;text-align:center;transition:border-color .25s,transform .25s var(--ease);border-top:2px solid transparent}
+.im-card:hover{transform:translateY(-3px)}
+.im-card.g1{border-top-color:rgba(59,122,30,.5)}
+.im-card.g2{border-top-color:rgba(107,138,42,.45)}
+.im-card.g3{border-top-color:rgba(59,122,30,.35)}
+.im-card.g4{border-top-color:rgba(45,212,191,.3)}
+.im-icon{font-size:22px;margin-bottom:12px;display:block}
+.im-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:6px;line-height:1.3}
+.im-text{font-size:12px;color:var(--white2);line-height:1.6;font-weight:300}
+
+/* ── LEARNING CARDS ───────────────────────── */
+.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.learn-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:24px;transition:border-color .25s}
+.learn-card:hover{border-color:var(--green-border)}
+.learn-num{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--green);opacity:.7;margin-bottom:10px}
+.learn-title{font-family:var(--serif);font-size:17px;font-weight:400;color:var(--white);margin-bottom:10px;line-height:1.3}
+.learn-text{font-size:13px;color:var(--white2);line-height:1.7;font-weight:300}
+
+/* ── CALLOUT ──────────────────────────────── */
+.cb{border-left:2px solid rgba(59,122,30,.45);padding:20px 24px;background:var(--green-dim);border-radius:0 10px 10px 0;margin:20px 0}
+.cb-lbl{font-size:10px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--green);margin-bottom:7px}
+.cb p{font-size:14px;color:var(--white2);line-height:1.78;font-weight:300}
+.cb p strong{color:var(--white);font-weight:500}
+
+/* ── FOOTER ───────────────────────────────── */
+footer{padding:60px 0 48px;border-top:1px solid var(--line);text-align:center}
+.footer-name{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--white);margin-bottom:6px}
+.footer-sub{font-size:13px;color:var(--white3)}
+
+/* ── REDUCED MOTION ───────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  .reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-meta,.hero-dash{opacity:1!important;transform:none!important;transition:none!important}
+}
+/* ── RESPONSIVE ───────────────────────────── */
+@media(max-width:720px){
+  .wrap{padding:0 20px}
+  nav{padding:16px 20px}
+  .nav-right{display:none}
+  .hero{padding:110px 0 80px}
+  .sec{padding:64px 0}
+  .hero-meta{grid-template-columns:1fr 1fr}
+  .ch-grid,.goal-grid,.impact-grid,.learn-grid{grid-template-columns:1fr 1fr}
+  .user-grid,.sg2,.sg3,.gallery-grid{grid-template-columns:1fr 1fr}
+  .workflow{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:460px){
+  .hero-meta,.ch-grid,.goal-grid,.impact-grid,.learn-grid,.sg3,.gallery-grid{grid-template-columns:1fr}
+  .user-grid,.sg2{grid-template-columns:1fr}
+  .workflow{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">UTWorX<span>.</span></div>
+  <div class="nav-right">
+    <a class="nav-pill" href="#overview">Overview</a>
+    <a class="nav-pill" href="#challenge">Challenge</a>
+    <a class="nav-pill" href="#dashboard">Dashboard</a>
+    <a class="nav-pill" href="#workorders">Work Orders</a>
+    <a class="nav-pill" href="#maintenance">PM</a>
+    <a class="nav-pill" href="#screens">Screens</a>
+    <a class="nav-pill" href="#impact">Impact</a>
+    <a class="nav-pill" href="#reflection">Reflection</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════ HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      Asset &amp; Maintenance Management · Enterprise Web App
+    </div>
+    <h1>Redesigning an enterprise platform<br>for <em>clarity under complexity.</em></h1>
+    <p class="hero-sub">Transformed a data-heavy, fragmented maintenance system into a structured, navigable platform — without removing a single feature — by redesigning how information is presented rather than what information is shown.</p>
+    <div class="hero-meta">
+      <div class="mc"><div class="ml">Role</div><div class="mv">UI Designer<small>Sole designer</small></div></div>
+      <div class="mc"><div class="ml">Timeline</div><div class="mv">2 Weeks<small>End-to-end delivery</small></div></div>
+      <div class="mc"><div class="ml">Platform</div><div class="mv">Web App<small>+ Android · iOS</small></div></div>
+      <div class="mc"><div class="ml">Industry</div><div class="mv">Enterprise B2B<small>Asset management</small></div></div>
+      <div class="mc"><div class="ml">Team</div><div class="mv">PM + Developer<small>+ Stakeholders</small></div></div>
+    </div>
+
+    <!-- HERO DASHBOARD PLACEHOLDER -->
+    <div class="hero-dash">
+      <div class="img-ph ph-full" style="border-radius:14px">
+        <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div class="ph-label">UTWorX Hero Dashboard Image</div>
+        <div class="ph-sub">Upload full dashboard screenshot here</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ OVERVIEW -->
+<section class="sec" id="overview">
+  <div class="wrap">
+    <p class="pl">01 — Project Overview</p>
+    <h2 class="pt reveal">UTWorX serves maintenance<br>professionals who can't afford<br><em>to lose time in the interface.</em></h2>
+    <p class="body-text reveal">UTWorX is an enterprise SaaS platform for asset and maintenance management — helping facility managers, maintenance supervisors, technicians, and schedulers track assets, manage work orders, schedule preventive maintenance, and monitor operational performance. As the platform's feature set grew, its interface hadn't kept pace. <strong>Increasingly powerful functionality was trapped behind an increasingly difficult-to-navigate design.</strong></p>
+    <p class="body-text reveal">The product team's brief was precise: make the platform easier to use without changing what it does. The redesign had to serve three distinct user roles simultaneously — each with different information needs, different frequency of use, and different levels of time pressure.</p>
+
+    <div class="user-chips reveal">
+      <span class="chip"><span class="chip-dot"></span>Maintenance Managers</span>
+      <span class="chip"><span class="chip-dot"></span>Facility Managers</span>
+      <span class="chip"><span class="chip-dot"></span>Technicians (PICs)</span>
+      <span class="chip"><span class="chip-dot"></span>Operations Teams</span>
+      <span class="chip"><span class="chip-dot"></span>Asset Owners</span>
+    </div>
+
+    <div class="user-grid">
+      <div class="user-card op reveal">
+        <div class="user-role-lbl">Operators / Technicians</div>
+        <div class="user-title">On-site execution</div>
+        <div class="user-pain">Receive fault notifications, prioritise tasks, log completion — often on mobile while physically on-site. Every extra tap costs real time.</div>
+      </div>
+      <div class="user-card sv reveal">
+        <div class="user-role-lbl">Supervisors / Team Leads</div>
+        <div class="user-title">Coordination layer</div>
+        <div class="user-pain">Delegate tasks, track team progress, surface blockers in real time. Were losing visibility when updates got buried in unprioritised tables.</div>
+      </div>
+      <div class="user-card mg reveal">
+        <div class="user-role-lbl">Managers / Schedulers</div>
+        <div class="user-title">Strategic oversight</div>
+        <div class="user-pain">Need KPIs at a glance — asset performance, completion rates, spare part consumption. Were spending too long assembling this picture from scattered screens.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ CHALLENGE -->
+<section class="sec" id="challenge">
+  <div class="wrap">
+    <p class="pl">02 — The Challenge</p>
+    <h2 class="pt reveal">Five audit failures.<br><em>One root cause.</em></h2>
+    <p class="body-text reveal">Before designing anything, a structured UX audit of the existing system revealed a consistent pattern. Every problem traced to the same structural failure: <strong>the platform was built around how data is stored, not around how users need to act on it.</strong></p>
+
+    <div class="ch-grid">
+      <div class="ch-card ch1 reveal">
+        <div class="ch-num">Challenge 01</div>
+        <span class="ch-icon">⚡</span>
+        <div class="ch-title">Information Overload</div>
+        <div class="ch-desc">Raw data tables dominated every screen. Fault notifications arrived without priority signals — operators had to read every record in full to identify urgent tasks.</div>
+      </div>
+      <div class="ch-card ch2 reveal">
+        <div class="ch-num">Challenge 02</div>
+        <span class="ch-icon">🧭</span>
+        <div class="ch-title">Difficult Navigation</div>
+        <div class="ch-desc">Building an operational picture required 4–5 separate screens. Work order creation caused mid-flow abandonment. Supervisors coordinated off-platform via phone and chat.</div>
+      </div>
+      <div class="ch-card ch3 reveal">
+        <div class="ch-num">Challenge 03</div>
+        <span class="ch-icon">📊</span>
+        <div class="ch-title">No Dashboard Visibility</div>
+        <div class="ch-desc">The platform held all the data managers needed — but it was distributed with no visual synthesis. Time-sensitive decisions were made on incomplete information.</div>
+      </div>
+    </div>
+
+    <div class="cb reveal">
+      <div class="cb-lbl">The reframed problem</div>
+      <p>UTWorX users are failing not because they lack information, but because the interface requires too much cognitive effort to extract actionable insight. <strong>The redesign must transform how information is presented — surfacing priorities, reducing navigation depth — without reducing data completeness or functional scope.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ DESIGN GOALS -->
+<section class="sec" id="goals">
+  <div class="wrap">
+    <p class="pl">03 — Design Goals</p>
+    <h2 class="pt reveal">Four principles.<br>Every screen evaluated<br><em>against all four.</em></h2>
+
+    <div class="goal-grid">
+      <div class="goal-card reveal">
+        <span class="goal-icon">◈</span>
+        <div class="goal-title">Simplify Data</div>
+        <div class="goal-desc">Present the same information through visual summaries rather than raw tables. Same depth, lower cognitive load.</div>
+      </div>
+      <div class="goal-card reveal">
+        <span class="goal-icon">◉</span>
+        <div class="goal-title">Improve Visibility</div>
+        <div class="goal-desc">KPIs and operational status immediately readable from the dashboard without opening sub-screens.</div>
+      </div>
+      <div class="goal-card reveal">
+        <span class="goal-icon">◐</span>
+        <div class="goal-title">Streamline Workflows</div>
+        <div class="goal-desc">Reduce interactions for core tasks. Contextual modals over dedicated pages. Guided flows over open forms.</div>
+      </div>
+      <div class="goal-card reveal">
+        <span class="goal-icon">◑</span>
+        <div class="goal-title">Modernize Experience</div>
+        <div class="goal-desc">Enterprise-appropriate visual system that communicates reliability and reduces retraining cost through familiar patterns.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ DASHBOARD -->
+<section class="sec" id="dashboard">
+  <div class="wrap">
+    <p class="pl">04 — Dashboard Redesign</p>
+    <h2 class="pt reveal">Transforming data tables<br>into <em>actionable insights.</em></h2>
+    <p class="body-text reveal">The previous system relied on raw data tables. The redesign introduced visual summaries, KPI cards, and charts to help users understand system performance at a glance. Managers can now answer critical operational questions — completion rates, asset status, spend trends — without opening a single sub-screen.</p>
+
+    <!-- Dashboard Screen 1 -->
+    <div class="annotated-block reveal">
+      <div class="img-ph ph-full">
+        <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div class="ph-label">Dashboard Screen 01 — Main Overview</div>
+        <div class="ph-sub">Upload dashboard overview screenshot here</div>
+      </div>
+      <div class="annotation-list" style="margin-top:14px">
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Asset Overview:</strong> Live asset status — active, pending, faulted — surfaced as a summary card above all tables</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Work Order Performance:</strong> Weekly, monthly, and yearly completion trends as line charts — replacing tabular history logs</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Spare Part Consumption:</strong> Stacked bar chart showing composition across categories — patterns invisible in raw tables become immediately visible</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Maintenance Trends:</strong> Proactive scheduling pipeline — what's due, what's overdue, what's at risk</span></div>
+      </div>
+    </div>
+
+    <!-- Dashboard Screen 2 -->
+    <div class="annotated-block reveal" style="margin-top:28px">
+      <div class="sg2">
+        <div class="sg-ph wide">
+          <div class="sg-inner">
+            <div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+            <div class="sg-label">Dashboard Screen 02 — KPI Cards</div>
+            <div class="sg-sub">Upload screenshot here</div>
+          </div>
+          <div class="sg-cap"><div class="sg-cap-title">KPI Summary Panel</div><div class="sg-cap-sub">At-a-glance operational health indicators</div></div>
+        </div>
+        <div class="sg-ph wide">
+          <div class="sg-inner">
+            <div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div>
+            <div class="sg-label">Dashboard Screen 03 — Charts View</div>
+            <div class="sg-sub">Upload screenshot here</div>
+          </div>
+          <div class="sg-cap"><div class="sg-cap-title">Performance Charts</div><div class="sg-cap-sub">Maintenance completion and fault trend visualisation</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ WORK ORDERS -->
+<section class="sec" id="workorders">
+  <div class="wrap">
+    <p class="pl">05 — Work Order Management</p>
+    <h2 class="pt reveal">Streamlining maintenance<br><em>workflows.</em></h2>
+    <p class="body-text reveal">Work order creation was redesigned as a named 5-step structured flow. Each step is scoped to its specific information requirements — no step asks for what belongs to another stage. Progress is persistent and visible throughout, making the process feel finite and bounded rather than open-ended.</p>
+
+    <div class="workflow reveal">
+      <div class="wf-step on"><div class="wf-n">Step 01</div><div class="wf-l">Preliminary Report</div></div>
+      <div class="wf-step on"><div class="wf-n">Step 02</div><div class="wf-l">Notification Creation</div></div>
+      <div class="wf-step on"><div class="wf-n">Step 03</div><div class="wf-l">Work Scheduling</div></div>
+      <div class="wf-step on"><div class="wf-n">Step 04</div><div class="wf-l">Service Report</div></div>
+      <div class="wf-step on"><div class="wf-n">Step 05</div><div class="wf-l">Report Generation</div></div>
+    </div>
+
+    <div class="annotated-block reveal">
+      <div class="img-ph ph-wide">
+        <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 12h6M9 16h4"/></svg></div>
+        <div class="ph-label">Work Order Screen</div>
+        <div class="ph-sub">Upload work order creation / detail screenshot here</div>
+      </div>
+      <div class="annotation-list" style="margin-top:14px">
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Priority Signals:</strong> Colour-coded severity indicators allow operators to triage fault urgency without reading every record in full</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Contextual Modals:</strong> Secondary actions (adding spare parts, uploading documents, assigning personnel) handled in-context — no page transitions</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Persistent Progress Bar:</strong> Named steps visible throughout — users always know where they are and how far remains in the workflow</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ PREVENTIVE MAINTENANCE -->
+<section class="sec" id="maintenance">
+  <div class="wrap">
+    <p class="pl">06 — Preventive Maintenance</p>
+    <h2 class="pt reveal">Designing for<br><em>operational efficiency at scale.</em></h2>
+    <p class="body-text reveal">The PM scheduler was rebuilt around a spreadsheet-style bulk management interface — allowing schedulers to assign personnel, define tasks, track spare parts, and set recurrence rules across multiple assets simultaneously. For facilities managing large equipment portfolios, this reduces scheduling from a multi-hour manual process to a systematic workflow.</p>
+
+    <!-- PM Screen -->
+    <div class="annotated-block reveal">
+      <div class="img-ph ph-wide">
+        <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <div class="ph-label">Preventive Maintenance Screen</div>
+        <div class="ph-sub">Upload PM scheduler screenshot here</div>
+      </div>
+      <div class="annotation-list" style="margin-top:14px">
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Assign PIC:</strong> Personnel assignment directly in-line — no modal or separate screen required</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Task Details:</strong> Recurrence rules, task type, and asset linkage managed in a single row</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Spare Parts Tracking:</strong> Parts consumption logged at the task level, building records during the process rather than retroactively</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Completion Notes:</strong> Documentation upload and completion sign-off integrated at the task level</span></div>
+      </div>
+    </div>
+
+    <!-- Bulk Upload Screen -->
+    <div class="annotated-block reveal" style="margin-top:24px">
+      <div class="img-ph ph-wide">
+        <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></div>
+        <div class="ph-label">Preventive Maintenance — Bulk Upload Screen</div>
+        <div class="ph-sub">Upload bulk upload / spreadsheet view screenshot here</div>
+      </div>
+    </div>
+    <p class="body-text reveal" style="margin-top:14px">The spreadsheet-style bulk upload interface reflects how maintenance schedulers actually think — in rows and columns when managing many tasks simultaneously. A card-based approach would have required too many interactions at scale.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ REPORTING -->
+<section class="sec" id="reporting">
+  <div class="wrap">
+    <p class="pl">07 — Reporting &amp; Analytics</p>
+    <h2 class="pt reveal">Making reporting<br><em>faster and easier.</em></h2>
+    <p class="body-text reveal">The reporting section was redesigned to support date-based, asset-specific, and status-filtered report generation — replacing the single long-scroll table with a structured filter-first interface that makes report boundaries explicit before the data loads.</p>
+
+    <div class="annotated-block reveal">
+      <div class="img-ph ph-wide">
+        <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
+        <div class="ph-label">Report Screen</div>
+        <div class="ph-sub">Upload report generation / analytics screenshot here</div>
+      </div>
+      <div class="annotation-list" style="margin-top:14px">
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Filters Panel:</strong> Report scope defined upfront — asset type, date range, status — before data loads</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Asset Tracking:</strong> Filter by asset ID, location, or category for targeted maintenance history reports</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Work Status:</strong> Status-based filtering surfaces only open, completed, or overdue records as needed</span></div>
+        <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Date-Based Reports:</strong> Weekly, monthly, or custom date range selection for period-specific compliance reporting</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ KEY DECISIONS -->
+<section class="sec" id="decisions">
+  <div class="wrap">
+    <p class="pl">08 — Key Design Decisions</p>
+    <h2 class="pt reveal">Four decisions.<br>Each with an alternative<br><em>I chose not to take.</em></h2>
+    <div class="dt-w reveal">
+      <table class="dt">
+        <thead><tr><th>Decision</th><th>Alternative considered</th><th>Choice &amp; rationale</th></tr></thead>
+        <tbody>
+          <tr class="chosen">
+            <td>Navigation architecture</td>
+            <td>Top navigation bar — maximises vertical content space, familiar from consumer web</td>
+            <td><span class="dt-badge b-ch">Sidebar chosen</span> Enterprise users work within the same tool for hours across many modules. A sidebar scales cleanly as module count grows and matches familiar enterprise patterns (Salesforce, ServiceNow) — reducing retraining cost.</td>
+          </tr>
+          <tr class="chosen">
+            <td>Data on dashboard</td>
+            <td>Improved tables — better sorting, filtering, colour-coded rows. Lower design risk.</td>
+            <td><span class="dt-badge b-ch">Charts + visual summaries chosen</span> Tables require users to read and compare rows to extract trends. Charts communicate the same information as pre-processed visuals. For managers assessing operational health quickly, charts deliver insight in seconds that tables require minutes to extract.</td>
+          </tr>
+          <tr class="chosen">
+            <td>Work order creation</td>
+            <td>Single long-form page — all fields on one screen, user scrolls to complete.</td>
+            <td><span class="dt-badge b-ch">5-step structured workflow chosen</span> Work order creation is cognitively complex — fault details, asset assignment, scheduling, personnel, and documentation each require focused attention. A structured flow scopes the user's attention at each stage, reducing errors and creating consistent, complete records.</td>
+          </tr>
+          <tr class="chosen">
+            <td>Secondary actions</td>
+            <td>Dedicated pages — every secondary action navigates to a separate full screen.</td>
+            <td><span class="dt-badge b-ch">Contextual modals chosen</span> Dedicated pages break user context — the user leaves, completes the action, returns. Modals handle secondary actions within the context of the primary workflow. For a user completing ten work orders in a session, avoiding twenty unnecessary page transitions matters at scale.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ ADDITIONAL SCREENS -->
+<section class="sec" id="screens">
+  <div class="wrap">
+    <p class="pl">09 — Additional Screens</p>
+    <h2 class="pt reveal">The complete<br><em>product at a glance.</em></h2>
+    <p class="body-text reveal">Further screens from across the platform — covering asset registers, notification management, technician dashboards, and profile settings.</p>
+
+    <div class="gallery-grid">
+      <div class="gal-ph reveal">
+        <div class="sg-inner"><div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><div class="sg-label">Screen 01</div><div class="sg-sub">Upload screenshot</div></div>
+        <div class="gal-num">01</div>
+      </div>
+      <div class="gal-ph reveal">
+        <div class="sg-inner"><div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><div class="sg-label">Screen 02</div><div class="sg-sub">Upload screenshot</div></div>
+        <div class="gal-num">02</div>
+      </div>
+      <div class="gal-ph reveal">
+        <div class="sg-inner"><div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><div class="sg-label">Screen 03</div><div class="sg-sub">Upload screenshot</div></div>
+        <div class="gal-num">03</div>
+      </div>
+      <div class="gal-ph reveal">
+        <div class="sg-inner"><div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><div class="sg-label">Screen 04</div><div class="sg-sub">Upload screenshot</div></div>
+        <div class="gal-num">04</div>
+      </div>
+      <div class="gal-ph reveal">
+        <div class="sg-inner"><div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><div class="sg-label">Screen 05</div><div class="sg-sub">Upload screenshot</div></div>
+        <div class="gal-num">05</div>
+      </div>
+      <div class="gal-ph reveal">
+        <div class="sg-inner"><div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><div class="sg-label">Screen 06</div><div class="sg-sub">Upload screenshot</div></div>
+        <div class="gal-num">06</div>
+      </div>
+      <div class="gal-ph reveal">
+        <div class="sg-inner"><div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><div class="sg-label">Screen 07</div><div class="sg-sub">Upload screenshot</div></div>
+        <div class="gal-num">07</div>
+      </div>
+      <div class="gal-ph reveal">
+        <div class="sg-inner"><div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><div class="sg-label">Screen 08</div><div class="sg-sub">Upload screenshot</div></div>
+        <div class="gal-num">08</div>
+      </div>
+      <div class="gal-ph reveal">
+        <div class="sg-inner"><div class="sg-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><div class="sg-label">Screen 09</div><div class="sg-sub">Upload screenshot</div></div>
+        <div class="gal-num">09</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ IMPACT -->
+<section class="sec" id="impact">
+  <div class="wrap">
+    <p class="pl">10 — Design Impact</p>
+    <h2 class="pt reveal">What the redesign<br><em>delivered.</em></h2>
+    <p class="body-text reveal">Formal usability metrics were not collected within the two-week scope. The outcomes reported by the product team and client stakeholders post-delivery:</p>
+
+    <div class="impact-grid">
+      <div class="im-card g1 reveal">
+        <span class="im-icon">◈</span>
+        <div class="im-title">Cleaner Interface</div>
+        <div class="im-text">Visual design reduced perceived complexity without removing any data or functionality from the platform</div>
+      </div>
+      <div class="im-card g2 reveal">
+        <span class="im-icon">◉</span>
+        <div class="im-title">Modern Experience</div>
+        <div class="im-text">Updated visual system aligned the platform with enterprise SaaS standards users recognise from other tools</div>
+      </div>
+      <div class="im-card g3 reveal">
+        <span class="im-icon">◐</span>
+        <div class="im-title">Easier Navigation</div>
+        <div class="im-text">Sidebar architecture and structured flows reduced navigation depth for all three user roles</div>
+      </div>
+      <div class="im-card g4 reveal">
+        <span class="im-icon">◑</span>
+        <div class="im-title">Improved Workflow Efficiency</div>
+        <div class="im-text">Task creation, scheduling, and reporting workflows required fewer interactions and less off-platform coordination</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ LEARNINGS -->
+<section class="sec" id="learnings">
+  <div class="wrap">
+    <p class="pl">11 — Key Learnings</p>
+    <h2 class="pt reveal">What enterprise design<br><em>confirmed.</em></h2>
+
+    <div class="learn-grid">
+      <div class="learn-card reveal">
+        <div class="learn-num">Learning 01</div>
+        <div class="learn-title">Simplifying data is often more valuable than reducing it</div>
+        <div class="learn-text">The same data, structured for the decision it needs to support, can feel dramatically simpler without losing any of its depth. Complexity is often a presentation failure, not a content failure.</div>
+      </div>
+      <div class="learn-card reveal">
+        <div class="learn-num">Learning 02</div>
+        <div class="learn-title">Enterprise users prioritise efficiency over novelty</div>
+        <div class="learn-text">In enterprise tools, familiarity is a feature. Borrowing from established patterns (Salesforce, ServiceNow) reduced retraining cost. The creativity in enterprise UX is applying familiar patterns with enough precision that the interface disappears and the work comes forward.</div>
+      </div>
+      <div class="learn-card reveal">
+        <div class="learn-num">Learning 03</div>
+        <div class="learn-title">Visual hierarchy improves decision-making speed</div>
+        <div class="learn-text">Colour-coded priority signals, dashboard chart types matched to insight type, and contextual information surfacing at the point of need — each one reduced the cognitive effort required to act on information under time pressure.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ REFLECTION -->
+<section class="sec" id="reflection">
+  <div class="wrap">
+    <p class="pl">12 — Reflection</p>
+    <h2 class="pt reveal">What I'd do<br><em>differently.</em></h2>
+
+    <div class="cb reveal">
+      <div class="cb-lbl">Closing thought</div>
+      <p>The two-week timeline made formal user testing impossible — and that's the honest gap in this project. In retrospect, a single half-day session with three to five current users testing the work order creation and PM scheduler flows would have given me evidence to replace reasonable assumptions. The redesign addressed the presentation layer effectively. What it didn't address — because it was out of scope — is the intelligence layer: predictive maintenance alerts, proactive scheduling suggestions, and anomaly detection. The data to support this already exists in the platform. <strong>Version 2's design work is making that predictive capability visible and actionable.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-name">UTWorX — Enterprise Redesign Case Study</div>
+    <div class="footer-sub">UI Design by Sana Ishaq · 2 weeks · End-to-end enterprise redesign</div>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+window.addEventListener('scroll', () => {
+  document.getElementById('progress').style.width =
+    (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+}, { passive: true });
+
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* Active nav pill tracking */
+document.querySelectorAll('.sec[id]').forEach(sec => {
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.nav-pill').forEach(p => p.style.color = '');
+        const a = document.querySelector(`.nav-pill[href="#${e.target.id}"]`);
+        if (a) a.style.color = 'var(--green)';
+      }
+    });
+  }, { threshold: 0.3 }).observe(sec);
+});
+
+if (noMotion) {
+  document.querySelectorAll('.reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-meta,.hero-dash').forEach(el => {
+    el.style.opacity = '1'; el.style.transform = 'none';
+  });
+} else {
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* HERO */
+  gsap.timeline({ delay: 0.1 })
+    .to('.hero-eyebrow', { opacity:1, y:0, duration:.65, ease:'power2.out' })
+    .to('.hero h1',      { opacity:1, y:0, duration:.8,  ease:'power2.out' }, '-=0.4')
+    .to('.hero-sub',     { opacity:1, y:0, duration:.7,  ease:'power2.out' }, '-=0.45')
+    .to('.hero-meta',    { opacity:1, y:0, duration:.6,  ease:'power2.out' }, '-=0.4')
+    .to('.hero-dash',    { opacity:1, scale:1, duration:.7, ease:'power2.out' }, '-=0.3');
+
+  /* Generic reveals */
+  document.querySelectorAll('.reveal').forEach(el => {
+    gsap.to(el, {
+      scrollTrigger: { trigger:el, start:'top 87%', once:true },
+      opacity:1, y:0, duration:.65, ease:'power2.out'
+    });
+  });
+
+  /* Challenge cards stagger */
+  gsap.fromTo('.ch-card', { opacity:0, y:20 }, {
+    scrollTrigger: { trigger:'.ch-grid', start:'top 85%', once:true },
+    opacity:1, y:0, duration:.55, ease:'power2.out', stagger:.09
+  });
+
+  /* Goal cards stagger */
+  gsap.fromTo('.goal-card', { opacity:0, y:18 }, {
+    scrollTrigger: { trigger:'.goal-grid', start:'top 85%', once:true },
+    opacity:1, y:0, duration:.5, ease:'power2.out', stagger:.08
+  });
+
+  /* User cards */
+  gsap.fromTo('.user-card', { opacity:0, y:16 }, {
+    scrollTrigger: { trigger:'.user-grid', start:'top 86%', once:true },
+    opacity:1, y:0, duration:.5, ease:'power2.out', stagger:.09
+  });
+
+  /* Impact cards */
+  gsap.fromTo('.im-card', { opacity:0, y:18 }, {
+    scrollTrigger: { trigger:'.impact-grid', start:'top 85%', once:true },
+    opacity:1, y:0, duration:.5, ease:'power2.out', stagger:.08
+  });
+
+  /* Learning cards */
+  gsap.fromTo('.learn-card', { opacity:0, y:16 }, {
+    scrollTrigger: { trigger:'.learn-grid', start:'top 85%', once:true },
+    opacity:1, y:0, duration:.5, ease:'power2.out', stagger:.1
+  });
+
+  /* Gallery */
+  gsap.fromTo('.gal-ph', { opacity:0, y:18, scale:.99 }, {
+    scrollTrigger: { trigger:'.gallery-grid', start:'top 84%', once:true },
+    opacity:1, y:0, scale:1, duration:.5, ease:'power2.out', stagger:.06
+  });
+
+  /* Annotation rows */
+  document.querySelectorAll('.annotation-list').forEach(list => {
+    gsap.fromTo(list.querySelectorAll('.ann-row'), { opacity:0, x:-10 }, {
+      scrollTrigger: { trigger:list, start:'top 87%', once:true },
+      opacity:1, x:0, duration:.4, ease:'power2.out', stagger:.07, delay:.15
+    });
+  });
+
+  /* Callouts */
+  document.querySelectorAll('.cb').forEach(el => {
+    gsap.fromTo(el, { opacity:0, x:-12 }, {
+      scrollTrigger: { trigger:el, start:'top 88%', once:true },
+      opacity:1, x:0, duration:.55, ease:'power2.out'
+    });
+  });
+
+  /* Workflow steps */
+  gsap.fromTo('.wf-step', { opacity:0, y:14 }, {
+    scrollTrigger: { trigger:'.workflow', start:'top 86%', once:true },
+    opacity:1, y:0, duration:.4, ease:'power2.out', stagger:.07
+  });
+
+  /* Decision table */
+  gsap.fromTo('.dt-w', { opacity:0, scale:.99 }, {
+    scrollTrigger: { trigger:'.dt-w', start:'top 86%', once:true },
+    opacity:1, scale:1, duration:.6, ease:'power2.out'
+  });
+
+  /* sg2 grids */
+  document.querySelectorAll('.sg2').forEach(g => {
+    gsap.fromTo(g.children, { opacity:0, y:14 }, {
+      scrollTrigger: { trigger:g, start:'top 87%', once:true },
+      opacity:1, y:0, duration:.5, ease:'power2.out', stagger:.1
+    });
+  });
+
+  /* Chips */
+  gsap.fromTo('.chip', { opacity:0, y:10 }, {
+    scrollTrigger: { trigger:'.user-chips', start:'top 88%', once:true },
+    opacity:1, y:0, duration:.4, ease:'power2.out', stagger:.05
+  });
+}
+</script>
+</body>
+</html>
