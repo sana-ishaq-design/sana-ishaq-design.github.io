@@ -1984,7 +1984,7 @@ nav.scrolled {
     font-size: 16px;
     color: var(--white2);
     font-weight: 300;
-    max-width: 540px;
+    /* max-width: 540px; */
     line-height: 1.72;
     margin: 24px 0 60px;
     opacity: 1;
