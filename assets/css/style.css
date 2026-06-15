@@ -660,7 +660,7 @@ h1.hero-h .ital {
     color: var(--muted);
     font-weight: 300;
     line-height: 1.85;
-    max-width: 540px;
+    /* max-width: 540px; */
     margin-bottom: 3rem;
     transition: color 0.4s;
 }
