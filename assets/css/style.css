@@ -671,7 +671,6 @@ h1.hero-h .ital {
     font-weight: 300;
     line-height: 1.85;
     /* max-width: 540px; */
-    transition: color 0.6s;
 }
 
 .cta-row {
