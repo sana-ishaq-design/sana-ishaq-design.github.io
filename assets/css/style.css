@@ -2072,7 +2072,7 @@ nav.scrolled {
     font-size: 14px;
     color: var(--white2);
     line-height: 1.8;
-    max-width: 600px;
+    /* max-width: 600px; */
     font-weight: 300;
 }
 
