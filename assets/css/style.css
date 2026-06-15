@@ -669,6 +669,7 @@ h1.hero-h .ital {
     display: flex;
     gap: 0.875rem;
     flex-wrap: wrap;
+    padding-top: 24px;
 }
 
 .btn-a {
