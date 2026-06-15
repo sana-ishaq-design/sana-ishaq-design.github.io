@@ -665,13 +665,6 @@ h1.hero-h .ital {
     transition: color 0.4s;
 }
 
-.experience{
-    font-size: clamp(0.5rem, 1.4vw, 1rem);
-    color: var(--muted);
-    font-weight: 300;
-    line-height: 1.85;
-    /* max-width: 540px; */
-}
 
 .cta-row {
     display: flex;
