@@ -661,7 +661,16 @@ h1.hero-h .ital {
     font-weight: 300;
     line-height: 1.85;
     /* max-width: 540px; */
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
+    transition: color 0.4s;
+}
+
+.experience{
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.85;
+    /* max-width: 540px; */
     transition: color 0.4s;
 }
 
