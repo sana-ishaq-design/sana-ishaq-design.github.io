@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Studies — Sana Ishaq</title>
+
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── TOKENS ── */
+:root {
+  --bg:        #060f1a;
+  --bg-card:   #0a1628;
+  --bg-hover:  #0d1c35;
+  --teal:      #49F2C2;
+  --teal-dim:  rgba(73,242,194,0.12);
+  --teal-glow: rgba(73,242,194,0.22);
+  --teal-bd:   rgba(73,242,194,0.18);
+  --border:    rgba(255,255,255,0.07);
+  --border-md: rgba(255,255,255,0.11);
+  --text-1:    #f0f4f8;
+  --text-2:    rgba(240,244,248,0.55);
+  --text-3:    rgba(240,244,248,0.32);
+  --radius:    10px;
+  --font-disp: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  border-bottom: 0.5px solid var(--border);
+  padding: 1.25rem 0;
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(6,15,26,0.94);
+  backdrop-filter: blur(18px);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-disp); font-weight: 700;
+  font-size: 15px; color: var(--text-1);
+  text-decoration: none; letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--teal); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 13px; color: var(--text-2);
+  text-decoration: none; font-weight: 400; transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text-1); }
+.nav-cta {
+  background: var(--teal-dim); border: 0.5px solid var(--teal-bd);
+  color: var(--teal); border-radius: var(--radius);
+  padding: 7px 16px; font-size: 13px; font-weight: 500;
+  text-decoration: none; transition: background 0.2s;
+}
+.nav-cta:hover { background: rgba(73,242,194,0.2); }
+
+/* ── CREDIBILITY STRIP (static, unchanged) ── */
+.credibility-strip {
+  border-bottom: 0.5px solid var(--border);
+  padding: 1rem 0;
+}
+.strip-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+  display: flex; align-items: center; flex-wrap: wrap;
+}
+.strip-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0 1.5rem;
+  font-size: 12.5px; color: var(--text-2);
+}
+.strip-item:first-child { padding-left: 0; }
+.strip-item strong {
+  color: var(--teal); font-weight: 600; font-family: var(--font-disp);
+}
+.strip-sep { color: var(--border-md); font-size: 11px; user-select: none; }
+
+/* ── OUTCOMES MARQUEE ── */
+.marquee-section {
+  border-bottom: 0.5px solid var(--border);
+  padding: 0.7rem 0;
+  overflow: hidden;
+  position: relative;
+}
+/* edge fades */
+.marquee-section::before,
+.marquee-section::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; width: 120px;
+  z-index: 2; pointer-events: none;
+}
+.marquee-section::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+}
+.marquee-section::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg) 0%, transparent 100%);
+}
+.marquee-track {
+  display: flex; align-items: center;
+  width: max-content;
+  animation: marquee-scroll 55s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-item {
+  display: flex; align-items: center;
+  padding: 0 1.6rem;
+  font-size: 12px; font-weight: 400;
+  color: var(--text-3);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.marquee-track:hover .marquee-item { color: var(--text-2); }
+.marquee-item.metric {
+  font-family: var(--font-disp);
+  font-weight: 600; font-size: 12.5px;
+  color: var(--teal);
+  opacity: 0.8;
+}
+.marquee-dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--border-md);
+  flex-shrink: 0;
+}
+
+/* ── PAGE HEADER (reduced height ~30%) ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.page-header { padding: 3rem 0 2rem; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 1rem;
+}
+.eyebrow::before {
+  content: ''; width: 20px; height: 0.5px;
+  background: var(--teal); display: block;
+}
+.page-title {
+  font-family: var(--font-disp);
+  font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+  font-weight: 800; line-height: 1.08;
+  letter-spacing: -0.035em; color: var(--text-1);
+  margin-bottom: 0.85rem; max-width: 700px;
+}
+.page-title em { color: var(--teal); font-style: normal; }
+.page-desc {
+  font-size: 14.5px; color: var(--text-2);
+  max-width: 500px; line-height: 1.65; font-weight: 300;
+}
+
+/* ── FILTERS ── */
+.filters-row {
+  display: flex; align-items: center; gap: 6px;
+  margin: 2rem 0 3rem; flex-wrap: wrap;
+  padding-bottom: 2rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.pill {
+  background: transparent;
+  border: 0.5px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 15px;
+  font-size: 12px; font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  position: relative;
+}
+.pill:hover {
+  border-color: var(--border-md);
+  color: var(--text-1);
+}
+/* Enhanced active state */
+.pill.active {
+  background: linear-gradient(135deg, rgba(73,242,194,0.14) 0%, rgba(73,242,194,0.07) 100%);
+  border-color: var(--teal-bd);
+  color: var(--teal);
+  box-shadow: 0 0 14px rgba(73,242,194,0.12), inset 0 0 0 0.5px rgba(73,242,194,0.1);
+}
+/* animated underline on active */
+.pill.active::after {
+  content: '';
+  position: absolute; bottom: -1px; left: 15%; right: 15%;
+  height: 1.5px;
+  background: linear-gradient(to right, transparent, var(--teal), transparent);
+  border-radius: 2px;
+  animation: pill-line-in 0.22s ease forwards;
+}
+@keyframes pill-line-in {
+  from { opacity: 0; transform: scaleX(0.3); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+/* ── FEATURED CASE STUDY ── */
+.featured-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 1.1rem;
+}
+.featured-label::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px rgba(73,242,194,0.5);
+}
+
+.featured-card {
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-card);
+  display: grid;
+  /* Image 62%, content 38% */
+  grid-template-columns: 62fr 38fr;
+  min-height: 420px;
+  margin-bottom: 5rem;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  position: relative;
+}
+.featured-card:hover {
+  border-color: var(--teal-bd);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(73,242,194,0.07);
+}
+.featured-card:hover .feat-img-inner { transform: scale(1.02); }
+.featured-card:hover .cta-arrow       { transform: translateX(4px); }
+
+/* Image side */
+.feat-img-wrap {
+  overflow: hidden;
+  background: #091a2e;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.feat-img-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 2.5rem;
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  position: relative; z-index: 1;
+}
+/* ambient glow overlay */
+.feat-img-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(73,242,194,0.06) 0%, transparent 65%);
+  pointer-events: none; z-index: 2;
+}
+
+/* Content side */
+.feat-content {
+  padding: 2.5rem 2.2rem;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  border-left: 0.5px solid var(--border);
+}
+.feat-cats {
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-3);
+  margin-bottom: 0.8rem;
+}
+.feat-cats span { color: var(--teal); }
+.feat-title {
+  font-family: var(--font-disp);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 700; line-height: 1.22;
+  letter-spacing: -0.025em; color: var(--text-1);
+  margin-bottom: 0.8rem;
+}
+.feat-desc {
+  font-size: 13px; color: var(--text-2);
+  line-height: 1.65; font-weight: 300;
+  margin-bottom: 1.4rem;
+}
+.feat-metrics-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem; margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.02);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+}
+.feat-metric-val {
+  font-family: var(--font-disp);
+  font-size: 1.35rem; font-weight: 700;
+  color: var(--teal); line-height: 1; margin-bottom: 3px;
+}
+.feat-metric-lbl { font-size: 10px; color: var(--text-3); line-height: 1.3; }
+
+/* Project metadata */
+.proj-meta {
+  display: flex; gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+.meta-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--text-3);
+}
+.meta-item svg { opacity: 0.5; flex-shrink: 0; }
+.meta-item strong { color: var(--text-2); font-weight: 500; }
+
+.cta-link {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 500; color: var(--text-1);
+  text-decoration: none; transition: color 0.2s;
+  margin-top: auto;
+}
+.cta-link:hover { color: var(--teal); }
+.cta-arrow { transition: transform 0.2s ease; }
+
+/* ── SVG MOCKUPS ── */
+/* Shared browser chrome */
+.mock-browser {
+  background: #0d2040;
+  border-radius: 8px;
+  border: 0.5px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+  width: 100%;
+}
+.mock-bar {
+  background: #112850; padding: 9px 13px;
+  display: flex; align-items: center; gap: 5px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.07);
+}
+.m-dot { width: 7px; height: 7px; border-radius: 50%; }
+.m-dot:nth-child(1) { background: #ff5f56; }
+.m-dot:nth-child(2) { background: #ffbd2e; }
+.m-dot:nth-child(3) { background: #27c93f; }
+.m-url {
+  flex: 1; margin-left: 10px;
+  background: rgba(255,255,255,0.05); border-radius: 4px;
+  padding: 3px 10px; font-size: 10px; color: var(--text-3);
+}
+.mock-body {
+  padding: 16px;
+  background: linear-gradient(180deg, #0e2c56 0%, #0a1e3c 100%);
+}
+
+/* HaierMall mockup */
+.hm-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 11px; padding-bottom: 9px; border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+.hm-logo { width: 52px; height: 7px; background: rgba(73,242,194,0.45); border-radius: 3px; }
+.hm-nav  { display: flex; gap: 7px; }
+.hm-nav span { width: 24px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; }
+.hm-hero { background: rgba(255,255,255,0.03); border-radius: 6px; padding: 12px; margin-bottom: 9px; border: 0.5px solid rgba(255,255,255,0.06); }
+.hm-h1  { height: 12px; background: rgba(255,255,255,0.22); border-radius: 3px; width: 62%; margin-bottom: 6px; }
+.hm-h2  { height: 8px;  background: rgba(255,255,255,0.1);  border-radius: 3px; width: 78%; margin-bottom: 4px; }
+.hm-h3  { height: 8px;  background: rgba(255,255,255,0.07); border-radius: 3px; width: 50%; margin-bottom: 10px; }
+.hm-cta { height: 22px; width: 78px; background: rgba(73,242,194,0.35); border-radius: 4px; }
+.hm-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; }
+.hm-card { height: 50px; background: rgba(255,255,255,0.05); border-radius: 4px; border: 0.5px solid rgba(255,255,255,0.07); }
+
+/* Dashboard mockup */
+.dash-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin-bottom: 9px; }
+.dash-kpi { background: rgba(255,255,255,0.04); border-radius: 4px; padding: 8px; border: 0.5px solid rgba(255,255,255,0.07); }
+.dash-kpi-n { height: 11px; background: rgba(73,242,194,0.38); border-radius: 3px; width: 55%; margin-bottom: 4px; }
+.dash-kpi-l { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; }
+.dash-chart { background: rgba(255,255,255,0.03); border-radius: 4px; height: 52px; border: 0.5px solid rgba(255,255,255,0.06); display: flex; align-items: flex-end; padding: 7px; gap: 3px; }
+.dbar { border-radius: 2px 2px 0 0; flex: 1; }
+
+/* CRO / pricing mockup */
+.cro-wrap { padding: 14px; }
+.cro-head { height: 11px; background: rgba(255,255,255,0.2); border-radius: 3px; width: 58%; margin-bottom: 7px; }
+.cro-sub  { height: 7px; background: rgba(255,255,255,0.08); border-radius: 3px; width: 82%; margin-bottom: 4px; }
+.cro-sub2 { height: 7px; background: rgba(255,255,255,0.05); border-radius: 3px; width: 65%; margin-bottom: 12px; }
+.cro-pricing { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin-bottom: 10px; }
+.cro-plan { height: 65px; border-radius: 5px; border: 0.5px solid; }
+.cro-plan.hl { background: rgba(73,242,194,0.1); border-color: rgba(73,242,194,0.22); }
+.cro-plan.dim { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.07); }
+
+/* Audit mockup */
+.audit-wrap { padding: 14px; }
+.audit-head-row { display: flex; align-items: center; gap: 8px; margin-bottom: 11px; padding-bottom: 9px; border-bottom: 0.5px solid rgba(255,255,255,0.07); }
+.audit-icon { width: 26px; height: 26px; background: rgba(73,242,194,0.15); border-radius: 5px; border: 0.5px solid rgba(73,242,194,0.22); flex-shrink: 0; }
+.audit-ttl-h { height: 9px; background: rgba(255,255,255,0.2); border-radius: 3px; width: 65%; margin-bottom: 5px; }
+.audit-ttl-s { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; width: 88%; }
+.audit-rows { display: flex; flex-direction: column; gap: 6px; }
+.a-row { display: flex; align-items: center; gap: 7px; padding: 7px; background: rgba(255,255,255,0.03); border-radius: 4px; border: 0.5px solid rgba(255,255,255,0.06); }
+.a-sev { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.a-sev.hi  { background: #ff5f56; }
+.a-sev.med { background: #ffbd2e; }
+.a-sev.lo  { background: rgba(73,242,194,0.6); }
+.a-line { flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; }
+.a-tag  { height: 15px; width: 34px; background: rgba(255,255,255,0.06); border-radius: 3px; }
+
+/* Mobile mockup */
+.phone-outer { display: flex; justify-content: center; }
+.phone {
+  width: 130px;
+  background: #0d2040;
+  border-radius: 20px;
+  border: 0.5px solid rgba(255,255,255,0.1);
+  overflow: hidden; padding: 10px 0 0;
+}
+.ph-notch { width: 34px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 3px; margin: 0 auto 10px; }
+.ph-body  { padding: 0 9px 12px; }
+.ph-bal   { text-align: center; margin-bottom: 11px; }
+.ph-bal-l { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; width: 44%; margin: 0 auto 5px; }
+.ph-bal-n { height: 14px; background: rgba(73,242,194,0.42); border-radius: 4px; width: 64%; margin: 0 auto; }
+.ph-list  { display: flex; flex-direction: column; gap: 5px; }
+.ph-row   { height: 23px; background: rgba(255,255,255,0.05); border-radius: 4px; border: 0.5px solid rgba(255,255,255,0.07); }
+
+/* Design system mockup */
+.ds-wrap { padding: 13px; }
+.ds-type-h { height: 13px; background: rgba(255,255,255,0.24); border-radius: 3px; width: 48%; margin-bottom: 5px; }
+.ds-type-s { height: 8px;  background: rgba(255,255,255,0.12); border-radius: 3px; width: 70%; margin-bottom: 4px; }
+.ds-type-b { height: 7px;  background: rgba(255,255,255,0.06); border-radius: 3px; width: 85%; margin-bottom: 12px; }
+.ds-chips  { display: grid; grid-template-columns: repeat(4,1fr); gap: 5px; margin-bottom: 10px; }
+.ds-chip   { height: 20px; border-radius: 100px; border: 0.5px solid; }
+.ds-swatches { display: flex; gap: 5px; }
+.ds-sw { height: 16px; flex: 1; border-radius: 4px; }
+
+/* ── PROJECT ROW LAYOUT ── */
+.projects-container { position: relative; }
+.projects-list { display: flex; flex-direction: column; gap: 2rem; }
+
+.project-row {
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-card);
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  min-height: 280px;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+}
+.project-row:nth-child(even) { grid-template-columns: 1.15fr 1fr; }
+.project-row:nth-child(even) .proj-img     { order: 2; }
+.project-row:nth-child(even) .proj-content { order: 1; }
+
+.project-row:hover {
+  border-color: var(--teal-bd);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 36px rgba(0,0,0,0.3), 0 0 0 1px rgba(73,242,194,0.06);
+}
+.project-row:hover .mock-inner { transform: scale(1.02); }
+.project-row:hover .cta-arrow  { transform: translateX(4px); }
+.project-row.hidden { display: none; }
+
+.proj-img {
+  overflow: hidden;
+  background: #091623;
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+.proj-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 55%, rgba(73,242,194,0.04) 100%);
+  pointer-events: none;
+}
+.mock-inner {
+  width: 100%;
+  transition: transform 0.48s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.proj-content {
+  padding: 2rem 2rem;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  border-left: 0.5px solid var(--border);
+}
+.project-row:nth-child(even) .proj-content { border-left: none; border-right: 0.5px solid var(--border); }
+
+.proj-cats {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-3);
+  margin-bottom: 0.55rem;
+}
+.proj-cats span { color: var(--teal); }
+
+.proj-title {
+  font-family: var(--font-disp);
+  font-size: 1.1rem; font-weight: 700;
+  line-height: 1.25; letter-spacing: -0.02em;
+  color: var(--text-1); margin-bottom: 0.6rem;
+}
+.proj-desc {
+  font-size: 13px; color: var(--text-2);
+  line-height: 1.65; font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+/* metrics */
+.proj-metrics {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.proj-metric-val {
+  font-family: var(--font-disp);
+  font-size: 1.2rem; font-weight: 700;
+  color: var(--teal); line-height: 1; margin-bottom: 2px;
+}
+.proj-metric-lbl { font-size: 10px; color: var(--text-3); }
+
+/* meta beneath summary */
+.card-meta {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.card-meta-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; color: var(--text-3);
+}
+.card-meta-item svg { opacity: 0.45; flex-shrink: 0; }
+.card-meta-item strong { color: var(--text-2); font-weight: 500; }
+
+/* ── END CTA SECTION ── */
+.end-cta {
+  margin: 5rem 0 4rem;
+  padding: 4.5rem 2.5rem;
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.end-cta::before {
+  content: '';
+  position: absolute; bottom: -110px; left: 50%; transform: translateX(-50%);
+  width: 420px; height: 210px;
+  background: radial-gradient(ellipse, rgba(73,242,194,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.end-cta::after {
+  content: '';
+  position: absolute; top: -50px; right: -50px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(73,242,194,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.end-cta-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 1rem;
+}
+.end-cta-title {
+  font-family: var(--font-disp);
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -0.035em; color: var(--text-1);
+  margin-bottom: 0.85rem;
+}
+.end-cta-desc {
+  font-size: 14px; color: var(--text-2); font-weight: 300;
+  margin-bottom: 2rem;
+  max-width: 400px; margin-left: auto; margin-right: auto;
+  line-height: 1.65;
+}
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--teal); color: #060f1a;
+  font-weight: 600; font-size: 13.5px;
+  padding: 11px 24px; border-radius: var(--radius);
+  border: none; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: opacity 0.2s, transform 0.2s;
+  font-family: var(--font-body);
+}
+.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; color: var(--text-1);
+  font-weight: 500; font-size: 13.5px;
+  padding: 10px 22px; border-radius: var(--radius);
+  border: 0.5px solid var(--border-md); cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: border-color 0.2s, background 0.2s;
+  font-family: var(--font-body);
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+
+/* ── FOOTER ── */
+footer { border-top: 0.5px solid var(--border); padding: 2rem 0; margin-top: 1rem; }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-copy { font-size: 12px; color: var(--text-3); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 12px; color: var(--text-3); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-1); }
+
+/* ── SCROLL REVEAL ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.fade-up { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+.d1 { animation-delay: 0.08s; }
+.d2 { animation-delay: 0.18s; }
+.d3 { animation-delay: 0.28s; }
+.d4 { animation-delay: 0.4s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .featured-card { grid-template-columns: 1fr; min-height: auto; }
+  .feat-img-wrap { min-height: 220px; }
+  .feat-content { border-left: none; border-top: 0.5px solid var(--border); }
+  .project-row,
+  .project-row:nth-child(even) { grid-template-columns: 1fr; min-height: auto; }
+  .project-row:nth-child(even) .proj-img { order: 0; }
+  .project-row:nth-child(even) .proj-content { order: 0; border-right: none; border-top: 0.5px solid var(--border); }
+  .proj-content { border-left: none; border-top: 0.5px solid var(--border); }
+  .strip-item { padding: 0.25rem 0.75rem; }
+  .feat-metrics-row { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .fade-up { animation: none; opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://sana-ishaq-design.github.io/" class="nav-logo">Sana<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="https://sana-ishaq-design.github.io/#work" class="active">Work</a></li>
+      <li><a href="https://sana-ishaq-design.github.io/#services">Services</a></li>
+      <li><a href="https://sana-ishaq-design.github.io/#process">Process</a></li>
+      <li><a href="https://sana-ishaq-design.github.io/#about">About</a></li>
+    </ul>
+    <a href="https://calendly.com/sanaishaq/sana-uiux" target="_blank" class="nav-cta">Book a Call</a>
+  </div>
+</nav>
+
+<!-- ── CREDIBILITY STRIP (static) ── -->
+<div class="credibility-strip">
+  <div class="strip-inner">
+    <div class="strip-item"><strong>12</strong>&nbsp;Case Studies</div>
+    <span class="strip-sep">•</span>
+    <div class="strip-item"><strong>5+</strong>&nbsp;Years Experience</div>
+    <span class="strip-sep">•</span>
+    <div class="strip-item"><strong>200+</strong>&nbsp;Projects Delivered</div>
+    <span class="strip-sep">•</span>
+    <div class="strip-item"><strong>8</strong>&nbsp;Countries Served</div>
+  </div>
+</div>
+
+<!-- ── OUTCOMES MARQUEE ── -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marqueeTrack">
+    <!-- Set A -->
+    <span class="marquee-item metric">+31% Online Sales</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">+64% Trial Activation</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">−20% Bounce Rate</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">+40% Faster Discovery</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">100K+ Downloads</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">+88% Demo Conversions</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">UX Audit</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Conversion Optimization</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Product Strategy</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Design Systems</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">SaaS Platforms</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">E-commerce Experiences</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Mobile Applications</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Growth Design</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Customer Retention</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">User Activation</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Checkout Optimization</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Dashboard Design</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Research-Driven Decisions</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">4.8★ App Store</span>
+    <span class="marquee-dot"></span>
+    <!-- Set B (duplicate for seamless loop) -->
+    <span class="marquee-item metric">+31% Online Sales</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">+64% Trial Activation</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">−20% Bounce Rate</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">+40% Faster Discovery</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">100K+ Downloads</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">+88% Demo Conversions</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">UX Audit</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Conversion Optimization</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Product Strategy</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Design Systems</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">SaaS Platforms</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">E-commerce Experiences</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Mobile Applications</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Growth Design</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Customer Retention</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">User Activation</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Checkout Optimization</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Dashboard Design</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item">Research-Driven Decisions</span>
+    <span class="marquee-dot"></span>
+    <span class="marquee-item metric">4.8★ App Store</span>
+    <span class="marquee-dot"></span>
+  </div>
+</div>
+
+<!-- ── PAGE ── -->
+<div class="page">
+
+  <!-- HERO (–30% height) -->
+  <header class="page-header fade-up">
+    <div class="eyebrow">Selected Work</div>
+    <h1 class="page-title">Real Problems.<br><em>Measurable Outcomes.</em></h1>
+    <p class="page-desc fade-up d1">A collection of SaaS, E-commerce, Mobile App, UX Audit, and CRO projects focused on improving business performance through strategic design.</p>
+  </header>
+
+  <!-- FILTERS -->
+  <div class="filters-row fade-up d2" id="filtersRow">
+    <div class="pill active" data-filter="all">All Projects</div>
+    <div class="pill" data-filter="saas">SaaS</div>
+    <div class="pill" data-filter="ecommerce">E-commerce</div>
+    <div class="pill" data-filter="mobile">Mobile Apps</div>
+    <div class="pill" data-filter="ux-audit">UX Audit</div>
+    <div class="pill" data-filter="cro">Conversion Optimization</div>
+    <div class="pill" data-filter="design-system">Design Systems</div>
+  </div>
+
+  <!-- FEATURED CASE STUDY -->
+  <div class="fade-up d3">
+    <div class="featured-label">Featured Case Study</div>
+    <div class="featured-card" data-category="ecommerce">
+
+      <!-- IMAGE SIDE (62%) -->
+      <div class="feat-img-wrap">
+        <div class="feat-img-inner">
+          <div class="mock-browser">
+            <div class="mock-bar">
+              <div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div>
+              <div class="m-url">hairermall.com</div>
+            </div>
+            <div class="mock-body">
+              <div class="hm-topbar">
+                <div class="hm-logo"></div>
+                <div class="hm-nav"><span></span><span></span><span></span><span></span></div>
+              </div>
+              <div class="hm-hero">
+                <div class="hm-h1"></div><div class="hm-h2"></div><div class="hm-h3"></div>
+                <div class="hm-cta"></div>
+              </div>
+              <div class="hm-grid">
+                <div class="hm-card"></div><div class="hm-card"></div><div class="hm-card"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENT SIDE (38%) -->
+      <div class="feat-content">
+        <div class="feat-cats"><span>E-COMMERCE</span> · <span>CRO</span> · UX AUDIT</div>
+        <h2 class="feat-title">HaierMall redesign that improved product discovery and strengthened purchase confidence.</h2>
+        <p class="feat-desc">A brand-free UI was eroding trust on a platform selling Rs. 11,000–100,000+ appliances. Heuristic audit and full design-system rebuild — zero functionality changes.</p>
+        <div class="feat-metrics-row">
+          <div>
+            <div class="feat-metric-val">+31%</div>
+            <div class="feat-metric-lbl">Online sales</div>
+          </div>
+          <div>
+            <div class="feat-metric-val">−20%</div>
+            <div class="feat-metric-lbl">Bounce rate</div>
+          </div>
+          <div>
+            <div class="feat-metric-val">+40%</div>
+            <div class="feat-metric-lbl">Discovery speed</div>
+          </div>
+        </div>
+        <div class="proj-meta">
+          <div class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M2 10.5c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Role:&nbsp;<strong>Lead UX Designer</strong>
+          </div>
+          <div class="meta-item">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l1.8 1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Duration:&nbsp;<strong>6 Weeks</strong>
+          </div>
+        </div>
+        <a href="https://sana-ishaq-design.github.io/case-studies/haiermall-casetudy.html" target="_blank" class="cta-link">
+          View Full Case Study
+          <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROJECT ROWS -->
+  <div class="projects-container">
+    <div class="projects-list" id="projectsList">
+
+      <!-- ── Project 1: SaaS Dashboard (UTWorX) ── -->
+      <div class="project-row" data-category="saas">
+        <div class="proj-img">
+          <div class="mock-inner">
+            <div class="mock-browser">
+              <div class="mock-bar">
+                <div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div>
+                <div class="m-url">utworx.app/dashboard</div>
+              </div>
+              <div class="mock-body">
+                <div class="dash-kpis">
+                  <div class="dash-kpi"><div class="dash-kpi-n"></div><div class="dash-kpi-l"></div></div>
+                  <div class="dash-kpi"><div class="dash-kpi-n"></div><div class="dash-kpi-l"></div></div>
+                  <div class="dash-kpi"><div class="dash-kpi-n"></div><div class="dash-kpi-l"></div></div>
+                </div>
+                <div class="dash-chart">
+                  <div class="dbar" style="height:38%;background:rgba(73,242,194,.18)"></div>
+                  <div class="dbar" style="height:62%;background:rgba(73,242,194,.28)"></div>
+                  <div class="dbar" style="height:44%;background:rgba(73,242,194,.2)"></div>
+                  <div class="dbar" style="height:82%;background:rgba(73,242,194,.48)"></div>
+                  <div class="dbar" style="height:52%;background:rgba(73,242,194,.22)"></div>
+                  <div class="dbar" style="height:96%;background:rgba(73,242,194,.58)"></div>
+                  <div class="dbar" style="height:70%;background:rgba(73,242,194,.35)"></div>
+                  <div class="dbar" style="height:58%;background:rgba(73,242,194,.25)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-content">
+          <div class="proj-cats"><span>ENTERPRISE SAAS</span> · DASHBOARD DESIGN</div>
+          <h3 class="proj-title">Modernizing a maintenance operations platform used for scheduling, asset tracking, and technician coordination.</h3>
+          <p class="proj-desc">Dense, information-heavy screens were slowing scheduling, reporting, and daily operations. Redesigned 16 key workflows with improved hierarchy and faster task management.</p>
+          <div class="proj-metrics">
+            <div>
+              <div class="proj-metric-val">16</div>
+              <div class="proj-metric-lbl">Screens redesigned</div>
+            </div>
+            <div>
+              <div class="proj-metric-val">+7</div>
+              <div class="proj-metric-lbl">Core workflows</div>
+            </div>
+            <div>
+              <div class="proj-metric-val">2 wks</div>
+              <div class="proj-metric-lbl">Delivery</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M2 10.5c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Role:&nbsp;<strong>Lead Product Designer</strong>
+            </div>
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l1.8 1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Duration:&nbsp;<strong>2 Weeks</strong>
+            </div>
+          </div>
+          <a href="#" class="cta-link">View Case Study <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- ── Project 2: Mobile App (AWR) ── -->
+      <div class="project-row" data-category="mobile">
+        <div class="proj-img">
+          <div class="mock-inner">
+            <div class="phone-outer">
+              <div class="phone">
+                <div class="ph-notch"></div>
+                <div class="ph-body">
+                  <div class="ph-bal">
+                    <div class="ph-bal-l"></div>
+                    <div class="ph-bal-n"></div>
+                  </div>
+                  <div class="ph-list">
+                    <div class="ph-row"></div>
+                    <div class="ph-row"></div>
+                    <div class="ph-row"></div>
+                    <div class="ph-row"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-content">
+          <div class="proj-cats"><span>B2C SAAS</span> · <span>MOBILE APP</span> · UAE</div>
+          <h3 class="proj-title">Built a car subscription platform from zero to 100,000+ downloads across the UAE.</h3>
+          <p class="proj-desc">No digital channel existed. Designed the full production UI, booking flow, checkout hierarchy, and end-to-end design system across 6 agile sprints.</p>
+          <div class="proj-metrics">
+            <div>
+              <div class="proj-metric-val">100K+</div>
+              <div class="proj-metric-lbl">Downloads</div>
+            </div>
+            <div>
+              <div class="proj-metric-val">6</div>
+              <div class="proj-metric-lbl">Sprint delivery</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M2 10.5c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Role:&nbsp;<strong>End-to-End UX / UI</strong>
+            </div>
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l1.8 1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Duration:&nbsp;<strong>3 Months</strong>
+            </div>
+          </div>
+          <a href="#" class="cta-link">View Case Study <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- ── Project 3: CRO ── -->
+      <div class="project-row" data-category="cro">
+        <div class="proj-img">
+          <div class="mock-inner">
+            <div class="mock-browser">
+              <div class="mock-bar">
+                <div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div>
+                <div class="m-url">saas.co/pricing</div>
+              </div>
+              <div class="mock-body">
+                <div class="cro-wrap">
+                  <div class="cro-head"></div>
+                  <div class="cro-sub"></div><div class="cro-sub2"></div>
+                  <div class="cro-pricing">
+                    <div class="cro-plan dim"></div>
+                    <div class="cro-plan hl"></div>
+                    <div class="cro-plan dim"></div>
+                  </div>
+                  <div style="display:flex;gap:6px;">
+                    <div style="height:15px;flex:1;background:rgba(255,255,255,0.04);border-radius:3px;border:0.5px solid rgba(255,255,255,0.06)"></div>
+                    <div style="height:15px;flex:1;background:rgba(255,255,255,0.04);border-radius:3px;border:0.5px solid rgba(255,255,255,0.06)"></div>
+                    <div style="height:15px;flex:1;background:rgba(255,255,255,0.04);border-radius:3px;border:0.5px solid rgba(255,255,255,0.06)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-content">
+          <div class="proj-cats"><span>CRO</span> · SAAS · PRICING PAGE</div>
+          <h3 class="proj-title">SaaS pricing page that increased demo requests by 88% in 8 weeks.</h3>
+          <p class="proj-desc">Six hypothesis-driven A/B variants tested against the control. Winning variant restructured the value hierarchy and removed decision friction from the primary CTA.</p>
+          <div class="proj-metrics">
+            <div>
+              <div class="proj-metric-val">+88%</div>
+              <div class="proj-metric-lbl">Demo conversion</div>
+            </div>
+            <div>
+              <div class="proj-metric-val">6</div>
+              <div class="proj-metric-lbl">Variants tested</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M2 10.5c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Role:&nbsp;<strong>CRO Designer</strong>
+            </div>
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l1.8 1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Duration:&nbsp;<strong>8 Weeks</strong>
+            </div>
+          </div>
+          <a href="#" class="cta-link">View Case Study <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- ── Project 4: UX Audit ── -->
+      <div class="project-row" data-category="ux-audit">
+        <div class="proj-img">
+          <div class="mock-inner">
+            <div class="mock-browser">
+              <div class="mock-bar">
+                <div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div>
+                <div class="m-url">enterprise-hr.com/portal</div>
+              </div>
+              <div class="mock-body">
+                <div class="audit-wrap">
+                  <div class="audit-head-row">
+                    <div class="audit-icon"></div>
+                    <div style="flex:1"><div class="audit-ttl-h"></div><div class="audit-ttl-s"></div></div>
+                  </div>
+                  <div class="audit-rows">
+                    <div class="a-row"><div class="a-sev hi"></div><div class="a-line"></div><div class="a-tag"></div></div>
+                    <div class="a-row"><div class="a-sev hi"></div><div class="a-line" style="width:72%"></div><div class="a-tag"></div></div>
+                    <div class="a-row"><div class="a-sev med"></div><div class="a-line" style="width:84%"></div><div class="a-tag"></div></div>
+                    <div class="a-row"><div class="a-sev lo"></div><div class="a-line" style="width:58%"></div><div class="a-tag"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-content">
+          <div class="proj-cats"><span>UX AUDIT</span> · ENTERPRISE · HR PLATFORM</div>
+          <h3 class="proj-title">44-issue audit of an enterprise HR portal surfaced across six core workflows.</h3>
+          <p class="proj-desc">Full heuristic evaluation and task analysis delivered as a prioritised remediation roadmap — severity-ranked and matched to sprint cycles for an in-house dev team.</p>
+          <div class="proj-metrics">
+            <div>
+              <div class="proj-metric-val">44</div>
+              <div class="proj-metric-lbl">Issues surfaced</div>
+            </div>
+            <div>
+              <div class="proj-metric-val">6</div>
+              <div class="proj-metric-lbl">Workflows audited</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M2 10.5c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Role:&nbsp;<strong>UX Auditor</strong>
+            </div>
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l1.8 1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Duration:&nbsp;<strong>3 Weeks</strong>
+            </div>
+          </div>
+          <a href="#" class="cta-link">View Case Study <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- ── Project 5: E-commerce / D2C ── -->
+      <div class="project-row" data-category="ecommerce">
+        <div class="proj-img">
+          <div class="mock-inner">
+            <div class="mock-browser">
+              <div class="mock-bar">
+                <div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div>
+                <div class="m-url">brand.co/product/serum</div>
+              </div>
+              <div class="mock-body" style="padding:14px;">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start">
+                  <div style="background:rgba(255,255,255,0.06);border-radius:6px;height:96px;border:0.5px solid rgba(255,255,255,0.08)"></div>
+                  <div>
+                    <div style="height:9px;background:rgba(255,255,255,0.22);border-radius:3px;margin-bottom:6px;width:82%"></div>
+                    <div style="height:6px;background:rgba(255,255,255,0.08);border-radius:3px;margin-bottom:4px"></div>
+                    <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:3px;margin-bottom:4px;width:60%"></div>
+                    <div style="display:flex;gap:4px;margin-bottom:10px;margin-top:6px">
+                      <div style="height:14px;width:14px;border-radius:50%;background:rgba(73,242,194,0.2);border:0.5px solid rgba(73,242,194,0.3)"></div>
+                      <div style="height:14px;width:14px;border-radius:50%;background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1)"></div>
+                      <div style="height:14px;width:14px;border-radius:50%;background:rgba(255,255,255,0.04)"></div>
+                    </div>
+                    <div style="height:22px;background:rgba(73,242,194,0.35);border-radius:4px;width:90%"></div>
+                  </div>
+                </div>
+                <div style="margin-top:10px;display:flex;gap:6px">
+                  <div style="flex:1;height:12px;background:rgba(255,255,255,0.04);border-radius:3px;border:0.5px solid rgba(255,255,255,0.06)"></div>
+                  <div style="flex:1;height:12px;background:rgba(255,255,255,0.04);border-radius:3px;border:0.5px solid rgba(255,255,255,0.06)"></div>
+                  <div style="flex:1;height:12px;background:rgba(255,255,255,0.04);border-radius:3px;border:0.5px solid rgba(255,255,255,0.06)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-content">
+          <div class="proj-cats"><span>E-COMMERCE</span> · D2C · CRO</div>
+          <h3 class="proj-title">Product detail page redesign that lifted add-to-cart rate by 19% in the first month.</h3>
+          <p class="proj-desc">Reconsidered social proof hierarchy, ingredient education module, and trust signal architecture. Validated via 5-second tests and session replay analysis before ship.</p>
+          <div class="proj-metrics">
+            <div>
+              <div class="proj-metric-val">+19%</div>
+              <div class="proj-metric-lbl">Add-to-cart</div>
+            </div>
+            <div>
+              <div class="proj-metric-val">−28%</div>
+              <div class="proj-metric-lbl">Bounce rate</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M2 10.5c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Role:&nbsp;<strong>CRO + UX Designer</strong>
+            </div>
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l1.8 1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Duration:&nbsp;<strong>4 Weeks</strong>
+            </div>
+          </div>
+          <a href="#" class="cta-link">View Case Study <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- ── Project 6: Design System ── -->
+      <div class="project-row" data-category="design-system">
+        <div class="proj-img">
+          <div class="mock-inner">
+            <div class="mock-browser">
+              <div class="mock-bar">
+                <div class="m-dot"></div><div class="m-dot"></div><div class="m-dot"></div>
+                <div class="m-url">figma.com/design-system</div>
+              </div>
+              <div class="mock-body">
+                <div class="ds-wrap">
+                  <div class="ds-type-h"></div><div class="ds-type-s"></div><div class="ds-type-b"></div>
+                  <div class="ds-chips">
+                    <div class="ds-chip" style="background:rgba(73,242,194,0.14);border-color:rgba(73,242,194,0.22)"></div>
+                    <div class="ds-chip" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1)"></div>
+                    <div class="ds-chip" style="background:rgba(255,100,100,0.1);border-color:rgba(255,100,100,0.2)"></div>
+                    <div class="ds-chip" style="background:rgba(255,200,80,0.1);border-color:rgba(255,200,80,0.2)"></div>
+                  </div>
+                  <div class="ds-swatches">
+                    <div class="ds-sw" style="background:rgba(73,242,194,0.55)"></div>
+                    <div class="ds-sw" style="background:rgba(73,242,194,0.35)"></div>
+                    <div class="ds-sw" style="background:rgba(73,242,194,0.18)"></div>
+                    <div class="ds-sw" style="background:rgba(255,255,255,0.1)"></div>
+                    <div class="ds-sw" style="background:rgba(255,255,255,0.04)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-content">
+          <div class="proj-cats"><span>DESIGN SYSTEMS</span> · SAAS · FIGMA + REACT</div>
+          <h3 class="proj-title">Token-based design system with 180+ components, full dark mode parity, and complete dev handoff.</h3>
+          <p class="proj-desc">Built from scratch for a growth-stage startup. Covers atoms through page templates with a full token layer for theming — shipped alongside engineering in parallel sprints.</p>
+          <div class="proj-metrics">
+            <div>
+              <div class="proj-metric-val">180+</div>
+              <div class="proj-metric-lbl">Components</div>
+            </div>
+            <div>
+              <div class="proj-metric-val">3</div>
+              <div class="proj-metric-lbl">Theme layers</div>
+            </div>
+          </div>
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" stroke="currentColor" stroke-width="1.2"/><path d="M2 10.5c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Role:&nbsp;<strong>Design System Lead</strong>
+            </div>
+            <div class="card-meta-item">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5V6l1.8 1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+              Duration:&nbsp;<strong>10 Weeks</strong>
+            </div>
+          </div>
+          <a href="#" class="cta-link">View Case Study <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+    </div><!-- /projects-list -->
+  </div><!-- /projects-container -->
+
+  <!-- ── END CTA ── -->
+  <div class="end-cta">
+    <div class="end-cta-label">Let's Work Together</div>
+    <h2 class="end-cta-title">Ready to create<br>measurable impact?</h2>
+    <p class="end-cta-desc">Available for SaaS, E-commerce, CRO, UX Audit, and Product Design engagements.</p>
+    <div class="cta-btns">
+      <a href="https://calendly.com/sanaishaq/sana-uiux" target="_blank" class="btn-primary">
+        Book a Discovery Call
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://sana-ishaq-design.github.io/#services" class="btn-secondary">View Services</a>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Sana Ishaq · All rights reserved</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/sanaishaq/" target="_blank">LinkedIn</a>
+      <a href="https://www.upwork.com/freelancers/~0105c1b39c32a3d461" target="_blank">Upwork</a>
+      <a href="mailto:sanaishaq47@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* ── FILTER PILLS ── */
+  const pills    = document.querySelectorAll('.pill');
+  const rows     = document.querySelectorAll('.project-row');
+  const featured = document.querySelector('.featured-card');
+  const featLabel = document.querySelector('.featured-label');
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const f = pill.dataset.filter;
+
+      /* featured visibility */
+      const featCat = featured.dataset.category;
+      const showFeat = f === 'all' || featCat === f;
+      featured.style.display  = showFeat ? '' : 'none';
+      featLabel.style.display = showFeat ? '' : 'none';
+
+      /* rows */
+      rows.forEach(row => {
+        const match = f === 'all' || row.dataset.category === f;
+        row.classList.toggle('hidden', !match);
+      });
+    });
+  });
+
+  /* ── SCROLL REVEAL ── */
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity   = '1';
+        entry.target.style.transform = 'translateY(0)';
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+
+  rows.forEach((row, i) => {
+    row.style.opacity   = '0';
+    row.style.transform = 'translateY(22px)';
+    row.style.transition = `opacity 0.55s ease ${i * 0.09}s, transform 0.55s ease ${i * 0.09}s, border-color 0.25s, box-shadow 0.25s`;
+    revealObs.observe(row);
+  });
+
+  /* ── MARQUEE: seamless loop via JS width ── */
+  const track = document.getElementById('marqueeTrack');
+  if (track) {
+    /* The HTML already has A+B duplicated; CSS keyframe handles the loop.
+       Just ensure the animation end position is exactly half the track width. */
+    const half = track.scrollWidth / 2;
+    const styleEl = document.createElement('style');
+    styleEl.textContent = `
+      @keyframes marquee-scroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-${half}px); }
+      }
+    `;
+    document.head.appendChild(styleEl);
+  }
+})();
+</script>
+</body>
+</html>
