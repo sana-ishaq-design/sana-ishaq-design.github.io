@@ -204,7 +204,7 @@ nav.scrolled{background:rgba(6,15,26,.92);backdrop-filter:blur(16px);-webkit-bac
 .sg-ph.wide{aspect-ratio:16/9}
 .sg-ph.tall{aspect-ratio:3/4}
 /* inner placeholder content */
-.sg-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px}
+.sg-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px; width: 100%; height: 100%;}
 .sg-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent);opacity:.25}
 .sg-icon{width:28px;height:28px;border-radius:6px;border:1px dashed rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
 .sg-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);opacity:.6;text-align:center;line-height:1.4}
@@ -462,7 +462,7 @@ footer{padding:60px 0 48px;border-top:1px solid var(--line);text-align:center}
              <img
                     src="/assets/img/assest overview.png"
                     alt="Assests - UTWorX"
-                    style=" width: 100%; display: block; height: auto;"
+                    style="object-fit: contain; width: 100%; display: block;"
                   />
           </div>
       
