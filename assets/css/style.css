@@ -861,7 +861,7 @@ CASE STUDIES
 .work-top p {
     font-size: 0.875rem;
     color: var(--muted);
-    max-width: 310px;
+    max-width: 450px;
     text-align: right;
     line-height: 1.75;
     transition: color 0.4s;
