@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Barcode Studio — Chrome Extension UX Design | Sana Ishaq</title>
+<meta name="description" content="UX case study for Barcode Studio — a privacy-first Chrome extension for generating and exporting QR codes and barcodes inside the browser. End-to-end product design by Sana Ishaq."/>
+<link rel="canonical" href="https://sana-ishaq-design.github.io/case-studies/barcode-studio-case-study.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Barcode Studio — Chrome Extension UX Design Case Study"/>
+<meta property="og:description" content="Designing a privacy-first Chrome extension for barcode generation. No context switching. No server uploads. End-to-end UX by Sana Ishaq."/>
+<meta property="og:url" content="https://sana-ishaq-design.github.io/case-studies/barcode-studio-case-study.html"/>
+<meta property="og:image" content="https://raw.githubusercontent.com/sana-ishaq-design/barcode-studio-ux/1429db339865197a1b4e9072bdcd4d864e16d8d6/Extension/Create%20shot%20Dark%20%26%20Light.png"/>
+<meta property="og:site_name" content="Sana Ishaq — Product Designer"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Barcode Studio — Chrome Extension UX Case Study"/>
+<meta name="twitter:description" content="Privacy-first barcode generator. No tab switching. No server uploads. UX design case study by Sana Ishaq."/>
+<meta name="twitter:image" content="https://raw.githubusercontent.com/sana-ishaq-design/barcode-studio-ux/1429db339865197a1b4e9072bdcd4d864e16d8d6/Extension/Create%20shot%20Dark%20%26%20Light.png"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"CreativeWork",
+  "name":"Barcode Studio — Chrome Extension UX Design Case Study",
+  "description":"End-to-end UX design of Barcode Studio, a privacy-first Chrome extension for generating and exporting QR codes and barcodes inside the browser.",
+  "author":{"@type":"Person","name":"Sana Ishaq","url":"https://sana-ishaq-design.github.io/"},
+  "url":"https://sana-ishaq-design.github.io/case-studies/barcode-studio-case-study.html",
+  "keywords":"Chrome Extension Design, Browser Extension UX, UX Case Study, Product Design, Privacy-Focused Design, Workflow Optimization, Interface Design, Design System, Chrome Web Store, User Flow Design",
+  "dateCreated":"2024",
+  "applicationCategory":"Design"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* ── Portfolio chrome uses teal ── */
+  --navy:#060f1a;
+  --navy2:#091626;
+  --navy3:#0d1e34;
+  --navy4:#122440;
+  --teal:#2dd4bf;
+  --teal-dim:rgba(45,212,191,0.07);
+  --teal-border:rgba(45,212,191,0.16);
+  /* Product purple stays inside screenshots only */
+  --purple:#7c6af0;
+  --purple-dim:rgba(124,106,240,0.08);
+  --purple-border:rgba(124,106,240,0.18);
+  --green:#34d399;
+  --green-dim:rgba(52,211,153,0.08);
+  --green-border:rgba(52,211,153,0.18);
+  --amber:#f59e0b;
+  --amber-dim:rgba(245,158,11,0.08);
+  --amber-border:rgba(245,158,11,0.2);
+  --red-dim:rgba(248,113,113,0.07);
+  --red-border:rgba(248,113,113,0.18);
+  --white:#edf2f7;
+  --white2:#94afc8;
+  --white3:#4d6a85;
+  --line:rgba(255,255,255,0.055);
+  --line2:rgba(255,255,255,0.09);
+  --serif:'DM Serif Display',serif;
+  --body:'Inter',sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--navy);color:var(--white);font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── SKIP NAV ───────────────────────────────── */
+.skip-nav{position:fixed;top:8px;left:50%;transform:translateX(-50%) translateY(-60px);background:var(--teal);color:var(--navy);font-size:12px;font-weight:500;padding:8px 18px;border-radius:6px;z-index:999;text-decoration:none;transition:transform .2s var(--ease)}
+.skip-nav:focus{transform:translateX(-50%) translateY(0)}
+
+/* ── PROGRESS ───────────────────────────────── */
+.progress-bar{position:fixed;top:0;left:0;height:1px;background:var(--teal);z-index:200;width:0%;opacity:.7;transition:width .1s linear}
+.read-time{position:fixed;top:0;right:0;z-index:102;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);padding:6px 14px 0}
+
+/* ── NAV ────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;transition:background .45s,border-color .45s,backdrop-filter .45s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(6,15,26,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line2)}
+.nav-logo{font-size:13px;font-weight:500;color:var(--white);letter-spacing:.02em}
+.nav-logo span{color:var(--teal)}
+.nav-right{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-right::-webkit-scrollbar{display:none}
+.nav-pill{padding:6px 11px;font-size:11px;color:var(--white3);border-radius:6px;text-decoration:none;transition:color .2s,background .2s;white-space:nowrap}
+.nav-pill:hover{color:var(--teal);background:var(--teal-dim)}
+
+/* ── LAYOUT ─────────────────────────────────── */
+.wrap{max-width:860px;margin:0 auto;padding:0 40px}
+
+/* ── IMAGE PLACEHOLDER ──────────────────────── */
+.img-ph{background:var(--navy2);border:1px solid var(--line2);border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.img-ph::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);opacity:.25}
+.img-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;border-radius:11px;cursor:zoom-in}
+.img-ph img ~ .ph-inner{display:none}
+.ph-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:20px;text-align:center;width:100%;position:absolute;inset:0}
+.ph-icon{width:34px;height:34px;border-radius:8px;border:1px dashed rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ph-icon svg{opacity:.28}
+.ph-label{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3);opacity:.55;line-height:1.5}
+.ph-sub{font-size:9px;color:var(--white3);opacity:.25;letter-spacing:.05em}
+/* aspect ratios */
+.ph-hero{width:100%;aspect-ratio:16/7}
+.ph-wide{width:100%;aspect-ratio:16/8}
+.ph-med{width:100%;aspect-ratio:16/9}
+.ph-2col{width:100%;aspect-ratio:4/3}
+
+/* ── HERO ───────────────────────────────────── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 96px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:28px;opacity:0;transform:translateY(16px)}
+.hero-eyebrow-line{width:18px;height:1px;background:var(--teal);opacity:.5}
+.hero h1{font-family:var(--serif);font-size:clamp(38px,5.5vw,68px);font-weight:400;line-height:1.0;letter-spacing:-.015em;color:var(--white);opacity:0;transform:translateY(20px)}
+.hero h1 em{color:var(--teal);font-style:italic}
+.hero-sub{font-size:16px;color:var(--white2);font-weight:300;max-width:560px;line-height:1.72;margin:22px 0 52px;opacity:0;transform:translateY(20px)}
+.hero-meta{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:10px;overflow:hidden;opacity:0;transform:translateY(20px)}
+.mc{background:var(--navy2);padding:14px 16px}
+.ml{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3);margin-bottom:5px}
+.mv{font-size:12px;font-weight:500;color:var(--white);line-height:1.35}
+.mv small{font-weight:300;color:var(--white2);font-size:11px;display:block;margin-top:2px}
+.hero-img{margin-top:52px;opacity:0;transform:scale(.97)}
+
+/* ── SECTION ────────────────────────────────── */
+.sec{padding:88px 0;border-bottom:1px solid var(--line)}
+.pl{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);opacity:.8;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.pl::after{content:'';flex:1;height:1px;background:var(--line2)}
+.pt{font-family:var(--serif);font-size:clamp(26px,3.5vw,42px);font-weight:400;line-height:1.08;letter-spacing:-.01em;color:var(--white);margin-bottom:16px}
+.pt em{color:var(--teal);font-style:italic}
+.body-text{font-size:14px;color:var(--white2);line-height:1.8;margin-bottom:1rem;font-weight:300;max-width:660px}
+.body-text strong{color:var(--white);font-weight:500}
+.reveal{opacity:0;transform:translateY(22px);will-change:opacity,transform}
+
+/* ── CHALLENGE CARDS ─────────────────────────── */
+.ch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.ch-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:24px 20px;border-top:2px solid transparent;transition:border-color .25s,transform .25s var(--ease)}
+.ch-card:hover{transform:translateY(-3px)}
+.ch1{border-top-color:rgba(248,113,113,.38)}
+.ch2{border-top-color:rgba(245,158,11,.32)}
+.ch3{border-top-color:rgba(124,106,240,.5)}
+.ch-num{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--white3);margin-bottom:10px}
+.ch-icon{font-size:20px;margin-bottom:10px;display:block}
+.ch-title{font-size:16px;font-weight:500;color:var(--white);margin-bottom:8px;font-family:var(--serif)}
+.ch-desc{font-size:13px;color:var(--white2);line-height:1.65;font-weight:300}
+
+/* ── HMW CALLOUT ────────────────────────────── */
+.hmw{border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:26px 30px;background:var(--teal-dim);margin:32px 0}
+.hmw-label{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.hmw p{font-family:var(--serif);font-size:clamp(17px,2.2vw,22px);color:var(--white);line-height:1.45;font-weight:400}
+
+/* ── WHY EXTENSION CARDS ────────────────────── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.why-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:24px 20px;transition:border-color .25s,transform .25s var(--ease);border-top:2px solid transparent}
+.why-card:hover{transform:translateY(-3px)}
+.wc1{border-top-color:rgba(45,212,191,.45)}
+.wc2{border-top-color:rgba(52,211,153,.4)}
+.wc3{border-top-color:rgba(245,158,11,.35)}
+.why-icon{font-size:22px;margin-bottom:12px;display:block}
+.why-title{font-size:15px;font-weight:500;color:var(--white);margin-bottom:8px;font-family:var(--serif)}
+.why-desc{font-size:13px;color:var(--white2);line-height:1.65;font-weight:300}
+
+/* ── PERSONA CARDS ───────────────────────────── */
+.persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.persona{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:22px 20px;border-top:2px solid transparent;transition:border-color .25s,transform .25s var(--ease)}
+.persona:hover{transform:translateY(-3px)}
+.p1{border-top-color:rgba(52,211,153,.4)}
+.p2{border-top-color:rgba(245,158,11,.35)}
+.p3{border-top-color:rgba(45,212,191,.4)}
+.persona-role{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.p1 .persona-role{color:var(--green)}
+.p2 .persona-role{color:var(--amber)}
+.p3 .persona-role{color:var(--teal)}
+.persona-icon{font-size:22px;margin-bottom:10px;display:block}
+.persona-title{font-size:15px;font-weight:500;color:var(--white);margin-bottom:14px;font-family:var(--serif)}
+.persona-row{margin-bottom:8px}
+.persona-row-lbl{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);margin-bottom:3px}
+.persona-row-val{font-size:13px;color:var(--white2);line-height:1.6;font-weight:300}
+
+/* ── AUDIT + ASSUMPTION ─────────────────────── */
+.audit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}
+.audit-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:18px 20px;transition:border-color .25s}
+.audit-card:hover{border-color:var(--line2)}
+.audit-name{font-size:13px;font-weight:500;color:var(--white);margin-bottom:6px}
+.audit-friction{font-size:12px;color:var(--white2);line-height:1.6;font-weight:300}
+.audit-tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--red-dim);color:rgba(248,113,113,.8);border:1px solid var(--red-border);padding:2px 8px;border-radius:20px;margin-bottom:6px}
+.assumption-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:20px}
+.ass{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:16px 14px;text-align:center;transition:border-color .25s,transform .25s var(--ease)}
+.ass:hover{border-color:var(--teal-border);transform:translateY(-2px)}
+.ass-id{font-size:10px;font-weight:600;color:var(--teal);letter-spacing:.1em;margin-bottom:6px}
+.ass-text{font-size:12px;color:var(--white2);line-height:1.55;font-weight:300}
+
+/* ── WORKFLOW BAR ────────────────────────────── */
+.workflow{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:10px;overflow:hidden;margin:28px 0}
+.wf-step{background:var(--navy2);padding:14px 8px;text-align:center}
+.wf-step.on{background:var(--teal-dim);border-top:2px solid var(--teal)}
+.wf-n{font-size:9px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--white3);margin-bottom:4px}
+.wf-step.on .wf-n{color:var(--teal)}
+.wf-l{font-size:11px;color:var(--white2);line-height:1.35}
+.wf-step.on .wf-l{color:var(--white);font-weight:500}
+
+/* ── DECISION CARDS ──────────────────────────── */
+.dec-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.dec-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:24px;border-left:2px solid transparent;transition:border-color .25s,transform .25s var(--ease)}
+.dec-card:hover{border-left-color:var(--teal);transform:translateY(-2px)}
+.dec-n{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);opacity:.75;margin-bottom:8px}
+.dec-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:14px;line-height:1.35}
+.dec-row{margin-bottom:8px}
+.dec-row-lbl{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);margin-bottom:3px}
+.dec-row-val{font-size:13px;color:var(--white2);line-height:1.65;font-weight:300}
+
+/* ── SCREEN PAIR (dark / light side by side) ─── */
+.screen-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.screen-frame{border:1px solid var(--line2);border-radius:12px;overflow:hidden;background:var(--navy2);transition:border-color .28s,transform .28s var(--ease)}
+.screen-frame:hover{border-color:var(--teal-border);transform:translateY(-3px)}
+.sf-chrome{background:var(--navy3);padding:9px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line2)}
+.sf-dots{display:flex;gap:4px}
+.sf-dot{width:8px;height:8px;border-radius:50%;background:var(--line2)}
+.sf-label{flex:1;font-size:10px;color:var(--white3)}
+.sf-badge{font-size:10px;color:var(--white3);background:var(--teal-dim);border:1px solid var(--teal-border);border-radius:4px;padding:2px 7px}
+
+/* annotation list below screens */
+.ann-list{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+.ann-row{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--navy2);border:1px solid var(--line2);border-radius:8px;transition:border-color .22s,transform .22s var(--ease)}
+.ann-row:hover{border-color:var(--teal-border);transform:translateX(3px)}
+.ann-arrow{font-size:11px;color:var(--teal);font-weight:600;flex-shrink:0}
+.ann-text{font-size:13px;color:var(--white2);font-weight:300;line-height:1.55}
+.ann-text strong{color:var(--white);font-weight:500}
+
+/* ── DESIGN SYSTEM GRID ─────────────────────── */
+.ds-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.ds-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;overflow:hidden;transition:border-color .25s}
+.ds-card:hover{border-color:var(--teal-border)}
+.ds-hdr{background:var(--navy3);padding:10px 14px;border-bottom:1px solid var(--line2);font-size:11px;font-weight:500;color:var(--white3);letter-spacing:.05em}
+
+/* ── OUTCOME CARDS ───────────────────────────── */
+.outcome-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}
+.oc{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:22px 16px;text-align:center;border-top:2px solid transparent;transition:border-color .25s,transform .25s var(--ease)}
+.oc:hover{transform:translateY(-3px)}
+.oc1{border-top-color:rgba(45,212,191,.45)}
+.oc2{border-top-color:rgba(52,211,153,.4)}
+.oc3{border-top-color:rgba(245,158,11,.35)}
+.oc4{border-top-color:rgba(45,212,191,.3)}
+.oc-icon{font-size:22px;margin-bottom:12px;display:block}
+.oc-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:7px;line-height:1.3}
+.oc-text{font-size:12px;color:var(--white2);line-height:1.6;font-weight:300}
+
+/* ── IMPROVE CARDS ───────────────────────────── */
+.imp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.imp-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:22px;transition:border-color .25s}
+.imp-card:hover{border-color:var(--teal-border)}
+.imp-n{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);opacity:.7;margin-bottom:9px}
+.imp-title{font-size:15px;font-weight:500;color:var(--white);margin-bottom:12px;font-family:var(--serif)}
+.imp-lbl{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);margin-bottom:4px}
+.imp-val{font-size:13px;color:var(--white2);line-height:1.65;font-weight:300;margin-bottom:10px}
+
+/* ── LINKS ───────────────────────────────────── */
+.links-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}
+.link-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:20px 16px;text-align:center;text-decoration:none;transition:border-color .25s,transform .25s var(--ease);display:block}
+.link-card:hover{border-color:var(--teal-border);transform:translateY(-3px)}
+.link-icon{font-size:20px;margin-bottom:10px;display:block}
+.link-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px}
+.link-sub{font-size:11px;color:var(--white3);font-weight:300}
+.link-arrow{font-size:11px;color:var(--teal);margin-top:8px;display:block}
+
+/* ── CALLOUT ─────────────────────────────────── */
+.cb{border-left:2px solid var(--teal-border);padding:20px 24px;background:var(--teal-dim);border-radius:0 10px 10px 0;margin:20px 0}
+.cb-lbl{font-size:10px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.cb p{font-size:14px;color:var(--white2);line-height:1.78;font-weight:300}
+.cb p strong{color:var(--white);font-weight:500}
+
+/* ── FAB ─────────────────────────────────────── */
+.fab{position:fixed;bottom:28px;right:28px;z-index:90;background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--white2);text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:border-color .25s,color .25s,transform .25s var(--ease),opacity .3s;opacity:0;transform:translateY(12px)}
+.fab:hover{border-color:var(--teal-border);color:var(--white);transform:translateY(-2px)}
+.fab.visible{opacity:1;transform:translateY(0)}
+.fab-arrow{color:var(--teal);font-size:13px}
+
+/* ── LIGHTBOX ────────────────────────────────── */
+.lb-overlay{position:fixed;inset:0;z-index:500;background:rgba(6,15,26,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:32px;opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+.lb-overlay.open{opacity:1;pointer-events:auto}
+.lb-img{max-width:100%;max-height:90vh;border-radius:10px;border:1px solid var(--line2);box-shadow:0 24px 64px rgba(0,0,0,.5);transition:transform .35s var(--ease);transform:scale(.96)}
+.lb-overlay.open .lb-img{transform:scale(1)}
+.lb-close{position:absolute;top:20px;right:24px;font-size:22px;color:var(--white3);cursor:pointer;background:var(--navy2);border:1px solid var(--line2);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:color .2s,border-color .2s}
+.lb-close:hover{color:var(--white);border-color:var(--teal-border)}
+.lb-caption{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);background:var(--navy2);border:1px solid var(--line2);padding:5px 14px;border-radius:20px;white-space:nowrap}
+
+/* ── FOOTER ──────────────────────────────────── */
+footer{padding:60px 0 48px;border-top:1px solid var(--line);text-align:center}
+.footer-name{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--white);margin-bottom:6px}
+.footer-sub{font-size:13px;color:var(--white3);margin-bottom:20px}
+.footer-links{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.footer-link{color:var(--teal);text-decoration:none;font-size:13px;position:relative}
+.footer-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--teal);transition:width .3s var(--ease)}
+.footer-link:hover::after{width:100%}
+
+/* ── REDUCED MOTION ──────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  .reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-meta,.hero-img{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* ── SAFETY ANIMATION ────────────────────────── */
+@keyframes safeReveal{to{opacity:1;transform:none}}
+.reveal{animation:safeReveal 0s 2s forwards}
+.hero-eyebrow,.hero h1,.hero-sub,.hero-meta,.hero-img{animation:safeReveal 0s 1.5s forwards}
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media(max-width:720px){
+  .wrap{padding:0 20px}
+  nav{padding:16px 20px}
+  .nav-right{display:none}
+  .hero{padding:110px 0 80px}
+  .sec{padding:64px 0}
+  .hero-meta{grid-template-columns:1fr 1fr 1fr}
+  .ch-grid,.why-grid,.persona-grid,.imp-grid{grid-template-columns:1fr 1fr}
+  .audit-grid,.dec-grid,.ds-grid,.screen-pair{grid-template-columns:1fr}
+  .assumption-grid{grid-template-columns:1fr 1fr}
+  .workflow{grid-template-columns:repeat(3,1fr)}
+  .outcome-grid{grid-template-columns:1fr 1fr}
+  .links-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:460px){
+  .hero-meta{grid-template-columns:1fr 1fr}
+  .ch-grid,.why-grid,.persona-grid,.imp-grid,.links-grid,.outcome-grid{grid-template-columns:1fr}
+  .assumption-grid{grid-template-columns:1fr 1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<noscript><style>
+.reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-meta,.hero-img,
+.ch-card,.why-card,.persona,.audit-card,.ass,.dec-card,.ds-card,
+.oc,.imp-card,.link-card,.wf-step,.ann-row,.cb,.hmw{
+  opacity:1!important;transform:none!important;transition:none!important}
+</style></noscript>
+
+<a class="skip-nav" href="#overview">Skip to main content</a>
+<div class="progress-bar" id="progress"></div>
+<div class="read-time" id="read-time">~8 min read</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Barcode<span>Studio</span></div>
+  <div class="nav-right">
+    <a class="nav-pill" href="#overview">Overview</a>
+    <a class="nav-pill" href="#challenge">Challenge</a>
+    <a class="nav-pill" href="#why">Why Extension</a>
+    <a class="nav-pill" href="#users">Users</a>
+    <a class="nav-pill" href="#research">Research</a>
+    <a class="nav-pill" href="#flow">User Flow</a>
+    <a class="nav-pill" href="#decisions">Decisions</a>
+    <a class="nav-pill" href="#screens">Screens</a>
+    <a class="nav-pill" href="#system">Design System</a>
+    <a class="nav-pill" href="#outcomes">Outcomes</a>
+  </div>
+</nav>
+
+<!-- FAB -->
+<a class="fab" id="fab" href="https://sana-ishaq-design.github.io/">
+  <span class="fab-arrow">←</span><span>Portfolio</span>
+</a>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb-close" id="lb-close" role="button" tabindex="0" aria-label="Close">✕</div>
+  <img class="lb-img" id="lb-img" src="" alt=""/>
+  <div class="lb-caption" id="lb-caption"></div>
+</div>
+
+<!-- ═══════════════════════════════════════ HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      Chrome Extension Design · Privacy · Productivity · Workflow Efficiency
+    </div>
+    <h1>A barcode generator that works<br><em>entirely inside the browser.</em></h1>
+    <p class="hero-sub">Barcode Studio is a privacy-first Chrome extension for generating and exporting QR codes and linear barcodes — without switching tabs, creating accounts, or sending data to third-party servers. Designed for speed, clarity, and complete local processing.</p>
+    <div class="hero-meta">
+      <div class="mc"><div class="ml">Role</div><div class="mv">End-to-End UX<small>Design + Handoff</small></div></div>
+      <div class="mc"><div class="ml">Platform</div><div class="mv">Chrome Extension<small>V1.2.2 · Live</small></div></div>
+      <div class="mc"><div class="ml">Tools</div><div class="mv">Figma<small>Components + Tokens</small></div></div>
+      <div class="mc"><div class="ml">Themes</div><div class="mv">Dark + Light<small>System auto-detect</small></div></div>
+      <div class="mc"><div class="ml">Focus</div><div class="mv">Privacy · Speed<small>Workflow efficiency</small></div></div>
+      <div class="mc"><div class="ml">Team</div><div class="mv">Designer + Dev<small>@zfhassaan</small></div></div>
+    </div>
+
+    <!-- HERO IMAGE -->
+    <div class="hero-img">
+      <div class="img-ph ph-hero" style="border-radius:14px">
+        <img
+          src="https://raw.githubusercontent.com/sana-ishaq-design/barcode-studio-ux/1429db339865197a1b4e9072bdcd4d864e16d8d6/Extension/Create%20shot%20Dark%20%26%20Light.png"
+          alt="Barcode Studio — Create tab dark and light mode side by side"
+          loading="eager"/>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M17 17h3M14 20h3"/></svg></div>
+          <div class="ph-label">Barcode Studio Hero — Dark &amp; Light Create Tab</div>
+          <div class="ph-sub">Upload hero mockup here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ OVERVIEW -->
+<section class="sec" id="overview">
+  <div class="wrap">
+    <p class="pl">01 — Project Overview</p>
+    <h2 class="pt reveal">No account. No server.<br><em>No tab switch required.</em></h2>
+    <p class="body-text reveal">Barcode Studio lets users generate QR codes and linear barcodes — EAN-13, Code 128, UPC-A — directly inside a Chrome popup and export them as PNG, SVG, WebP, or PDF, individually or in bulk. <strong>All processing is local. No data ever leaves the device.</strong></p>
+    <p class="body-text reveal">The product serves a precise moment: a user is mid-task, needs a barcode in seconds, and does not want the overhead of a new tab, an account, or an external upload. Every UX decision was evaluated against one question: does this help a user complete the task in under 30 seconds?</p>
+
+    <div class="cb reveal">
+      <div class="cb-lbl">Product scope</div>
+      <p>Formats: QR Code · EAN-13 · Code 128 · UPC-A &nbsp;·&nbsp; Export: PNG · SVG · WebP · PDF &nbsp;·&nbsp; Modes: Single + Batch &nbsp;·&nbsp; Themes: Dark + Light (auto) &nbsp;·&nbsp; Processing: 100% local</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ CHALLENGE -->
+<section class="sec" id="challenge">
+  <div class="wrap">
+    <p class="pl">02 — The Challenge</p>
+    <h2 class="pt reveal">The existing ecosystem fails users<br>in <em>three consistent ways.</em></h2>
+    <p class="body-text reveal">A competitive audit of web tools, desktop software, and existing Chrome extensions revealed the same friction patterns repeating across every category.</p>
+
+    <div class="ch-grid">
+      <div class="ch-card ch1 reveal">
+        <div class="ch-num">Challenge 01</div>
+        <span class="ch-icon">⇄</span>
+        <div class="ch-title">Context Switching</div>
+        <div class="ch-desc">Every existing solution requires leaving the active workflow — opening a new tab, navigating to an external site, and returning with the asset. The need arises in context; the tool forces users out of it.</div>
+      </div>
+      <div class="ch-card ch2 reveal">
+        <div class="ch-num">Challenge 02</div>
+        <span class="ch-icon">⚑</span>
+        <div class="ch-title">Privacy Concerns</div>
+        <div class="ch-desc">Product codes, internal URLs, and confidential identifiers are routinely uploaded to remote servers with opaque data retention policies. Most users don't realise this is happening at all.</div>
+      </div>
+      <div class="ch-card ch3 reveal">
+        <div class="ch-num">Challenge 03</div>
+        <span class="ch-icon">◈</span>
+        <div class="ch-title">Overly Complex Tools</div>
+        <div class="ch-desc">Solutions are either bloated desktop software with far more features than needed, or minimal browser tools limited to a single format with no export control and inconsistent quality.</div>
+      </div>
+    </div>
+
+    <div class="hmw reveal">
+      <div class="hmw-label">Design challenge</div>
+      <p>How might we design a barcode generator that works entirely inside the browser, supports common formats, enables task completion in under 30 seconds, and keeps all data strictly local?</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ WHY EXTENSION -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <p class="pl">03 — Why a Chrome Extension?</p>
+    <h2 class="pt reveal">Three reasons the format<br><em>was the solution.</em></h2>
+    <p class="body-text reveal">A web app would require a tab switch. A desktop tool requires an install. A Chrome extension lives exactly where users already are — and that changes everything about the experience.</p>
+
+    <div class="why-grid">
+      <div class="why-card wc1 reveal">
+        <span class="why-icon">⊙</span>
+        <div class="why-title">Stay In Context</div>
+        <div class="why-desc">Users generate barcodes without leaving their current workflow. The extension lives in the browser toolbar and opens as a popup — zero navigation overhead, zero tab switching.</div>
+      </div>
+      <div class="why-card wc2 reveal">
+        <span class="why-icon">◎</span>
+        <div class="why-title">Protect Privacy</div>
+        <div class="why-desc">Running locally inside Chrome means no server request is ever made. Sensitive data — product SKUs, internal URLs, confidential codes — never leaves the device. Privacy is architectural, not a policy.</div>
+      </div>
+      <div class="why-card wc3 reveal">
+        <span class="why-icon">◐</span>
+        <div class="why-title">Move Faster</div>
+        <div class="why-desc">A focused popup UI with a single task — generate and export — eliminates every distraction present in full web tools. The constraint of the popup format enforces exactly the right level of simplicity.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ USERS -->
+<section class="sec" id="users">
+  <div class="wrap">
+    <p class="pl">04 — Who Uses It</p>
+    <h2 class="pt reveal">Three user types.<br>One shared need: <em>speed and trust.</em></h2>
+
+    <div class="persona-grid">
+      <div class="persona p1 reveal">
+        <span class="persona-icon">⬡</span>
+        <div class="persona-role">Developer &amp; Operations</div>
+        <div class="persona-title">Internal Workflow</div>
+        <div class="persona-row">
+          <div class="persona-row-lbl">Goal</div>
+          <div class="persona-row-val">Generate internal labels, asset tags, and inventory codes quickly without breaking their development or operations flow</div>
+        </div>
+        <div class="persona-row">
+          <div class="persona-row-lbl">Primary Need</div>
+          <div class="persona-row-val">Speed and repeatability — format consistency across many codes, not design output</div>
+        </div>
+      </div>
+      <div class="persona p2 reveal">
+        <span class="persona-icon">⬢</span>
+        <div class="persona-role">Marketer &amp; Content Teams</div>
+        <div class="persona-title">Print-Ready Assets</div>
+        <div class="persona-row">
+          <div class="persona-row-lbl">Goal</div>
+          <div class="persona-row-val">Export clean QR codes for campaigns, packaging, and print collateral without opening a full design tool</div>
+        </div>
+        <div class="persona-row">
+          <div class="persona-row-lbl">Primary Need</div>
+          <div class="persona-row-val">SVG or PDF output at defined sizes — file formats, not pixels</div>
+        </div>
+      </div>
+      <div class="persona p3 reveal">
+        <span class="persona-icon">◬</span>
+        <div class="persona-role">Privacy-Conscious Users</div>
+        <div class="persona-title">Sensitive Data Generation</div>
+        <div class="persona-row">
+          <div class="persona-row-lbl">Goal</div>
+          <div class="persona-row-val">Create codes for confidential URLs, proprietary product data, or internal identifiers safely</div>
+        </div>
+        <div class="persona-row">
+          <div class="persona-row-lbl">Primary Need</div>
+          <div class="persona-row-val">Explicit confirmation that no data is transmitted — privacy as a visible product feature</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ RESEARCH -->
+<section class="sec" id="research">
+  <div class="wrap">
+    <p class="pl">05 — Research &amp; Assumptions</p>
+    <h2 class="pt reveal">Competitive audit first.<br><em>Design assumptions documented.</em></h2>
+    <p class="body-text reveal">No prior user research existed at project start. A structured competitive audit established the friction landscape. Five explicit design assumptions were documented for post-launch validation — a transparent approach to designing under uncertainty.</p>
+
+    <div style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3);margin-bottom:8px" class="reveal">Competitive Audit — Key Friction Points</div>
+    <div class="audit-grid">
+      <div class="audit-card reveal">
+        <div class="audit-tag">⚑ Friction</div>
+        <div class="audit-name">Web QR Generator Tools</div>
+        <div class="audit-friction">Tab switch required. Payload sent to remote servers. Account creation gate before download on most tools.</div>
+      </div>
+      <div class="audit-card reveal">
+        <div class="audit-tag">⚑ Friction</div>
+        <div class="audit-name">TEC-IT &amp; Desktop Software</div>
+        <div class="audit-friction">Powerful but requires install and has a steep learning curve. Overkill for quick single-format generation.</div>
+      </div>
+      <div class="audit-card reveal">
+        <div class="audit-tag">⚑ Friction</div>
+        <div class="audit-name">Existing Chrome Extensions</div>
+        <div class="audit-friction">Single format only. No batch export. Minimal theme support. Inconsistent visual quality. No explicit privacy messaging.</div>
+      </div>
+      <div class="audit-card reveal">
+        <div class="audit-tag">⚑ Friction</div>
+        <div class="audit-name">Canva &amp; Design Tools</div>
+        <div class="audit-friction">Full design workflow required for a utility task. Export as image adds unnecessary steps. Wrong tool for the job.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3);margin-bottom:8px" class="reveal">Design Assumptions — Documented for Validation</div>
+    <div class="assumption-grid">
+      <div class="ass reveal"><div class="ass-id">A1</div><div class="ass-text">Task completable in under 30 seconds</div></div>
+      <div class="ass reveal"><div class="ass-id">A2</div><div class="ass-text">Users generate one format at a time</div></div>
+      <div class="ass reveal"><div class="ass-id">A3</div><div class="ass-text">Batch export is secondary use case</div></div>
+      <div class="ass reveal"><div class="ass-id">A4</div><div class="ass-text">Auto theme detection preferred</div></div>
+      <div class="ass reveal"><div class="ass-id">A5</div><div class="ass-text">Privacy messaging improves completion rate</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ USER FLOW -->
+<section class="sec" id="flow">
+  <div class="wrap">
+    <p class="pl">06 — User Flow</p>
+    <h2 class="pt reveal">Six steps. Under 30 seconds.<br><em>No page navigation.</em></h2>
+    <p class="body-text reveal">Extension UX operates under constraints web design rarely faces — a fixed popup viewport with no persistent navigation, serving a user mid-task who wants to be done in seconds. The flow was designed to require zero learning and zero navigation state.</p>
+
+    <div class="workflow reveal">
+      <div class="wf-step on"><div class="wf-n">01</div><div class="wf-l">Open Extension</div></div>
+      <div class="wf-step on"><div class="wf-n">02</div><div class="wf-l">Choose Format</div></div>
+      <div class="wf-step on"><div class="wf-n">03</div><div class="wf-l">Enter Content</div></div>
+      <div class="wf-step on"><div class="wf-n">04</div><div class="wf-l">Preview</div></div>
+      <div class="wf-step on"><div class="wf-n">05</div><div class="wf-l">Export</div></div>
+      <div class="wf-step on"><div class="wf-n">06</div><div class="wf-l">Download</div></div>
+    </div>
+
+    <!-- User flow diagram -->
+    <div class="screen-frame reveal">
+      <div class="sf-chrome">
+        <div class="sf-dots"><div class="sf-dot"></div><div class="sf-dot"></div><div class="sf-dot"></div></div>
+        <div class="sf-label">User flow — complete journey</div>
+        <div class="sf-badge">Flow diagram</div>
+      </div>
+      <div class="img-ph ph-wide" style="border-radius:0;border:none">
+        <img
+          src="https://raw.githubusercontent.com/sana-ishaq-design/barcode-studio-ux/1018befc57b10455e6e2d55860a1378d44d6e87c/Extension/userflow.png"
+          alt="Barcode Studio complete user flow diagram"
+          loading="lazy"/>
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          <div class="ph-label">User Flow Diagram</div>
+          <div class="ph-sub">userflow.png</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ DECISIONS -->
+<section class="sec" id="decisions">
+  <div class="wrap">
+    <p class="pl">07 — Key UX Decisions</p>
+    <h2 class="pt reveal">Six decisions that define<br>how the extension <em>feels to use.</em></h2>
+    <p class="body-text reveal">Extension design operates inside hard constraints — a 400×600px popup with no persistent state. Every decision below was chosen over a documented alternative, with explicit reasoning tied to user research or documented assumptions.</p>
+
+    <div class="dec-grid">
+      <div class="dec-card reveal">
+        <div class="dec-n">Decision 01</div>
+        <div class="dec-title">Format Chips vs Dropdown</div>
+        <div class="dec-row"><div class="dec-row-lbl">Challenge</div><div class="dec-row-val">A dropdown hides all options behind one interaction, requiring users to recall available formats before choosing.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Decision</div><div class="dec-row-val">Quick-select chips display all four formats simultaneously. One tap selects; active state always visible.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Reasoning</div><div class="dec-row-val">Reduces format selection from 2 interactions to 1. Supports A2: most users select one format per session.</div></div>
+      </div>
+      <div class="dec-card reveal">
+        <div class="dec-n">Decision 02</div>
+        <div class="dec-title">Unified Export — Single &amp; Batch</div>
+        <div class="dec-row"><div class="dec-row-lbl">Challenge</div><div class="dec-row-val">Separate screens for single and batch export add navigation overhead for a decision that takes seconds.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Decision</div><div class="dec-row-val">One Export tab with progressive disclosure — single export is primary, batch (CSV→ZIP) is immediately accessible but secondary.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Reasoning</div><div class="dec-row-val">Single-tab architecture removes navigation. Primary flow stays clean. Batch capability remains discoverable.</div></div>
+      </div>
+      <div class="dec-card reveal">
+        <div class="dec-n">Decision 03</div>
+        <div class="dec-title">Privacy Messaging at Point of Input</div>
+        <div class="dec-row"><div class="dec-row-lbl">Challenge</div><div class="dec-row-val">Privacy-conscious users (A5) will abandon if they can't verify local processing — but a modal adds friction.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Decision</div><div class="dec-row-val">"100% Local · Never sent to server" placed directly below the payload input field.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Reasoning</div><div class="dec-row-val">Addresses trust concern exactly where it forms — at input — without interrupting the flow with a modal or help screen.</div></div>
+      </div>
+      <div class="dec-card reveal">
+        <div class="dec-n">Decision 04</div>
+        <div class="dec-title">Auto Theme as Default</div>
+        <div class="dec-row"><div class="dec-row-lbl">Challenge</div><div class="dec-row-val">Manual theme choice adds friction on first open. A settings screen adds navigation depth to a popup with no navigation bar.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Decision</div><div class="dec-row-val">Extension auto-detects system theme (dark/light) and applies it without user input. Manual override available in the About overlay.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Reasoning</div><div class="dec-row-val">Eliminates a settings page entirely. Enforces a proper CSS token system — all values must use semantic variables, not hardcoded hex.</div></div>
+      </div>
+      <div class="dec-card reveal">
+        <div class="dec-n">Decision 05</div>
+        <div class="dec-title">About Overlay vs Settings Page</div>
+        <div class="dec-row"><div class="dec-row-lbl">Challenge</div><div class="dec-row-val">A settings page requires navigation, back button, and persistent state — costly inside a popup viewport with no browser chrome.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Decision</div><div class="dec-row-val">ℹ icon opens an in-context overlay — keyboard shortcuts, open source links, developer credit, and feedback access without leaving the active screen.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Reasoning</div><div class="dec-row-val">Maintains single-screen architecture. Overlay dismisses cleanly. No navigation state to maintain or restore.</div></div>
+      </div>
+      <div class="dec-card reveal">
+        <div class="dec-n">Decision 06</div>
+        <div class="dec-title">Popup-Optimised Typography</div>
+        <div class="dec-row"><div class="dec-row-lbl">Challenge</div><div class="dec-row-val">Standard web type scales (16px body, 24–48px headings) fail at 400×600px — everything reads either too large or too small.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Decision</div><div class="dec-row-val">Custom scale built for popup dimensions: 13px body, 16px section labels, minimal heading sizes. Verified at 100% and 125% browser zoom.</div></div>
+        <div class="dec-row"><div class="dec-row-lbl">Reasoning</div><div class="dec-row-val">Every element readable without scrolling. Hierarchy maintained through size, weight, and colour — not scale alone.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ SCREENS -->
+<section class="sec" id="screens">
+  <div class="wrap">
+    <p class="pl">08 — Product Screens</p>
+    <h2 class="pt reveal">Three surfaces.<br>One consistent <em>design language.</em></h2>
+    <p class="body-text reveal">Each surface is shown in both dark and light modes — the auto-detected theme resolves to the correct variant based on system preference. The product uses purple as its UI accent; portfolio chrome uses teal.</p>
+
+    <!-- A: CREATE TAB -->
+    <div style="margin-bottom:8px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3)" class="reveal">A — Create Experience</div>
+    <div class="screen-pair reveal">
+      <div class="screen-frame">
+        <div class="sf-chrome">
+          <div class="sf-dots"><div class="sf-dot"></div><div class="sf-dot"></div><div class="sf-dot"></div></div>
+          <div class="sf-label">Create tab</div>
+          <div class="sf-badge">Dark mode</div>
+        </div>
+        <div class="img-ph ph-2col" style="border-radius:0;border:none">
+          <img
+            src="https://raw.githubusercontent.com/sana-ishaq-design/barcode-studio-ux/1429db339865197a1b4e9072bdcd4d864e16d8d6/Extension/Create%20shot%20Dark%20%26%20Light.png"
+            alt="Barcode Studio Create tab — dark mode"
+            loading="lazy"/>
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+            <div class="ph-label">Create Tab Dark</div>
+            <div class="ph-sub">Upload dark mode screenshot</div>
+          </div>
+        </div>
+      </div>
+      <div class="screen-frame">
+        <div class="sf-chrome">
+          <div class="sf-dots"><div class="sf-dot"></div><div class="sf-dot"></div><div class="sf-dot"></div></div>
+          <div class="sf-label">Create tab</div>
+          <div class="sf-badge">Light mode</div>
+        </div>
+        <div class="img-ph ph-2col" style="border-radius:0;border:none">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+            <div class="ph-label">Create Tab Light</div>
+            <div class="ph-sub">Upload light mode screenshot</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ann-list reveal">
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Format Selection:</strong> Quick-select chips — QR · EAN-13 · Code 128 · UPC-A — all visible, one tap to select</span></div>
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Live Preview:</strong> Barcode renders in real time as input changes — no Generate button required</span></div>
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Payload Input:</strong> Context-aware label updates per format (URL, ISBN, product code, UPC)</span></div>
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Privacy Messaging:</strong> "100% Local · Never sent to server" placed directly below input — trust signal at point of entry</span></div>
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Auto Theme:</strong> System preference detected on load — no manual toggle needed, no settings page required</span></div>
+    </div>
+
+    <!-- B: EXPORT TAB -->
+    <div style="margin:40px 0 8px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3)" class="reveal">B — Export Experience</div>
+    <div class="screen-pair reveal">
+      <div class="screen-frame">
+        <div class="sf-chrome">
+          <div class="sf-dots"><div class="sf-dot"></div><div class="sf-dot"></div><div class="sf-dot"></div></div>
+          <div class="sf-label">Export tab</div>
+          <div class="sf-badge">Dark mode</div>
+        </div>
+        <div class="img-ph ph-2col" style="border-radius:0;border:none">
+          <img
+            src="https://raw.githubusercontent.com/sana-ishaq-design/barcode-studio-ux/0a97d5cf0c7b95d90e29284989c851758489abcc/Dark%20%26%20Light/Export%20shot%20Dark%20%26%20light.png"
+            alt="Barcode Studio Export tab — dark mode"
+            loading="lazy"/>
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></div>
+            <div class="ph-label">Export Tab Dark</div>
+            <div class="ph-sub">Upload dark mode screenshot</div>
+          </div>
+        </div>
+      </div>
+      <div class="screen-frame">
+        <div class="sf-chrome">
+          <div class="sf-dots"><div class="sf-dot"></div><div class="sf-dot"></div><div class="sf-dot"></div></div>
+          <div class="sf-label">Export tab</div>
+          <div class="sf-badge">Light mode</div>
+        </div>
+        <div class="img-ph ph-2col" style="border-radius:0;border:none">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></div>
+            <div class="ph-label">Export Tab Light</div>
+            <div class="ph-sub">Upload light mode screenshot</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ann-list reveal">
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Single Export:</strong> PNG · SVG · WebP · PDF — format tabs, one-click download with immediate file delivery</span></div>
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Batch Export:</strong> Import .txt or .csv → download as .zip — accessible on the same tab without navigation</span></div>
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Progressive Disclosure:</strong> Batch mode secondary but immediately reachable — primary flow stays uncluttered</span></div>
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Multiple File Formats:</strong> Output format selected per export session, not locked at settings level</span></div>
+    </div>
+
+    <!-- C: ABOUT OVERLAY -->
+    <div style="margin:40px 0 8px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3)" class="reveal">C — About Overlay</div>
+    <div class="screen-pair reveal">
+      <div class="screen-frame">
+        <div class="sf-chrome">
+          <div class="sf-dots"><div class="sf-dot"></div><div class="sf-dot"></div><div class="sf-dot"></div></div>
+          <div class="sf-label">About overlay</div>
+          <div class="sf-badge">Dark mode</div>
+        </div>
+        <div class="img-ph ph-2col" style="border-radius:0;border:none">
+          <img
+            src="https://raw.githubusercontent.com/sana-ishaq-design/barcode-studio-ux/1018befc57b10455e6e2d55860a1378d44d6e87c/Extension/About%20shot%20Dark%20%26%20Light.png"
+            alt="Barcode Studio About overlay — dark mode"
+            loading="lazy"/>
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></div>
+            <div class="ph-label">About Overlay Dark</div>
+            <div class="ph-sub">Upload dark mode screenshot</div>
+          </div>
+        </div>
+      </div>
+      <div class="screen-frame">
+        <div class="sf-chrome">
+          <div class="sf-dots"><div class="sf-dot"></div><div class="sf-dot"></div><div class="sf-dot"></div></div>
+          <div class="sf-label">About overlay</div>
+          <div class="sf-badge">Light mode</div>
+        </div>
+        <div class="img-ph ph-2col" style="border-radius:0;border:none">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></div>
+            <div class="ph-label">About Overlay Light</div>
+            <div class="ph-sub">Upload light mode screenshot</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ann-list reveal">
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Keyboard Shortcuts:</strong> Full shortcut reference accessible without leaving the popup or navigating away</span></div>
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Open Source Links:</strong> GitHub source and developer profile — supports transparency and community trust</span></div>
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Developer Credits:</strong> Designer and developer attribution within the product — not buried in an external readme</span></div>
+      <div class="ann-row"><span class="ann-arrow">→</span><span class="ann-text"><strong>Feedback Access:</strong> Direct path to submit feedback — no email or external form required</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ DESIGN SYSTEM -->
+<section class="sec" id="system">
+  <div class="wrap">
+    <p class="pl">09 — Design System</p>
+    <h2 class="pt reveal">A token system built for<br><em>two themes from day one.</em></h2>
+    <p class="body-text reveal">Designing for dark and light simultaneously required a proper semantic token system. Every colour reference uses variables — <code style="font-size:12px;color:var(--teal);background:var(--teal-dim);padding:1px 5px;border-radius:3px">--bg-primary</code>, <code style="font-size:12px;color:var(--teal);background:var(--teal-dim);padding:1px 5px;border-radius:3px">--text-secondary</code> — that resolve to different raw values per theme. Theme switching is a variable swap, not a component rebuild.</p>
+
+    <div class="ds-grid">
+      <div class="ds-card reveal">
+        <div class="ds-hdr">Typography — Popup Scale</div>
+        <div class="img-ph ph-med" style="border-radius:0 0 10px 10px;border:none">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></div>
+            <div class="ph-label">Typography System</div>
+            <div class="ph-sub">Upload typography screenshot</div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-card reveal">
+        <div class="ds-hdr">Colour Palette — Dark &amp; Light Tokens</div>
+        <div class="img-ph ph-med" style="border-radius:0 0 10px 10px;border:none">
+          <img
+            src="https://raw.githubusercontent.com/sana-ishaq-design/barcode-studio-ux/1018befc57b10455e6e2d55860a1378d44d6e87c/Extension/color%20palette%20shot.png"
+            alt="Barcode Studio colour system — dark and light tokens"
+            loading="lazy"/>
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg></div>
+            <div class="ph-label">Color Palette</div>
+            <div class="ph-sub">color palette shot.png</div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-card reveal">
+        <div class="ds-hdr">Component Library — All States</div>
+        <div class="img-ph ph-med" style="border-radius:0 0 10px 10px;border:none">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></div>
+            <div class="ph-label">Component Library</div>
+            <div class="ph-sub">Upload components screenshot</div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-card reveal">
+        <div class="ds-hdr">Dark / Light Theme Side-by-Side</div>
+        <div class="img-ph ph-med" style="border-radius:0 0 10px 10px;border:none">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></div>
+            <div class="ph-label">Theme Comparison</div>
+            <div class="ph-sub">Upload theme tokens screenshot</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ OUTCOMES -->
+<section class="sec" id="outcomes">
+  <div class="wrap">
+    <p class="pl">10 — Design Outcomes</p>
+    <h2 class="pt reveal">What the design<br><em>delivered.</em></h2>
+    <p class="body-text reveal">Outcomes are framed against the three problems the design was built to solve — context switching, privacy concerns, and tool complexity. All measured against the documented design assumptions.</p>
+
+    <div class="outcome-grid">
+      <div class="oc oc1 reveal">
+        <span class="oc-icon">⊙</span>
+        <div class="oc-title">Reduced Context Switching</div>
+        <div class="oc-text">Full task completion inside one popup — zero tab switches, zero page navigation, zero account creation</div>
+      </div>
+      <div class="oc oc2 reveal">
+        <span class="oc-icon">◎</span>
+        <div class="oc-title">Privacy-First Experience</div>
+        <div class="oc-text">No server request ever made. Privacy is architectural — enforced by design, not relying on a policy document users never read</div>
+      </div>
+      <div class="oc oc3 reveal">
+        <span class="oc-icon">◐</span>
+        <div class="oc-title">Faster Workflow</div>
+        <div class="oc-text">Designed around the 30-second completion goal. Format chips, live preview, and direct download eliminate every unnecessary step</div>
+      </div>
+      <div class="oc oc4 reveal">
+        <span class="oc-icon">◑</span>
+        <div class="oc-title">Scalable Foundation</div>
+        <div class="oc-text">Full token system and component library enable future format additions and feature expansion without visual drift</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ IMPROVEMENTS -->
+<section class="sec" id="improve">
+  <div class="wrap">
+    <p class="pl">11 — Future Improvements</p>
+    <h2 class="pt reveal">Three honest gaps<br>in <em>V1.2.2.</em></h2>
+
+    <div class="imp-grid">
+      <div class="imp-card reveal">
+        <div class="imp-n">Gap 01</div>
+        <div class="imp-title">Validation Testing</div>
+        <div class="imp-lbl">Current limitation</div>
+        <div class="imp-val">All five design assumptions are documented but untested with real users at V1.2.2</div>
+        <div class="imp-lbl">Future opportunity</div>
+        <div class="imp-val">A 3-session guerrilla test — specifically on format chip scanning speed and privacy message trust impact — would validate A1, A2, and A5</div>
+      </div>
+      <div class="imp-card reveal">
+        <div class="imp-n">Gap 02</div>
+        <div class="imp-title">Batch Export Optimisation</div>
+        <div class="imp-lbl">Current limitation</div>
+        <div class="imp-val">Batch mode is functionally complete but CSV import error states and progress feedback are underdeveloped</div>
+        <div class="imp-lbl">Future opportunity</div>
+        <div class="imp-val">Inline validation, row-level error reporting, and a progress indicator for large batch jobs would make batch export production-ready for power users</div>
+      </div>
+      <div class="imp-card reveal">
+        <div class="imp-n">Gap 03</div>
+        <div class="imp-title">Error State Improvements</div>
+        <div class="imp-lbl">Current limitation</div>
+        <div class="imp-val">Input validation errors use generic messages rather than format-specific guidance</div>
+        <div class="imp-lbl">Future opportunity</div>
+        <div class="imp-val">Format-specific inline error copy — "EAN-13 requires exactly 12 digits before the check digit" — reduces trial-and-error for less-technical users</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ LINKS -->
+<section class="sec" id="links">
+  <div class="wrap">
+    <p class="pl">12 — Resources</p>
+    <h2 class="pt reveal">The work is live<br><em>and open.</em></h2>
+    <div class="links-grid">
+      <a class="link-card reveal" href="https://github.com/zfhassaan/barcode-studio" target="_blank" rel="noopener">
+        <span class="link-icon">⊙</span>
+        <div class="link-title">Chrome Web Store</div>
+        <div class="link-sub">Live extension — install and use</div>
+        <span class="link-arrow">↗ Open</span>
+      </a>
+      <a class="link-card reveal" href="https://www.figma.com/design/bdq8xwcSz7Xj8HpFICVIPk/Barcode-Studio" target="_blank" rel="noopener">
+        <span class="link-icon">◫</span>
+        <div class="link-title">Figma Source</div>
+        <div class="link-sub">Full design system and components</div>
+        <span class="link-arrow">↗ Open in Figma</span>
+      </a>
+      <a class="link-card reveal" href="https://github.com/zfhassaan" target="_blank" rel="noopener">
+        <span class="link-icon">◎</span>
+        <div class="link-title">Developer</div>
+        <div class="link-sub">@zfhassaan on GitHub</div>
+        <span class="link-arrow">↗ Open</span>
+      </a>
+      <a class="link-card reveal" href="https://github.com/sana-ishaq-design/barcode-studio-ux/blob/main/Extension/barcode_studio_ux_portfolio.pdf" target="_blank" rel="noopener">
+        <span class="link-icon">◳</span>
+        <div class="link-title">UX Decisions PDF</div>
+        <div class="link-sub">Full decision rationale document</div>
+        <span class="link-arrow">↗ Download</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-name">Barcode Studio — Chrome Extension UX</div>
+    <div class="footer-sub">End-to-end UX Design by Sana Ishaq · V1.2.2 · Dark + Light · Figma</div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://sana-ishaq-design.github.io/">← Back to Portfolio</a>
+      <span style="color:var(--white3);font-size:13px">·</span>
+      <a class="footer-link" href="https://www.figma.com/design/bdq8xwcSz7Xj8HpFICVIPk/Barcode-Studio" target="_blank">Open Figma →</a>
+      <span style="color:var(--white3);font-size:13px">·</span>
+      <a class="footer-link" href="https://github.com/sana-ishaq-design/barcode-studio-ux" target="_blank">GitHub →</a>
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Progress + nav */
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('fab').classList.toggle('visible', window.scrollY > window.innerHeight * 0.6);
+  const rt = document.getElementById('read-time');
+  rt.textContent = pct < 5 ? '~8 min read' : Math.round(pct) + '% read';
+}, { passive: true });
+
+/* Active nav pill */
+document.querySelectorAll('.sec[id]').forEach(sec => {
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.nav-pill').forEach(p => p.style.color = '');
+        const a = document.querySelector(`.nav-pill[href="#${e.target.id}"]`);
+        if (a) a.style.color = 'var(--teal)';
+      }
+    });
+  }, { threshold: 0.3 }).observe(sec);
+});
+
+/* Lightbox */
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lb-img');
+const lbCap = document.getElementById('lb-caption');
+
+function openLb(src, alt) {
+  lbImg.src = src; lbImg.alt = alt || '';
+  lbCap.textContent = alt || '';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { lbImg.src = ''; }, 350);
+}
+document.querySelectorAll('.img-ph img').forEach(img => {
+  img.addEventListener('click', () => openLb(img.src, img.alt));
+});
+new MutationObserver(() => {
+  document.querySelectorAll('.img-ph img:not([data-lb])').forEach(img => {
+    img.setAttribute('data-lb','1');
+    img.addEventListener('click', () => openLb(img.src, img.alt));
+  });
+}).observe(document.body, { childList:true, subtree:true });
+document.getElementById('lb-close').addEventListener('click', closeLb);
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+if (noMotion) {
+  document.querySelectorAll(
+    '.reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-meta,.hero-img'
+  ).forEach(el => { el.style.opacity='1'; el.style.transform='none'; });
+  return;
+}
+
+/* GSAP */
+if (typeof gsap === 'undefined') return;
+gsap.registerPlugin(ScrollTrigger);
+
+/* Hero sequence */
+gsap.timeline({ delay: 0.1 })
+  .to('.hero-eyebrow', { opacity:1, y:0, duration:.65, ease:'power2.out' })
+  .to('.hero h1',      { opacity:1, y:0, duration:.8,  ease:'power2.out' }, '-=0.4')
+  .to('.hero-sub',     { opacity:1, y:0, duration:.7,  ease:'power2.out' }, '-=0.45')
+  .to('.hero-meta',    { opacity:1, y:0, duration:.6,  ease:'power2.out' }, '-=0.4')
+  .to('.hero-img',     { opacity:1, scale:1, duration:.7, ease:'power2.out' }, '-=0.3');
+
+/* Generic reveals */
+document.querySelectorAll('.reveal').forEach(el => {
+  gsap.to(el, {
+    scrollTrigger: { trigger:el, start:'top 87%', once:true },
+    opacity:1, y:0, duration:.65, ease:'power2.out'
+  });
+});
+
+/* Card group staggers */
+[
+  ['.ch-card',     '.ch-grid',        .09],
+  ['.why-card',    '.why-grid',       .09],
+  ['.persona',     '.persona-grid',   .09],
+  ['.audit-card',  '.audit-grid',     .09],
+  ['.ass',         '.assumption-grid',.07],
+  ['.dec-card',    '.dec-grid',       .08],
+  ['.ds-card',     '.ds-grid',        .1 ],
+  ['.oc',          '.outcome-grid',   .08],
+  ['.imp-card',    '.imp-grid',       .09],
+  ['.link-card',   '.links-grid',     .1 ],
+  ['.wf-step',     '.workflow',       .07],
+  ['.screen-frame','.screen-pair',    .1 ],
+].forEach(([sel, trig, delay]) => {
+  const container = document.querySelector(trig);
+  if (!container) return;
+  gsap.fromTo(container.querySelectorAll(sel),
+    { opacity:0, y:18 },
+    { scrollTrigger:{ trigger:container, start:'top 85%', once:true },
+      opacity:1, y:0, duration:.5, ease:'power2.out', stagger:delay }
+  );
+});
+
+/* Annotation rows */
+document.querySelectorAll('.ann-list').forEach(list => {
+  gsap.fromTo(list.querySelectorAll('.ann-row'), { opacity:0, x:-10 }, {
+    scrollTrigger:{ trigger:list, start:'top 87%', once:true },
+    opacity:1, x:0, duration:.4, ease:'power2.out', stagger:.07, delay:.1
+  });
+});
+
+/* Callouts + HMW */
+document.querySelectorAll('.cb,.hmw').forEach(el => {
+  gsap.fromTo(el, { opacity:0, x:-12 }, {
+    scrollTrigger:{ trigger:el, start:'top 88%', once:true },
+    opacity:1, x:0, duration:.55, ease:'power2.out'
+  });
+});
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
