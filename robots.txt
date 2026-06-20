@@ -1,4 +1,31 @@
+# ============================================
+# robots.txt — sana-ishaq-design.github.io
+# Last updated: June 2026
+# ============================================
+ 
+# --- Standard search engines (allow everything) ---
 User-agent: *
 Allow: /
-
+Disallow: /assets/
+ 
+# --- AI training crawlers (block all) ---
+User-agent: GPTBot
+Disallow: /
+ 
+User-agent: Google-Extended
+Disallow: /
+ 
+User-agent: CCBot
+Disallow: /
+ 
+User-agent: anthropic-ai
+Disallow: /
+ 
+User-agent: Bytespider
+Disallow: /
+ 
+User-agent: cohere-ai
+Disallow: /
+ 
+# --- Sitemap ---
 Sitemap: https://sana-ishaq-design.github.io/sitemap.xml

@@ -1,34 +1,51 @@
+ap · XML
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+ 
+  <!-- Homepage -->
   <url>
     <loc>https://sana-ishaq-design.github.io/</loc>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <url>
-    <loc>https://sana-ishaq-design.github.io/case-studies/case_studies_archive.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://sana-ishaq-design.github.io/case-studies/subscribe-a-car-case-study.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
+ 
+  <!-- Case Studies -->
   <url>
     <loc>https://sana-ishaq-design.github.io/case-studies/haiermall-case-study.html</loc>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
+ 
+  <url>
+    <loc>https://sana-ishaq-design.github.io/case-studies/subscribe-me-case-study.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+ 
   <url>
     <loc>https://sana-ishaq-design.github.io/case-studies/utworx-case-study.html</loc>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
+ 
+  <!-- Case Studies Archive (low priority — thin content, update when populated) -->
+  <url>
+    <loc>https://sana-ishaq-design.github.io/case-studies/case_studies_archive.html</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+ 
+  <!-- Resume PDF -->
+  <url>
+    <loc>https://sana-ishaq-design.github.io/assets/Sana-Ishaq-UI-UX-Designer-Resume.pdf</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+ 
 </urlset>
