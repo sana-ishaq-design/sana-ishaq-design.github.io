@@ -32,9 +32,9 @@ ap · XML
     <priority>0.9</priority>
   </url>
  
-  <!-- Case Studies Archive (low priority — thin content, update when populated) -->
+  <!-- All Case Studies -->
   <url>
-    <loc>https://sana-ishaq-design.github.io/case-studies/case_studies_archive.html</loc>
+    <loc>https://sana-ishaq-design.github.io/case-studies/case_studies.html</loc>
     <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
