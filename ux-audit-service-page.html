@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>UX Audit Service | Find & Fix What's Costing You Conversions — Sana Ishaq</title>
+<meta name="description" content="A professional UX audit by Sana Ishaq identifies every friction point costing you revenue — with annotated screenshots, severity ratings, and a prioritised fix roadmap your team can implement immediately. Book a free consultation."/>
+<meta name="keywords" content="UX audit service, usability audit, heuristic evaluation, SaaS UX audit, e-commerce UX audit, UX consultant, product design consultant, conversion optimization, user experience audit"/>
+<link rel="canonical" href="https://sana-ishaq-design.github.io/ux-audit"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="UX Audit Service — Find What's Costing You Conversions | Sana Ishaq"/>
+<meta property="og:description" content="Senior UI/UX designer Sana Ishaq audits your product against Nielsen's 10 heuristics and delivers a prioritised fix roadmap. SaaS and e-commerce experience."/>
+<meta property="og:url" content="https://sana-ishaq-design.github.io/ux-audit"/>
+<meta property="og:image" content="https://sana-ishaq-design.github.io/assets/ux-audit-og.jpg"/>
+<meta property="og:site_name" content="Sana Ishaq — Product Designer"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="UX Audit Service — Sana Ishaq"/>
+<meta name="twitter:description" content="Identify every friction point costing you revenue. Annotated findings, severity ratings, prioritised roadmap."/>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "name":"UX Audit Service",
+  "provider":{
+    "@type":"Person",
+    "name":"Sana Ishaq",
+    "url":"https://sana-ishaq-design.github.io",
+    "jobTitle":"Senior UI/UX Designer"
+  },
+  "description":"A structured UX audit that identifies friction points, usability failures, and missed conversion opportunities across SaaS products and e-commerce sites. Delivered with annotated screenshots, severity ratings, and a prioritised improvement roadmap.",
+  "areaServed":"Worldwide",
+  "serviceType":"UX Audit",
+  "offers":{
+    "@type":"Offer",
+    "priceCurrency":"USD",
+    "priceSpecification":{
+      "@type":"PriceSpecification",
+      "description":"Starting from $500. Scope-based pricing. Contact for a custom quote."
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What is a UX audit?","acceptedAnswer":{"@type":"Answer","text":"A UX audit is a structured expert review of your product's interface against established usability standards. It identifies friction points, confusing flows, and missed conversion opportunities, and delivers a prioritised list of fixes ranked by impact."}},
+    {"@type":"Question","name":"How much does a UX audit cost?","acceptedAnswer":{"@type":"Answer","text":"A UX audit with Sana Ishaq starts from $500 for a focused single-flow review and scales to $2,500 for full product audits. Scope is agreed before any payment."}},
+    {"@type":"Question","name":"How long does a UX audit take?","acceptedAnswer":{"@type":"Answer","text":"A focused audit takes 5 business days. A full product audit typically takes 10–14 business days."}},
+    {"@type":"Question","name":"What do I get at the end of a UX audit?","acceptedAnswer":{"@type":"Answer","text":"You receive a written audit report with annotated screenshots, a prioritised issue list (Critical / High / Medium), quick-win fixes, and a 60-minute walkthrough call to discuss findings."}},
+    {"@type":"Question","name":"Can you audit SaaS products?","acceptedAnswer":{"@type":"Answer","text":"Yes. SaaS products — onboarding flows, dashboards, feature activation — are a primary audit focus with 5+ years of experience across multiple platforms."}},
+    {"@type":"Question","name":"Can you audit mobile apps?","acceptedAnswer":{"@type":"Answer","text":"Yes. iOS and Android apps, web products, and hybrid experiences are all within scope. The heuristics applied are calibrated to the platform."}}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#060f1a;
+  --navy2:#091626;
+  --navy3:#0d1e34;
+  --navy4:#122440;
+  --teal:#2dd4bf;
+  --teal2:#14b8a6;
+  --teal-dim:rgba(45,212,191,0.07);
+  --teal-border:rgba(45,212,191,0.16);
+  --green:#34d399;
+  --green-dim:rgba(52,211,153,0.08);
+  --green-border:rgba(52,211,153,0.18);
+  --amber:#f59e0b;
+  --amber-dim:rgba(245,158,11,0.08);
+  --amber-border:rgba(245,158,11,0.2);
+  --red-dim:rgba(248,113,113,0.07);
+  --red-border:rgba(248,113,113,0.18);
+  --white:#edf2f7;
+  --white2:#94afc8;
+  --white3:#4d6a85;
+  --line:rgba(255,255,255,0.055);
+  --line2:rgba(255,255,255,0.09);
+  --serif:'DM Serif Display',serif;
+  --body:'Inter',sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--navy);color:var(--white);font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── SKIP NAV ───────────────────────────── */
+.skip-nav{position:fixed;top:8px;left:50%;transform:translateX(-50%) translateY(-60px);background:var(--teal);color:var(--navy);font-size:12px;font-weight:500;padding:8px 18px;border-radius:6px;z-index:999;text-decoration:none;transition:transform .2s var(--ease)}
+.skip-nav:focus{transform:translateX(-50%) translateY(0)}
+
+/* ── PROGRESS ───────────────────────────── */
+.progress-bar{position:fixed;top:0;left:0;height:1px;background:var(--teal);z-index:200;width:0%;opacity:.7;transition:width .1s linear}
+
+/* ── NAV ────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;transition:background .45s,border-color .45s,backdrop-filter .45s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(6,15,26,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line2)}
+.nav-logo{font-size:13px;font-weight:500;color:var(--white);letter-spacing:.02em;text-decoration:none}
+.nav-logo span{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:4px}
+.nav-pill{padding:6px 11px;font-size:11px;color:var(--white3);border-radius:6px;text-decoration:none;transition:color .2s,background .2s;white-space:nowrap}
+.nav-pill:hover{color:var(--teal);background:var(--teal-dim)}
+.nav-cta-btn{padding:7px 16px;font-size:11px;font-weight:500;color:var(--navy);background:var(--teal);border-radius:6px;text-decoration:none;transition:opacity .2s;white-space:nowrap;margin-left:8px}
+.nav-cta-btn:hover{opacity:.85}
+
+/* ── LAYOUT ────────────────────────────── */
+.wrap{max-width:860px;margin:0 auto;padding:0 40px}
+
+/* ── IMAGE PLACEHOLDER ─────────────────── */
+.img-ph{background:var(--navy2);border:1px solid var(--line2);border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.img-ph::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);opacity:.25}
+.img-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:11px}
+.img-ph img~.ph-inner{display:none}
+.ph-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:24px;text-align:center;width:100%;position:absolute;inset:0}
+.ph-icon{width:36px;height:36px;border-radius:8px;border:1px dashed rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ph-icon svg{opacity:.28}
+.ph-label{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white3);opacity:.55;line-height:1.5}
+.ph-sub{font-size:9px;color:var(--white3);opacity:.25;letter-spacing:.05em}
+.ph-hero{width:100%;aspect-ratio:16/7}
+.ph-wide{width:100%;aspect-ratio:16/8}
+.ph-med{width:100%;aspect-ratio:16/9}
+.ph-port{width:100%;aspect-ratio:4/3}
+.ph-sq{width:100%;aspect-ratio:1/1}
+.ph-thin{width:100%;aspect-ratio:21/6}
+
+/* ── HERO ──────────────────────────────── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 96px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin-bottom:28px;opacity:0;transform:translateY(16px)}
+.hero-eyebrow-line{width:18px;height:1px;background:var(--teal);opacity:.5}
+.hero h1{font-family:var(--serif);font-size:clamp(36px,5vw,64px);font-weight:400;line-height:1.0;letter-spacing:-.015em;color:var(--white);max-width:720px;opacity:0;transform:translateY(20px)}
+.hero h1 em{color:var(--teal);font-style:italic}
+.hero-sub{font-size:16px;color:var(--white2);font-weight:300;max-width:560px;line-height:1.72;margin:22px 0 40px;opacity:0;transform:translateY(20px)}
+.hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:48px;opacity:0;transform:translateY(20px)}
+.btn-primary{padding:12px 24px;font-size:13px;font-weight:500;color:var(--navy);background:var(--teal);border-radius:8px;text-decoration:none;transition:opacity .2s,transform .2s var(--ease);display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{opacity:.88;transform:translateY(-2px)}
+.btn-secondary{padding:11px 22px;font-size:13px;font-weight:500;color:var(--white2);background:var(--navy2);border:1px solid var(--line2);border-radius:8px;text-decoration:none;transition:border-color .2s,color .2s,transform .2s var(--ease);display:inline-flex;align-items:center;gap:8px}
+.btn-secondary:hover{border-color:var(--teal-border);color:var(--white);transform:translateY(-2px)}
+.hero-trust{display:flex;flex-wrap:wrap;gap:20px;opacity:0;transform:translateY(16px)}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--white3);font-weight:400}
+.trust-tick{width:16px;height:16px;border-radius:50%;background:var(--green-dim);border:1px solid var(--green-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;color:var(--green)}
+.hero-img{margin-top:52px;opacity:0;transform:scale(.97)}
+
+/* ── SECTION ───────────────────────────── */
+.sec{padding:88px 0;border-bottom:1px solid var(--line)}
+.pl{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);opacity:.8;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.pl::after{content:'';flex:1;height:1px;background:var(--line2)}
+.pt{font-family:var(--serif);font-size:clamp(26px,3.5vw,42px);font-weight:400;line-height:1.08;letter-spacing:-.01em;color:var(--white);margin-bottom:16px}
+.pt em{color:var(--teal);font-style:italic}
+.body-text{font-size:14px;color:var(--white2);line-height:1.8;margin-bottom:1rem;font-weight:300;max-width:660px}
+.body-text strong{color:var(--white);font-weight:500}
+.reveal{opacity:0;transform:translateY(22px);will-change:opacity,transform}
+
+/* ── FOR YOU CARDS ─────────────────────── */
+.for-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}
+.for-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:22px 20px;border-top:2px solid transparent;transition:border-color .25s,transform .25s var(--ease)}
+.for-card:hover{transform:translateY(-3px)}
+.fc1{border-top-color:rgba(45,212,191,.45)}
+.fc2{border-top-color:rgba(52,211,153,.4)}
+.fc3{border-top-color:rgba(245,158,11,.35)}
+.fc4{border-top-color:rgba(248,113,113,.35)}
+.fc5{border-top-color:rgba(45,212,191,.3)}
+.for-icon{font-size:20px;margin-bottom:10px;display:block}
+.for-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:6px;line-height:1.3;font-family:var(--serif)}
+.for-desc{font-size:12px;color:var(--white2);line-height:1.65;font-weight:300}
+.for-cta{margin-top:28px;padding:20px 24px;background:var(--navy2);border:1px solid var(--teal-border);border-radius:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.for-cta p{font-size:14px;color:var(--white2);font-weight:300}
+.for-cta strong{color:var(--white);font-weight:500}
+
+/* ── OUTCOMES CARDS ─────────────────────── */
+.outcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
+.oc{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:18px 20px;display:flex;align-items:flex-start;gap:12px;transition:border-color .25s,transform .25s var(--ease)}
+.oc:hover{border-color:var(--teal-border);transform:translateY(-2px)}
+.oc-tick{width:20px;height:20px;border-radius:50%;background:var(--teal-dim);border:1px solid var(--teal-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:var(--teal);margin-top:2px}
+.oc-text{font-size:13px;color:var(--white2);line-height:1.6;font-weight:300}
+.oc-text strong{color:var(--white);font-weight:500;display:block;margin-bottom:3px}
+
+/* ── DELIVERABLE SHOWCASE ──────────────── */
+.deliv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+.deliv-card{background:var(--navy2);border:1px solid var(--line2);border-radius:12px;overflow:hidden;transition:border-color .28s,transform .28s var(--ease)}
+.deliv-card:hover{border-color:var(--teal-border);transform:translateY(-3px)}
+.deliv-cap{padding:14px 16px;border-top:1px solid var(--line2)}
+.deliv-cap-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:3px}
+.deliv-cap-sub{font-size:12px;color:var(--white3);font-weight:300}
+
+/* ── CASE STUDY HIGHLIGHT ──────────────── */
+.cs-block{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;align-items:start}
+.cs-content{}
+.cs-tag{font-size:10px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);opacity:.8;margin-bottom:10px}
+.cs-title{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--white);margin-bottom:12px;line-height:1.2}
+.cs-desc{font-size:14px;color:var(--white2);line-height:1.78;font-weight:300;margin-bottom:20px}
+.cs-metrics-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.cs-metric{background:var(--navy2);border:1px solid var(--line2);border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:14px}
+.cs-num{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--teal);line-height:1;flex-shrink:0;min-width:60px}
+.cs-label{font-size:12px;color:var(--white2);font-weight:300;line-height:1.5}
+.cs-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--teal);text-decoration:none;transition:gap .2s}
+.cs-link:hover{gap:10px}
+
+/* ── PROCESS STEPS ─────────────────────── */
+.process-list{display:flex;flex-direction:column;gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:10px;overflow:hidden;margin-top:28px}
+.proc{display:grid;grid-template-columns:64px 1fr;background:var(--navy2);transition:background .2s,border-left-color .2s;border-left:2px solid transparent}
+.proc:hover{background:var(--navy3);border-left-color:var(--teal)}
+.proc-num{background:var(--navy3);display:flex;align-items:flex-start;justify-content:center;padding:22px 0 0;border-right:1px solid var(--line2)}
+.proc-num span{font-size:11px;font-weight:500;color:var(--white3);letter-spacing:.04em}
+.proc-body{padding:20px 24px}
+.proc-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:7px;line-height:1.4}
+.proc-desc{font-size:13px;color:var(--white2);line-height:1.72;font-weight:300}
+
+/* ── INCLUDES GRID ─────────────────────── */
+.inc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}
+.inc-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:18px 16px;text-align:center;transition:border-color .25s,transform .25s var(--ease)}
+.inc-card:hover{border-color:var(--teal-border);transform:translateY(-3px)}
+.inc-icon{font-size:20px;margin-bottom:10px;display:block}
+.inc-title{font-size:13px;font-weight:500;color:var(--white);line-height:1.35}
+
+/* ── PRICING CARDS ─────────────────────── */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.price-card{background:var(--navy2);border:1px solid var(--line2);border-radius:12px;padding:28px 24px;position:relative;transition:border-color .25s,transform .25s var(--ease)}
+.price-card:hover{transform:translateY(-4px)}
+.price-card.featured{border-color:var(--teal-border);background:var(--navy3)}
+.price-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;background:var(--teal);color:var(--navy);padding:3px 12px;border-radius:20px;white-space:nowrap}
+.price-plan{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--white3);margin-bottom:10px}
+.price-name{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--white);margin-bottom:16px;line-height:1.2}
+.price-amount{font-family:var(--serif);font-size:44px;font-weight:400;color:var(--teal);line-height:1;margin-bottom:4px;letter-spacing:-.02em}
+.price-timeline{font-size:11px;color:var(--white3);margin-bottom:20px;font-weight:300}
+.price-divider{height:1px;background:var(--line2);margin:20px 0}
+.price-best{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);margin-bottom:10px}
+.price-best-val{font-size:13px;color:var(--white2);margin-bottom:16px;font-weight:300}
+.price-inc-lbl{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--white3);margin-bottom:8px}
+.price-items{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
+.price-items li{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--white2);font-weight:300}
+.price-items li::before{content:'✓';color:var(--teal);font-size:11px;font-weight:600;flex-shrink:0}
+.price-btn{display:block;text-align:center;padding:11px;font-size:13px;font-weight:500;border-radius:8px;text-decoration:none;transition:opacity .2s,transform .2s var(--ease)}
+.price-btn.primary{background:var(--teal);color:var(--navy)}
+.price-btn.outline{background:transparent;color:var(--white2);border:1px solid var(--line2)}
+.price-btn:hover{opacity:.85;transform:translateY(-1px)}
+
+/* ── WHY ME CARDS ──────────────────────── */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}
+.why-card{background:var(--navy2);border:1px solid var(--line2);border-radius:10px;padding:18px 16px;transition:border-color .25s,transform .25s var(--ease);border-top:2px solid transparent}
+.why-card:hover{transform:translateY(-3px)}
+.wc1{border-top-color:rgba(45,212,191,.45)}
+.wc2{border-top-color:rgba(52,211,153,.4)}
+.wc3{border-top-color:rgba(245,158,11,.35)}
+.wc4{border-top-color:rgba(248,113,113,.3)}
+.why-icon{font-size:20px;margin-bottom:10px;display:block}
+.why-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:5px;line-height:1.3}
+.why-desc{font-size:12px;color:var(--white2);line-height:1.6;font-weight:300}
+
+/* ── FAQ ACCORDION ─────────────────────── */
+.faq-list{display:flex;flex-direction:column;gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:10px;overflow:hidden;margin-top:28px}
+.faq-item{background:var(--navy2)}
+.faq-q{width:100%;background:none;border:none;padding:18px 22px;text-align:left;font-family:var(--body);font-size:14px;font-weight:500;color:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:background .2s;border-left:2px solid transparent}
+.faq-q:hover{background:var(--navy3);border-left-color:var(--teal)}
+.faq-q.open{background:var(--navy3);border-left-color:var(--teal)}
+.faq-icon{font-size:18px;color:var(--teal);flex-shrink:0;transition:transform .25s var(--ease);line-height:1}
+.faq-q.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease),padding .25s}
+.faq-a.open{max-height:300px;padding-bottom:18px}
+.faq-a p{padding:0 22px;font-size:14px;color:var(--white2);line-height:1.78;font-weight:300}
+.faq-a a{color:var(--teal);text-decoration:none}
+.faq-a a:hover{text-decoration:underline}
+
+/* ── FINAL CTA ─────────────────────────── */
+.cta-block{background:var(--navy2);border:1px solid var(--teal-border);border-radius:16px;padding:56px 48px;text-align:center;position:relative;overflow:hidden;margin:88px 0}
+.cta-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--teal),transparent);opacity:.5}
+.cta-block h2{font-family:var(--serif);font-size:clamp(28px,4vw,42px);font-weight:400;color:var(--white);margin-bottom:14px;line-height:1.1;letter-spacing:-.01em}
+.cta-block p{font-size:15px;color:var(--white2);font-weight:300;max-width:520px;margin:0 auto 32px;line-height:1.72}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.cta-note{font-size:12px;color:var(--white3);margin-top:16px;font-weight:300}
+.cta-ph{margin-top:40px}
+
+/* ── CALLOUT ───────────────────────────── */
+.cb{border-left:2px solid var(--teal-border);padding:20px 24px;background:var(--teal-dim);border-radius:0 10px 10px 0;margin:20px 0}
+.cb-lbl{font-size:10px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);margin-bottom:7px}
+.cb p{font-size:14px;color:var(--white2);line-height:1.78;font-weight:300}
+.cb p strong{color:var(--white);font-weight:500}
+
+/* ── STAT CARDS ────────────────────────── */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--teal-border);border:1px solid var(--teal-border);border-radius:10px;overflow:hidden;margin:28px 0}
+.stat-cell{background:var(--navy2);padding:28px 20px;text-align:center}
+.stat-num{font-family:var(--serif);font-size:clamp(32px,4vw,48px);font-weight:400;color:var(--teal);line-height:1;margin-bottom:8px;letter-spacing:-.02em}
+.stat-lbl{font-size:12px;color:var(--white2);font-weight:300;line-height:1.5}
+
+/* ── FOOTER ────────────────────────────── */
+footer{padding:48px 0 36px;border-top:1px solid var(--line)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-size:13px;font-weight:500;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--teal)}
+.footer-links{display:flex;gap:4px;flex-wrap:wrap}
+.footer-link{padding:5px 10px;font-size:12px;color:var(--white3);text-decoration:none;border-radius:5px;transition:color .2s}
+.footer-link:hover{color:var(--teal)}
+.footer-copy{font-size:12px;color:var(--white3);margin-top:16px;padding-top:16px;border-top:1px solid var(--line);text-align:center}
+
+/* ── SAFETY ANIMATION ──────────────────── */
+@keyframes safeReveal{to{opacity:1;transform:none}}
+.reveal{animation:safeReveal 0s 2s forwards}
+.hero-eyebrow,.hero h1,.hero-sub,.hero-ctas,.hero-trust,.hero-img{animation:safeReveal 0s 1.5s forwards}
+
+/* ── REDUCED MOTION ────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  .reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-ctas,.hero-trust,.hero-img{
+    opacity:1!important;transform:none!important;transition:none!important}
+}
+
+/* ── RESPONSIVE ────────────────────────── */
+@media(max-width:760px){
+  .wrap{padding:0 20px}
+  nav{padding:16px 20px}
+  .nav-right .nav-pill{display:none}
+  .hero{padding:110px 0 80px}
+  .sec{padding:64px 0}
+  .for-grid{grid-template-columns:1fr 1fr}
+  .outcome-grid{grid-template-columns:1fr}
+  .deliv-grid{grid-template-columns:1fr}
+  .cs-block{grid-template-columns:1fr}
+  .price-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .inc-grid{grid-template-columns:1fr 1fr}
+  .stat-grid{grid-template-columns:1fr}
+  .cta-block{padding:40px 24px}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:460px){
+  .for-grid,.why-grid,.inc-grid{grid-template-columns:1fr}
+  .hero-ctas{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<noscript><style>
+.reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-ctas,.hero-trust,.hero-img,
+.for-card,.oc,.deliv-card,.proc,.inc-card,.price-card,.why-card,.faq-item{
+  opacity:1!important;transform:none!important}
+</style></noscript>
+
+<a class="skip-nav" href="#overview">Skip to main content</a>
+<div class="progress-bar" id="progress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="https://sana-ishaq-design.github.io/">Sana<span>Ishaq</span></a>
+  <div class="nav-right">
+    <a class="nav-pill" href="https://sana-ishaq-design.github.io/">Home</a>
+    <a class="nav-pill" href="https://sana-ishaq-design.github.io/#services">Services</a>
+    <a class="nav-pill" href="https://sana-ishaq-design.github.io/case-studies/case_studies_archive.html">Case Studies</a>
+    <a class="nav-pill" href="https://sana-ishaq-design.github.io/#about">About</a>
+    <a class="nav-cta-btn" href="https://sana-ishaq-design.github.io/#contact">Book Audit</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════ HERO -->
+<section class="hero" id="overview">
+  <div class="wrap">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      UX Audit Service · Remote · Worldwide
+    </div>
+    <h1>Find the UX issues costing you<br>customers, conversions,<br>and <em>revenue.</em></h1>
+    <p class="hero-sub">Get a professional UX audit with actionable recommendations, annotated screenshots, severity ratings, and a prioritised roadmap your team can implement immediately.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://sana-ishaq-design.github.io/#contact">Book a UX Audit →</a>
+      <a class="btn-secondary" href="https://sana-ishaq-design.github.io/#contact">Schedule Free Consultation</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><span class="trust-tick">✓</span>5+ Years Experience</div>
+      <div class="trust-item"><span class="trust-tick">✓</span>200+ Projects Delivered</div>
+      <div class="trust-item"><span class="trust-tick">✓</span>SaaS &amp; E-commerce Expertise</div>
+      <div class="trust-item"><span class="trust-tick">✓</span>Remote Collaboration</div>
+    </div>
+
+    <!-- HERO IMAGE -->
+    <div class="hero-img">
+      <div class="img-ph ph-hero" style="border-radius:14px">
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div class="ph-label">UX Audit Hero Mockup</div>
+          <div class="ph-sub">Audit report · Annotations · Priority labels · Deliverables</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ IS THIS RIGHT FOR YOU -->
+<section class="sec" id="who">
+  <div class="wrap">
+    <p class="pl">01 — Is This Right For You?</p>
+    <h2 class="pt reveal">Built for teams with a live product<br>and a <em>real conversion problem.</em></h2>
+    <p class="body-text reveal">I work best with teams that have shipped something and know something is wrong — not hypothetical projects or early-stage wireframes. A UX audit delivers the most value when there's real user behaviour to interrogate.</p>
+
+    <div class="for-grid">
+      <div class="for-card fc1 reveal">
+        <span class="for-icon">⬡</span>
+        <div class="for-title">SaaS Products</div>
+        <div class="for-desc">Experiencing low feature activation, onboarding drop-off, dashboard complexity, or high churn from usability confusion.</div>
+      </div>
+      <div class="for-card fc2 reveal">
+        <span class="for-icon">◈</span>
+        <div class="for-title">E-commerce Stores</div>
+        <div class="for-desc">High cart abandonment, low add-to-cart rates, mobile conversion gaps, or trust signal failures at checkout.</div>
+      </div>
+      <div class="for-card fc3 reveal">
+        <span class="for-icon">◉</span>
+        <div class="for-title">Startups</div>
+        <div class="for-desc">Preparing for a redesign or product launch and need a structured baseline of every existing UX problem before briefing the design team.</div>
+      </div>
+      <div class="for-card fc4 reveal">
+        <span class="for-icon">◐</span>
+        <div class="for-title">Enterprise Platforms</div>
+        <div class="for-desc">Complex workflows causing usability friction, high support volume from confused users, or productivity losses from poor interface design.</div>
+      </div>
+      <div class="for-card fc5 reveal">
+        <span class="for-icon">◑</span>
+        <div class="for-title">Product Teams</div>
+        <div class="for-desc">Looking for expert usability insights before development sprints begin — to ensure the right problems get solved, not just the visible ones.</div>
+      </div>
+    </div>
+
+    <div class="for-cta reveal">
+      <p><strong>Not sure if you need an audit?</strong> Book a free 30-minute consultation and I'll tell you whether a UX audit is the right next step for your product.</p>
+      <a class="btn-secondary" href="https://sana-ishaq-design.github.io/#contact">Book Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHAT YOU'LL GET -->
+<section class="sec" id="outcomes">
+  <div class="wrap">
+    <p class="pl">02 — What You'll Walk Away With</p>
+    <h2 class="pt reveal">Outcomes, not just<br><em>a document.</em></h2>
+    <p class="body-text reveal">Every UX audit is delivered with one goal: actionable clarity. Not a report you file away, but a structured roadmap your team can move on immediately after the walkthrough session.</p>
+
+    <div class="outcome-grid">
+      <div class="oc reveal">
+        <div class="oc-tick">✓</div>
+        <div class="oc-text"><strong>Clear understanding of usability issues</strong>Every friction point documented, rated by severity, and explained in plain language your developers and stakeholders can act on.</div>
+      </div>
+      <div class="oc reveal">
+        <div class="oc-tick">✓</div>
+        <div class="oc-text"><strong>Prioritised recommendations ranked by impact</strong>Critical, High, and Medium priority issues sorted so your team knows exactly where to start for maximum conversion improvement.</div>
+      </div>
+      <div class="oc reveal">
+        <div class="oc-tick">✓</div>
+        <div class="oc-text"><strong>Faster product decisions</strong>Stop debating what to fix. The audit gives your team an evidence-based prioritisation framework — no guesswork, no opinion battles.</div>
+      </div>
+      <div class="oc reveal">
+        <div class="oc-tick">✓</div>
+        <div class="oc-text"><strong>Reduced user frustration</strong>Friction points users never report but consistently abandon over are surfaced and explained — so you can fix problems users don't complain about but quietly leave because of.</div>
+      </div>
+      <div class="oc reveal">
+        <div class="oc-tick">✓</div>
+        <div class="oc-text"><strong>Improved conversion opportunities</strong>Specific, screen-level recommendations for checkout, onboarding, and key conversion flows — tied directly to the user behaviour causing drop-off.</div>
+      </div>
+      <div class="oc reveal">
+        <div class="oc-tick">✓</div>
+        <div class="oc-text"><strong>Roadmap for future improvements</strong>Beyond the immediate fix list: a strategic view of structural issues that will limit your product's growth if left unaddressed in the next design cycle.</div>
+      </div>
+    </div>
+
+    <!-- Outcome visual placeholder -->
+    <div style="margin-top:28px" class="reveal">
+      <div class="img-ph ph-wide" style="border-radius:12px">
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 12h6M9 16h4"/></svg></div>
+          <div class="ph-label">Sample Audit Outcome Visual</div>
+          <div class="ph-sub">Upload audit report preview, prioritised findings, or results summary here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ SAMPLE DELIVERABLES -->
+<section class="sec" id="deliverables">
+  <div class="wrap">
+    <p class="pl">03 — Sample Deliverables</p>
+    <h2 class="pt reveal">See exactly what<br><em>you're buying.</em></h2>
+    <p class="body-text reveal">Every audit produces a structured report formatted for immediate team use — not a deck to shelve. Here are the core deliverable types included in every engagement.</p>
+
+    <div class="deliv-grid">
+      <div class="deliv-card reveal">
+        <div class="img-ph ph-port" style="border-radius:12px 12px 0 0;border:none">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div>
+            <div class="ph-label">Audit Report Page 01</div>
+            <div class="ph-sub">Annotated usability findings</div>
+          </div>
+        </div>
+        <div class="deliv-cap">
+          <div class="deliv-cap-title">Annotated Usability Findings</div>
+          <div class="deliv-cap-sub">Every screen reviewed with inline annotations pointing to specific friction points and their user impact</div>
+        </div>
+      </div>
+      <div class="deliv-card reveal">
+        <div class="img-ph ph-port" style="border-radius:12px 12px 0 0;border:none">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg></div>
+            <div class="ph-label">Audit Report Page 02</div>
+            <div class="ph-sub">Severity ratings and recommendations</div>
+          </div>
+        </div>
+        <div class="deliv-cap">
+          <div class="deliv-cap-title">Severity Ratings &amp; Recommendations</div>
+          <div class="deliv-cap-sub">Issues categorised as Critical / High / Medium with specific fix recommendations for each</div>
+        </div>
+      </div>
+      <div class="deliv-card reveal">
+        <div class="img-ph ph-port" style="border-radius:12px 12px 0 0;border:none">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <div class="ph-label">Audit Report Page 03</div>
+            <div class="ph-sub">Prioritised improvement roadmap</div>
+          </div>
+        </div>
+        <div class="deliv-cap">
+          <div class="deliv-cap-title">Prioritised Improvement Roadmap</div>
+          <div class="deliv-cap-sub">A sprint-ready action plan ordered by impact so your team knows exactly what to build first</div>
+        </div>
+      </div>
+      <div class="deliv-card reveal">
+        <div class="img-ph ph-port" style="border-radius:12px 12px 0 0;border:none">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+            <div class="ph-label">Audit Report Page 04</div>
+            <div class="ph-sub">Conversion optimisation opportunities</div>
+          </div>
+        </div>
+        <div class="deliv-cap">
+          <div class="deliv-cap-title">Conversion Optimisation Opportunities</div>
+          <div class="deliv-cap-sub">Specific checkout, onboarding, and funnel improvements mapped to measurable conversion impact</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CASE STUDY HIGHLIGHT -->
+<section class="sec" id="case-study">
+  <div class="wrap">
+    <p class="pl">04 — UX Audit In Action</p>
+    <h2 class="pt reveal">See the work.<br><em>Real project. Real results.</em></h2>
+
+    <div class="cs-block">
+      <div class="cs-content reveal">
+        <div class="cs-tag">Case Study — E-commerce</div>
+        <div class="cs-title">HaierMall</div>
+        <p class="cs-desc">HaierMall — a major appliance e-commerce platform — had stalling conversion rates despite growing traffic. Users were reaching product pages but abandoning before checkout. A structured UX audit identified 11 critical failures the internal team hadn't flagged.</p>
+        <div class="cs-metrics-grid">
+          <div class="cs-metric">
+            <div class="cs-num">+31%</div>
+            <div class="cs-label">increase in completed sales after audit-led redesign</div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-num">−20%</div>
+            <div class="cs-label">reduction in bounce rate on product pages</div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-num">11</div>
+            <div class="cs-label">critical UX failures identified — none on the team's radar</div>
+          </div>
+        </div>
+        <a class="cs-link" href="https://sana-ishaq-design.github.io/case-studies/haiermall-case-study.html">View full case study →</a>
+      </div>
+      <div class="reveal">
+        <div class="img-ph ph-port" style="border-radius:12px">
+          <div class="ph-inner">
+            <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></div>
+            <div class="ph-label">HaierMall Case Study Preview</div>
+            <div class="ph-sub">Upload case study screenshot or audit preview here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cb reveal" style="margin-top:28px">
+      <div class="cb-lbl">Why external review matters</div>
+      <p>Teams closest to the product stop seeing what new users see. <strong>An outside expert reviewer catches what internal teams miss</strong> — because they haven't stopped seeing the product through a first-time user's eyes. This is the consistent pattern across every audit delivered.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PROCESS -->
+<section class="sec" id="process">
+  <div class="wrap">
+    <p class="pl">05 — The Audit Process</p>
+    <h2 class="pt reveal">Five steps. Fixed timeline.<br><em>No ambiguity.</em></h2>
+    <p class="body-text reveal">Every audit follows the same structured process — so you know exactly what happens, when, and what you receive at the end. No process surprises, no scope creep, no report delays.</p>
+
+    <div class="process-list">
+      <div class="proc reveal">
+        <div class="proc-num"><span>01</span></div>
+        <div class="proc-body">
+          <div class="proc-title">Product Review</div>
+          <div class="proc-desc">Discovery call to understand your business goals, target users, and priority flows. I ask for access to your live product, staging environment, or Figma prototypes — plus any analytics data you have.</div>
+        </div>
+      </div>
+      <div class="proc reveal">
+        <div class="proc-num"><span>02</span></div>
+        <div class="proc-body">
+          <div class="proc-title">Usability Evaluation</div>
+          <div class="proc-desc">End-to-end expert review of your product against Nielsen's 10 heuristics and Baymard Institute research. Every screen logged, every friction point annotated, severity rated at Critical / High / Medium.</div>
+        </div>
+      </div>
+      <div class="proc reveal">
+        <div class="proc-num"><span>03</span></div>
+        <div class="proc-body">
+          <div class="proc-title">Analysis &amp; Prioritisation</div>
+          <div class="proc-desc">Findings ranked by user impact and conversion cost. Quick wins identified separately from structural issues. Priority matrix built for immediate team use — not just a list of problems, but an ordered action plan.</div>
+        </div>
+      </div>
+      <div class="proc reveal">
+        <div class="proc-num"><span>04</span></div>
+        <div class="proc-body">
+          <div class="proc-title">Audit Report Delivery</div>
+          <div class="proc-desc">Full written report with annotated screenshots, severity ratings, prioritised recommendations, and a conversion analysis. Delivered as a structured PDF and Notion/Figma doc formatted for sharing with your development team.</div>
+        </div>
+      </div>
+      <div class="proc reveal">
+        <div class="proc-num"><span>05</span></div>
+        <div class="proc-body">
+          <div class="proc-title">Walkthrough Session (60 min)</div>
+          <div class="proc-desc">Live review of every finding with your team — explaining the "why" behind each issue, answering implementation questions, and advising on approach. Recorded and shared with you for async reference.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process diagram -->
+    <div style="margin-top:20px" class="reveal">
+      <div class="img-ph ph-thin" style="border-radius:10px">
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          <div class="ph-label">Process Diagram</div>
+          <div class="ph-sub">Upload process flow or timeline visual here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHAT'S INCLUDED -->
+<section class="sec" id="includes">
+  <div class="wrap">
+    <p class="pl">06 — What's Included</p>
+    <h2 class="pt reveal">Every engagement.<br><em>Every tier.</em></h2>
+    <p class="body-text reveal">The following deliverables are included in all audit packages — the scope of screens and flows varies by tier, but the quality and format of output is consistent across every engagement.</p>
+
+    <div class="inc-grid">
+      <div class="inc-card reveal">
+        <span class="inc-icon">◫</span>
+        <div class="inc-title">UX Audit Report</div>
+      </div>
+      <div class="inc-card reveal">
+        <span class="inc-icon">◳</span>
+        <div class="inc-title">Annotated Screenshots</div>
+      </div>
+      <div class="inc-card reveal">
+        <span class="inc-icon">◈</span>
+        <div class="inc-title">Heuristic Evaluation</div>
+      </div>
+      <div class="inc-card reveal">
+        <span class="inc-icon">⚑</span>
+        <div class="inc-title">Severity Ratings</div>
+      </div>
+      <div class="inc-card reveal">
+        <span class="inc-icon">◉</span>
+        <div class="inc-title">Conversion Analysis</div>
+      </div>
+      <div class="inc-card reveal">
+        <span class="inc-icon">◐</span>
+        <div class="inc-title">Actionable Recommendations</div>
+      </div>
+      <div class="inc-card reveal">
+        <span class="inc-icon">◑</span>
+        <div class="inc-title">Priority Matrix</div>
+      </div>
+      <div class="inc-card reveal">
+        <span class="inc-icon">⬡</span>
+        <div class="inc-title">Review Session (60 min)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PRICING -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <p class="pl">07 — Pricing</p>
+    <h2 class="pt reveal">Transparent pricing.<br><em>Scope agreed before payment.</em></h2>
+    <p class="body-text reveal">All pricing is scope-based and agreed upfront. Not sure which tier is right? Book a free consultation and I'll recommend the right fit for your product before you commit to anything.</p>
+
+    <div class="price-grid">
+
+      <!-- Tier 1 -->
+      <div class="price-card reveal">
+        <div class="price-plan">Starter</div>
+        <div class="price-name">UX Audit Starter</div>
+        <div class="price-amount">$500</div>
+        <div class="price-timeline">5 business days · Single workflow</div>
+        <div class="price-divider"></div>
+        <div class="price-best">Best for</div>
+        <div class="price-best-val">Single workflow or feature review — onboarding, checkout, or a specific user flow.</div>
+        <div class="price-inc-lbl">Includes</div>
+        <ul class="price-items">
+          <li>1 user flow reviewed end-to-end</li>
+          <li>Annotated findings with screenshots</li>
+          <li>Severity ratings (Critical / High / Medium)</li>
+          <li>Prioritised recommendations</li>
+          <li>30-minute walkthrough call</li>
+        </ul>
+        <a class="price-btn outline" href="https://sana-ishaq-design.github.io/#contact">Get Started</a>
+      </div>
+
+      <!-- Tier 2 — Featured -->
+      <div class="price-card featured reveal">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-plan">Growth</div>
+        <div class="price-name">Product Experience Audit</div>
+        <div class="price-amount">$1,500</div>
+        <div class="price-timeline">10 business days · Up to 20 screens</div>
+        <div class="price-divider"></div>
+        <div class="price-best">Best for</div>
+        <div class="price-best-val">Growing SaaS products, startups preparing to scale, and products with multiple conversion flows to audit.</div>
+        <div class="price-inc-lbl">Includes</div>
+        <ul class="price-items">
+          <li>Up to 20 screens across key flows</li>
+          <li>Detailed audit report with annotations</li>
+          <li>Priority roadmap for next sprint</li>
+          <li>Conversion opportunities identified</li>
+          <li>60-minute walkthrough session (recorded)</li>
+        </ul>
+        <a class="price-btn primary" href="https://sana-ishaq-design.github.io/#contact">Book This Audit</a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="price-card reveal">
+        <div class="price-plan">Comprehensive</div>
+        <div class="price-name">Conversion &amp; UX Audit</div>
+        <div class="price-amount">$2,500</div>
+        <div class="price-timeline">14 business days · Full product</div>
+        <div class="price-divider"></div>
+        <div class="price-best">Best for</div>
+        <div class="price-best-val">E-commerce platforms, large-scale SaaS products, and enterprise tools with complex multi-flow experiences.</div>
+        <div class="price-inc-lbl">Includes</div>
+        <ul class="price-items">
+          <li>Complete product audit, all flows</li>
+          <li>Deep conversion analysis</li>
+          <li>Full recommendations with rationale</li>
+          <li>Strategic improvement roadmap</li>
+          <li>60-minute strategy session (recorded)</li>
+        </ul>
+        <a class="price-btn outline" href="https://sana-ishaq-design.github.io/#contact">Get Started</a>
+      </div>
+
+    </div>
+
+    <div class="cb reveal" style="margin-top:20px">
+      <div class="cb-lbl">Custom scope</div>
+      <p>Need something that doesn't fit a standard tier? <strong>Send a message with your product and goals</strong> and I'll put together a scope and quote that fits your situation. No commitment until scope is agreed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CREDENTIALS -->
+<section class="sec" id="credentials">
+  <div class="wrap">
+    <p class="pl">08 — Why Work With Me</p>
+    <h2 class="pt reveal">Why clients hire me<br>over an <em>agency.</em></h2>
+    <p class="body-text reveal">A UX agency adds account management overhead that inflates cost and slows communication. You work directly with a senior designer with 5+ years of SaaS and e-commerce audit experience — faster, more focused, and a fraction of the cost.</p>
+
+    <div class="stat-grid reveal">
+      <div class="stat-cell">
+        <div class="stat-num">5+</div>
+        <div class="stat-lbl">Years auditing SaaS and e-commerce products globally</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">30+</div>
+        <div class="stat-lbl">Products audited across SaaS, e-commerce, and mobile</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">100%</div>
+        <div class="stat-lbl">Of audits deliver a prioritised, actionable fix list — not a report to shelve</div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card wc1 reveal">
+        <span class="why-icon">◈</span>
+        <div class="why-title">5+ Years Experience</div>
+        <div class="why-desc">Senior UX designer with deep SaaS and e-commerce audit background across international markets.</div>
+      </div>
+      <div class="why-card wc2 reveal">
+        <span class="why-icon">◉</span>
+        <div class="why-title">Actionable Recommendations</div>
+        <div class="why-desc">Every finding comes with a specific, implementable recommendation — not generic UX principles.</div>
+      </div>
+      <div class="why-card wc3 reveal">
+        <span class="why-icon">◐</span>
+        <div class="why-title">UX + UI Expertise</div>
+        <div class="why-desc">Audit findings connect directly to design solutions — so you can move from audit to implementation without briefing a new designer.</div>
+      </div>
+      <div class="why-card wc4 reveal">
+        <span class="why-icon">◑</span>
+        <div class="why-title">Business-Focused Thinking</div>
+        <div class="why-desc">Findings prioritised by revenue impact, not just usability score. Designed to justify fixes to stakeholders, not just designers.</div>
+      </div>
+      <div class="why-card wc1 reveal">
+        <span class="why-icon">⬡</span>
+        <div class="why-title">Remote-Friendly</div>
+        <div class="why-desc">Fully async-compatible. Async brief, async delivery, recorded walkthrough. Works across time zones.</div>
+      </div>
+      <div class="why-card wc2 reveal">
+        <span class="why-icon">⊙</span>
+        <div class="why-title">SaaS &amp; Enterprise Experience</div>
+        <div class="why-desc">Deep understanding of B2B SaaS complexity — dashboards, multi-role workflows, and activation flows.</div>
+      </div>
+      <div class="why-card wc3 reveal">
+        <span class="why-icon">◎</span>
+        <div class="why-title">Problem-Solving Approach</div>
+        <div class="why-desc">Audit findings framed around the underlying user problem — not just the surface symptom.</div>
+      </div>
+      <div class="why-card wc4 reveal">
+        <span class="why-icon">◒</span>
+        <div class="why-title">200+ Projects Delivered</div>
+        <div class="why-desc">Pattern recognition across hundreds of products means faster, more accurate identification of common failure modes.</div>
+      </div>
+    </div>
+
+    <!-- Designer visual placeholder -->
+    <div style="margin-top:24px" class="reveal">
+      <div class="img-ph ph-wide" style="border-radius:12px">
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"/></svg></div>
+          <div class="ph-label">Designer Profile Visual</div>
+          <div class="ph-sub">Upload profile photo, work setup, or credentials visual here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <p class="pl">09 — FAQ</p>
+    <h2 class="pt reveal">Common questions.<br><em>Direct answers.</em></h2>
+
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          What exactly is a UX audit and why do I need one?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>A UX audit is a structured expert review of your product's interface — every screen, every flow — measured against established usability standards (Nielsen's 10 heuristics and Baymard Institute research). You need one when you know something is wrong with your conversion rate or user retention but don't know what. An audit gives you the "what" and "why" in days, not months of A/B testing.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          How much does a UX audit cost?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>A focused single-flow audit starts from $500 (5 business days). A full product audit runs $1,500–$2,500 (10–14 days). Scope is agreed before any payment. <a href="https://sana-ishaq-design.github.io/#contact">Book a free discovery call</a> and I'll recommend the right tier before you commit to anything.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          How long does a UX audit take?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>A focused single-flow audit takes 5 business days from access. A full product audit takes 10–14 business days. Timeline is confirmed before work begins — no delivery surprises.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Do I need to give you access to analytics or my product?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes — either a staging environment, production link, or Figma prototypes. Analytics data (GA, Hotjar, funnel drop-off rates) is helpful but not required — it helps anchor findings to real user behaviour. Any sensitive data is kept strictly confidential and an NDA is available on request.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Can you audit SaaS products and dashboards?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes. SaaS products are a primary audit focus — onboarding flows, feature activation, dashboards, settings flows, and B2B multi-role workflows. SaaS UX failures tend to be structural and invisible to internal teams — exactly what an expert review surfaces.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Can you audit mobile apps?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes. iOS and Android apps, web products, and hybrid mobile/web experiences are all within scope. The heuristics applied are calibrated to the platform. See the <a href="https://sana-ishaq-design.github.io/case-studies/subscribe-a-car-case-study.html">Subscribe Me mobile app case study</a> as an example of mobile UX work.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FINAL CTA -->
+<div class="wrap">
+  <div class="cta-block">
+    <h2>Not sure if you need<br>a UX audit?</h2>
+    <p>Book a free 30-minute consultation and I'll look at your product, ask the right questions, and tell you exactly what an audit would uncover — before you commit to anything.</p>
+    <div class="cta-btns">
+      <a class="btn-primary" href="https://sana-ishaq-design.github.io/#contact">Book Free Consultation →</a>
+      <a class="btn-secondary" href="https://sana-ishaq-design.github.io/#contact">Contact Me</a>
+    </div>
+    <p class="cta-note">No commitment. No sales pressure. Just a direct conversation about your product.</p>
+
+    <div class="cta-ph">
+      <div class="img-ph ph-wide" style="border-radius:10px">
+        <div class="ph-inner">
+          <div class="ph-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div>
+          <div class="ph-label">CTA Report Mockup or Illustration</div>
+          <div class="ph-sub">Upload audit report preview or professional visual here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <a class="footer-logo" href="https://sana-ishaq-design.github.io/">Sana<span>Ishaq</span></a>
+      <div class="footer-links">
+        <a class="footer-link" href="https://sana-ishaq-design.github.io/">Home</a>
+        <a class="footer-link" href="https://sana-ishaq-design.github.io/#services">Services</a>
+        <a class="footer-link" href="https://sana-ishaq-design.github.io/case-studies/case_studies_archive.html">Case Studies</a>
+        <a class="footer-link" href="https://sana-ishaq-design.github.io/#about">About</a>
+        <a class="footer-link" href="https://sana-ishaq-design.github.io/#contact">Contact</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 Sana Ishaq · Senior UI/UX Designer · UX Audit Service · Remote · Worldwide</p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+/* ── PROGRESS + NAV ───────────────────── */
+const progressBar = document.getElementById('progress');
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  progressBar.style.width =
+    (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── FAQ ACCORDION ────────────────────── */
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const isOpen = btn.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-q').forEach(b => {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded','false');
+      b.nextElementSibling.classList.remove('open');
+    });
+    // Open clicked if it was closed
+    if (!isOpen) {
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+      btn.nextElementSibling.classList.add('open');
+    }
+  });
+});
+
+/* ── GSAP ANIMATIONS ──────────────────── */
+const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (noMotion) {
+  document.querySelectorAll(
+    '.reveal,.hero-eyebrow,.hero h1,.hero-sub,.hero-ctas,.hero-trust,.hero-img'
+  ).forEach(el => { el.style.opacity='1'; el.style.transform='none'; });
+  return;
+}
+
+if (typeof gsap === 'undefined') return;
+gsap.registerPlugin(ScrollTrigger);
+
+/* Hero sequence */
+gsap.timeline({ delay: 0.1 })
+  .to('.hero-eyebrow', { opacity:1, y:0, duration:.65, ease:'power2.out' })
+  .to('.hero h1',      { opacity:1, y:0, duration:.8,  ease:'power2.out' }, '-=0.4')
+  .to('.hero-sub',     { opacity:1, y:0, duration:.7,  ease:'power2.out' }, '-=0.45')
+  .to('.hero-ctas',    { opacity:1, y:0, duration:.6,  ease:'power2.out' }, '-=0.4')
+  .to('.hero-trust',   { opacity:1, y:0, duration:.55, ease:'power2.out' }, '-=0.35')
+  .to('.hero-img',     { opacity:1, scale:1, duration:.7, ease:'power2.out' }, '-=0.3');
+
+/* Generic scroll reveals */
+document.querySelectorAll('.reveal').forEach(el => {
+  gsap.to(el, {
+    scrollTrigger: { trigger:el, start:'top 87%', once:true },
+    opacity:1, y:0, duration:.65, ease:'power2.out'
+  });
+});
+
+/* Card staggers */
+[
+  ['.for-card',    '.for-grid',      .08],
+  ['.oc',          '.outcome-grid',  .07],
+  ['.deliv-card',  '.deliv-grid',    .1 ],
+  ['.proc',        '.process-list',  .07],
+  ['.inc-card',    '.inc-grid',      .06],
+  ['.price-card',  '.price-grid',    .1 ],
+  ['.why-card',    '.why-grid',      .07],
+].forEach(([sel, trig, delay]) => {
+  const container = document.querySelector(trig);
+  if (!container) return;
+  gsap.fromTo(container.querySelectorAll(sel),
+    { opacity:0, y:18 },
+    { scrollTrigger:{ trigger:container, start:'top 85%', once:true },
+      opacity:1, y:0, duration:.5, ease:'power2.out', stagger:delay }
+  );
+});
+
+/* Callouts */
+document.querySelectorAll('.cb').forEach(el => {
+  gsap.fromTo(el, { opacity:0, x:-12 }, {
+    scrollTrigger:{ trigger:el, start:'top 88%', once:true },
+    opacity:1, x:0, duration:.55, ease:'power2.out'
+  });
+});
+
+/* Trust items */
+gsap.fromTo('.trust-item', { opacity:0, y:10 }, {
+  scrollTrigger:{ trigger:'.hero-trust', start:'top 90%', once:true },
+  opacity:1, y:0, duration:.4, ease:'power2.out', stagger:.06, delay:.1
+});
+
+/* Stat cells */
+gsap.fromTo('.stat-cell', { opacity:0, y:16 }, {
+  scrollTrigger:{ trigger:'.stat-grid', start:'top 85%', once:true },
+  opacity:1, y:0, duration:.5, ease:'power2.out', stagger:.1
+});
+
+/* CTA block */
+gsap.fromTo('.cta-block', { opacity:0, y:20 }, {
+  scrollTrigger:{ trigger:'.cta-block', start:'top 85%', once:true },
+  opacity:1, y:0, duration:.7, ease:'power2.out'
+});
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
