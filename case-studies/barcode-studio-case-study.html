@@ -1,34 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Barcode Studio — Chrome Extension UX Design | Sana Ishaq</title>
-<meta name="description" content="UX case study for Barcode Studio — a privacy-first Chrome extension for generating and exporting QR codes and barcodes inside the browser. End-to-end product design by Sana Ishaq."/>
-<link rel="canonical" href="https://sana-ishaq-design.github.io/case-studies/barcode-studio-case-study.html"/>
-<meta property="og:type" content="article"/>
-<meta property="og:title" content="Barcode Studio — Chrome Extension UX Design Case Study"/>
-<meta property="og:description" content="Designing a privacy-first Chrome extension for barcode generation. No context switching. No server uploads. End-to-end UX by Sana Ishaq."/>
-<meta property="og:url" content="https://sana-ishaq-design.github.io/case-studies/barcode-studio-case-study.html"/>
-<meta property="og:image" content="https://raw.githubusercontent.com/sana-ishaq-design/barcode-studio-ux/1429db339865197a1b4e9072bdcd4d864e16d8d6/Extension/Create%20shot%20Dark%20%26%20Light.png"/>
-<meta property="og:site_name" content="Sana Ishaq — Product Designer"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Barcode Studio — Chrome Extension UX Case Study"/>
-<meta name="twitter:description" content="Privacy-first barcode generator. No tab switching. No server uploads. UX design case study by Sana Ishaq."/>
-<meta name="twitter:image" content="https://raw.githubusercontent.com/sana-ishaq-design/barcode-studio-ux/1429db339865197a1b4e9072bdcd4d864e16d8d6/Extension/Create%20shot%20Dark%20%26%20Light.png"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Google Analytics tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-FD8QZNCLK0"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-FD8QZNCLK0');
+    </script>
+
+<meta name="robots" content="index, follow" />
+
+<title>Chrome Extension UX Design Case Study — Privacy-First Product | Sana Ishaq</title>
+<meta
+  name="description"
+  content="End-to-end Chrome extension UX design case study — competitive audit, 6 documented UX decisions, dual-theme design system, and live Chrome Web Store launch. Privacy-first. 100% local processing. Full breakdown."
+/>
+
+<link
+  rel="canonical"
+  href="https://sana-ishaq-design.github.io/case-studies/barcode-studio-case-study.html"
+/>
+
+<meta property="og:type" content="article" />
+<meta
+  property="og:url"
+  content="https://sana-ishaq-design.github.io/case-studies/barcode-studio-case-study.html"
+/>
+<meta property="og:site_name" content="Sana Ishaq Portfolio" />
+<meta
+  property="og:title"
+  content="Chrome Extension UX Design Case Study — Privacy-First Product | Sana Ishaq"
+/>
+<meta
+  property="og:description"
+  content="Chrome extension UX case study — 6 documented design decisions, dual-theme token system, and a live product on the Chrome Web Store. How constraints shaped every design choice."
+/>
+<meta
+  property="og:image"
+  content="https://sana-ishaq-design.github.io/assets/img/barcode-studio-og.png"
+/>
+<meta
+  property="og:image:alt"
+  content="Barcode Studio Chrome extension UX design case study — Sana Ishaq"
+/>
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta
+  name="twitter:title"
+  content="Chrome Extension UX Design Case Study — Privacy-First Product | Sana Ishaq"
+/>
+<meta
+  name="twitter:description"
+  content="6 UX decisions documented. Dual-theme design system. Live on Chrome Web Store. End-to-end UX design case study for a privacy-first barcode generator. Full breakdown."
+/>
+<meta
+  name="twitter:image"
+  content="https://sana-ishaq-design.github.io/assets/img/barcode-studio-og.png"
+/>
+
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"CreativeWork",
-  "name":"Barcode Studio — Chrome Extension UX Design Case Study",
-  "description":"End-to-end UX design of Barcode Studio, a privacy-first Chrome extension for generating and exporting QR codes and barcodes inside the browser.",
-  "author":{"@type":"Person","name":"Sana Ishaq","url":"https://sana-ishaq-design.github.io/"},
-  "url":"https://sana-ishaq-design.github.io/case-studies/barcode-studio-case-study.html",
-  "keywords":"Chrome Extension Design, Browser Extension UX, UX Case Study, Product Design, Privacy-Focused Design, Workflow Optimization, Interface Design, Design System, Chrome Web Store, User Flow Design",
-  "dateCreated":"2024",
-  "applicationCategory":"Design"
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chrome Extension UX Design Case Study — Privacy-First Product",
+  "description": "End-to-end Chrome extension UX design case study — competitive audit, 6 documented UX decisions, dual-theme design system, and live Chrome Web Store launch.",
+  "image": "https://sana-ishaq-design.github.io/assets/img/barcode-studio-og.png",
+  "url": "https://sana-ishaq-design.github.io/case-studies/barcode-studio-case-study.html",
+  "datePublished": "2026-06-16",
+  "dateModified": "2026-07-04",
+  "author": {
+    "@type": "Person",
+    "name": "Sana Ishaq",
+    "url": "https://sana-ishaq-design.github.io/",
+    "jobTitle": "Senior UI/UX Designer",
+    "sameAs": [
+      "https://www.linkedin.com/in/sanaishaq/",
+      "https://www.upwork.com/freelancers/~0105c1b39c32a3d461"
+    ]
+  },
+  "about": {
+    "@type": "Service",
+    "name": "Chrome Extension UX Design",
+    "serviceType": "UX Design and Product Design",
+    "provider": {
+      "@type": "Person",
+      "name": "Sana Ishaq"
+    }
+  },
+  "keywords": [
+    "Chrome extension UX design case study",
+    "browser extension UX design",
+    "privacy-first product design",
+    "productivity tool UX",
+    "Chrome Web Store design",
+    "extension UI design"
+  ],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://sana-ishaq-design.github.io/case-studies/barcode-studio-case-study.html"
+  }
 }
 </script>
+
+
+<style>
+      
+      /* ── END CTA SECTION ── */
+.end-cta {
+  margin: 5rem 0 4rem;
+  padding: 4.5rem 2.5rem;
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.end-cta::before {
+  content: '';
+  position: absolute; bottom: -110px; left: 50%; transform: translateX(-50%);
+  width: 420px; height: 210px;
+  background: radial-gradient(ellipse, rgba(73,242,194,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.end-cta::after {
+  content: '';
+  position: absolute; top: -50px; right: -50px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(73,242,194,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.end-cta-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 1rem;
+}
+.end-cta-title {
+  font-family: var(--font-disp);
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -0.035em; color: var(--text-1);
+  margin-bottom: 0.85rem;
+}
+.end-cta-desc {
+  font-size: 14px; color: var(--text-2); font-weight: 300;
+  margin-bottom: 2rem;
+  max-width: 400px; margin-left: auto; margin-right: auto;
+  line-height: 1.65;
+}
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--teal); color: #060f1a;
+  font-weight: 600; font-size: 13.5px;
+  padding: 11px 24px; border-radius: var(--radius);
+  border: none; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: opacity 0.2s, transform 0.2s;
+  font-family: var(--font-body);
+}
+.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; color: var(--text-1);
+  font-weight: 500; font-size: 13.5px;
+  padding: 10px 22px; border-radius: var(--radius);
+  border: 0.5px solid var(--border-md); cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: border-color 0.2s, background 0.2s;
+  font-family: var(--font-body);
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+
+/* ── SCROLL REVEAL ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.fade-up { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+.d1 { animation-delay: 0.08s; }
+.d2 { animation-delay: 0.18s; }
+.d3 { animation-delay: 0.28s; }
+.d4 { animation-delay: 0.4s; }
+
+    </style>
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -369,10 +532,10 @@ footer{padding:60px 0 48px;border-top:1px solid var(--line);text-align:center}
   <div class="wrap">
     <div class="hero-eyebrow">
       <span class="hero-eyebrow-line"></span>
-      Chrome Extension Design · Privacy · Productivity · Workflow Efficiency
+      Chrome Extension UX Case Study · Privacy-First Design · Productivity
     </div>
     <h1>A barcode generator that works<br><em>entirely inside the browser.</em></h1>
-    <p class="hero-sub">Barcode Studio is a privacy-first Chrome extension for generating and exporting QR codes and linear barcodes — without switching tabs, creating accounts, or sending data to third-party servers. Designed for speed, clarity, and complete local processing.</p>
+    <p class="hero-sub">Every existing barcode tool has the same three problems: it requires a tab switch, sends data to a remote server, and adds more steps than the task deserves. Barcode Studio is a privacy-first Chrome extension built to solve all three — generating and exporting QR codes and linear barcodes entirely inside the browser, in under 30 seconds, with zero data ever leaving the device. Designed for speed, clarity, and complete local processing.</p>
     <div class="hero-meta">
       <div class="mc"><div class="ml">Role</div><div class="mv">End-to-End UX<small>Design + Handoff</small></div></div>
       <div class="mc"><div class="ml">Platform</div><div class="mv">Chrome Extension<small>V1.2.2 · Live</small></div></div>
@@ -964,6 +1127,22 @@ footer{padding:60px 0 48px;border-top:1px solid var(--line);text-align:center}
     </div>
   </div>
 </section>
+
+<!-- ── END CTA ── -->
+  <div class="end-cta">
+    <div class="end-cta-label">Let's Work Together</div>
+    <h2 class="end-cta-title">Building a browser extension,
+ <br>productivity tool, or privacy-focused product? </h2>
+    <p class="end-cta-desc">End-to-end UX design — from competitive audit 
+and design decisions through to developer handoff.</p>
+    <div class="cta-btns">
+      <a href="https://calendly.com/sanaishaq/sana-uiux" target="_blank" class="btn-primary">
+        Book a Free Strategy Call
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <!-- <a href="https://sana-ishaq-design.github.io/#services" class="btn-secondary">View Services</a> -->
+    </div>
+  </div>
 
 <!-- FOOTER -->
 <footer>
