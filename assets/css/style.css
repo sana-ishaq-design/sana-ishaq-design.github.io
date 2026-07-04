@@ -2741,7 +2741,7 @@ nav.scrolled {
 footer {
     padding: 64px 0 48px;
     text-align: center;
-    border-top: 1px solid var(--line)
+    /* border-top: 1px solid var(--line) */
 }
 
 .footer-name {
