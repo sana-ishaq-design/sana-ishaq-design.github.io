@@ -3,29 +3,12 @@
 # Last updated: June 2026
 # ============================================
  
-# --- Standard search engines (allow everything) ---
+# Standard Crawlers
 User-agent: *
 Allow: /
-Disallow: /assets/
- 
-# --- AI training crawlers (block all) ---
-User-agent: GPTBot
-Disallow: /
- 
-User-agent: Google-Extended
-Disallow: /
- 
-User-agent: CCBot
-Disallow: /
- 
-User-agent: anthropic-ai
-Disallow: /
- 
-User-agent: Bytespider
-Disallow: /
- 
-User-agent: cohere-ai
-Disallow: /
+
+# Optional: block unnecessary directories
+Disallow: /private/
  
 # --- Sitemap ---
 Sitemap: https://sana-ishaq-design.github.io/sitemap.xml
