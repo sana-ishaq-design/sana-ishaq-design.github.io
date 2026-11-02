@@ -1,0 +1,170 @@
+{
+  "services": [
+    {
+      "title": "UX Audit & Conversion Optimization",
+      "audience": "For SaaS products, ecommerce brands & product teams",
+      "description": "Identify the usability issues, conversion blockers, and friction points limiting your product's performance. Every audit delivers prioritized recommendations focused on business impact not just design feedback."
+    },
+    {
+      "title": "Website & Landing Page Design",
+      "audience": "For SaaS products & ecommerce brands",
+      "description": "Conversion-focused websites and landing pages designed to communicate value clearly, build trust, and guide visitors toward meaningful actions."
+    },
+    {
+      "title": "SaaS Product & Dashboard Design",
+      "audience": "For B2B & B2C SaaS products",
+      "description": "Designing intuitive product experiences from onboarding and core workflows to complex dashboards—that improve usability, feature adoption, and long-term scalability."
+    },
+    {
+      "title": "Mobile Product Design",
+      "audience": "For startups & growing businesses",
+      "description": "End-to-end mobile product design, from user flows and wireframes to developer-ready interfaces, creating experiences that are intuitive, scalable, and built for real users."
+    }
+  ],
+  "servicesIntroduction": "From UX strategy and product design to conversion optimization and trusted implementation, every engagement is focused on solving business problems and delivering measurable outcomes.",
+  "processIntroduction": "A proven process designed to reduce risk, align teams, and deliver better products.",
+  "process": [
+    {
+      "title": "Discovery",
+      "description": "Understand the business, product, users, and project goals. We define success before any design work begins."
+    },
+    {
+      "title": "Research & Strategy",
+      "description": "Combine user insights, analytics, competitive analysis, and UX research to identify opportunities and establish a clear product direction."
+    },
+    {
+      "title": "Experience Design",
+      "description": "Prototype, usability testing, stakeholder feedback, and iterative improvements to validate key decisions before development."
+    },
+    {
+      "title": "Implementation",
+      "description": "Collaborate closely with developers, provide detailed design specifications, review implementation, and ensure the final product reflects the intended experience."
+    },
+    {
+      "title": "Growth",
+      "description": "Review performance after launch, identify improvement opportunities, and continue optimizing the product based on user behavior and business goals."
+    }
+  ],
+  "about": {
+    "title": "Designing for outcomes,not just interfaces",
+    "paragraphs": [
+      "I help SaaS products and ecommerce brands solve product challenges through UX strategy, product design, and conversion-focused thinking. Every project starts by understanding the business problem before designing the solution.",
+      "With 5+ years of experience, I've partnered with startups, growing businesses, and enterprise teams across SaaS, ecommerce, mobile, and complex digital products. My work focuses on creating experiences that reduce friction, improve usability, and deliver measurable business outcomes.",
+      "Whether improving a checkout experience, simplifying enterprise workflows, or uncovering conversion blockers through a UX audit, the goal remains the same: create intuitive experiences that help users succeed and businesses grow.",
+      "Based in Pakistan. Working remotely with clients across the UAE, UK, US, and beyond."
+    ],
+    "specialisms": [
+      "SaaS product design — B2B & B2C",
+      "E-commerce UX & Conversion Optimization",
+      "UX Audits & Heuristic Evaluations",
+      "Dashboard & data visualisation design",
+      "Design Systems"
+    ]
+  },
+  "contact": {
+    "title": "Let's fix what's costing you conversions.",
+    "description": "Whether you're launching a new product, improving an existing experience, or trying to increase conversions, every engagement starts with understanding your goals. Book a free 30-minute discovery call, and let's explore how strategic design can help move your product forward.",
+    "note": "No sales pitch. No obligation. Just a focused conversation about your product and its goals."
+  },
+  "metadata": {
+    "title": "Senior Product Designer for SaaS & Ecommerce | UX Strategy & CRO | Sana Ishaq",
+    "description": "Senior Product Designer helping SaaS products and ecommerce brands improve user experience, increase conversions, and build better digital products through UX strategy, product design, UX audits, and conversion optimization.",
+    "person": {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sana Ishaq",
+      "url": "https://sana-ishaq-design.github.io/",
+      "image": "https://sana-ishaq-design.github.io/assets/img/profile-photo.jpg",
+      "jobTitle": "Senior UI/UX & Product Designer",
+      "description": "Senior Product Designer specialising in SaaS products and ecommerce experiences, helping businesses improve user experience, increase conversions, and build scalable digital products through UX strategy, product design, and CRO.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "PK"
+      },
+      "knowsAbout": [
+        "Product Design",
+        "UX Strategy",
+        "User Experience Design",
+        "User Interface Design",
+        "SaaS Product Design",
+        "Ecommerce UX",
+        "Conversion Rate Optimization",
+        "UX Audit",
+        "Dashboard Design",
+        "Mobile App Design",
+        "Design Systems",
+        "Information Architecture",
+        "Wireframing",
+        "Prototyping",
+        "Usability Testing"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "name": "Product Design & UX Consulting",
+        "url": "https://sana-ishaq-design.github.io/#services"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/sanaishaq/",
+        "https://github.com/sana-ishaq-design"
+      ]
+    },
+    "meta": [
+      {
+        "name": "viewport",
+        "content": "width=device-width, initial-scale=1.0"
+      },
+      {
+        "name": "author",
+        "content": "Sana Ishaq"
+      },
+      {
+        "name": "description",
+        "content": "Senior Product Designer helping SaaS products and ecommerce brands improve user experience, increase conversions, and build better digital products through UX strategy, product design, UX audits, and conversion optimization."
+      },
+      {
+        "property": "og:type",
+        "content": "website"
+      },
+      {
+        "property": "og:url",
+        "content": "https://sana-ishaq-design.github.io/"
+      },
+      {
+        "property": "og:site_name",
+        "content": "Sana Ishaq"
+      },
+      {
+        "property": "og:title",
+        "content": "Senior Product Designer for SaaS & Ecommerce | Sana Ishaq"
+      },
+      {
+        "property": "og:description",
+        "content": "Helping SaaS products and ecommerce brands create better digital experiences through UX strategy, product design, UX audits, and conversion optimization."
+      },
+      {
+        "property": "og:image",
+        "content": "https://sana-ishaq-design.github.io/assets/img/social-preview.png"
+      },
+      {
+        "property": "og:image:alt",
+        "content": "Sana Ishaq — Senior Product Designer specialising in SaaS and Ecommerce"
+      },
+      {
+        "name": "twitter:card",
+        "content": "summary_large_image"
+      },
+      {
+        "name": "twitter:title",
+        "content": "Senior Product Designer for SaaS & Ecommerce | Sana Ishaq"
+      },
+      {
+        "name": "twitter:description",
+        "content": "Helping SaaS products and ecommerce brands improve UX, increase conversions, and build better digital products."
+      },
+      {
+        "name": "twitter:image",
+        "content": "https://sana-ishaq-design.github.io/assets/img/social-preview.png"
+      }
+    ]
+  }
+}

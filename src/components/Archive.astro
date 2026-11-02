@@ -1,0 +1,82 @@
+---
+import {projectNotes} from '../content/projects';
+import ProjectNote from './ProjectNote.astro';
+import Arrow from './Arrow.astro';
+---
+<section id="archive" class="archive-section page-frame" aria-labelledby="archive-title" tabindex="-1">
+  <div class="archive-heading"><div><h2 id="archive-title">The archive.</h2><p>Short project notes.</p></div><a class="text-link" href="/case-studies/case_studies_archive.html">Legacy Archive <Arrow /></a></div>
+  <ol class="archive-list">
+    {projectNotes.map((project,index)=><li class="archive-row">
+      <a id={`archive-link-${project.slug}`} href={`/projects/${project.slug}.html`} data-project-note={project.slug}>
+        <span class="archive-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span>
+        <span class="archive-row-copy"><span class="archive-name">{project.name}</span><span class="archive-category">{project.category}</span></span>
+        <span class="archive-arrow"><Arrow /></span>
+        <span class="archive-preview" aria-hidden="true"><img src={project.image==='subscribe-browse'?'/review-images/subscribe-browse-360.webp':`/review-images/${project.image}-800.webp`} width={project.width} height={project.height} alt="" loading="lazy" /></span>
+      </a>
+    </li>)}
+  </ol>
+</section>
+{projectNotes.map(project=><dialog class="archive-dialog" id={`archive-dialog-${project.slug}`} aria-labelledby={`note-title-${project.slug}`}>
+  <button class="note-close" type="button" data-close-note aria-label={`Close ${project.name} project note`}>Close <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg></button>
+  <ProjectNote project={project} modal />
+</dialog>)}
+<script>
+  const wide=matchMedia('(min-width:1001px)');
+  let active:HTMLDialogElement|null=null;
+  let origin:HTMLElement|null=null;
+  let restoreScroll=0;
+  let originalOverflow='';
+  const close=()=>{
+    if(!active)return;
+    active.close();active=null;
+    document.documentElement.style.overflow=originalOverflow;
+    window.scrollTo({top:restoreScroll,behavior:'instant'});
+    origin?.focus({preventScroll:true});
+  };
+  const show=(slug:string,state:{origin?:string;scrollY?:number})=>{
+    const dialog=document.querySelector<HTMLDialogElement>(`#archive-dialog-${slug}`);
+    if(!dialog||typeof dialog.showModal!=='function')return false;
+    if(active!==dialog){
+      if(active)active.close();else originalOverflow=document.documentElement.style.overflow;
+      active=dialog;origin=document.getElementById(state.origin??'');restoreScroll=state.scrollY??window.scrollY;
+      document.documentElement.style.overflow='hidden';dialog.showModal();dialog.scrollTop=0;
+      dialog.querySelector<HTMLButtonElement>('[data-close-note]')?.focus();
+    }
+    return true;
+  };
+  const links=[...document.querySelectorAll<HTMLAnchorElement>('[data-project-note]')];
+  const updateHints=()=>links.forEach(link=>{
+    if(wide.matches&&typeof HTMLDialogElement!=='undefined'&&typeof HTMLDialogElement.prototype.showModal==='function')link.setAttribute('aria-haspopup','dialog');
+    else link.removeAttribute('aria-haspopup');
+  });
+  updateHints();wide.addEventListener('change',updateHints);
+  links.forEach(link=>link.addEventListener('click',event=>{
+    if(!wide.matches||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    const dialog=document.querySelector<HTMLDialogElement>(`#archive-dialog-${link.dataset.projectNote}`);
+    if(!dialog||typeof dialog.showModal!=='function')return;
+    event.preventDefault();
+    const state={archiveNote:link.dataset.projectNote,origin:link.id,scrollY:window.scrollY};
+    // Keep the original URL and scroll entry intact; Back and Forward use the native history stack.
+    history.replaceState({...history.state,archiveBase:true},'',location.href);
+    history.pushState(state,'',link.href);show(state.archiveNote!,state);
+  }));
+  const requestClose=()=>{if(history.state?.archiveNote)history.back();else close()};
+  document.querySelectorAll<HTMLDialogElement>('.archive-dialog').forEach(dialog=>{
+    dialog.querySelector('[data-close-note]')?.addEventListener('click',requestClose);
+    dialog.addEventListener('cancel',event=>{event.preventDefault();requestClose()});
+    dialog.addEventListener('keydown',event=>{
+      if(event.key!=='Tab')return;
+      const controls=[...dialog.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),[tabindex="0"]')].filter(el=>el.getClientRects().length);
+      const first=controls[0],last=controls.at(-1);
+      if(event.shiftKey&&(document.activeElement===first||document.activeElement===dialog)){
+        event.preventDefault();last?.focus();
+      }else if(!event.shiftKey&&document.activeElement===last){
+        event.preventDefault();first?.focus();
+      }
+    });
+    dialog.addEventListener('click',event=>{const r=dialog.getBoundingClientRect();if(event.target===dialog&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))requestClose()});
+  });
+  window.addEventListener('popstate',event=>{if(event.state?.archiveNote)show(event.state.archiveNote,event.state);else close()});
+  // Once a dialog is open, resizing preserves the note and its close/history controls.
+  // Fresh compact-width clicks and direct URLs always use the standalone static page.
+</script>

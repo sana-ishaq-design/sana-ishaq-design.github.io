@@ -1,0 +1,63 @@
+---
+import SiteHead from '../components/SiteHead.astro';
+import FullNavigation from '../components/FullNavigation.astro';
+import ProjectOutcomes from '../components/ProjectOutcomes';
+import {haiermallOutcomes,haiermallAttribution} from '../content/haiermall';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import HomepageSections from '../components/HomepageSections.astro';
+import Archive from '../components/Archive.astro';
+import Footer from '../components/Footer.astro';
+import Arrow from '../components/Arrow.astro';
+---
+<!doctype html><html lang="en" data-preference="system"><head><SiteHead /></head>
+<body class="complete-homepage"><FullNavigation /><main id="main" tabindex="-1">
+<section class="hero page-frame" aria-labelledby="hero-title">
+        <div class="hero-heading">
+          <p class="hero-role">Product Designer</p>
+          <h1 id="hero-title"><span class="hero-audience">Helping SaaS Products &amp; Ecommerce Brands</span> <span class="hero-promise">Build <em><span>Better Digital</span> <span>Experiences</span></em></span></h1>
+        </div>
+        <div class="hero-bottom">
+          <p>Partnering with founders and growing teams to transform complex products into intuitive experiences that drive measurable business growth.</p>
+          <div class="hero-actions">
+            <a class="text-link primary-link" href="#selected-work">View Case Studies <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6" /></svg></a>
+            <a class="text-link" href="https://calendly.com/sanaishaq/sana-uiux">Book a Discovery Call <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" /></svg></a>
+          </div>
+        </div>
+      </section>
+<section id="selected-work" class="selected-work" aria-labelledby="work-title" tabindex="-1">
+<div class="work-intro page-frame"><h2 id="work-title">Selected work</h2><a class="text-link" href="/case-studies.html">All Case Studies <Arrow /></a></div>
+<article class="project-chapter" aria-labelledby="haier-title">
+          <div class="project-heading page-frame">
+            <div class="project-identity"><span>01 / HaierMall</span><span>E-commerce · Web</span></div>
+            <h3 id="haier-title">Redesigning the <em>Purchase Journey</em></h3>
+          </div>
+          <figure class="project-figure">
+            <div class="project-artwork">
+              <div class="artwork-home">
+                <picture>
+                  <source media="(max-width: 650px)" srcset="/review-images/haier-home-480.webp 480w, /review-images/haier-home-800.webp 800w, /review-images/haier-home-1280.webp 1280w" sizes="128.21vw" />
+                  <img src="/review-images/haier-home-1280.webp" srcset="/review-images/haier-home-480.webp 480w, /review-images/haier-home-800.webp 800w, /review-images/haier-home-1280.webp 1280w, /review-images/haier-home-1440.webp 1440w" sizes="77.78vw" width="1440" height="1929" alt="HaierMall homepage design showing product discovery, appliance promotions and product information." loading="lazy" decoding="async" />
+                </picture>
+              </div>
+            </div>
+            <figcaption class="visually-hidden">HaierMall homepage, cropped from the original project screen.</figcaption>
+          </figure>
+          <ProjectOutcomes outcomes={haiermallOutcomes} attribution={haiermallAttribution} />
+          <section class="project-insight page-frame" aria-labelledby="insight-title">
+            <div class="insight-heading">
+              <h4 id="insight-title">The design question</h4>
+              <p class="proposal-label">Proposed copy · pending verification</p>
+            </div>
+            <p class="design-question">How could customers move from browsing appliances to a confident purchase?</p>
+          </section>
+          <div class="project-summary page-frame">
+            <div class="project-context">
+              <p class="project-introduction">HaierMall is an appliance e-commerce platform.</p>
+            </div>
+            <div class="project-actions"><a class="text-link case-study-link" href="/case-studies/haiermall-case-study.html">Read Case Study <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" /></svg></a></div>
+          </div>
+        </article>
+<FeaturedProjects />
+</section>
+<HomepageSections><Archive /></HomepageSections>
+</main><Footer /></body></html>

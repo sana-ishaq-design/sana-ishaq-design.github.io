@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "title": "Design System: Sana Ishaq — editorial portfolio slice",
-  "scope": "phase-1.html",
-  "status": "implemented-approved-hybrid-composition-verified-published-outcomes",
+  "title": "Design System: Sana Ishaq — editorial portfolio",
+  "scope": "Local /homepage.html and four /projects/*.html notes; preserved /phase-1.html",
+  "status": "complete-local-homepage-extending-locked-approved-system",
   "mode": "experience",
   "authority": "User-approved Modern Editorial Minimalism, decision register and original homepage reference",
   "extensions": {
-    "source": "src/styles/editorial.css; primitive tokens are documented in DESIGN.md frontmatter",
+    "source": "src/styles/editorial.css (locked system); src/styles/homepage.css (scoped extensions); normative primitives in DESIGN.md frontmatter",
     "themeMapping": {
       "light": {
         "muted": "light-muted",
@@ -33,9 +33,14 @@
     },
     "shadows": [
       {
-        "purpose": "Separate the mobile Menu panel at max-width 650px.",
+        "purpose": "Menu separation at 650px in Phase 1 and 1000px in complete candidate.",
         "name": "mobile-menu",
         "value": "0 20px 24px -24px #10271f50"
+      },
+      {
+        "name": "archive-preview",
+        "value": "0 18px 40px #10271f33",
+        "purpose": "Floating Archive hover/focus previews only."
       }
     ],
     "motion": [
@@ -43,6 +48,11 @@
         "purpose": "Hover moves link icons 2px right and 2px up; reduced motion removes transition and travel.",
         "name": "link-icon-feedback",
         "value": "transform 180ms ease-out"
+      },
+      {
+        "name": "archive-preview-reveal",
+        "value": "opacity 150ms ease-out",
+        "purpose": "Desktop hover/focus previews; removed with reduced motion."
       }
     ],
     "breakpoints": [
@@ -65,6 +75,11 @@
         "value": "650px",
         "condition": "max-width",
         "name": "mobile"
+      },
+      {
+        "name": "complete-homepage-compact",
+        "value": "1000px",
+        "condition": "max-width"
       }
     ],
     "themePreference": {
@@ -125,6 +140,46 @@
       "narrowDesktop": "At 1100px and below: 64px column gap and 16px paragraph",
       "tablet": "651–850px: natural stack, 44px support top margin, 700px headline cap, 17px/1.75 paragraph, 28px CTA top margin",
       "mobile": "650px and below: natural stack, 44px support top margin, 40ch paragraph at 16px/1.7, 36px CTA top margin and 8px action gap"
+    },
+    "archiveBackdrop": {
+      "value": "#10271fcc",
+      "purpose": "Native project-note dialog backdrop, not a palette primitive."
+    },
+    "homepageLayout": {
+      "scope": ".complete-homepage",
+      "sectionSpace": "Normative spacing.section-space in DESIGN.md",
+      "compact": "1000px: Menu, stories/Process stack with 20% context/list indents; Contact stacks with 25% context indent; Archive previews hide.",
+      "mobile": "650px: 96px editorial block spacing; Services/About stack; indents reset; Archive rows min 112px; two-column footer.",
+      "pacing": "Archive bottom 112px; Services top/bottom and About top 96px; About top 48px mobile.",
+      "about": "Text-led sourced biography, location, LinkedIn and published resume; no portrait.",
+      "contact": "Existing ink/canvas inverted; real call, role-discussion and email links; currentColor focus."
+    },
+    "featuredArtwork": {
+      "subscribeMe": "Three original interfaces at -4/2/5 degrees; mobile browsing image only, unrotated, in 520px field.",
+      "utworx": "Original overview at 88% width; full-width focused original crop on mobile.",
+      "authority": "Original artwork derivatives; no generated imagery; HaierMall geometry unchanged."
+    },
+    "archive": {
+      "projects": [
+        "barcode-studio",
+        "subscribe-me",
+        "utworx",
+        "haiermall"
+      ],
+      "source": "Archive.astro; ProjectNote.astro; src/content/projects.ts; projects/[slug].astro",
+      "preview": "Above 1000px: aria-hidden noninteractive original-artwork 4:3 preview, min(27vw,340px), right 64px/top 70%, alternating -6/5 degrees, 10px canvas surround, hover and focus-visible.",
+      "routing": "Real static anchors; unmodified desktop activation with native dialog support pushes note URL and opens modal. Compact/modified clicks, direct URLs, reload, no-JS and unsupported dialogs use static pages.",
+      "focus": "aria-labelledby; Close initially focused; native modality and explicit Tab wrapping; closing restores origin focus, scroll and overflow.",
+      "history": "Close/Escape/backdrop request Back; popstate closes/restores or reopens on Forward; open dialog survives resize.",
+      "fallback": "aria-haspopup only when desktop enhancement available; reduced motion removes reveal transition; forced colors adds CanvasText border and removes preview shadow.",
+      "dialog": "min(1080px,calc(100% - 64px)); max-height calc(100dvh - 64px); padding 48px; internal scrolling/overscroll containment; mobile inset 32px/padding 24px.",
+      "sharedNote": "Original image, context, role, design focus, contribution and full case-study link; modal h2/static h1."
+    },
+    "fullNavigation": {
+      "source": "FullNavigation.astro; Footer.astro",
+      "semantics": "Skip link; named Primary, Footer and Professional profiles navigation; six genuine section anchors.",
+      "compact": "1000px Menu synchronization; Escape restores summary focus; navigation closes Menu and focuses destination.",
+      "fallback": "Native details starts open and stays in flow without JavaScript; approved separate theme button."
     }
   },
   "assets": [
@@ -135,7 +190,7 @@
     }
   ],
   "verification": {
-    "scope": "Local Phase 1 review only; no production compliance claim.",
+    "scope": "Historical locked Phase 1 Hero/theme evidence only; not complete-homepage verification.",
     "viewportWidths": [
       1440,
       768,
@@ -153,5 +208,6 @@
     "behavior": "Keyboard and touch theme switching, system changes, refresh persistence, storage denial, no-JavaScript fallback, global Escape focus return, 200% text resizing, 320px reflow and forced-colors focus",
     "tests": 16,
     "preservation": "HaierMall article/data bytes and all project/metrics CSS rules match 05968af; headline, description and CTA copy unchanged"
-  }
+  },
+  "generatedAt": "2026-11-02T11:23:47.153Z"
 }

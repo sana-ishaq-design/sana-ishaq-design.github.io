@@ -1,0 +1,10 @@
+---
+import {projectNotes} from '../../content/projects';
+import SiteHead from '../../components/SiteHead.astro';
+import FullNavigation from '../../components/FullNavigation.astro';
+import ProjectNote from '../../components/ProjectNote.astro';
+export function getStaticPaths(){return projectNotes.map(project=>({params:{slug:project.slug},props:{project}}))}
+const {project}=Astro.props;
+---
+<!doctype html><html lang="en" data-preference="system"><head><SiteHead title={`${project.name} — Project Note | Sana Ishaq`} description={project.context} canonical={`https://sana-ishaq-design.github.io/projects/${project.slug}.html`} note /></head>
+<body class="complete-homepage note-page"><FullNavigation note /><main id="main" class="standalone-note page-frame" tabindex="-1"><ProjectNote project={project} /></main><footer class="note-footer page-frame"><a class="text-link" href="/homepage.html#archive">Back to the Archive</a><a class="text-link" href="mailto:sanaishaq47@gmail.com">Get in touch</a></footer></body></html>

@@ -1,31 +1,24 @@
 # Product
 
-## Platform
-web
+## Platform and architecture
+Astro static generation + React + TypeScript on GitHub Pages. Complete local candidate at /homepage.html; /phase-1.html and all eight production HTML files remain preserved. Four new static project-note routes live under /projects/*.html. No deployment, push or production overwrite is authorized.
 
-## Stack
-Approved: Astro static generation + React + TypeScript on GitHub Pages.
+## Purpose and users
+Sana Ishaq's product-design portfolio for recruiters, design/product leaders, SaaS and e-commerce founders, and international clients. Communicate product judgment, authentic work, contribution and clear contact pathways through spacious Modern Editorial Minimalism.
 
-## Users
-Recruiters, product/design leaders, international freelance clients evaluating Sana Ishaq's product-design work.
+## Current authority
+The owner approved the Hero and icon-only theme toggle and locked them at c42e5e9. The milestone attachment 55ac0280-85db-46fd-af1a-8f802136c6c2 authorizes the complete homepage in one local implementation pass, without per-section creative approval. It supersedes former Phase-1-only scope limits, not the locked Hero.
 
-## Product Purpose
-Make expertise, design judgment, authentic work and contact paths clear through a calm editorial portfolio.
+## Brand and composition
+Manrope + selective Instrument Serif, First Light + Juniper Dusk, contextual Mineral Blue. Full-width featured artwork beneath project headings; generous connected pacing; no generic project-card grid, blobs or excessive animation. Archive retains numbered rows, authentic floating tilted hover/focus previews, native route-aware desktop notes and static mobile/direct pages.
 
-## Capabilities and Constraints
-Phase 1 only: representative Hero + HaierMall chapter, both themes and responsive layouts together. Preserve existing content, eight HTML routes, original assets, metadata, and both resumes. Do not publish or push. The owner-verified published HaierMall Results section is authoritative; alternative conflicting annotations are documented separately. Multiple full-screen React Explore Experiences remain future scope.
+## Content truth
+The original snapshot bb92411ebb56f45afdbe80dc48c8c698133cfe91 and existing published case studies provide content and assets. Owner confirms HaierMall Results: +31% Online sales / 3 months post-launch; −20% Bounce rate / Homepage → category; +40% Faster product discovery / Usability testing; +15% Session duration / Average session. Exact definitions and team reporting attribution remain unchanged. Missing analytics artifacts do not invalidate these verified results.
 
-## Brand Commitments
-Modern Editorial Minimalism, whitespace and pacing, Manrope + Instrument Serif, Mineral Blue, First Light and Juniper Dusk. Original supplied homepage exploration governs atmosphere. Future Archive keeps floating tilted previews.
+Subscribe Me's published role is UI Designer, Delivery Phase; product downloads are not framed as sole personal causation. UTWorX scope evidence is not disguised as measured business performance. Other source differences remain documented without rewriting published cases.
 
-## Evidence on Hand
-Audited source bb92411ebb56f45afdbe80dc48c8c698133cfe91. Authentic HaierMall imagery and published source text. Latest user authorization approves Phase 1 only.
+## Complete homepage
+Hero, Selected Work (HaierMall, Subscribe Me, UTWorX), Process, Archive, Services, About, Contact and professional footer. Source copy is preserved or excerpted from active published content. No fabricated testimonials, clients, research or new outcome measures. No unfinished Explore Experience links; multiple functional experiences remain future scope.
 
-## Open Decisions
-Conflicting source annotations, proposed design-question wording, current resume, Archive inventory and service corrections. Published HaierMall Results are verified by the owner; no invented or recalculated outcomes.
-
-## Current approved visual reference
-Owner-approved Open Spread + Decisions in View static boards (2026-11-02) govern the Phase 1 composition. Existing SEO headline stays exact. One original HaierMall screen occupies a full-width field beneath the project headline. The design question remains proposed copy. The four owner-verified published Results render with exact labels/contexts and team-reporting attribution; the layout supports 1–4 approved results. No placeholder or invented values render. No expansion or publishing authorized.
-
-## Targeted Hero/theme refinement
-Latest attached brief cd9015f2-be22-4908-a9e5-2e34542c2dbb supersedes only the Hero support placement and theme-control UI. A controlled-width dominant H1 sits above a desktop paragraph-left/actions-right row; tablet/mobile stack naturally. One icon-only moon/sun button sits beside Menu, with system initialization and persisted explicit choices. The entire HaierMall article, verified results, reporting attribution, imagery geometry and metrics responsive styling remain unchanged. No push, deployment or Phase 2.
+## Honest gaps and boundaries
+Four real projects have enough source material for Archive notes: Barcode Studio, Subscribe Me, UTWorX and HaierMall. Reference-only names need actual content/assets before publication. No portrait exists in the source; about.png is an illustration, so About is text-led and the candidate omits the broken optional Person.image field. Both resume PDFs remain; the existing published download target is retained pending current-version confirmation. HaierMall's concise design question stays proposed copy. Candidate routes are noindex during review; production metadata, pricing, legacy Archive, original assets and case-study URLs are unchanged.

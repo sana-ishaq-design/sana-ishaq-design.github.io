@@ -38,3 +38,16 @@ for (const [name,source,region,widths] of [
   for(const width of widths) await sharp(source).extract(region).resize({width}).webp({quality:90}).toFile(`.generated-public/review-images/${name}-${width}.webp`);
 }
 console.log(`Preserved ${manifest.length} baseline files; generated responsive HaierMall derivatives.`);
+
+// Complete-homepage and project-note artwork, from unchanged repository originals.
+for(const [name,source,widths] of [
+ ['subscribe-browse','assets/img/Browse Car - subscribe me.png',[360]],
+ ['utworx-overview','assets/img/Overview - UTWorX.png',[800,1280,1920]],
+ ['barcode','assets/img/Overview - Barcode.png',[480,800,1200]],
+ ['sana-about','assets/img/about.png',[480,800]],
+]) for(const width of widths) await sharp(source).resize({width,withoutEnlargement:true}).webp({quality:88}).toFile('.generated-public/review-images/'+name+'-'+width+'.webp');
+for(const [name,source,region,widths] of [
+ ['subscribe-detail','assets/img/Vehicle Details - subscribe me.png',{left:0,top:0,width:1440,height:2300},[480,800]],
+ ['subscribe-dashboard','assets/img/Dashboard - subscribe me.png',{left:0,top:0,width:1440,height:2700},[480,800]],
+ ['utworx-focus','assets/img/Overview - UTWorX.png',{left:900,top:260,width:1700,height:1600},[480,800]],
+]) for(const width of widths) await sharp(source).extract(region).resize({width}).webp({quality:90}).toFile('.generated-public/review-images/'+name+'-'+width+'.webp');
