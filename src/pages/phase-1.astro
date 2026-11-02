@@ -4,7 +4,7 @@ import '@fontsource/instrument-serif/latin-400.css';
 import '@fontsource/instrument-serif/latin-400-italic.css';
 import ThemePreference from '../components/ThemePreference';
 import ProjectOutcomes from '../components/ProjectOutcomes';
-import {haiermallOutcomes} from '../content/haiermall';
+import {haiermallOutcomes,haiermallAttribution} from '../content/haiermall';
 import '../styles/editorial.css';
 ---
 <!doctype html>
@@ -94,6 +94,7 @@ import '../styles/editorial.css';
             </div>
             <figcaption class="visually-hidden">HaierMall homepage, cropped from the original project screen.</figcaption>
           </figure>
+          <ProjectOutcomes outcomes={haiermallOutcomes} attribution={haiermallAttribution} />
           <section class="project-insight page-frame" aria-labelledby="insight-title">
             <div class="insight-heading">
               <h4 id="insight-title">The design question</h4>
@@ -101,7 +102,6 @@ import '../styles/editorial.css';
             </div>
             <p class="design-question">How could customers move from browsing appliances to a confident purchase?</p>
           </section>
-          <ProjectOutcomes outcomes={haiermallOutcomes} />
           <div class="project-summary page-frame">
             <div class="project-context">
               <p class="project-introduction">HaierMall is an appliance e-commerce platform.</p>

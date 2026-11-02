@@ -1,45 +1,43 @@
-# HaierMall evidence reconciliation — pending owner confirmation
+# HaierMall published outcomes and source differences
 
-Source snapshot: bb92411ebb56f45afdbe80dc48c8c698133cfe91. All locations below refer to unchanged production source, not the new review page. Repeated statements across pages are not independent corroboration. No analytics exports, experiment results, study recordings, audit report or source Figma file are present in this repository. Therefore no business outcome is independently supported by the available materials.
+## Authority and correction
+The owner confirms that the performance statistics in the existing approved HaierMall case study are verified. Its published Results section is the authoritative content baseline for Phase 1. The previous inference that missing standalone analytics files made these results unverified was incorrect and is withdrawn. Repository artifact availability is not a verdict on the owner's verified results.
 
-| Existing metric / claim | Repository source and location | What it purports to measure | Conflict / ambiguity | Independent support available here? | Owner confirmation needed |
-|---|---|---|---|---|---|
-| +31% online sales | index.html:222,296,311,352; case-studies.html:27,783,928,932; case-studies/haiermall-case-study.html:25,28,77,304,925; ux-audit-service-page.html:560 | Post-launch online sales growth; service page calls it completed sales | +25% appears in product-detail showcase; sales may mean revenue, orders or conversion rate | No. Case study at 913–916 says figures came from product/development teams and raw dashboards were unavailable | Exact KPI, baseline/comparison dates, denominator, relative % vs percentage points, attribution and permissible evidence/credit |
-| +25% sales increase | case-studies/haiermall-case-study.html:814 | Product-detail design described as primary driver of sales increase | +31% overall; no explanation of different scope or measurement period | No | Is this a separate measure/timeframe or obsolete copy? Which figure is correct? |
-| −20% bounce rate | index.html:227,299,352; case-studies.html:785,936; case-studies/haiermall-case-study.html:28,66,937; ux-audit-service-page.html:564 | Homepage → category in case-study results; product pages on service page | −32% at CS:712; CS:689 says '20% bounce rate' (absolute rate rather than reduction); incompatible page scopes | No | Final rate vs relative reduction vs percentage points; analytics definition/version; correct page set and dates; explain 20/32 |
-| −32% bounce rate | case-studies/haiermall-case-study.html:712 | Homepage → category pages | Same scope appears with −20%; no segment or dates | No | Separate segment, alternate analysis or correction? |
-| 20% bounce rate (unqualified) | case-studies/haiermall-case-study.html:689 | Screenshot annotation describing homepage to category | Could be final rate, unlike −20% reduction | No | Is 20% the measured final rate? What was the baseline? |
-| +40% faster product discovery | index.html:302,352; case-studies.html:787,940; case-studies/haiermall-case-study.html:559,751,773,949 | Discoverability/task speed, described as usability testing; homepage says three months post-launch | 'Faster by 40%' is undefined; no protocol, sample, task, comparator or timing; testing vs post-launch context mixed | No | Study/task, participants, time-to-find baseline/new values, calculation, study date, researcher credit |
-| +15% average session duration | case-studies/haiermall-case-study.html:961–968 | Average session duration | No named baseline, page set or timeframe; a longer session is not automatically better UX | No | Analytics metric definition, period, comparator and why it represents a beneficial outcome |
-| Three months post-launch | index.html:353; case-studies/haiermall-case-study.html:25,304,911,932,1029 | Outcome reporting window | Could describe only sales, while homepage groups discovery results into same window | No | Launch date, measurement dates, applicability per KPI |
-| 12 weeks | case-studies.html:951 | Design delivery duration | Not the same as three-month outcome window; case-study hero only says Phase 1 delivered/live | No | Actual project dates and whether 12 weeks is design, development or combined delivery |
-| 50+ components | case-studies/haiermall-case-study.html:244,632 | Design-system deliverables count | Counting method and source library absent | No count verification | Source Figma/library, component vs variant count, exact personal contribution |
-| 11 critical UX failures | ux-audit-service-page.html:557,568–569 | Audit findings count; claims none were on team's radar | Detailed case study presents five structural failures (CS:321 onward), which may be grouped themes rather than eleven findings | No audit artifact | Original audit, grouping explanation, severity definition; confirm whether team-awareness statement is supportable |
-| 40 years of brand equity | case-studies/haiermall-case-study.html:225,286 | Haier brand history, not a project result | Time-sensitive brand fact; irrelevant to personal impact | No primary brand source in repo | Correct historical date/source; omit from proposed short introduction |
-| 95% rely on reviews | case-studies/haiermall-case-study.html:576,830 | External Baymard research, not HaierMall findings | No exact study/date/quote linked; cannot be presented as project research | No | Original citation, applicability and exact meaning |
-| 17% checkout abandonment | case-studies/haiermall-case-study.html:601,875,898,996 | External abandonment statistic attributed to visual distrust | Generic research is treated as project impact; causal category/denominator require checking | No | Original source/date, exact wording, population and separation from project outcomes |
-| 44px targets / full WCAG 2.1 AA compliance | case-studies/haiermall-case-study.html:612–621 | Product UI accessibility, not this portfolio | Tap size and contrast alone do not establish full conformance | No audit/evaluation report | Scope, version, methods, audit results and caveats; avoid blanket conformance claim |
-| Lead / sole designer, no functionality changes, design as only lever | case-studies/haiermall-case-study.html:232,267–298,913–919,1056 | Ownership, project constraint and causal attribution | Repository copy is a claim, not independent evidence; no-feature-change does not prove design caused all sales movement | No | Personal role, collaborators, period, interventions, reporting source; distinguish constraint from causal proof |
-| Ease, clarity, trustworthiness feedback | case-studies/haiermall-case-study.html:306–310,974–981 | Qualitative post-launch user feedback | No respondents, collection method, dates or raw excerpts | No | Source/method, consent to quote, verbatim vs summary and team attribution |
+The current live page was read on 2026-11-02; its Results counter targets, labels and definitions match the preserved source snapshot bb92411ebb56f45afdbe80dc48c8c698133cfe91. Source URL: https://sana-ishaq-design.github.io/case-studies/haiermall-case-study.html#results-grid . The animated initial ±0% text is not the result: data-target, data-prefix and data-suffix specify the published number. The redesigned route emits the actual values as static HTML without a count-up dependency.
 
-## Design artifacts — separate from measured outcomes
+## Authoritative Results baseline restored
+All local line numbers refer to unchanged case-studies/haiermall-case-study.html.
 
-The repository demonstrably contains `assets/img/Haier homepage.png`, `assets/img/haier-product detail.png`, `assets/img/haier-checkout.png` and `assets/img/haier-product listing default.png`. Their corresponding case-study images are at CS:672 (homepage), CS:794 (detail), CS:857 (checkout) and CS:731 (listing). These prove the presence of design artifacts, not who created them, shipped status, accessibility compliance or measured performance. These deliverables must not substitute for outcome statistics. The approved hybrid implementation removes the former artifact strip entirely. Verified outcomes are currently empty, so no outcome area or placeholder values render.
+| Exact figure | Exact label | Exact published definition/context | Precise source |
+|---|---|---|---|
+| +31% | Online sales | 3 months post-launch | Results, lines 921–933 (data-target 31 / prefix +) |
+| −20% | Bounce rate | Homepage → category | Results, lines 934–945 (data-target 20 / prefix −) |
+| +40% | Faster product discovery | Usability testing | Results, lines 946–957 (data-target 40 / prefix +) |
+| +15% | Session duration | Average session | Results, lines 958–970 (data-target 15 / prefix +) |
 
-## Earlier introduction proposal — superseded for this review
+The per-result contexts remain separate: the sales reporting period is not silently assigned to the usability-testing result. No relative-percent/percentage-point conversion, denominator, sample size or additional interpretation has been invented. Session duration stays labeled as published, rather than being converted into a conversion-rate claim.
 
-> HaierMall is an appliance e-commerce platform. The redesign focuses on product discovery and purchase confidence, with homepage, product-detail and checkout interfaces.
+## Published attribution and reporting context
+Lines 913–916: “Performance metrics were provided by the product management and development teams following deployment. Due to internal reporting and analytics access restrictions, raw analytics dashboards were not directly accessible during this case study.”
 
-This earlier copy proposal is retained here as history, not shown in the current hybrid preview. The current preview uses only the factual platform identification. It avoids statistics, brand-history claims, sole ownership and causal performance assertions. It describes intent and existing artifacts. Once contribution is confirmed, a first-person clause can be proposed separately; it is not inserted speculatively.
+The first sentence is retained visibly with the restored outcomes, followed by a link to the full results/reporting context. The dashboard-access limitation describes reporting provenance; it does not invalidate the verified published results.
 
-Original full paragraph and exact headline are preserved in `content/baseline.json`, as well as the unchanged production pages. No metadata or production claim has been corrected without approval.
+Project credit is separately published at lines 1055–1064: Designed by Sana Ishaq · Lead UI/UX Designer · Developed by Hassaan Ali (https://github.com/zfhassaan). The hero identifies Product Designer; no new sole-causation claim has been added to the outcomes.
 
-## Decisions still needed
+## Differences documented separately — original files unchanged
+Some differences are within the current case-study page itself, not merely older separate files. They are editorial inconsistencies to reconcile separately. They do not displace the primary Results summary or block restoration.
 
-1. Verify or revise the proposed design question: “How could customers move from browsing appliances to a confident purchase?”
-2. Confirm each metric and its definition, dates and source, or approve permanent omission of that particular claim.
-3. Confirm personal contribution, team credits and permitted source attribution.
-4. Approve the wording, order and emphasis of genuine outcomes once verified. The layout adapts to one, two or three results; deliverables remain separate from measured impact.
+| Published alternate wording/value | Exact source | Difference from Results baseline | Phase 1 treatment |
+|---|---|---|---|
+| “Primary driver of +25% sales increase” | case-studies/haiermall-case-study.html:814, product-detail overlay | +25% versus +31% in the Results summary | Use +31% Online sales / 3 months post-launch; leave original overlay unchanged pending a separate content correction |
+| “−32% bounce rate, homepage to category pages.” | same file:712, homepage showcase impact | −32% versus −20% with the same apparent page scope | Use −20% Bounce rate / Homepage → category; do not alter the original source |
+| “20% bounce rate from homepage to category” | same file:689, homepage overlay | An absolute rate is worded differently from the −20% change | Keep the Results wording and sign exactly; do not reinterpret this annotation |
+| “Product pages” scope for −20% | ux-audit-service-page.html:564 | Service-page scope differs from Results “Homepage → category” | Retain case-study Results context in the slice; do not rewrite service claims/content |
+| Discovery +40% grouped with three-month post-launch results | index.html:302,352–353 | Homepage grouping differs from explicit “Usability testing” context in Results; case-study showcase:751,773 also says testing | Keep Usability testing attached to discovery; only sales retains the explicit 3 months post-launch subtitle |
 
-## Excluded non-published material
-The commented impact block at index.html:599–608 repeats 31%/20%; it is not a separate published source. A commented generic 12% churn example is not attributed to HaierMall and is excluded.
+Other matching summaries include case-study metadata:28,66,78; index.html:296–302; case-studies.html:783–787,928–940. These are supporting source locations, not grounds to rename or recalculate metrics.
+
+## Design and remaining decisions
+The four verified measures appear directly beneath the full-width artwork in an open editorial layout. Deliverables such as Homepage, Product detail and Checkout are not substituted for impact. The layout remains adaptable to one, two, three or four approved results. The concise design question remains proposed copy pending verification; that copy status is separate from the owner's verified performance statistics.
+
+Review the restored presentation. Any correction to conflicting annotations or the service page remains a separate approval decision. No push, deployment, original content rewrite or broader homepage expansion is authorized.

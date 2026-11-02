@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Design System: Sana Ishaq — editorial portfolio slice",
   "scope": "phase-1.html",
-  "status": "implemented-approved-hybrid-composition-outcomes-pending-verification",
+  "status": "implemented-approved-hybrid-composition-verified-published-outcomes",
   "mode": "experience",
   "authority": "User-approved Modern Editorial Minimalism, decision register and original homepage reference",
   "extensions": {
@@ -78,7 +78,7 @@
       ]
     },
     "mobileMenu": "Native details; Escape restores summary focus; no-JS open panel stays in flow",
-    "evidence": "Empty outcomes dataset; null output at zero. Only owner-approved results with source and context render. Proposed question visibly pending verification.",
+    "evidence": "Owner confirms the published case-study Results section is the authoritative verified baseline. Four exact results retain labels and context; shared team attribution and one full reporting-context link follow the group. Missing analytics artifacts do not disprove published results. Proposed question remains visibly pending verification.",
     "artworkComposition": {
       "artworkShadow": false,
       "source": "src/styles/editorial.css",
@@ -99,6 +99,21 @@
         "aspectRatio": "390/420"
       },
       "imageCount": 1
+    },
+    "outcomeLayout": {
+      "placement": "Immediately after the original image field, before the proposed question",
+      "supportedCounts": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "desktop": "Actual-count columns; four equal columns with 48px gap; one column caps at 740px",
+      "narrowDesktop": "At 1100px and below, four results use two equal columns with 40px row / 48px column gap; other multi-result layouts use 28px gap",
+      "mobile": "At 650px and below, all counts use aligned rows with two equal value/text columns, 24px column gap and 36px row gap",
+      "numberTypography": "Normative outcome-value and outcome-value-mobile roles in DESIGN.md frontmatter",
+      "attribution": "One shared attribution with a single Published results and reporting context link; 32px top margin desktop, 36px mobile",
+      "cards": false
     }
   },
   "assets": [
@@ -116,11 +131,13 @@
       390,
       320
     ],
-    "evidence": "review/hybrid/verification.json",
+    "evidence": "review/restored-outcomes/verification.json",
     "cases": {
-      "outcomeLayouts": 24,
+      "outcomeLayouts": 32,
       "intermediate": 16,
       "required": 8
-    }
+    },
+    "fixtureMatrix": "1–4 outcomes × 4 viewport widths × 2 themes",
+    "axeViolations": 0
   }
 }

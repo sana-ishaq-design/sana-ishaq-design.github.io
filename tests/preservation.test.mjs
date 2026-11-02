@@ -14,12 +14,23 @@ test('all original assets remain byte-identical',()=>{
     assert.equal(createHash('sha256').update(readFileSync(`dist/${file.path}`)).digest('hex'), file.sha256, file.path);
   }
 });
-test('review slice emits readable HTML without disputed metrics',()=>{
+test('review slice statically restores the exact owner-verified published Results baseline',()=>{
   assert.ok(existsSync('dist/phase-1.html'), 'Missing slice');
   const html = readFileSync('dist/phase-1.html','utf8');
   assert.match(html, /Helping SaaS Products/);
   assert.match(html, /HaierMall/);
-  assert.doesNotMatch(html, /31%|32%|25%|20%|40%/);
+  const source=readFileSync('case-studies/haiermall-case-study.html','utf8');
+  const results=source.slice(source.indexOf('<div class="results-grid"'),source.indexOf('<div class="result-note'));
+  const cells=[...results.matchAll(/data-target="(\d+)"\s+data-prefix="([+−])"\s+data-suffix="(%)"[\s\S]*?<div class="result-label">([^<]+)<\/div>\s*<div class="result-sub">([^<]+)<\/div>/g)];
+  assert.equal(cells.length,4,'Read all four published results');
+  for(const [,number,prefix,suffix,label,context] of cells){
+    assert.ok(html.includes(`<dt>${prefix}${number}${suffix}</dt>`),`Published value ${prefix}${number}${suffix}`);
+    assert.ok(html.includes(label),`Published label ${label}`);
+    assert.ok(html.includes(context),`Published definition ${context}`);
+  }
+  assert.match(html,/Performance metrics were provided by the product management and development teams following deployment\./);
+  assert.doesNotMatch(html,/32%|25%|Value pending|PRIVATE OUTCOME/);
+  assert.ok(html.indexOf('class="project-outcomes')<html.indexOf('class="project-insight'),'Outcomes directly follow imagery, ahead of the quieter proposed question');
   assert.match(html, /noindex/);
   assert.match(html, /<main/);
 });
@@ -27,7 +38,7 @@ test('approved hybrid separates proposed thinking from verified-only outcomes',(
   const html=readFileSync('dist/phase-1.html','utf8');
   assert.match(html,/How could customers move from browsing appliances to a confident purchase\?/);
   assert.match(html,/Proposed copy/);
-  assert.doesNotMatch(html,/Value pending|PRIVATE OUTCOME|Sales measure|Bounce-rate measure|Discovery-time measure|class="evidence-list"|class="project-outcomes"/);
+  assert.doesNotMatch(html,/Value pending|PRIVATE OUTCOME|Sales measure|Bounce-rate measure|Discovery-time measure|class="evidence-list"/);
   assert.match(html,/<details[^>]*id="header-menu"/);
   assert.match(html,/<summary/);
 });

@@ -10,7 +10,7 @@ test('outcomes omit absent/unapproved records and adapt to approved result count
   const fixture={id:'test-result',value:'Test value',label:'Test definition',context:'Synthetic fixture; never portfolio content',source:'/case-studies/haiermall-case-study.html',approval:'pending'};
   assert.equal(render([fixture]),'');
   assert.equal(render([{...fixture,approval:'owner-approved',source:''}]),'');
-  for(const count of [1,2,3]){
+  for(const count of [1,2,3,4]){
     const html=render(Array.from({length:count},(_,i)=>({...fixture,id:`test-${i}`,approval:'owner-approved'})));
     assert.match(html,new RegExp(`data-count="${count}"`));
     assert.equal((html.match(/<dt>/g)||[]).length,count);
