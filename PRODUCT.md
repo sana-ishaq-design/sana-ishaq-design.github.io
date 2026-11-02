@@ -23,3 +23,6 @@ Audited source bb92411ebb56f45afdbe80dc48c8c698133cfe91. Authentic HaierMall ima
 
 ## Open Decisions
 Project metrics and attribution, current resume, Archive inventory, service content corrections. No invented outcomes.
+
+## Current approved visual reference
+Owner-approved Open Spread + Decisions in View static boards (2026-11-02) govern the Phase 1 composition. Existing SEO headline stays exact. One original HaierMall screen occupies a full-width field beneath the project headline. The design question remains proposed copy. No outcome placeholders or unverified performance claims render: verified data is empty, with conditional 1/2/3 result layouts ready for approved content. No expansion or publishing authorized.

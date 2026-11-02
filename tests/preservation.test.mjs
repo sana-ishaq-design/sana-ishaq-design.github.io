@@ -23,13 +23,11 @@ test('review slice emits readable HTML without disputed metrics',()=>{
   assert.match(html, /noindex/);
   assert.match(html, /<main/);
 });
-test('refinement restores artifact evidence and discloses pending outcome figures',()=>{
+test('approved hybrid separates proposed thinking from verified-only outcomes',()=>{
   const html=readFileSync('dist/phase-1.html','utf8');
-  assert.match(html,/id="project-evidence"/,'Prominent evidence section is present');
-  assert.match(html,/Outcome figures await confirmation/);
-  assert.match(html,/Checkout/);
-  assert.match(html,/Proposed introduction/);
-  assert.match(html,/for approval/);
+  assert.match(html,/How could customers move from browsing appliances to a confident purchase\?/);
+  assert.match(html,/Proposed copy/);
+  assert.doesNotMatch(html,/Value pending|PRIVATE OUTCOME|Sales measure|Bounce-rate measure|Discovery-time measure|class="evidence-list"|class="project-outcomes"/);
   assert.match(html,/<details[^>]*id="header-menu"/);
   assert.match(html,/<summary/);
 });

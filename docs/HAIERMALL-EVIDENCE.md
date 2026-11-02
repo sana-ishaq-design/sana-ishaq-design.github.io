@@ -22,24 +22,24 @@ Source snapshot: bb92411ebb56f45afdbe80dc48c8c698133cfe91. All locations below r
 | Lead / sole designer, no functionality changes, design as only lever | case-studies/haiermall-case-study.html:232,267–298,913–919,1056 | Ownership, project constraint and causal attribution | Repository copy is a claim, not independent evidence; no-feature-change does not prove design caused all sales movement | No | Personal role, collaborators, period, interventions, reporting source; distinguish constraint from causal proof |
 | Ease, clarity, trustworthiness feedback | case-studies/haiermall-case-study.html:306–310,974–981 | Qualitative post-launch user feedback | No respondents, collection method, dates or raw excerpts | No | Source/method, consent to quote, verbatim vs summary and team attribution |
 
-## Facts suitable for the review evidence area
+## Design artifacts — separate from measured outcomes
 
-The repository demonstrably contains `assets/img/Haier homepage.png`, `assets/img/haier-product detail.png`, `assets/img/haier-checkout.png` and `assets/img/haier-product listing default.png`. Their corresponding case-study images are at CS:672 (homepage), CS:794 (detail), CS:857 (checkout) and CS:731 (listing). These prove the presence of design artifacts, not who created them, shipped status, accessibility compliance or measured performance. The review uses **Homepage / Product detail / Checkout** as non-numeric evidence labels, with an explicit pending-outcome note.
+The repository demonstrably contains `assets/img/Haier homepage.png`, `assets/img/haier-product detail.png`, `assets/img/haier-checkout.png` and `assets/img/haier-product listing default.png`. Their corresponding case-study images are at CS:672 (homepage), CS:794 (detail), CS:857 (checkout) and CS:731 (listing). These prove the presence of design artifacts, not who created them, shipped status, accessibility compliance or measured performance. These deliverables must not substitute for outcome statistics. The approved hybrid implementation removes the former artifact strip entirely. Verified outcomes are currently empty, so no outcome area or placeholder values render.
 
-## Proposed introduction — approval required
+## Earlier introduction proposal — superseded for this review
 
 > HaierMall is an appliance e-commerce platform. The redesign focuses on product discovery and purchase confidence, with homepage, product-detail and checkout interfaces.
 
-This is a copy proposal shown as such on the noindex preview. It avoids statistics, brand-history claims, sole ownership and causal performance assertions. It describes intent and existing artifacts. Once contribution is confirmed, a first-person clause can be proposed separately; it is not inserted speculatively.
+This earlier copy proposal is retained here as history, not shown in the current hybrid preview. The current preview uses only the factual platform identification. It avoids statistics, brand-history claims, sole ownership and causal performance assertions. It describes intent and existing artifacts. Once contribution is confirmed, a first-person clause can be proposed separately; it is not inserted speculatively.
 
 Original full paragraph and exact headline are preserved in `content/baseline.json`, as well as the unchanged production pages. No metadata or production claim has been corrected without approval.
 
 ## Decisions still needed
 
-1. Approve or revise the shortened introduction.
+1. Verify or revise the proposed design question: “How could customers move from browsing appliances to a confident purchase?”
 2. Confirm each metric and its definition, dates and source, or approve permanent omission of that particular claim.
 3. Confirm personal contribution, team credits and permitted source attribution.
-4. Confirm whether the eventual homepage evidence area should show verified business results, deliverable evidence, or a combination. Current artifact-based composition is a safe preview, not final metric approval.
+4. Approve the wording, order and emphasis of genuine outcomes once verified. The layout adapts to one, two or three results; deliverables remain separate from measured impact.
 
 ## Excluded non-published material
 The commented impact block at index.html:599–608 repeats 31%/20%; it is not a separate published source. A commented generic 12% churn example is not attributed to HaierMall and is excluded.

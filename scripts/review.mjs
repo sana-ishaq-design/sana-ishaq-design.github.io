@@ -1,10 +1,13 @@
 import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import assert from 'node:assert/strict';
-import { mkdir,writeFile } from 'node:fs/promises';
+import { mkdir,writeFile,readFile } from 'node:fs/promises';
+import {createElement} from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+import ProjectOutcomes from '../src/components/ProjectOutcomes.ts';
 
 const base = 'http://127.0.0.1:4321';
-const output = 'review/refinement';
+const output = 'review/hybrid';
 const browser = await chromium.launch({executablePath:'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',headless:true});
 const results = [];
 function contrast(foreground,background) {
@@ -53,6 +56,20 @@ try {
       }
       await closeMenu(page,width);
       await page.evaluate(()=>document.fonts.ready);
+      // Exercise actual disclosure keys, tab order and anchor focus.
+      if(width<=650) {
+        const summary=page.locator('#header-menu summary');
+        await summary.focus(); await page.keyboard.press('Space');
+        assert.notEqual(await page.locator('#header-menu').getAttribute('open'),null,'Space opens menu');
+        await page.keyboard.press('Tab');
+        assert.equal(await page.evaluate(()=>document.activeElement?.textContent.trim()),'Work','Tab enters navigation');
+        await page.keyboard.press('Enter');
+        assert.equal(await page.locator('#header-menu').getAttribute('open'),null,'Work closes mobile menu');
+        assert.equal(await page.evaluate(()=>document.activeElement?.id),'selected-work','Work moves focus to destination');
+        await summary.focus(); await page.keyboard.press('Enter');
+        assert.notEqual(await page.locator('#header-menu').getAttribute('open'),null,'Enter opens menu');
+        await closeMenu(page,width);
+      }
       // Exercise normal keyboard navigation and actual native preference control.
       await page.getByRole('link',{name:'Skip to content'}).focus();
       await page.keyboard.press('Enter');
@@ -61,13 +78,21 @@ try {
         preference:document.documentElement.dataset.preference,
         background:getComputedStyle(document.body).backgroundColor,
         overflow:document.documentElement.scrollWidth>innerWidth,
-        fonts:document.fonts.check('16px "Manrope Variable"')&&document.fonts.check('16px "Instrument Serif"'),
+        fonts:document.fonts.check('16px "Manrope Variable"')&&document.fonts.check('italic 16px "Instrument Serif"'),
       }));
       assert.equal(state.preference,theme);
       assert.equal(state.background,theme==='light'?'rgb(242, 244, 234)':'rgb(32, 47, 42)');
       assert.equal(state.overflow,false,`${width}/${theme} horizontal overflow`);
       assert.equal(state.fonts,true,'Local fonts loaded');
-      const pairs=await page.evaluate(()=>['body','.hero-bottom p','.text-link','.evidence-status','figcaption','.proposal-label'].map(selector=>({selector,foreground:getComputedStyle(document.querySelector(selector)).color,background:getComputedStyle(document.body).backgroundColor})));
+      const baseline=JSON.parse(await readFile('content/baseline.json','utf8'));
+      assert.equal((await page.locator('h1').innerText()).replace(/\s+/g,' ').trim(),baseline.heroHeadline,'Exact SEO headline');
+      assert.equal(await page.locator('.project-outcomes').count(),0,'No unverified result area');
+      assert.equal(await page.locator('.artwork-detail').count(),0,'Single dominant original screen');
+      const imageBox=await page.locator('.project-artwork').boundingBox();
+      assert.equal(imageBox.x,0,'Project image field starts at viewport edge');
+      assert.equal(imageBox.width,width,'Project image field spans full viewport');
+      assert.equal(await page.getByText(/Value pending|Sales measure|Bounce-rate measure|Discovery-time measure/).count(),0,'No private outcome placeholders');
+      const pairs=await page.evaluate(()=>['body','.hero-bottom p','.text-link','.hero-role','.design-question','.proposal-label'].map(selector=>({selector,foreground:getComputedStyle(document.querySelector(selector)).color,background:getComputedStyle(document.body).backgroundColor})));
       const contrastPairs=pairs.map(pair=>({...pair,ratio:contrast(pair.foreground,pair.background)}));
       assert.ok(contrastPairs.every(pair=>pair.ratio>=4.5),`${width}/${theme} rendered text contrast`);
       await page.locator('.project-figure').scrollIntoViewIfNeeded();
@@ -87,6 +112,29 @@ try {
       await context.close();
     }
   }
+  const keyboard=await browser.newContext({viewport:{width:390,height:844},colorScheme:'light'});
+  const keyPage=await keyboard.newPage();await keyPage.goto(base+'/phase-1.html');
+  await openMenu(keyPage,390);
+  const control=keyPage.getByLabel('Appearance');await control.focus();await control.press('End');await control.press('Enter');
+  assert.equal(await control.inputValue(),'dark','Keyboard selects final theme option');
+  await control.press('Escape'); // Dismiss the native select popup before closing its containing disclosure.
+  await closeMenu(keyPage,390);await keyboard.close();
+  const fixtures=await browser.newContext({viewport:{width:1440,height:900},colorScheme:'light'});
+  const fixturePage=await fixtures.newPage();await fixturePage.goto(base+'/phase-1.html');
+  const outcomeLayouts=[];
+  for(const theme of ['light','dark']) for(const width of [1440,768,390,320]) for(const count of [1,2,3]) {
+    await fixturePage.evaluate(theme=>document.documentElement.dataset.preference=theme,theme);
+    await fixturePage.setViewportSize({width,height:900});
+    const records=Array.from({length:count},(_,i)=>({id:'synthetic-'+i,value:'Test value',label:'Synthetic test measure',context:'Test fixture only. Not project evidence.',source:'/case-studies/haiermall-case-study.html',approval:'owner-approved'}));
+    const html=renderToStaticMarkup(createElement(ProjectOutcomes,{outcomes:records}));
+    await fixturePage.evaluate(markup=>{document.querySelector('.project-outcomes')?.remove();document.querySelector('.project-insight').insertAdjacentHTML('afterend',markup)},html);
+    assert.equal(await fixturePage.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'Outcome count '+count+' fits '+width);
+    assert.equal(await fixturePage.locator('.outcome-list dt').count(),count);
+    const outcomeA11y=await new AxeBuilder({page:fixturePage}).include('.project-outcomes').withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();
+    assert.deepEqual(outcomeA11y.violations.map(v=>v.id),[],'Synthetic approved-result layout accessibility');
+    outcomeLayouts.push({theme,width,count,overflow:false,axeViolations:0});
+  }
+  await fixtures.close();
   const blocked=await browser.newContext({viewport:{width:390,height:844},colorScheme:'dark'});
   await blocked.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Storage unavailable','SecurityError')}}));
   const page=await blocked.newPage();
@@ -130,6 +178,6 @@ try {
   await stressPage.locator('#header-menu summary').focus();
   assert.notEqual(await stressPage.locator('#header-menu summary').evaluate(e=>getComputedStyle(e).outlineStyle),'none','Forced-colors focus visible');
   await stress.close();
-  await writeFile(`${output}/verification.json`,JSON.stringify({results,intermediate,noJavaScript:true,storageDenied:true,systemChanges:true,textResize200:true,reflow320:true,forcedColorsFocus:true},null,2));
-  console.log(JSON.stringify({viewports:results.length,intermediate:intermediate.length,axeViolations:0,noJavaScript:true,storageDenied:true,systemChanges:true,textResize200:true,reflow320:true,forcedColorsFocus:true}));
+  await writeFile(`${output}/verification.json`,JSON.stringify({results,intermediate,outcomeLayouts,keyboardMenu:true,keyboardTheme:true,noJavaScript:true,storageDenied:true,systemChanges:true,textResize200:true,reflow320:true,forcedColorsFocus:true},null,2));
+  console.log(JSON.stringify({viewports:results.length,intermediate:intermediate.length,outcomeLayouts:outcomeLayouts.length,keyboardMenu:true,keyboardTheme:true,axeViolations:0,noJavaScript:true,storageDenied:true,systemChanges:true,textResize200:true,reflow320:true,forcedColorsFocus:true}));
 } finally { await browser.close(); }

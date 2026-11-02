@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "title": "Design System: Sana Ishaq — editorial portfolio slice",
   "scope": "phase-1.html",
-  "status": "implemented-review-slice-pending-owner-approval",
+  "status": "implemented-approved-hybrid-composition-outcomes-pending-verification",
   "mode": "experience",
   "authority": "User-approved Modern Editorial Minimalism, decision register and original homepage reference",
   "extensions": {
@@ -33,16 +33,6 @@
     },
     "shadows": [
       {
-        "purpose": "Separate the overlapping homepage screenshot.",
-        "name": "artwork-home",
-        "value": "0 24px 64px #10271f26"
-      },
-      {
-        "purpose": "Separate the overlapping product-detail screenshot.",
-        "name": "artwork-detail",
-        "value": "0 24px 64px #10271f33"
-      },
-      {
         "purpose": "Separate the mobile Menu panel at max-width 650px.",
         "name": "mobile-menu",
         "value": "0 20px 24px -24px #10271f50"
@@ -57,19 +47,24 @@
     ],
     "breakpoints": [
       {
+        "value": "1800px",
         "condition": "min-width",
-        "name": "wide-frame",
-        "value": "1800px"
+        "name": "wide-frame"
       },
       {
+        "value": "1100px",
         "condition": "max-width",
-        "name": "tablet",
-        "value": "1000px"
+        "name": "narrow-desktop"
       },
       {
+        "value": "850px / 651px",
+        "condition": "max-width and min-width",
+        "name": "tablet-stack"
+      },
+      {
+        "value": "650px",
         "condition": "max-width",
-        "name": "mobile",
-        "value": "650px"
+        "name": "mobile"
       }
     ],
     "themePreference": {
@@ -83,49 +78,33 @@
       ]
     },
     "mobileMenu": "Native details; Escape restores summary focus; no-JS open panel stays in flow",
-    "evidence": "Artifact labels only; outcomes pending; proposed introduction labeled",
-    "mobileCrops": [
-      {
-        "name": "homepage",
-        "original": "assets/img/Haier homepage.png",
-        "left": 120,
-        "top": 140,
-        "width": 1200,
-        "height": 1000,
-        "outputWidths": [
-          480,
-          800,
-          1200
-        ],
-        "media": "(max-width: 650px)",
-        "sizes": "100vw"
+    "evidence": "Empty outcomes dataset; null output at zero. Only owner-approved results with source and context render. Proposed question visibly pending verification.",
+    "artworkComposition": {
+      "artworkShadow": false,
+      "source": "src/styles/editorial.css",
+      "desktop": {
+        "left": "11.11%",
+        "top": "10.77%",
+        "rotation": "-2deg",
+        "height": "clamp(440px,45.14vw,820px)",
+        "width": "77.78%"
       },
-      {
-        "name": "product-detail",
-        "original": "assets/img/haier-product detail.png",
-        "left": 450,
-        "top": 200,
-        "width": 900,
-        "height": 570,
-        "outputWidths": [
-          480,
-          800,
-          900
-        ],
-        "media": "(max-width: 650px)",
-        "sizes": "calc(100vw - 40px)"
-      }
-    ]
+      "field": "full viewport width",
+      "artifactLabelStrip": false,
+      "mobile": {
+        "rotation": "none",
+        "left": "-14.1%",
+        "top": "8.57%",
+        "width": "128.2%",
+        "aspectRatio": "390/420"
+      },
+      "imageCount": 1
+    }
   },
   "assets": [
     {
       "original": "assets/img/Haier homepage.png",
-      "derivatives": "review-images/haier-home-*.webp",
-      "provenance": "Original user portfolio repository bb92411; no generated project imagery"
-    },
-    {
-      "original": "assets/img/haier-product detail.png",
-      "derivatives": "review-images/haier-detail-*.webp",
+      "derivatives": "review-images/haier-home-{480,800,1280,1440}.webp",
       "provenance": "Original user portfolio repository bb92411; no generated project imagery"
     }
   ],
@@ -137,6 +116,11 @@
       390,
       320
     ],
-    "evidence": "review/refinement/verification.json"
+    "evidence": "review/hybrid/verification.json",
+    "cases": {
+      "outcomeLayouts": 24,
+      "intermediate": 16,
+      "required": 8
+    }
   }
 }

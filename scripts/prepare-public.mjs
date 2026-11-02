@@ -26,7 +26,7 @@ await copyFile('node_modules/@fontsource-variable/manrope/LICENSE','.generated-p
 await copyFile('node_modules/@fontsource/instrument-serif/LICENSE','.generated-public/licenses/Instrument-Serif-OFL.txt');
 await mkdir('.generated-public/review-images',{recursive:true});
 for (const [name, source] of [['haier-home','assets/img/Haier homepage.png'],['haier-detail','assets/img/haier-product detail.png']]) {
-  for (const width of [480, 800, 1280, 1920]) {
+  for (const width of [480, 800, 1280, 1440, 1920]) {
     await sharp(source).resize({width,withoutEnlargement:true}).webp({quality:85}).toFile(`.generated-public/review-images/${name}-${width}.webp`);
   }
 }
