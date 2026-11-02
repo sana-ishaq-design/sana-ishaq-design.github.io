@@ -8,7 +8,7 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import ProjectOutcomes from '../src/components/ProjectOutcomes.ts';
 
 const base = 'http://127.0.0.1:4321';
-const output = 'review/restored-outcomes';
+const output = 'review/hero-theme';
 const browser = await chromium.launch({executablePath:'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',headless:true});
 const results = [];
 function contrast(foreground,background) {
@@ -19,12 +19,24 @@ function contrast(foreground,background) {
   const a=luminance(foreground),b=luminance(background);
   return Math.round((Math.max(a,b)+.05)/(Math.min(a,b)+.05)*100)/100;
 }
+async function setTheme(page,theme) {
+  const button=page.locator('#theme-preference');
+  await page.waitForFunction(()=>!document.querySelector('#theme-preference').disabled);
+  const destination='Switch to '+(theme==='dark'?'dark':'light')+' mode';
+  if(await button.getAttribute('aria-label')===destination) await button.click();
+  else if(await page.evaluate(()=>document.documentElement.dataset.preference)!==theme) {
+    await button.click();
+    await page.waitForFunction(label=>document.querySelector('#theme-preference').getAttribute('aria-label')===label,destination);
+    await button.click();
+  }
+  await page.waitForFunction(theme=>document.documentElement.dataset.preference===theme,theme);
+}
 async function openMenu(page,width) {
   if(width<=650 && await page.locator('#header-menu').getAttribute('open')===null) await page.locator('#header-menu summary').click();
 }
 async function closeMenu(page,width) {
   if(width<=650 && await page.locator('#header-menu').getAttribute('open')!==null) {
-    await page.getByLabel('Appearance').press('Escape');
+    await page.locator('#theme-preference').press('Escape');
     assert.equal(await page.locator('#header-menu').getAttribute('open'),null,'Escape closes disclosure');
     assert.equal(await page.evaluate(()=>document.activeElement?.tagName),'SUMMARY','Escape restores focus');
   }
@@ -34,7 +46,7 @@ try {
   const plain = await noJs.newPage();
   await plain.goto(`${base}/phase-1.html`);
   assert.equal(await plain.locator('h1').isVisible(),true,'Core content must remain visible without JavaScript');
-  assert.equal(await plain.getByLabel('Appearance').isDisabled(),true,'Inactive no-JS appearance control must be disabled honestly');
+  assert.equal(await plain.locator('#theme-preference').isDisabled(),true,'Inactive no-JS appearance control must be disabled honestly');
   assert.equal(await plain.evaluate(()=>document.querySelector('.header-menu-panel').getBoundingClientRect().bottom<=document.querySelector('h1').getBoundingClientRect().top),true,'No-JS navigation stays in flow without covering content');
   await noJs.close();
 
@@ -46,7 +58,7 @@ try {
       page.on('pageerror',e=>errors.push(e.message));
       await page.goto(`${base}/phase-1.html`);
       await openMenu(page,width);
-      await page.getByLabel('Appearance').selectOption(theme);
+      await setTheme(page,theme);
       if(width<=650) {
         const menuA11y=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();
         assert.deepEqual(menuA11y.violations.map(v=>v.id),[],`${width}/${theme} open menu accessibility`);
@@ -85,6 +97,24 @@ try {
       assert.equal(state.background,theme==='light'?'rgb(242, 244, 234)':'rgb(32, 47, 42)');
       assert.equal(state.overflow,false,`${width}/${theme} horizontal overflow`);
       assert.equal(state.fonts,true,'Local fonts loaded');
+      assert.equal(await page.locator('select').count(),0,'No theme dropdown');
+      assert.equal(await page.locator('.hero-bottom p').innerText(),'Partnering with founders and growing teams to transform complex products into intuitive experiences that drive measurable business growth.');
+      assert.equal((await page.locator('.hero-actions a').allTextContents()).map(s=>s.trim()).join('|'),'View Case Studies|Book a Discovery Call');
+      const heroGeometry=await page.evaluate(()=>{
+        const h=document.querySelector('h1').getBoundingClientRect(),p=document.querySelector('.hero-bottom p').getBoundingClientRect(),c=document.querySelector('.hero-actions').getBoundingClientRect();
+        return {headlineBottom:h.bottom,paragraphTop:p.top,paragraphRight:p.right,actionsX:c.x,actionsY:c.y,paragraphX:p.x};
+      });
+      assert.ok(heroGeometry.paragraphTop>heroGeometry.headlineBottom+30,'Meaningful headline-to-support gap');
+      if(width>=1100)assert.ok(heroGeometry.actionsX>heroGeometry.paragraphRight,'Desktop paragraph and actions are separate columns');
+      if(width<=850)assert.ok(heroGeometry.actionsY>heroGeometry.paragraphTop,'Tablet/mobile natural reading stack');
+      const expectedName=theme==='light'?'Switch to dark mode':'Switch to light mode';
+      assert.equal(await page.locator('#theme-preference').getAttribute('aria-label'),expectedName);
+      assert.equal(await page.locator(theme==='light'?'.theme-moon':'.theme-sun').isVisible(),true,'Correct destination icon');
+      if(width<=650){
+        const summary=await page.locator('#header-menu summary').boundingBox(),toggle=await page.locator('#theme-preference').boundingBox();
+        assert.ok(Math.abs(summary.y+summary.height/2-toggle.y-toggle.height/2)<2,'Menu and theme toggle share one mobile header row');
+      }
+
       const baseline=JSON.parse(await readFile('content/baseline.json','utf8'));
       assert.equal((await page.locator('h1').innerText()).replace(/\s+/g,' ').trim(),baseline.heroHeadline,'Exact SEO headline');
       assert.equal(await page.locator('.project-outcomes').count(),1,'Owner-verified published results restored');
@@ -115,7 +145,7 @@ try {
       await page.screenshot({path:output+'/'+theme+'-'+width+'-hero.png'});
       await page.reload();
       await page.waitForFunction(()=>!document.querySelector('#theme-preference').disabled);
-      assert.equal(await page.getByLabel('Appearance').inputValue(),theme,'Preference persists on refresh');
+      assert.equal(await page.evaluate(()=>document.documentElement.dataset.preference),theme,'Preference persists on refresh');
       assert.deepEqual(errors,[],'No runtime errors');
       results.push({width,theme,...state,contrastPairs,axeViolations:0});
       await context.close();
@@ -123,11 +153,24 @@ try {
   }
   const keyboard=await browser.newContext({viewport:{width:390,height:844},colorScheme:'light'});
   const keyPage=await keyboard.newPage();await keyPage.goto(base+'/phase-1.html');
-  await openMenu(keyPage,390);
-  const control=keyPage.getByLabel('Appearance');await control.focus();await control.press('End');await control.press('Enter');
-  assert.equal(await control.inputValue(),'dark','Keyboard selects final theme option');
-  await control.press('Escape'); // Dismiss the native select popup before closing its containing disclosure.
-  await closeMenu(keyPage,390);await keyboard.close();
+  await keyPage.waitForFunction(()=>!document.querySelector('#theme-preference').disabled);
+  const control=keyPage.getByRole('button',{name:'Switch to dark mode'});
+  await control.focus();
+  assert.notEqual(await control.evaluate(e=>getComputedStyle(e).outlineStyle),'none','Keyboard theme focus is visible');
+  await keyPage.keyboard.press('Enter');
+  assert.equal(await keyPage.locator('#theme-preference').getAttribute('aria-label'),'Switch to light mode','Enter changes theme and accessible name');
+  await keyPage.keyboard.press('Space');
+  assert.equal(await keyPage.locator('#theme-preference').getAttribute('aria-label'),'Switch to dark mode','Space changes theme');
+  await openMenu(keyPage,390);await closeMenu(keyPage,390);await keyboard.close();
+  const touch=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true,colorScheme:'light'});
+  const touchPage=await touch.newPage();await touchPage.goto(base+'/phase-1.html');
+  await touchPage.waitForFunction(()=>!document.querySelector('#theme-preference').disabled);
+  await touchPage.getByRole('button',{name:'Switch to dark mode'}).tap();
+  assert.equal(await touchPage.locator('#theme-preference').getAttribute('aria-label'),'Switch to light mode','Touch activates theme toggle');
+  const target=await touchPage.locator('#theme-preference').boundingBox();assert.ok(target.width>=48&&target.height>=48,'48px theme target');
+  await touchPage.reload();await touchPage.waitForFunction(()=>!document.querySelector('#theme-preference').disabled);
+  assert.equal(await touchPage.locator('#theme-preference').getAttribute('aria-label'),'Switch to light mode','Touch choice persists');
+  await touch.close();
   const fixtures=await browser.newContext({viewport:{width:1440,height:900},colorScheme:'light'});
   const fixturePage=await fixtures.newPage();await fixturePage.goto(base+'/phase-1.html');
   const outcomeLayouts=[];
@@ -148,13 +191,16 @@ try {
   await blocked.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Storage unavailable','SecurityError')}}));
   const page=await blocked.newPage();
   await page.goto(`${base}/phase-1.html`);
-  await openMenu(page,390);
-  await page.getByLabel('Appearance').selectOption('light');
-  assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(242, 244, 234)','Theme works with storage denied');
-  await page.getByLabel('Appearance').selectOption('system');
-  assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(32, 47, 42)','System preference follows dark device');
+  await page.waitForFunction(()=>!document.querySelector('#theme-preference').disabled);
+  assert.equal(await page.locator('#theme-preference').getAttribute('aria-label'),'Switch to light mode','System initializes dark');
   await page.emulateMedia({colorScheme:'light'});
-  assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(242, 244, 234)','System preference responds to changes');
+  await page.waitForFunction(()=>document.querySelector('#theme-preference').getAttribute('aria-label')==='Switch to dark mode');
+  assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(242, 244, 234)','System follows changes before explicit choice');
+  await setTheme(page,'dark');
+  assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(32, 47, 42)','Toggle works with storage denied');
+  await page.emulateMedia({colorScheme:'light'});
+  assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(32, 47, 42)','Explicit selection overrides system');
+  await setTheme(page,'light');
   await blocked.close();
   const stress=await browser.newContext({viewport:{width:1440,height:900},colorScheme:'light',reducedMotion:'reduce'});
   const stressPage=await stress.newPage();
@@ -164,7 +210,7 @@ try {
     for(const width of [360,480,600,650,651,820,1024,1280]) {
       await stressPage.setViewportSize({width,height:900});
       await openMenu(stressPage,width);
-      await stressPage.getByLabel('Appearance').selectOption(theme);
+      await setTheme(stressPage,theme);
       const menu=await stressPage.evaluate(()=>({right:document.querySelector('.header-menu-panel').getBoundingClientRect().right,width:innerWidth}));
       assert.ok(menu.right<=menu.width+1,`${width} menu fits viewport`);
       await closeMenu(stressPage,width);
@@ -174,7 +220,7 @@ try {
   }
   await stressPage.setViewportSize({width:320,height:844});
   await stressPage.evaluate(()=>{
-    const elements=[...document.querySelectorAll('h1,h2,h3,h4,p,dt,dd,a,span,select,label,summary')];
+    const elements=[...document.querySelectorAll('h1,h2,h3,h4,p,dt,dd,a,span,button,label,summary')];
     const sizes=elements.map(e=>[e,parseFloat(getComputedStyle(e).fontSize)*2]);
     for(const [element,size] of sizes) element.style.fontSize=`${size}px`;
   });
@@ -184,13 +230,13 @@ try {
     assert.equal(await stressPage.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'200% text-size '+theme+' reflow');
   }
   await openMenu(stressPage,320);
-  assert.equal(await stressPage.getByLabel('Appearance').isVisible(),true,'Menu theme remains available at enlarged text');
+  assert.equal(await stressPage.locator('#theme-preference').isVisible(),true,'Menu theme remains available at enlarged text');
   await closeMenu(stressPage,320);
   await stressPage.screenshot({path:`${output}/text-200-percent-320.png`,fullPage:true});
   await stressPage.emulateMedia({forcedColors:'active'});
   await stressPage.locator('#header-menu summary').focus();
   assert.notEqual(await stressPage.locator('#header-menu summary').evaluate(e=>getComputedStyle(e).outlineStyle),'none','Forced-colors focus visible');
   await stress.close();
-  await writeFile(`${output}/verification.json`,JSON.stringify({results,intermediate,outcomeLayouts,keyboardMenu:true,keyboardTheme:true,noJavaScript:true,storageDenied:true,systemChanges:true,textResize200:true,reflow320:true,forcedColorsFocus:true},null,2));
-  console.log(JSON.stringify({viewports:results.length,intermediate:intermediate.length,outcomeLayouts:outcomeLayouts.length,keyboardMenu:true,keyboardTheme:true,axeViolations:0,noJavaScript:true,storageDenied:true,systemChanges:true,textResize200:true,reflow320:true,forcedColorsFocus:true}));
+  await writeFile(`${output}/verification.json`,JSON.stringify({results,intermediate,outcomeLayouts,keyboardMenu:true,keyboardTheme:true,touchTheme:true,noJavaScript:true,storageDenied:true,systemChanges:true,textResize200:true,reflow320:true,forcedColorsFocus:true},null,2));
+  console.log(JSON.stringify({viewports:results.length,intermediate:intermediate.length,outcomeLayouts:outcomeLayouts.length,keyboardMenu:true,keyboardTheme:true,touchTheme:true,axeViolations:0,noJavaScript:true,storageDenied:true,systemChanges:true,textResize200:true,reflow320:true,forcedColorsFocus:true}));
 } finally { await browser.close(); }

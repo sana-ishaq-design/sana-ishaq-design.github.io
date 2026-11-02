@@ -26,3 +26,6 @@ Conflicting source annotations, proposed design-question wording, current resume
 
 ## Current approved visual reference
 Owner-approved Open Spread + Decisions in View static boards (2026-11-02) govern the Phase 1 composition. Existing SEO headline stays exact. One original HaierMall screen occupies a full-width field beneath the project headline. The design question remains proposed copy. The four owner-verified published Results render with exact labels/contexts and team-reporting attribution; the layout supports 1–4 approved results. No placeholder or invented values render. No expansion or publishing authorized.
+
+## Targeted Hero/theme refinement
+Latest attached brief cd9015f2-be22-4908-a9e5-2e34542c2dbb supersedes only the Hero support placement and theme-control UI. A controlled-width dominant H1 sits above a desktop paragraph-left/actions-right row; tablet/mobile stack naturally. One icon-only moon/sun button sits beside Menu, with system initialization and persisted explicit choices. The entire HaierMall article, verified results, reporting attribution, imagery geometry and metrics responsive styling remain unchanged. No push, deployment or Phase 2.

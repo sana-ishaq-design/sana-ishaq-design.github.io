@@ -57,9 +57,9 @@
         "name": "narrow-desktop"
       },
       {
-        "value": "850px / 651px",
-        "condition": "max-width and min-width",
-        "name": "tablet-stack"
+        "value": "850px",
+        "condition": "max-width",
+        "name": "hero-support-stack"
       },
       {
         "value": "650px",
@@ -68,16 +68,18 @@
       }
     ],
     "themePreference": {
-      "hydration": "Native select is disabled until ready",
+      "hydration": "Real icon-only button disabled until ready; no-JS accessible name: Theme switching requires JavaScript",
       "storageKey": "portfolio-review-theme",
       "fallback": "CSS system preference; storage denial retains in-memory choice",
-      "options": [
-        "system",
-        "light",
-        "dark"
-      ]
+      "initialization": "System preference initializes and tracks changes until an explicit light/dark choice; saved legacy system preference remains valid",
+      "interaction": "Click, touch or keyboard switches immediately between light and dark; choice persists after refresh; no System reset UI",
+      "accessibleName": "Switch to dark mode / Switch to light mode, reflecting the destination",
+      "icon": "20px outline SVG; moon in First Light, sun in Juniper Dusk",
+      "placement": "One button outside Menu beside its summary; visible with Menu closed",
+      "target": "48px square, 12px padding, square corners, transparent background, no border",
+      "states": "Link color at rest; ink on hover; shared 3px link-colored focus outline with 6px offset"
     },
-    "mobileMenu": "Native details; Escape restores summary focus; no-JS open panel stays in flow",
+    "mobileMenu": "Native details; global Escape closes the menu and restores summary focus, including from the adjacent theme toggle; no-JS open panel stays in flow; 48px summary target with 4px 0 4px 8px padding and 12px header gap fits 320px",
     "evidence": "Owner confirms the published case-study Results section is the authoritative verified baseline. Four exact results retain labels and context; shared team attribution and one full reporting-context link follow the group. Missing analytics artifacts do not disprove published results. Proposed question remains visibly pending verification.",
     "artworkComposition": {
       "artworkShadow": false,
@@ -114,6 +116,15 @@
       "numberTypography": "Normative outcome-value and outcome-value-mobile roles in DESIGN.md frontmatter",
       "attribution": "One shared attribution with a single Published results and reporting context link; 32px top margin desktop, 36px mobile",
       "cards": false
+    },
+    "heroLayout": {
+      "headline": "1120px maximum width, balanced wrapping; display role in DESIGN.md; exact baseline copy unchanged",
+      "support": "Below headline: 64px top margin; minmax(0,1fr) / minmax(0,.8fr) columns; clamp(64px,8vw,144px) column gap",
+      "description": "Left aligned, max-width 52ch, 18px/1.75, pretty wrapping",
+      "actions": "Right column, vertically grouped with 12px gap",
+      "narrowDesktop": "At 1100px and below: 64px column gap and 16px paragraph",
+      "tablet": "651–850px: natural stack, 44px support top margin, 700px headline cap, 17px/1.75 paragraph, 28px CTA top margin",
+      "mobile": "650px and below: natural stack, 44px support top margin, 40ch paragraph at 16px/1.7, 36px CTA top margin and 8px action gap"
     }
   },
   "assets": [
@@ -131,13 +142,16 @@
       390,
       320
     ],
-    "evidence": "review/restored-outcomes/verification.json",
+    "evidence": "review/hero-theme/verification.json",
     "cases": {
       "outcomeLayouts": 32,
       "intermediate": 16,
       "required": 8
     },
     "fixtureMatrix": "1–4 outcomes × 4 viewport widths × 2 themes",
-    "axeViolations": 0
+    "axeViolations": 0,
+    "behavior": "Keyboard and touch theme switching, system changes, refresh persistence, storage denial, no-JavaScript fallback, global Escape focus return, 200% text resizing, 320px reflow and forced-colors focus",
+    "tests": 16,
+    "preservation": "HaierMall article/data bytes and all project/metrics CSS rules match 05968af; headline, description and CTA copy unchanged"
   }
 }

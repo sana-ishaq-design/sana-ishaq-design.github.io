@@ -34,9 +34,9 @@ import '../styles/editorial.css';
             <a href="#selected-work">Work</a>
             <a href="mailto:sanaishaq47@gmail.com">Contact <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" /></svg></a>
           </nav>
-          <ThemePreference client:load />
         </div>
       </details>
+      <ThemePreference client:load />
     </header>
     <script>
       const menu = document.querySelector<HTMLDetailsElement>('#header-menu');
@@ -44,8 +44,8 @@ import '../styles/editorial.css';
       function syncMenu() { if (menu) menu.open = !smallScreen.matches; }
       syncMenu();
       smallScreen.addEventListener('change', syncMenu);
-      menu?.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && smallScreen.matches && menu.open) {
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && smallScreen.matches && menu?.open) {
           menu.open = false;
           menu.querySelector('summary')?.focus();
         }
@@ -62,7 +62,7 @@ import '../styles/editorial.css';
       <section class="hero page-frame" aria-labelledby="hero-title">
         <div class="hero-heading">
           <p class="hero-role">Product Designer</p>
-          <h1 id="hero-title"><span class="hero-audience">Helping SaaS Products<br class="desktop-break" /> &amp; Ecommerce Brands</span> <span class="hero-promise">Build <em><span>Better Digital</span> <span>Experiences</span></em></span></h1>
+          <h1 id="hero-title"><span class="hero-audience">Helping SaaS Products &amp; Ecommerce Brands</span> <span class="hero-promise">Build <em><span>Better Digital</span> <span>Experiences</span></em></span></h1>
         </div>
         <div class="hero-bottom">
           <p>Partnering with founders and growing teams to transform complex products into intuitive experiences that drive measurable business growth.</p>
