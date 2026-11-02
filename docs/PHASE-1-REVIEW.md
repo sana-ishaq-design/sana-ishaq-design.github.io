@@ -1,41 +1,36 @@
-# Phase 1 review
+# Phase 1 refinement review
 
 Local branch: feature/phase-1-editorial-slice. Baseline: bb92411ebb56f45afdbe80dc48c8c698133cfe91. No push, merge or deployment.
 
 ## Review destination
-Run npm ci, then npm run dev; open http://127.0.0.1:4321/phase-1.html. On constrained hosts set ASTRO_TELEMETRY_DISABLED=1. The production homepage remains index.html, copied byte-for-byte; phase-1.html is noindex. The review page is not in the preserved sitemap.
+Run npm ci, npm run dev, then open http://127.0.0.1:4321/phase-1.html. The noindex preview is separate from the unchanged production index.html and sitemap.
 
-## What changed
-- Astro static build + React theme selector + TypeScript, scoped to one new review route.
-- Manrope and Instrument Serif locally hosted. Both themes share structure with independent semantic colors.
-- Both fonts' SIL Open Font License notices are copied into /licenses/ in the output.
-- Existing Hero text, HaierMall case-study heading and original context paragraph. No new outcome or ownership claims, and no disputed metric strip.
-- Authentic homepage and product-detail screenshots, responsive WebP derivatives; original PNGs are unchanged.
-- Desktop image field spans the viewport. Tablet and mobile have intentional separate arrangements.
+## Design changes
+- Supporting Hero paragraph and actions form one offset group; mobile groups actions vertically and gives serif phrases deliberate wrapping.
+- Native compact Menu at 650px contains navigation and appearance control. Escape closes and returns focus; no-JavaScript open navigation remains in flow.
+- Both themes retain approved colors and self-hosted Manrope/Instrument Serif. Functional labels are 15–16px.
+- Stronger desktop screenshot composition; mobile uses larger sequential crops from original pixels, with no synthetic artwork.
+- Prominent Homepage / Product detail / Checkout evidence labels follow imagery. The note explicitly distinguishes artifacts from outcomes; figures await confirmation.
+- Short introduction is a labeled proposal. Original wording is preserved in content/baseline.json and legacy pages.
 
-## Preservation
-The build verifies all 68 original files against their audited Git blob hashes before copying. Eight legacy HTML documents, original metadata, robots, sitemap, scripts, CSS, images, and both resumes remain unchanged. Existing legacy defects are intentionally not fixed during Phase 1.
+## Preservation and implementation
+Astro static output, React theme selector and TypeScript remain scoped to the review route. Build verifies 68 original files by Git blob hash before copying, including eight existing HTML paths, metadata, assets, service page, Archive and both resumes. Original font licenses are included. Legacy defects and claims have not been silently corrected.
 
-## Checks
-- npm run build: static phase-1.html plus all eight preserved HTML files.
-- npm run check: no errors or warnings.
-- npm test: 10 tests, including byte identity of every baseline file and metric omission from the review slice.
-- node scripts/review.mjs: eight viewport/theme combinations, axe WCAG A/AA checks, no horizontal overflow, font loading, no runtime errors, theme persistence, storage denied, live system preference changes and no-JavaScript readable content.
-- Keyboard skip navigation and native theme control exercised. Full screen-reader and physical-device verification remain future QA, not claimed compliance.
+## Verification
+Build and Astro check pass (zero diagnostics). Twelve preservation/refinement tests pass. Browser checks cover eight required theme/viewport combinations (1440,768,390,320), plus sixteen intermediate combinations (360,480,600,650,651,820,1024,1280 in both themes). Checks include open-menu and page axe scans, contrast, no overflow, fonts, runtime errors, keyboard skip navigation, Escape focus return, preference persistence, denied storage, live system preference, no JavaScript, forced-colors focus, 200% simulated text resizing and 320 CSS-pixel reflow. Evidence: review/refinement/verification.json.
 
-## Skill decisions
-Superpowers: plan, RED/GREEN preservation and no-JavaScript regression checks, isolated branch and independent review. Taste: composition/typography guidance, browser inspector, screenshot review and lint. Impeccable: context, craft floor, detector and finish review. Extract Design System instructions were inspected; its extraction command is not run because the old visual system is being replaced, not adopted.
+Actual browser-UI zoom, screen-reader journeys and physical devices have not been verified. Simulated text resizing and narrow viewport reflow are separate checks, not a claim of full WCAG conformance.
 
-The Taste image minimum, mandatory motion count, two-line heading cap and eyebrow/shadow bans conflict with this explicit brief: the slice has two authentic screenshots, restrained feedback only, preserved long Hero copy, useful project identity, and shallow screenshot elevation. These are disclosed exceptions, not hidden passes. The footer's fine divider is a review boundary, not a featured-project card. The inspector treats Instrument Serif as a default-font match; Impeccable's overused-font warning matches the 'Inter' substring in 'Instrument Serif'. The actual loaded font is the approved Instrument Serif, not Inter.
+## Skills and design checks
+Superpowers structured the refinement plan, regression checks and independent review. Taste informed typography/composition and browser inspection; Impeccable informed polish, craft floor, detection and documentation. Extract Design System instructions were inspected; external extraction is not applicable to preserving this approved local system.
 
-## Limitations and owner review
-This is not the complete homepage or migrated case studies. Existing case-study links deliberately open preserved legacy pages. No Archive or demo has been built. Metric and attribution discrepancies remain unresolved. Existing Hero wording creates a longer mobile heading; no editorial rewrite was made to shorten it. Please assess the pacing, typography, image scale/crop, two themes and mobile hierarchy before authorizing more scope.
+Taste inspector: zero failures, five warnings. Approved mixed serif emphasis stays; fine footer divider marks the review boundary; no authentic video is available or needed within this slice; asymmetric artwork and native controls affect automatic margin inference; fluid heading sizes produce more measured sizes than a generic five-step quota. Image-count, motion, headline-line and shadow quotas are disclosed brief-led exceptions. Impeccable's overused-font warning matches Instrument Serif's 'Inter' substring; the actual face is the approved Instrument Serif. The documentation type ramp is reconciled to CSS.
 
 ## Independent review
-The fresh-context finish reviewer inspected all eight final captures, the original visual reference, the source/configuration/scripts/tests and preservation output. Disposition: ship for Phase 1 review scope; no material fixes and no actionable P0–P2 code issues. The reviewer independently ran all 10 preservation tests successfully. This does not authorize deployment or expansion.
+Fresh-context reviewer inspected all eight captures and source changes against the previous slice. Disposition: ship for requested refinement review; no material fixes or P0–P2 issues. This is not deployment approval. A subsequent no-JavaScript style-order defect found by the added automated assertion was corrected with higher-specificity fallback selectors and reverified.
 
-## Visual critique
-Author's screenshot assessment: design 8/10, usability 8/10, creativity 7/10, content 8/10 (weighted 7.8/10). Strongest: spacious typography, parallel themes, authentic immersive imagery. Remaining limits: unchanged long Hero copy produces more mobile lines; tiny product details in the mobile collage are a preview, not a readable product UI; personal voice and broader narrative cannot be judged from two sections. No claims of award-level or measured hiring/conversion effectiveness.
+## Evidence and decisions
+See docs/HAIERMALL-EVIDENCE.md for source-by-source metric, attribution and third-party-statistic reconciliation. No repository analytics exports or study records independently substantiate the business figures. Approval remains needed for the proposed shorter introduction, metric definitions/sources, contribution/team credits and eventual results-versus-artifacts evidence composition.
 
-## Screenshot files
-Both light and dark captures are available in review/ at 1440, 768, 390 and 320 widths: light-1440.png, dark-1440.png, light-768.png, dark-768.png, light-390.png, dark-390.png, light-320.png, dark-320.png. Each has a corresponding -hero.png first-viewport capture. Screenshots are local review artifacts and intentionally ignored by Git.
+## Screenshots and limits
+Final captures are in review/refinement/: light/dark at 1440,768,390,320, plus Hero crops, 390 Menu captures and a 200% text stress capture. Local artifacts are ignored by Git. The full homepage, Archive and multiple Explore Experiences remain out of scope. Stop for owner visual review.

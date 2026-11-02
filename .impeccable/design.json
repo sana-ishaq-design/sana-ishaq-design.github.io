@@ -41,6 +41,11 @@
         "purpose": "Separate the overlapping product-detail screenshot.",
         "name": "artwork-detail",
         "value": "0 24px 64px #10271f33"
+      },
+      {
+        "purpose": "Separate the mobile Menu panel at max-width 650px.",
+        "name": "mobile-menu",
+        "value": "0 20px 24px -24px #10271f50"
       }
     ],
     "motion": [
@@ -64,7 +69,7 @@
       {
         "condition": "max-width",
         "name": "mobile",
-        "value": "600px"
+        "value": "650px"
       }
     ],
     "themePreference": {
@@ -76,7 +81,41 @@
         "light",
         "dark"
       ]
-    }
+    },
+    "mobileMenu": "Native details; Escape restores summary focus; no-JS open panel stays in flow",
+    "evidence": "Artifact labels only; outcomes pending; proposed introduction labeled",
+    "mobileCrops": [
+      {
+        "name": "homepage",
+        "original": "assets/img/Haier homepage.png",
+        "left": 120,
+        "top": 140,
+        "width": 1200,
+        "height": 1000,
+        "outputWidths": [
+          480,
+          800,
+          1200
+        ],
+        "media": "(max-width: 650px)",
+        "sizes": "100vw"
+      },
+      {
+        "name": "product-detail",
+        "original": "assets/img/haier-product detail.png",
+        "left": 450,
+        "top": 200,
+        "width": 900,
+        "height": 570,
+        "outputWidths": [
+          480,
+          800,
+          900
+        ],
+        "media": "(max-width: 650px)",
+        "sizes": "calc(100vw - 40px)"
+      }
+    ]
   },
   "assets": [
     {
@@ -98,6 +137,6 @@
       390,
       320
     ],
-    "evidence": "review/verification.json"
+    "evidence": "review/refinement/verification.json"
   }
 }

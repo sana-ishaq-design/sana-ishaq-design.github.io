@@ -23,3 +23,18 @@ test('review slice emits readable HTML without disputed metrics',()=>{
   assert.match(html, /noindex/);
   assert.match(html, /<main/);
 });
+test('refinement restores artifact evidence and discloses pending outcome figures',()=>{
+  const html=readFileSync('dist/phase-1.html','utf8');
+  assert.match(html,/id="project-evidence"/,'Prominent evidence section is present');
+  assert.match(html,/Outcome figures await confirmation/);
+  assert.match(html,/Checkout/);
+  assert.match(html,/Proposed introduction/);
+  assert.match(html,/for approval/);
+  assert.match(html,/<details[^>]*id="header-menu"/);
+  assert.match(html,/<summary/);
+});
+test('the original long introduction and SEO headline remain preserved as explicit baseline',()=>{
+  const baseline=JSON.parse(readFileSync('content/baseline.json','utf8'));
+  assert.ok(readFileSync('case-studies/haiermall-case-study.html','utf8').includes(baseline.haierIntroduction));
+  assert.equal(baseline.heroHeadline,'Helping SaaS Products & Ecommerce Brands Build Better Digital Experiences');
+});

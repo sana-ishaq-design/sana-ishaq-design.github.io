@@ -30,4 +30,11 @@ for (const [name, source] of [['haier-home','assets/img/Haier homepage.png'],['h
     await sharp(source).resize({width,withoutEnlargement:true}).webp({quality:85}).toFile(`.generated-public/review-images/${name}-${width}.webp`);
   }
 }
+// Art direction uses only crops from the original pixels, never generated UI.
+for (const [name,source,region,widths] of [
+  ['haier-home-focus','assets/img/Haier homepage.png',{left:120,top:140,width:1200,height:1000},[480,800,1200]],
+  ['haier-detail-focus','assets/img/haier-product detail.png',{left:450,top:200,width:900,height:570},[480,800,900]],
+]) {
+  for(const width of widths) await sharp(source).extract(region).resize({width}).webp({quality:90}).toFile(`.generated-public/review-images/${name}-${width}.webp`);
+}
 console.log(`Preserved ${manifest.length} baseline files; generated responsive HaierMall derivatives.`);
