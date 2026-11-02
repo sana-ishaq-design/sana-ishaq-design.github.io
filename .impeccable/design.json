@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "title": "Design System: Sana Ishaq — editorial portfolio slice",
+  "scope": "phase-1.html",
+  "status": "implemented-review-slice-pending-owner-approval",
+  "mode": "experience",
+  "authority": "User-approved Modern Editorial Minimalism, decision register and original homepage reference",
+  "extensions": {
+    "source": "src/styles/editorial.css; primitive tokens are documented in DESIGN.md frontmatter",
+    "themeMapping": {
+      "light": {
+        "muted": "light-muted",
+        "edge": "light-edge",
+        "link": "light-link",
+        "imageGround": "light-image-ground",
+        "ink": "forest-ink",
+        "canvas": "first-light"
+      },
+      "signature": "mineral-blue",
+      "dark": {
+        "muted": "dark-muted",
+        "edge": "dark-edge",
+        "link": "dark-link",
+        "imageGround": "dark-image-ground",
+        "ink": "ivory-ink",
+        "canvas": "juniper-dusk"
+      }
+    },
+    "focus": {
+      "color": "var(--link)",
+      "width": "3px",
+      "offset": "6px"
+    },
+    "shadows": [
+      {
+        "purpose": "Separate the overlapping homepage screenshot.",
+        "name": "artwork-home",
+        "value": "0 24px 64px #10271f26"
+      },
+      {
+        "purpose": "Separate the overlapping product-detail screenshot.",
+        "name": "artwork-detail",
+        "value": "0 24px 64px #10271f33"
+      }
+    ],
+    "motion": [
+      {
+        "purpose": "Hover moves link icons 2px right and 2px up; reduced motion removes transition and travel.",
+        "name": "link-icon-feedback",
+        "value": "transform 180ms ease-out"
+      }
+    ],
+    "breakpoints": [
+      {
+        "condition": "min-width",
+        "name": "wide-frame",
+        "value": "1800px"
+      },
+      {
+        "condition": "max-width",
+        "name": "tablet",
+        "value": "1000px"
+      },
+      {
+        "condition": "max-width",
+        "name": "mobile",
+        "value": "600px"
+      }
+    ],
+    "themePreference": {
+      "hydration": "Native select is disabled until ready",
+      "storageKey": "portfolio-review-theme",
+      "fallback": "CSS system preference; storage denial retains in-memory choice",
+      "options": [
+        "system",
+        "light",
+        "dark"
+      ]
+    }
+  },
+  "assets": [
+    {
+      "original": "assets/img/Haier homepage.png",
+      "derivatives": "review-images/haier-home-*.webp",
+      "provenance": "Original user portfolio repository bb92411; no generated project imagery"
+    },
+    {
+      "original": "assets/img/haier-product detail.png",
+      "derivatives": "review-images/haier-detail-*.webp",
+      "provenance": "Original user portfolio repository bb92411; no generated project imagery"
+    }
+  ],
+  "verification": {
+    "scope": "Local Phase 1 review only; no production compliance claim.",
+    "viewportWidths": [
+      1440,
+      768,
+      390,
+      320
+    ],
+    "evidence": "review/verification.json"
+  }
+}
