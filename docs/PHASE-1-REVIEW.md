@@ -36,3 +36,6 @@ The fresh-context finish reviewer inspected all eight final captures, the origin
 
 ## Visual critique
 Author's screenshot assessment: design 8/10, usability 8/10, creativity 7/10, content 8/10 (weighted 7.8/10). Strongest: spacious typography, parallel themes, authentic immersive imagery. Remaining limits: unchanged long Hero copy produces more mobile lines; tiny product details in the mobile collage are a preview, not a readable product UI; personal voice and broader narrative cannot be judged from two sections. No claims of award-level or measured hiring/conversion effectiveness.
+
+## Screenshot files
+Both light and dark captures are available in review/ at 1440, 768, 390 and 320 widths: light-1440.png, dark-1440.png, light-768.png, dark-768.png, light-390.png, dark-390.png, light-320.png, dark-320.png. Each has a corresponding -hero.png first-viewport capture. Screenshots are local review artifacts and intentionally ignored by Git.
