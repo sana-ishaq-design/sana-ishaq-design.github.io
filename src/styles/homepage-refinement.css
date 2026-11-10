@@ -1,0 +1,43 @@
+/* Homepage/Archive-only refinements: approved case-study styles stay unchanged. */
+.complete-homepage .hero-actions .primary-link { color:var(--ink); }
+.complete-homepage .haier-closing { display:flex; justify-content:flex-end; padding-block:48px 96px; }
+.complete-homepage .about-expertise { margin-top:72px; }
+.about-expertise h3 { font-size:clamp(30px,3vw,44px); font-weight:480; letter-spacing:-.03em; line-height:1.2; }
+.expertise-list { margin:36px 0 0; }
+.expertise-list>div { display:grid; grid-template-columns:.8fr 1.2fr; gap:48px; padding-block:28px; border-top:1px solid var(--edge); }
+.expertise-list dt { font-size:20px; font-weight:550; line-height:1.5; }
+.expertise-list dd { margin:0; max-width:60ch; font-size:16px; line-height:1.8; }
+.expertise-list a { display:flex; width:fit-content; align-items:center; gap:8px; min-height:44px; color:var(--link); text-decoration:underline; text-underline-offset:5px; margin-top:12px; }
+.expertise-list svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5; flex-shrink:0; }
+.complete-homepage .contact-section { background:#293c34; color:#edf1e4; }
+.complete-homepage .contact-composition { align-items:center; text-align:center; gap:36px; max-width:1000px; margin-inline:auto; }
+.complete-homepage .contact-composition h2 { max-width:20ch; }
+.complete-homepage .contact-composition em { color:#a8cadb; }
+.complete-homepage .contact-composition>p { max-width:60ch; font-size:18px; line-height:1.8; }
+.complete-homepage .contact-composition .text-link { color:#edf1e4; min-height:48px; }
+.compact-footer { padding-block:40px 28px; }
+.compact-footer-top { display:flex; justify-content:space-between; gap:40px; align-items:center; }
+.compact-footer p { font-size:14px; line-height:1.7; color:var(--muted); }
+.compact-footer nav { display:flex; flex-wrap:wrap; gap:8px 28px; }
+.compact-footer nav a { display:inline-flex; align-items:center; min-height:44px; gap:8px; color:var(--ink); font-size:15px; }
+.compact-footer nav svg { width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:1.5; }
+.compact-footer-copyright { border-top:1px solid var(--edge); padding-top:24px; margin-top:28px; }
+.archive-empty { border-block:1px solid var(--edge); padding-block:40px; }
+.archive-empty p { font-size:20px; line-height:1.7; max-width:52ch; margin-bottom:20px; }
+.archive-heading h1 { font-family:'Instrument Serif',Georgia,serif; font-size:clamp(72px,8.8vw,128px); font-weight:400; line-height:1.05; letter-spacing:-.035em; }
+.archive-page .archive-section { padding-top:80px; min-height:65vh; }
+.archive-page .archive-heading p,.complete-homepage .archive-heading p { max-width:50ch; }
+.archive-static-note { margin-block:48px; }
+.archive-static-note img { max-width:100%; height:auto; }
+@media(max-width:650px) {
+ .complete-homepage .haier-closing { padding-block:32px 72px; }
+ .expertise-list>div { grid-template-columns:1fr; gap:14px; }
+ .expertise-list dt { font-size:19px; }
+ .complete-homepage .contact-composition { gap:28px; }
+ .complete-homepage .contact-composition h2 { font-size:clamp(36px,10vw,44px); }
+ .complete-homepage .contact-composition>p { font-size:16px; }
+ .compact-footer-top { flex-direction:column; align-items:flex-start; gap:20px; }
+ .compact-footer nav { gap:4px 24px; }
+ .archive-heading h1 { font-size:72px; }
+ .archive-page .archive-section { padding-top:56px; }
+}

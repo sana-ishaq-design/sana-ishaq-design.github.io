@@ -10,10 +10,13 @@ test('complete candidate has the requested section order and locked Hero',()=>{
     const index=page.indexOf(`id="${id}"`);assert.ok(index>previous,`Complete ordered section ${id}`);previous=index;
   }
   const source=readFileSync('src/pages/homepage.astro','utf8'),baseline=readFileSync('src/pages/phase-1.astro','utf8');
-  const hero=s=>s.slice(s.indexOf('<section class="hero '),s.indexOf('</section>',s.indexOf('<section class="hero '))+10);
-  assert.equal(hero(source),hero(baseline),'Approved Hero source stays exact');
-  const haier=s=>s.slice(s.indexOf('<article class="project-chapter"'),s.indexOf('</article>',s.indexOf('<article class="project-chapter"'))+10);
-  assert.equal(haier(source),haier(baseline),'Approved HaierMall chapter stays exact');
+  const title=s=>s.match(/<h1 id="hero-title">([^]*?)<\/h1>/)?.[0];
+  assert.equal(title(source),title(baseline),'Approved headline markup remains exact');
+  const image=s=>s.match(/<figure class="project-figure">([^]*?)<\/figure>/)?.[0];
+  assert.equal(image(source),image(baseline),'Authentic HaierMall image composition remains exact');
+  assert.match(page,/Explore Selected Work/);assert.match(page,/href="#contact"[^>]*>Get in Touch/);
+  assert.doesNotMatch(page,/The design question|Proposed copy|HaierMall is an appliance|outcome-attribution/);
+  assert.match(page,/Read Full Case Study/);
   for(const file of ['src/pages/phase-1.astro','src/styles/editorial.css','src/components/ThemePreference.tsx'])assert.equal(readFileSync(file,'utf8'),execFileSync('git',['show',`c42e5e9:${file}`],{encoding:'utf8'}),file);
   assert.match(page,/noindex/);assert.match(page,/rel="canonical" href="https:\/\/sana-ishaq-design.github.io\/"/);
   for(const value of ['+31%','−20%','+40%','+15%'])assert.ok(page.includes(value));

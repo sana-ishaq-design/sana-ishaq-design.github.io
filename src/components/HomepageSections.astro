@@ -9,7 +9,7 @@ import Arrow from './Arrow.astro';
 <slot />
 <section id="services" class="services-section editorial-section page-frame" aria-labelledby="services-title" tabindex="-1">
   <div class="section-introduction"><div><h2 id="services-title" class="editorial-title">Design<br /><em>services.</em></h2></div><p>{copy.servicesIntroduction}</p></div>
-  <div class="service-list">{copy.services.map((service,index)=><article class="service-row"><div><h3>{service.title}</h3><p class="service-audience">{service.audience}</p></div><div><p>{service.description}</p>{index===0&&<a class="text-link" href="/ux-audit-service-page.html">UX Audit service <Arrow /></a>}</div></article>)}</div>
+  <div class="service-list">{copy.services.map(service=><article class="service-row"><div><h3>{service.title}</h3><p class="service-audience">{service.audience}</p></div><div><p>{service.description}</p></div></article>)}</div>
 </section>
 <section id="about" class="about-section editorial-section page-frame" aria-labelledby="about-title" tabindex="-1">
   <div class="about-copy">
@@ -20,9 +20,18 @@ import Arrow from './Arrow.astro';
     <p>With 5+ years of experience, I've worked with startups, growing businesses, and enterprise teams across SaaS, ecommerce, mobile, and complex digital products. My approach connects user needs, business goals, and thoughtful execution.</p>
     <div class="about-details"><p>Based in Pakistan. Collaborating worldwide.</p><p>Product Designer · Working remotely with clients across the UAE, UK, US, and beyond.</p></div>
     <div class="about-links"><a class="text-link" href="https://www.linkedin.com/in/sanaishaq/">LinkedIn <Arrow /></a><a class="text-link" href="/assets/Sana-Ishaq-UI-UX-Designer-Resume.pdf" download>Download Resume <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" /></svg></a></div>
+    <div class="about-expertise" aria-labelledby="expertise-title">
+      <h3 id="expertise-title">Expertise, <em>demonstrated.</em></h3>
+      <dl class="expertise-list">
+        <div><dt>UX audits and analysis</dt><dd>Audited maintenance workflows across three operational roles, connecting usability findings to information hierarchy and dashboard clarity. <a href="/case-studies/utworx-case-study.html">Explore the UTWorX audit <Arrow /></a></dd></div>
+        <div><dt>E-commerce experience design</dt><dd>Redesigned HaierMall's purchase journey, with post-launch performance reported by the product management and development teams. <a href="/case-studies/haiermall-case-study.html">Explore the HaierMall redesign <Arrow /></a></dd></div>
+        <div><dt>UI design and design systems</dt><dd>Joined Subscribe Me at Sprint 4 to deliver mobile production UI and extend the existing component system. <a href="/case-studies/subscribe-me-case-study.html">Explore Subscribe a Car <Arrow /></a></dd></div>
+        <div><dt>Interaction design and developer handoff</dt><dd>Documented Barcode Studio's extension flows, interface states, design tokens and developer handoff, with untested assumptions kept explicit. <a href="/case-studies/barcode-studio-case-study.html">Explore the Barcode Studio handoff <Arrow /></a></dd></div>
+      </dl>
+    </div>
   </div>
 </section>
 <section id="contact" class="contact-section editorial-section page-frame" aria-labelledby="contact-title" tabindex="-1">
 
-  <div class="contact-composition"><h2 id="contact-title">Let's fix what's<br /><em>costing you conversions.</em></h2><div><p>{copy.contact.description}</p><div class="contact-actions"><a class="text-link" href="https://calendly.com/sanaishaq/sana-uiux">Book a Discovery Call <Arrow /></a><a class="text-link" href="mailto:sanaishaq47@gmail.com?subject=Product%20design%20opportunity">Discuss a product design role <Arrow /></a></div><p class="contact-note">{copy.contact.note}</p></div></div>
+  <div class="contact-composition"><h2 id="contact-title">Good work starts<br />with <em>a conversation.</em></h2><p>Whether you're building a digital product, improving an existing experience, or hiring a Product Designer, I'd love to hear what you're working on.</p><a class="text-link" href="mailto:sanaishaq47@gmail.com">Get in Touch <Arrow /></a></div>
 </section>

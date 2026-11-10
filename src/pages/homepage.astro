@@ -2,11 +2,12 @@
 import SiteHead from '../components/SiteHead.astro';
 import FullNavigation from '../components/FullNavigation.astro';
 import ProjectOutcomes from '../components/ProjectOutcomes';
-import {haiermallOutcomes,haiermallAttribution} from '../content/haiermall';
+import {haiermallOutcomes} from '../content/haiermall';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
 import HomepageSections from '../components/HomepageSections.astro';
 import Archive from '../components/Archive.astro';
-import Footer from '../components/Footer.astro';
+import Footer from '../components/CompactFooter.astro';
+import '../styles/homepage-refinement.css';
 import Arrow from '../components/Arrow.astro';
 ---
 <!doctype html><html lang="en" data-preference="system"><head><SiteHead /></head>
@@ -19,8 +20,8 @@ import Arrow from '../components/Arrow.astro';
         <div class="hero-bottom">
           <p>Partnering with founders and growing teams to transform complex products into intuitive experiences that drive measurable business growth.</p>
           <div class="hero-actions">
-            <a class="text-link primary-link" href="#selected-work">View Case Studies <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6" /></svg></a>
-            <a class="text-link" href="https://calendly.com/sanaishaq/sana-uiux">Book a Discovery Call <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" /></svg></a>
+            <a class="text-link primary-link" href="#selected-work">Explore Selected Work <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6" /></svg></a>
+            <a class="text-link" href="#contact">Get in Touch <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" /></svg></a>
           </div>
         </div>
       </section>
@@ -42,20 +43,8 @@ import Arrow from '../components/Arrow.astro';
             </div>
             <figcaption class="visually-hidden">HaierMall homepage, cropped from the original project screen.</figcaption>
           </figure>
-          <ProjectOutcomes outcomes={haiermallOutcomes} attribution={haiermallAttribution} />
-          <section class="project-insight page-frame" aria-labelledby="insight-title">
-            <div class="insight-heading">
-              <h4 id="insight-title">The design question</h4>
-              <p class="proposal-label">Proposed copy · pending verification</p>
-            </div>
-            <p class="design-question">How could customers move from browsing appliances to a confident purchase?</p>
-          </section>
-          <div class="project-summary page-frame">
-            <div class="project-context">
-              <p class="project-introduction">HaierMall is an appliance e-commerce platform.</p>
-            </div>
-            <div class="project-actions"><a class="text-link case-study-link" href="/case-studies/haiermall-case-study.html">Read Case Study <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" /></svg></a></div>
-          </div>
+          <ProjectOutcomes outcomes={haiermallOutcomes} compact />
+          <div class="haier-closing page-frame"><a class="text-link" href="/case-studies/haiermall-case-study.html">Read Full Case Study <Arrow /></a></div>
         </article>
 <FeaturedProjects />
 </section>
