@@ -22,7 +22,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run check && npm test
-      - run: npx astro build --config astro.preview.config.mjs && node scripts/prepare-preview.mjs
+      - run: npx astro build --config astro.preview.config.mjs && node scripts/prepare-preview.mjs && node scripts/verify-preview.mjs
       - name: Publish built output to separate repository only
         env:
           PREVIEW_DEPLOY_KEY: ${{ secrets.PREVIEW_DEPLOY_KEY }}

@@ -6,6 +6,8 @@ const base='/portfolio-preview';
 const origin='https://sana-ishaq-design.github.io';
 // The redesigned homepage is the staging entry point; legacy source is untouched.
 await copyFile(join(root,'homepage.html'),join(root,'index.html'));
+// Staging-only exclusion: the immutable production source and default build stay intact.
+await rm(join(root,'ux-audit-service-page.html'),{force:true});
 async function walk(dir){for(const entry of await readdir(dir,{withFileTypes:true})){
  const path=join(dir,entry.name);
  if(entry.isDirectory()){await walk(path);continue;}
@@ -22,8 +24,10 @@ async function walk(dir){for(const entry of await readdir(dir,{withFileTypes:tru
  // This new, staging-only route does not yet have a production counterpart.
  if(path.replaceAll('\\','/').endsWith('/archive.html'))text=text.replace(`rel="canonical" href="${origin}/archive.html"`,`rel="canonical" href="${origin}${base}/archive.html"`);
  if(path.endsWith('.html')){
+  text=text.replace(/<a\b[^>]*href=["'][^"']*ux-audit-service-page\.html[^"']*["'][^>]*>([\s\S]*?)<\/a>/gi,'$1');
   text=text.replace(/<meta\b[^>]*name=["'](?:robots|googlebot)["'][^>]*>/gi,'');
-  text=text.replace('</head>','<meta name="robots" content="noindex, nofollow, noarchive" /></head>');
+  const robots='<meta name="robots" content="noindex, nofollow, noarchive" />';
+  text=text.includes('</head>')?text.replace('</head>',robots+'</head>'):robots+text;
  }
  await writeFile(path,text);
 }}

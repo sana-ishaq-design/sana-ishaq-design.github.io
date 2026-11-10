@@ -1,5 +1,8 @@
 # HaierMall published outcomes and source differences
 
+## Latest provenance distinction — 10 November 2026
+The historical "verified" wording below records the owner's prior confirmation and approved content baseline. It does **not** mean this implementation independently validated analytics. No independent supporting record was found for +15% session duration, or for the other three figures, in the supplied project materials. Tests establish faithful preservation, not metric truth. See PHASE1-CTA-ABOUT-STAGING-REVIEW.md for the source-by-source audit. All approved figures remain unchanged pending any separate content decision.
+
 ## Authority and correction
 The owner confirms that the performance statistics in the existing approved HaierMall case study are verified. Its published Results section is the authoritative content baseline for Phase 1. The previous inference that missing standalone analytics files made these results unverified was incorrect and is withdrawn. Repository artifact availability is not a verdict on the owner's verified results.
 
