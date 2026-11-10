@@ -1,0 +1,46 @@
+name: Independent portfolio preview
+on:
+  push:
+    branches: [homepage-refinement]
+permissions:
+  contents: read
+concurrency:
+  group: portfolio-preview
+  cancel-in-progress: true
+jobs:
+  preview:
+    if: github.ref == 'refs/heads/homepage-refinement'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run check && npm test
+      - run: npx astro build --config astro.preview.config.mjs && node scripts/prepare-preview.mjs
+      - name: Publish built output to separate repository only
+        env:
+          PREVIEW_DEPLOY_KEY: ${{ secrets.PREVIEW_DEPLOY_KEY }}
+        run: |
+          test -n "$PREVIEW_DEPLOY_KEY"
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$PREVIEW_DEPLOY_KEY" > ~/.ssh/preview_key
+          chmod 600 ~/.ssh/preview_key
+          curl --fail --silent https://api.github.com/meta | python3 -c 'import json,sys; print("\n".join("github.com "+key for key in json.load(sys.stdin)["ssh_keys"]))' > ~/.ssh/known_hosts
+          export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/preview_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes"
+          git clone --depth 1 git@github.com:sana-ishaq-design/portfolio-preview.git preview-output
+          rsync -a --delete --exclude=.git dist-preview/ preview-output/
+          cd preview-output
+          git config user.name 'Portfolio Preview'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Preview source $GITHUB_SHA"
+            git push origin HEAD:main
+          fi
+          rm -f ~/.ssh/preview_key
