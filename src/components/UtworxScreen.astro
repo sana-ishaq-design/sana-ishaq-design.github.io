@@ -1,0 +1,22 @@
+---
+import assets from '../content/utworx-assets.json';
+import Arrow from './Arrow.astro';
+import crops from '../content/utworx-crops.json';
+interface Props { name:keyof typeof assets; caption:string; eager?:boolean; detail?:boolean }
+const {name,caption,eager=false,detail=false}=Astro.props;
+const [file,width,height]=assets[name] as [string,number,number];
+const original='/assets/img/'+encodeURIComponent(file);
+const sizes=[480,960,1440,1920].filter(w=>w<=width);
+const crop=crops[name as keyof typeof crops];
+const cropWidth=crop?Math.round(width*crop[2]):width,cropHeight=crop?Math.round(height*crop[3]):height;
+---
+<figure class="ut-screen">
+ <div class="ut-image">
+ <picture>
+ {crop && !detail && <source media="(max-width:700px)" srcset={`/review-images/ut-${name}-detail-480.webp 480w, /review-images/ut-${name}-detail-960.webp 960w`} sizes="100vw" width={cropWidth} height={cropHeight} />}
+ <img src={detail?`/review-images/ut-${name}-detail-960.webp`:`/review-images/ut-${name}-${sizes.at(-1)}.webp`} srcset={detail?`/review-images/ut-${name}-detail-480.webp 480w, /review-images/ut-${name}-detail-960.webp 960w`:sizes.map(w=>`/review-images/ut-${name}-${w}.webp ${w}w`).join(', ')} sizes="(max-width:700px) 100vw, 75vw" width={detail?cropWidth:width} height={detail?cropHeight:height} alt={caption} loading={eager?'eager':'lazy'} fetchpriority={eager?'high':'auto'} decoding="async" />
+ </picture></div>
+ <figcaption>{detail && 'Interface detail · '}{caption}{crop && !detail && <span class="ut-mobile-caption">Mobile detail highlights status and action controls.</span>}<a class="text-link" href={original}>View complete original <Arrow /></a></figcaption>
+</figure>
+
+

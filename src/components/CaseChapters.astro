@@ -1,0 +1,80 @@
+---
+interface Props { chapters:readonly (readonly [string,string])[] }
+const {chapters}=Astro.props;
+---
+<aside class="chapter-navigation page-frame" aria-label="Case study navigation">
+ <details class="chapter-menu" open>
+  <summary>Jump to section <span class="chapter-current" aria-hidden="true">{chapters[0][1]}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+  <nav aria-label="On this page"><p>On this page</p><ol>{chapters.map(([id,label],index)=><li><a href={`#${id}`}><span class="chapter-link-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span>{label}</a></li>)}</ol></nav>
+ </details>
+</aside>
+<style>
+ .chapter-navigation { position:relative; top:var(--case-global-offset,0px); z-index:4; background:var(--canvas); border-bottom:1px solid var(--edge); }
+ .chapter-navigation[data-enhanced] { position:sticky; }
+ .chapter-menu summary { display:none; }
+ .chapter-menu nav { display:flex; align-items:center; gap:32px; padding-block:8px; }
+ .chapter-menu nav>p { font-size:14px; color:var(--muted); white-space:nowrap; }
+ .chapter-menu ol { display:flex; flex-wrap:wrap; gap:0 20px; list-style:none; margin:0; padding:0; }
+ .chapter-link-number { font-size:12px; margin-right:6px; font-variant-numeric:tabular-nums; }
+ .chapter-menu a { display:flex; align-items:center; min-height:44px; padding-block:8px; font-size:14px; line-height:1.5; color:var(--muted); text-decoration:underline; text-decoration-color:transparent; text-underline-offset:7px; }
+ .chapter-menu a:hover,.chapter-menu a[aria-current="location"] { color:var(--link); text-decoration-color:currentColor; }
+ @media(max-width:1100px) {
+  .chapter-menu summary { display:flex; align-items:center; gap:12px; min-height:56px; padding-block:12px; font-size:15px; cursor:pointer; list-style:none; }
+  .chapter-menu summary::-webkit-details-marker { display:none; }
+  .chapter-current { margin-left:auto; font-size:13px; color:var(--muted); width:40%; text-align:right; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+  .chapter-menu[open] summary svg { transform:rotate(180deg); }
+  .chapter-menu nav { display:block; max-height:55dvh; overflow-y:auto; padding-block:0 16px; }
+  .chapter-menu nav>p { display:none; }
+  .chapter-menu ol { display:block; }
+  .chapter-menu a { min-height:48px; font-size:16px; padding-inline:8px; }
+ }
+ @media(prefers-reduced-motion:reduce) { .chapter-menu * { scroll-behavior:auto; } }
+ @media print { .chapter-navigation { display:none; } }
+</style>
+<script>
+ const rail=document.querySelector<HTMLElement>('.chapter-navigation');
+ if(rail){
+  rail.dataset.enhanced='true';
+  const menu=rail.querySelector<HTMLDetailsElement>('details')!;
+  const summary=menu.querySelector<HTMLElement>('summary')!;
+  const current=rail.querySelector<HTMLElement>('.chapter-current')!;
+  const links=[...rail.querySelectorAll<HTMLAnchorElement>('nav a')];
+  const sections=links.map(a=>document.getElementById(a.hash.slice(1))!);
+  const compact=matchMedia('(max-width:1100px)');
+  const header=document.querySelector<HTMLElement>('.full-header');
+  const offsets=()=>{
+   const fixed=header&&['sticky','fixed'].includes(getComputedStyle(header).position);
+   const headerHeight=fixed?header!.getBoundingClientRect().height:0;
+   document.body.style.setProperty('--case-global-offset',`${headerHeight}px`);
+   document.body.style.setProperty('--case-chapter-offset',`${headerHeight+rail.getBoundingClientRect().height}px`);
+  };
+  const sync=()=>{menu.open=!compact.matches;offsets()};sync();compact.addEventListener('change',sync);
+  new ResizeObserver(offsets).observe(rail);
+  if(header)new ResizeObserver(offsets).observe(header);
+  const markCurrent=()=>{
+   const fixedHeader=header&&['sticky','fixed'].includes(getComputedStyle(header).position)?header.getBoundingClientRect().height:0;
+   const line=fixedHeader+rail.getBoundingClientRect().height+80;
+   let index=0;sections.forEach((section,i)=>{if(section.getBoundingClientRect().top<=line)index=i});
+   links.forEach((link,i)=>{if(i===index)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')});
+   current.textContent=links[index].lastChild?.textContent??'';
+  };
+  let pending=false;
+  addEventListener('scroll',()=>{if(!pending){pending=true;requestAnimationFrame(()=>{markCurrent();pending=false})}},{passive:true});
+  addEventListener('resize',markCurrent);markCurrent();
+  links.forEach(link=>link.addEventListener('click',event=>{
+   if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+   if(compact.matches)menu.open=false;
+   offsets();
+   const target=document.getElementById(link.hash.slice(1));
+   target?.setAttribute('tabindex','-1');target?.focus({preventScroll:true});
+   // Native fragment navigation preserves URLs, history and no-JavaScript behavior.
+  }));
+  addEventListener('hashchange',()=>{
+   const target=sections.find(s=>`#${s.id}`===location.hash);
+   if(target){target.setAttribute('tabindex','-1');target.focus({preventScroll:true})}
+   markCurrent();
+  });
+  rail.addEventListener('keydown',event=>{if(event.key==='Escape'&&compact.matches&&menu.open){menu.open=false;summary.focus();offsets()}});
+  document.addEventListener('click',event=>{if(compact.matches&&menu.open&&!rail.contains(event.target as Node)){menu.open=false;offsets()}});
+ }
+</script>

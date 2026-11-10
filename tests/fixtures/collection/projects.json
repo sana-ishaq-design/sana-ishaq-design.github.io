@@ -1,0 +1,204 @@
+[
+  {
+    "id": "haiermall",
+    "title": "HaierMall",
+    "description": "An e-commerce UX audit and redesign focused on brand trust, product evaluation and the appliance purchase journey, supported by a scalable design system.",
+    "subtitle": "Redesigning the purchase journey",
+    "label": "E-commerce · CRO · UX audit",
+    "thumbnail": {
+      "name": "haier",
+      "width": 1440,
+      "height": 1929,
+      "alt": "HaierMall homepage: appliance categories and product discovery."
+    },
+    "url": "/case-studies/haiermall-case-study.html",
+    "categories": [
+      "ecommerce",
+      "ux-audits",
+      "design-systems"
+    ],
+    "published": true,
+    "order": 1,
+    "featured": true,
+    "role": "Lead UI/UX Designer · Sole designer",
+    "highlight": "+31% online sales · 3 months post-launch",
+    "highlightContext": "Reported by the product management and development teams following deployment.",
+    "source": "src/content/haiermall.ts; approved HaierMall case study"
+  },
+  {
+    "id": "subscribe-a-car",
+    "title": "Subscribe a Car",
+    "description": "Production UI for Subscribe Me: joining at Sprint 4 to deliver booking and subscription-management screens while extending the existing design system.",
+    "label": "Mobile app · Car subscription",
+    "thumbnail": {
+      "name": "subscribe",
+      "width": 360,
+      "height": 800,
+      "alt": "Subscribe Me mobile interface: selecting a return date."
+    },
+    "url": "/case-studies/subscribe-me-case-study.html",
+    "categories": [
+      "mobile",
+      "design-systems"
+    ],
+    "published": true,
+    "order": 2,
+    "featured": false,
+    "role": "UI Designer — Delivery Phase",
+    "highlight": "100K+ downloads",
+    "highlightContext": "Historical product-adoption milestone; not an individually attributed result.",
+    "source": "Approved Subscribe a Car case study: Sprint 4 entry, inherited system, published adoption"
+  },
+  {
+    "id": "utworx",
+    "title": "UTWorX",
+    "description": "Simplifying maintenance operations for technicians, supervisors and managers through clearer dashboard hierarchy and contextual workflows, without removing functionality.",
+    "label": "Enterprise SaaS · Asset management",
+    "thumbnail": {
+      "name": "utworx",
+      "width": 4320,
+      "height": 4008,
+      "alt": "UTWorX dashboard with work summaries, charts and operational records."
+    },
+    "url": "/case-studies/utworx-case-study.html",
+    "categories": [
+      "saas-enterprise",
+      "ux-audits"
+    ],
+    "published": true,
+    "order": 3,
+    "featured": false,
+    "role": "Lead UI/UX Designer · Sole designer",
+    "highlight": "16 screens · Two-week delivery",
+    "highlightContext": "Documented delivery scope; formal usability metrics were not collected.",
+    "source": "Approved UTWorX case study: structured UX audit, scope and limitations"
+  },
+  {
+    "id": "barcode-studio",
+    "title": "Barcode Studio",
+    "description": "A privacy-first Chrome extension for generating and exporting barcodes locally, shaped by a competitive audit and a dual-theme token and component system.",
+    "label": "Chrome extension · Productivity",
+    "thumbnail": {
+      "name": "barcode",
+      "width": 1200,
+      "height": 900,
+      "alt": "Barcode Studio export interface in its original dark theme."
+    },
+    "url": "/case-studies/barcode-studio-case-study.html",
+    "categories": [
+      "design-systems"
+    ],
+    "published": true,
+    "order": 4,
+    "featured": false,
+    "role": "End-to-end UX · Design + handoff",
+    "highlight": "Local barcode processing",
+    "highlightContext": "Documented product behavior; no server upload or account required.",
+    "source": "Barcode Studio case study: hero, design-system and outcomes sections"
+  },
+  {
+    "id": "qa-fixture-5",
+    "title": "QA fixture 5 — NOT A PORTFOLIO PROJECT",
+    "description": "Temporary test record for pagination verification. Not published portfolio work.",
+    "label": "Mobile app · Car subscription",
+    "thumbnail": {
+      "name": "subscribe",
+      "width": 360,
+      "height": 800,
+      "alt": "Subscribe Me mobile interface: selecting a return date."
+    },
+    "url": "/case-studies/subscribe-me-case-study.html",
+    "categories": "mobile",
+    "published": true,
+    "order": 5,
+    "featured": false,
+    "role": "UI Designer — Delivery Phase",
+    "highlight": "Test fixture only",
+    "highlightContext": "Never included in the production collection.",
+    "source": "Approved Subscribe a Car case study: Sprint 4 entry, inherited system, published adoption"
+  },
+  {
+    "id": "qa-fixture-6",
+    "title": "QA fixture 6 — NOT A PORTFOLIO PROJECT",
+    "description": "Temporary test record for pagination verification. Not published portfolio work.",
+    "label": "Mobile app · Car subscription",
+    "thumbnail": {
+      "name": "subscribe",
+      "width": 360,
+      "height": 800,
+      "alt": "Subscribe Me mobile interface: selecting a return date."
+    },
+    "url": "/case-studies/subscribe-me-case-study.html",
+    "categories": "mobile",
+    "published": true,
+    "order": 6,
+    "featured": false,
+    "role": "UI Designer — Delivery Phase",
+    "highlight": "Test fixture only",
+    "highlightContext": "Never included in the production collection.",
+    "source": "Approved Subscribe a Car case study: Sprint 4 entry, inherited system, published adoption"
+  },
+  {
+    "id": "qa-fixture-7",
+    "title": "QA fixture 7 — NOT A PORTFOLIO PROJECT",
+    "description": "Temporary test record for pagination verification. Not published portfolio work.",
+    "label": "Mobile app · Car subscription",
+    "thumbnail": {
+      "name": "subscribe",
+      "width": 360,
+      "height": 800,
+      "alt": "Subscribe Me mobile interface: selecting a return date."
+    },
+    "url": "/case-studies/subscribe-me-case-study.html",
+    "categories": "mobile",
+    "published": true,
+    "order": 7,
+    "featured": false,
+    "role": "UI Designer — Delivery Phase",
+    "highlight": "Test fixture only",
+    "highlightContext": "Never included in the production collection.",
+    "source": "Approved Subscribe a Car case study: Sprint 4 entry, inherited system, published adoption"
+  },
+  {
+    "id": "qa-fixture-8",
+    "title": "QA fixture 8 — NOT A PORTFOLIO PROJECT",
+    "description": "Temporary test record for pagination verification. Not published portfolio work.",
+    "label": "Mobile app · Car subscription",
+    "thumbnail": {
+      "name": "subscribe",
+      "width": 360,
+      "height": 800,
+      "alt": "Subscribe Me mobile interface: selecting a return date."
+    },
+    "url": "/case-studies/subscribe-me-case-study.html",
+    "categories": "mobile",
+    "published": true,
+    "order": 8,
+    "featured": false,
+    "role": "UI Designer — Delivery Phase",
+    "highlight": "Test fixture only",
+    "highlightContext": "Never included in the production collection.",
+    "source": "Approved Subscribe a Car case study: Sprint 4 entry, inherited system, published adoption"
+  },
+  {
+    "id": "qa-fixture-9",
+    "title": "QA fixture 9 — NOT A PORTFOLIO PROJECT",
+    "description": "Temporary test record for pagination verification. Not published portfolio work.",
+    "label": "Mobile app · Car subscription",
+    "thumbnail": {
+      "name": "subscribe",
+      "width": 360,
+      "height": 800,
+      "alt": "Subscribe Me mobile interface: selecting a return date."
+    },
+    "url": "/case-studies/subscribe-me-case-study.html",
+    "categories": "ecommerce",
+    "published": true,
+    "order": 9,
+    "featured": false,
+    "role": "UI Designer — Delivery Phase",
+    "highlight": "Test fixture only",
+    "highlightContext": "Never included in the production collection.",
+    "source": "Approved Subscribe a Car case study: Sprint 4 entry, inherited system, published adoption"
+  }
+]

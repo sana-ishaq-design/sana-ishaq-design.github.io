@@ -1,0 +1,9 @@
+---
+interface Props { text:string }
+const {text}=Astro.props;
+// Change paragraph boundaries only. Keep every source sentence and its original order.
+const sentences=text.split(/(?<=[.!?])\s+(?=[A-Z0-9])/);
+const paragraphs=[];
+for(let i=0;i<sentences.length;i+=2)paragraphs.push(sentences.slice(i,i+2).join(' '));
+---
+{paragraphs.map(paragraph=><p>{paragraph}</p>)}

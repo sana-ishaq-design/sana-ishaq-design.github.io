@@ -1,0 +1,10 @@
+---
+import {images} from '../content/barcode-story';
+interface Props{name:keyof typeof images;eager?:boolean;caption?:string}
+const {name,eager=false,caption}=Astro.props;const [file,alt]=images[name];const mobile=/^(create|export|about)/.test(name);const original='/assets/img/'+encodeURIComponent(file);
+---
+<figure class="bc-screen">
+<a class="bc-image-link" href={original} data-bc-viewer data-caption={caption||alt} aria-label={`Enlarge image: ${alt}`}><picture>{mobile&&<source media="(max-width:600px)" srcset={`/review-images/bc-${name}-mobile.webp`} width={name.startsWith("create")?360:name.startsWith("export")?410:520} height={name.startsWith("create")?770:name.startsWith("export")?740:600}/>}<img src={`/review-images/bc-${name}-1200.webp`} srcset={[480,800,1200].map(w=>`/review-images/bc-${name}-${w}.webp ${w}w`).join(', ')} sizes="(max-width:700px) 100vw, 70vw" width="1200" height="900" alt={alt} loading={eager?'eager':'lazy'} decoding="async" /></picture></a>
+<figcaption>{caption||alt}<a class="text-link" href={original}>View complete original ↗</a></figcaption>
+</figure>
+

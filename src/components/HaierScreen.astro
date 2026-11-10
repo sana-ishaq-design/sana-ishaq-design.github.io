@@ -1,0 +1,9 @@
+---
+import Arrow from './Arrow.astro';
+interface Props { name:string; height:number; alt:string; caption:string; description:string; original:string }
+const {name,height,alt,caption,description,original}=Astro.props;
+---
+<figure class="story-screen">
+ <img src={`/review-images/${name}-1440.webp`} srcset={`/review-images/${name}-480.webp 480w, /review-images/${name}-800.webp 800w, /review-images/${name}-1440.webp 1440w`} sizes="(max-width:650px) 100vw, 90vw" width="1440" height={height} alt={alt} loading="lazy" />
+ <figcaption class="page-frame"><div><p>{caption} · Original desktop export</p><p>{description}</p></div><a class="text-link" href={original}>Inspect {caption} <Arrow /><span class="visually-hidden"> at full size</span></a></figcaption>
+</figure>

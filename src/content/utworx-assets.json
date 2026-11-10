@@ -1,0 +1,14 @@
+{
+ "overview":["Overview - UTWorX.png",4320,4008],
+ "assets":["assest overview.png",1635,1302],
+ "spares":["spare part consumtion.png",1635,1302],
+ "preliminary":["Prelimanary Report - UTWorX.png",4320,3225],
+ "notification":["Notification Creation - UTWorX.png",4320,3384],
+ "scheduling":["Work Scheduling - UTWorX.png",4320,2880],
+ "service":["Service Report - UTWorX.png",4320,3225],
+ "reporting":["Report Generation - UTWorX.png",4320,3225],
+ "maintenance":["Preventive Maintenance Scheduler Overview - UTWorX.png",4320,3225],
+ "task":["Preventive Maintenance Scheduler - UTWorX.png",4320,3225],
+ "success":["PMS Success Message - UTWorX.png",4320,3225],
+ "presentation":["UTWorX.png",1248,832]
+}

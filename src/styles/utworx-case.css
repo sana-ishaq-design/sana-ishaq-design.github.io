@@ -1,0 +1,78 @@
+.utworx-case main [id],.utworx-case :where(main,footer) a {scroll-margin-top:calc(var(--case-chapter-offset,80px) + 24px);scroll-margin-bottom:24px}
+.utworx-case section:focus{outline:none}
+.utworx-case p{font-size:17px;line-height:1.85;text-wrap:pretty}
+.utworx-case p+p{margin-top:24px}
+.utworx-case :where(h2,h3,h4){color:var(--ink);text-wrap:balance;font-weight:450}
+.utworx-case h2{font-size:clamp(36px,4.5vw,68px);line-height:1.15;letter-spacing:-.03em;max-width:24ch}
+.utworx-case h3{font-size:clamp(28px,3vw,44px);line-height:1.25;letter-spacing:-.025em}
+.utworx-case h4{font-size:23px;line-height:1.4;margin-bottom:16px}
+.utworx-case :where(h2,h3) em{color:var(--link)}
+.ut-opening{padding-block:64px 96px}
+.ut-category{color:var(--muted);margin-bottom:32px}
+.ut-opening h1{max-width:1150px;font-size:clamp(44px,5.7vw,82px)}
+.ut-brief{display:grid;grid-template-columns:1.25fr 1fr;gap:80px;margin-block:80px}
+.ut-brief h2{font-size:26px;max-width:30ch;margin-bottom:24px}
+.ut-brief p,.ut-prose,.ut-reflection p{max-width:66ch}
+.ut-facts{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-content:start}
+.ut-facts dt{color:var(--muted);font-size:14px;margin-bottom:12px}
+.ut-facts dd{font-size:16px;line-height:1.7}
+.ut-facts span{font-size:14px;color:var(--muted)}
+.ut-screen{min-width:0;margin-top:48px}
+.ut-screen>a{display:block;background:var(--image-ground)}
+.ut-screen img{display:block;width:100%;height:auto}
+.ut-screen figcaption{font-size:14px;line-height:1.7;color:var(--muted);max-width:80ch;margin-top:20px}
+.ut-screen figcaption a{display:flex;width:fit-content;font-size:14px;margin-top:8px}
+.ut-roles{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:72px}
+.ut-roles h3{font-size:24px;margin-bottom:20px}
+.utworx-case .ut-note{font-size:14px;color:var(--muted);max-width:80ch;margin-top:32px}
+.ut-chapter{padding-block:clamp(88px,9vw,144px);border-top:1px solid var(--edge)}
+.ut-prose{margin-top:36px}
+.ut-findings{margin-top:64px}
+.ut-findings article{display:grid;grid-template-columns:1fr 1.7fr;gap:64px;padding-block:40px;border-top:1px solid var(--edge)}
+.ut-findings h3{font-size:28px}
+.ut-findings p{max-width:65ch}
+.ut-findings a{margin-top:16px}
+.ut-principles{margin-top:64px;max-width:75ch}
+.ut-principles ul{padding-left:22px;font-size:17px;line-height:1.9}
+.ut-principles li+li{margin-top:16px}
+.ut-charts{display:grid;grid-template-columns:1.15fr 1fr;gap:72px;margin-top:64px;align-items:start}
+.ut-charts .ut-screen{margin-top:0}
+.ut-charts p{margin-block:24px 48px}
+.ut-flow{display:flex;gap:32px;flex-wrap:wrap;padding:32px 0 32px 24px;margin-top:48px;border-block:1px solid var(--edge);line-height:1.7}
+.ut-flow li{padding-left:4px;margin-right:16px;font-size:15px}
+.ut-work-pair{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:80px}
+.ut-work-pair>div{grid-column:1/-1;max-width:66ch}
+.ut-work-pair p{margin-top:24px}
+.ut-work-pair .ut-screen{margin-top:0}
+.ut-work-focus{margin-top:96px}
+.ut-work-focus>.ut-screen{max-width:1050px}
+.ut-maintenance-details{display:grid;grid-template-columns:1.2fr 1fr;gap:72px;margin-top:72px}
+.ut-maintenance-details>.ut-screen{margin-top:0}
+.ut-maintenance-details p{margin-top:24px}
+.ut-delivery{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:64px;padding-block:40px;border-block:1px solid var(--edge)}
+.ut-delivery dt{font-size:clamp(36px,4.5vw,64px);font-family:'Instrument Serif',serif;line-height:1.2;color:var(--link)}
+.ut-delivery dd{font-size:15px;margin-top:16px;line-height:1.7}
+.ut-tradeoffs,.ut-learnings,.ut-reflection{margin-top:96px}
+.ut-tradeoffs article,.ut-learnings article{max-width:70ch;padding-block:32px;border-bottom:1px solid var(--edge)}
+.ut-tradeoffs h3,.ut-learnings h3,.ut-reflection h3{margin-bottom:32px}
+.ut-presentation{margin-top:56px;max-width:800px}
+.ut-presentation summary{padding:18px 0;cursor:pointer;color:var(--link);font-size:16px}
+.ut-ending{padding-block:96px;border-top:1px solid var(--edge)}
+.ut-next{display:block;max-width:1000px;margin-bottom:32px}
+.ut-next>span{display:block;font-size:15px;color:var(--muted);margin-bottom:24px}
+.ut-next strong{font-weight:450;font-size:clamp(32px,4vw,56px);line-height:1.3}
+.ut-contact{margin-top:112px}
+.ut-contact p{margin-block:32px;max-width:60ch}
+.ut-footer{padding-block:40px 64px;border-top:1px solid var(--edge)}
+.ut-footer p{font-size:14px;color:var(--muted);margin-bottom:24px}
+@media(max-width:1000px){.ut-brief{gap:40px}.ut-roles{gap:24px}.ut-charts,.ut-maintenance-details{gap:40px}.ut-findings article{gap:32px}.ut-work-pair{display:block}.ut-work-pair .ut-screen{margin-top:48px}}
+@media(max-width:700px){.ut-opening{padding-top:40px;padding-bottom:64px}.ut-opening h1{font-size:44px}.ut-brief{display:block;margin-block:48px}.ut-facts{margin-top:40px;gap:28px}.ut-roles,.ut-charts,.ut-maintenance-details,.ut-findings article{display:block}.ut-roles article+article{margin-top:40px}.ut-roles h3{font-size:25px}.ut-findings h3{margin-bottom:24px}.ut-charts>div{margin-top:56px}.ut-maintenance-details>div{margin-top:56px}.ut-delivery{grid-template-columns:1fr 1fr;gap:32px 16px}.ut-flow{display:block}.ut-flow li{margin-block:16px}.ut-screen{margin-top:36px}.ut-detail>a{overflow:hidden}.ut-detail img{width:210%;max-width:none;margin-left:-55%}.ut-detail figcaption:before{content:'Detail view · ';}.ut-chapter{padding-block:80px}.ut-work-focus,.ut-tradeoffs,.ut-learnings,.ut-reflection{margin-top:72px}.ut-contact{margin-top:80px}.utworx-case p{font-size:16px}.utworx-case .ut-note{font-size:14px}}
+@media(prefers-reduced-motion:reduce){html:has(.utworx-case){scroll-behavior:auto}}
+.ut-screen picture{display:block}
+.ut-work-focus>.ut-screen{max-width:600px}
+.ut-work-pair .ut-screen{max-width:560px}
+.ut-mobile-caption{display:none}
+@media(max-width:700px){.ut-mobile-caption{display:block;margin-top:8px}}
+@media(min-width:1101px){.utworx-case .full-header{position:sticky;top:0;z-index:6;background:var(--canvas)}}
+.ut-next strong svg{width:32px;height:32px}
+@media(max-width:700px){.ut-next strong svg{width:24px;height:24px}}

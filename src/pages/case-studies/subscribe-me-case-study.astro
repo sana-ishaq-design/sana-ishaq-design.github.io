@@ -1,0 +1,84 @@
+---
+import '@fontsource-variable/manrope';
+import '@fontsource/instrument-serif/latin-400.css';
+import '@fontsource/instrument-serif/latin-400-italic.css';
+import manropeFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
+import editorialFont from '@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2?url';
+import '../../styles/editorial.css';
+import '../../styles/homepage.css';
+import '../../styles/subscribe-case.css';
+import FullNavigation from '../../components/FullNavigation.astro';
+import CaseChapters from '../../components/CaseChapters.astro';
+import Screen from '../../components/SubscribeScreen.astro';
+import Arrow from '../../components/Arrow.astro';
+import {metadata,intro,body,challenges,journey,callouts,reflections,reviews} from '../../content/subscribe-story';
+const chapters=[['joining','Joining the team'],['challenge','Subscription decisions'],['journey','Browsing to booking'],['management','Beyond booking'],['system','Design system'],['outcomes','Outcomes & reflections']] as const;
+---
+<!doctype html>
+<html lang="en" data-preference="system"><head>
+ <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="robots" content="index, follow" />
+ <link rel="preload" href={manropeFont} as="font" type="font/woff2" crossorigin="anonymous" />
+ <link rel="preload" href={editorialFont} as="font" type="font/woff2" crossorigin="anonymous" />
+ <Fragment set:html={metadata} />
+ <script is:inline>try{const p=localStorage.getItem('portfolio-review-theme');if(['light','dark','system'].includes(p))document.documentElement.dataset.preference=p}catch{}</script>
+ <noscript><style>@media(max-width:1000px){html .full-navigation{width:100%}html .full-navigation .header-menu-panel{position:static;box-shadow:none}}</style></noscript>
+</head><body class="subscribe-case">
+ <FullNavigation home={false} />
+ <main id="main" tabindex="-1">
+  <section id="joining" class="car-opening page-frame" aria-labelledby="car-title">
+   <p class="car-category">Mobile app UX · Car subscription · UAE</p>
+   <h1 id="car-title">Subscribe <em>a Car</em></h1>
+   <p class="car-deck">Contributing to a Car Subscription Platform That Reached 100K+ Downloads</p>
+   <div class="car-intro"><div><h2>Joining an Active<br /><em>Product Team</em></h2><p>{intro}</p></div>
+    <dl class="car-facts"><div><dt>Original product</dt><dd>Subscribe Me</dd></div><div><dt>Role</dt><dd>UI Designer — Delivery Phase</dd></div><div><dt>Joined</dt><dd>Sprint 4</dd></div><div><dt>Client / agency</dt><dd>AW Rostamani · RBB Global</dd></div></dl>
+   </div>
+  </section>
+  <div class="car-opening-art page-frame" aria-label="Original mobile product interfaces"><Screen name="browse" eager caption="Finding the right car" crop /><Screen name="vehicle" eager caption="Understanding the commitment" crop /><Screen name="dashboard" eager caption="Managing the subscription" crop /></div>
+  <CaseChapters chapters={chapters} />
+  <section id="challenge" class="car-chapter page-frame" aria-labelledby="challenge-title">
+   <h2 id="challenge-title">Making Subscription<br /><em>Decisions Easier</em></h2>
+   <div class="car-prose"><p>{body[0]}</p><p>{body[1]}</p></div>
+   <div class="car-challenges">{challenges.map((c,i)=><article><span class="car-number">0{i+1}</span><div><h3>{c.title}</h3><p>{c.problem}</p><p class="car-response"><strong>Design response.</strong> {c.response}</p><a class="text-link" href={['#value-clarity','#commitment','#management'][i]}>See the design decision <Arrow /></a></div></article>)}</div>
+  </section>
+  <section id="journey" class="car-chapter" aria-labelledby="journey-title">
+   <div class="page-frame"><h2 id="journey-title">From Browsing<br /><em>to Booking</em></h2><p class="car-prose">{body[2]}</p>
+    <ol class="car-flow" aria-label="Subscription journey"><li>Browse Cars</li><li>Vehicle Details</li><li>Packages</li><li>Review Order</li><li>Payment</li><li>Confirmed</li></ol>
+   </div>
+   <div id="screens" class="car-decision page-frame"><div class="car-side-story"><h3>Orient the budget.<br /><em>Then choose the car.</em></h3><p>{journey[0]}</p><p class="car-note">Design intent: reduce comparison overload.</p></div><Screen name="browse" /></div>
+   <div id="value-clarity" class="car-value page-frame"><h3>Make the value<br /><em>visible before commitment.</em></h3><p class="car-prose">{journey[1]}</p>
+    <div class="car-value-art"><Screen name="vehicle" caption="Vehicle details · Complete original export, including packages, mileage, insurance, benefits and cancellation policy." /><div><Screen name="package" /><Screen name="pricing" caption="Pricing breakdown · Line-item transparency before payment commitment." /></div></div>
+   </div>
+   <div id="commitment" class="car-commitment page-frame"><h3>A clear route<br /><em>through commitment.</em></h3><p class="car-prose"><strong>{body[3].split('Named progress steps')[0]}</strong><br />Named progress steps{body[3].split('Named progress steps')[1]}</p><p class="car-note">The six stages describe the overall subscription journey, from discovering a car to confirming a booking.</p>
+    <div class="car-sequence"><Screen name="extras" /><Screen name="review" /><Screen name="confirmed" caption="Booking confirmed · Delivery timeline and subscription summary." /></div>
+   </div>
+  </section>
+  <section id="management" class="car-chapter page-frame" aria-labelledby="management-title">
+   <h2 id="management-title">Designing Beyond<br /><em>the Booking</em></h2><p class="car-prose">{body[4]}</p>
+   <div class="car-management"><Screen name="dashboard" /><div class="car-side-story"><h3>Support belongs<br /><em>in the everyday journey.</em></h3><p>{callouts[0]}</p><Screen name="notice" caption="Contract expiry · Collection and extension actions remain close to the booking context." /></div></div>
+   <h3 class="car-subheading">Bookings, services<br /><em>and the unexpected.</em></h3>
+   <div class="car-sequence"><Screen name="active" /><Screen name="service" /><Screen name="breakdown" /></div>
+   <div class="car-sequence car-secondary"><Screen name="swap" /><Screen name="accident" /></div>
+   <h3 class="car-subheading">The practical details,<br /><em>within reach.</em></h3><div class="car-sequence car-secondary"><Screen name="documents" /><Screen name="profile" /></div>
+  </section>
+  <section id="system" class="car-chapter page-frame" aria-labelledby="system-title">
+   <h2 id="system-title">Extending the<br /><em>Design System</em></h2><p class="car-prose">{body[5]}</p><p class="car-note">This contribution extended an inherited system during delivery. The original case study reports 50+ components with documented interaction states.</p>
+   <div class="car-specs"><Screen name="specs" caption="Component specification excerpt · Original dimensions and implementation annotations." /></div>
+   <div class="car-components"><Screen name="button" /><Screen name="card" /></div>
+  </section>
+  <section id="outcomes" class="car-chapter page-frame" aria-labelledby="outcomes-title">
+   <h2 id="outcomes-title">Outcomes<br /><em>&amp; Reflections</em></h2><p class="car-prose">The original case study reports a live product available on Google Play and the App Store in the UAE under AW Rostamani Group.</p>
+   <dl id="outcomes-grid" class="car-outcomes"><div><dt>100K+</dt><dd>Downloads<span>Google Play · published product milestone</span></dd></div><div><dt>3.9★</dt><dd>App rating<span>217+ reviews · reported case-study snapshot</span></dd></div></dl>
+   <p class="car-note">Product figures as reported in the original case study. Rating and review count reflect that reporting snapshot.</p>
+   <dl class="car-delivery"><div><dt>6 sprints</dt><dd>Published project delivery period · on-time delivery.</dd></div><div><dt>50+ components</dt><dd>Published design-system scope · documented interaction states.</dd></div></dl>
+   <div class="car-review-intro"><h3>What the feedback<br /><em>can tell us.</em></h3><p>Selected positive reviews describe a straightforward booking experience. Critical feedback identifies car swaps, deposit delays and difficulty reaching support. These excerpts provide qualitative context; they do not establish the experience of every customer or isolate the impact of individual interface decisions.</p></div>
+   <div class="car-reviews">{reviews.map(r=><figure><blockquote>{r.quote}</blockquote><figcaption>{r.attribution}</figcaption></figure>)}</div>
+   <p class="car-prose">The original case study identifies in-app dispute resolution and transparent billing history as a Version 2 design direction. These are future opportunities, not delivered features shown here. Operational problems also affect the overall customer experience.</p>
+   <div id="reflection" class="car-reflections"><h3>What this project reinforced<br /><em>about designing under pressure.</em></h3>{reflections.map(r=><article><h4>{r.title}</h4><p>{r.text}</p></article>)}<p class="car-closing">{callouts[1]}</p></div>
+  </section>
+  <div class="car-ending page-frame"><a class="car-next" href="/case-studies/utworx-case-study.html"><span>Next case study · UTWorX</span><span>Redesigning an enterprise platform for <em>clarity under complexity.</em> <Arrow /></span></a><a class="text-link" href="/case-studies.html">All Case Studies <Arrow /></a>
+   <div class="car-contact"><h2>Building a mobile product<br /><em>that needs this level of execution?</em></h2><p>From booking flows to design systems — let's talk about what your product needs.</p><a class="text-link" href="https://calendly.com/sanaishaq/sana-uiux">Book a Free Strategy Call <Arrow /></a></div>
+  </div>
+ </main>
+ <footer class="car-footer page-frame"><p>Subscribe a Car · Original product: Subscribe Me</p><p>UI Design by Sana Ishaq · AW Rostamani Group · RBB Global · UAE</p><a class="text-link" href="https://play.google.com/store/search?q=subscribe%20me&amp;c=appse" target="_blank" rel="noopener">Search Google Play for Subscribe Me <Arrow /></a><a class="text-link" href="/homepage.html#selected-work">Back to selected work <Arrow /></a></footer>
+</body></html>
+

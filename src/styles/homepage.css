@@ -63,21 +63,23 @@
 .service-row>div>p { font-size:16px; line-height:1.8; max-width:60ch; }
 .service-row .service-audience { font-size:14px; color:var(--muted); margin-top:16px; }
 .service-row .text-link { margin-top:20px; }
-.about-section { display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(64px,9vw,144px); padding-top:96px; }
-.about-aside>p { font-size:17px; line-height:1.8; max-width:30ch; margin-bottom:24px; }
-.about-aside .about-location { font-size:clamp(44px,4.5vw,64px); line-height:1.1; letter-spacing:-.03em; }
-.about-location em { color:var(--link); }
+.about-section { padding-top:96px; }
+.about-copy { max-width:1040px; }
+.about-copy .about-eyebrow { margin:0 0 32px; font-size:14px; line-height:1.6; color:var(--link); text-transform:uppercase; letter-spacing:.04em; }
 .about-copy .editorial-title { font-size:clamp(42px,4.1vw,64px); margin-bottom:40px; }
-.about-copy>p:not(.section-label) { font-size:17px; line-height:1.85; max-width:64ch; margin-top:24px; }
+.about-copy>p:not(.about-eyebrow) { font-size:17px; line-height:1.85; max-width:64ch; margin-top:24px; }
+.about-copy>p.about-introduction { font-size:21px; line-height:1.7; max-width:56ch; }
+.about-details { margin-top:48px; }
+.about-details p { font-size:15px; line-height:1.8; color:var(--muted); max-width:65ch; }
+.about-details p:first-child { color:var(--ink); margin-bottom:8px; }
 .about-links { display:flex; flex-wrap:wrap; gap:16px 32px; margin-top:32px; }
 .contact-section { background:var(--ink); color:var(--canvas); }
-.contact-composition { display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(48px,9vw,144px); }
+.contact-composition { display:flex; flex-direction:column; align-items:flex-start; gap:40px; }
 .contact-composition h2 { font-size:clamp(48px,4.8vw,76px); font-weight:450; color:inherit; letter-spacing:-.035em; line-height:1.1; }
-.contact-composition>div>p { font-size:17px; line-height:1.8; max-width:54ch; }
+.contact-composition>div>p { font-size:17px; line-height:1.8; max-width:60ch; }
 .contact-section .text-link { color:inherit; }
-.contact-actions { display:flex; align-items:flex-start; flex-direction:column; gap:12px; margin-block:28px; }
+.contact-actions { display:flex; align-items:flex-start; flex-direction:column; gap:16px; margin-block:32px; }
 .contact-composition .contact-note { font-size:15px; }
-.contact-email { display:inline-flex; gap:20px; align-items:center; margin-top:72px; min-height:48px; font-size:clamp(20px,2.2vw,32px); text-decoration:underline; text-underline-offset:8px; overflow-wrap:anywhere; }
 .contact-section a:focus-visible { outline-color:currentColor; }
 .site-footer { display:grid; grid-template-columns:1fr 1fr 1fr; gap:48px; padding-top:64px; padding-bottom:40px; }
 .footer-name { display:inline-flex; align-items:center; min-height:44px; font-size:22px; font-weight:600; }
@@ -113,9 +115,6 @@
   .archive-preview { display:none; }
   .archive-row-copy { max-width:none; }
   .section-introduction,.service-row { gap:48px; }
-  .about-section { gap:48px; }
-  .contact-composition { grid-template-columns:1fr; gap:48px; }
-  .contact-composition>div { margin-left:25%; }
 }
 @media(max-width:650px) {
   .editorial-section { padding-block:96px; }
@@ -149,14 +148,13 @@
   .section-introduction>p { font-size:17px; }
   .service-row { grid-template-columns:1fr; gap:20px; padding-block:32px; }
   .service-row h3 { font-size:27px; }
-  .about-section { grid-template-columns:1fr; gap:48px; padding-top:48px; }
-  .about-aside .about-location { font-size:48px; }
+  .about-section { padding-top:64px; }
   .about-copy .editorial-title { font-size:42px; }
-  .about-copy>p:not(.section-label) { font-size:16px; }
+  .about-copy>p:not(.about-eyebrow) { font-size:16px; }
+  .about-copy>p.about-introduction { font-size:19px; }
+  .about-details { margin-top:40px; }
   .contact-composition h2 { font-size:44px; }
-  .contact-composition>div { margin-left:0; }
   .contact-composition>div>p { font-size:16px; }
-  .contact-email { margin-top:48px; font-size:19px; gap:12px; }
   .site-footer { grid-template-columns:1fr 1fr; gap:32px; }
   .site-footer>div { grid-column:1/-1; }
   .archive-dialog { width:calc(100% - 32px); max-height:calc(100dvh - 32px); padding:24px; }

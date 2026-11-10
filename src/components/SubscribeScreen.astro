@@ -1,0 +1,13 @@
+---
+import {screens,type ScreenKey} from '../content/subscribe-story';
+interface Props { name:ScreenKey; caption?:string; crop?:boolean; eager?:boolean }
+const {name,caption,crop=false,eager=false}=Astro.props;
+const [file,width,height,alt]=screens[name];
+const sizes=[360,720,1200].filter(w=>w<=width);
+if(!sizes.includes(width)&&width<1200)sizes.push(width);
+const base=`/review-images/car-${name}`;
+---
+<figure class:list={['car-screen',{'car-crop':crop}]}>
+ <img src={`${base}-${sizes.at(-1)}.webp`} srcset={sizes.map(w=>`${base}-${w}.webp ${w}w`).join(', ')} sizes={name==='specs'?'90vw':'(max-width:650px) calc(100vw - 48px), 400px'} width={width} height={height} alt={alt} loading={eager?'eager':'lazy'} decoding="async" />
+ <figcaption><span>{caption??alt}</span><a class="text-link" href={`/assets/img/${file}`} aria-label={`Inspect full image: ${alt}`}>Inspect full image</a></figcaption>
+</figure>

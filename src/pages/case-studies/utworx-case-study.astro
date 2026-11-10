@@ -1,0 +1,93 @@
+---
+import '@fontsource-variable/manrope';
+import '@fontsource/instrument-serif/latin-400.css';
+import '@fontsource/instrument-serif/latin-400-italic.css';
+import manropeFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
+import editorialFont from '@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2?url';
+import '../../styles/editorial.css';
+import '../../styles/homepage.css';
+import '../../styles/utworx-case.css';
+import FullNavigation from '../../components/FullNavigation.astro';
+import CaseChapters from '../../components/CaseChapters.astro';
+import Screen from '../../components/UtworxScreen.astro';
+import Arrow from '../../components/Arrow.astro';
+import original from '../../../case-studies/utworx-case-study.html?raw';
+const metadata=original.slice(original.indexOf('<title>'),original.indexOf('</script>',original.indexOf('<script type="application/ld+json">'))+9).replaceAll('/assets/img/utworx-og.png','/assets/img/UTWorX.png');
+const chapters=[['overview','The brief'],['challenge','Operational decisions'],['dashboard','At a glance'],['workorders','Work orders'],['maintenance','Maintenance'],['reporting','Reporting'],['impact','Delivery & reflection']] as const;
+const stages=['Preliminary Report','Notification Creation','Work Scheduling','Service Report','Report Generation'];
+---
+<!doctype html>
+<html lang="en" data-preference="system"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="robots" content="index, follow" />
+<link rel="preload" href={manropeFont} as="font" type="font/woff2" crossorigin="anonymous" /><link rel="preload" href={editorialFont} as="font" type="font/woff2" crossorigin="anonymous" />
+<Fragment set:html={metadata} />
+<script is:inline>try{const p=localStorage.getItem('portfolio-review-theme');if(['light','dark','system'].includes(p))document.documentElement.dataset.preference=p}catch{}</script>
+<noscript><style>@media(max-width:1000px){html .full-navigation{width:100%}html .full-navigation .header-menu-panel{position:static;box-shadow:none}}</style></noscript>
+</head><body class="utworx-case">
+<FullNavigation home={false} />
+<main id="main" tabindex="-1">
+<section id="overview" class="ut-opening page-frame" aria-labelledby="ut-title">
+<p class="ut-category">UTWorX · Enterprise B2B · Asset management</p>
+<h1 id="ut-title">Simplifying complex maintenance operations.<br /><em>Without removing functionality.</em></h1>
+<div class="ut-brief"><div><h2>The Brief: Clarity Without Removing Capability</h2><p>UTWorX is an enterprise SaaS platform for managing assets, maintenance and operational performance. As features and workflows grew, everyday tasks became harder to navigate. The brief was to simplify the interface without removing a feature or changing existing functionality.</p></div>
+<dl class="ut-facts"><div><dt>My role</dt><dd>Lead UI/UX Designer · Sole designer</dd></div><div><dt>Collaboration</dt><dd>PM, developer and stakeholders</dd></div><div><dt>Delivery</dt><dd>Two weeks · End-to-end</dd></div><div><dt>Product platforms</dt><dd>Web app · Android · iOS<br /><span>Desktop web exports shown here.</span></dd></div></dl></div>
+<Screen name="overview" eager caption="UTWorX dashboard: work-summary counts, Asset Overview, Spare Part Consumption and a work-summary table in one operational view." />
+<div class="ut-roles"><article><h3>Operators &amp; technicians</h3><p>Receive faults, prioritize work and log completion, often while working on site.</p></article><article><h3>Supervisors &amp; team leads</h3><p>Delegate tasks, track progress and resolve blockers. Important updates were buried in unprioritized tables.</p></article><article><h3>Managers &amp; schedulers</h3><p>Monitor asset performance, completion and spare parts across a scattered operational picture.</p></article></div>
+<p class="ut-note">The wider audience includes facility managers, maintenance managers, operations teams and asset owners. These are three operational role groupings, not a new permissions model.</p>
+</section>
+<CaseChapters chapters={chapters} />
+<section id="challenge" class="ut-chapter page-frame" aria-labelledby="challenge-title">
+<h2 id="challenge-title">From Stored Data<br /><em>to Operational Decisions</em></h2>
+<p class="ut-prose">The structured UX audit identified a system organized around the data it stored rather than the actions people needed to take. The task was to reduce cognitive effort, surface priorities and shorten navigation while preserving operational depth.</p>
+<div class="ut-findings">
+<article><h3>Information overload</h3><div><p>Raw tables gave records similar visual weight. Without clear priorities, users had to read through entries to determine what needed attention.</p><p><strong>Design response:</strong> bring summaries and priority signals ahead of detailed records.</p><a class="text-link" href="#dashboard">See the dashboard response <Arrow /></a></div></article>
+<article><h3>Difficult navigation</h3><div><p>The operational picture was spread across four to five screens. Work-order abandonment and supervisors falling back to phone or chat were described in the audit.</p><p><strong>Design response:</strong> keep task actions within their working context and structure the work-order sequence.</p><a class="text-link" href="#workorders">See the workflow response <Arrow /></a></div></article>
+<article><h3>No dashboard visibility</h3><div><p>Distributed data lacked synthesis. Managers were making decisions with an incomplete view of operational status.</p><p><strong>Design response:</strong> combine task counts, charts and detailed work records in a single overview.</p><a class="text-link" href="#dashboard">See the information hierarchy <Arrow /></a></div></article>
+</div>
+<div id="goals" class="ut-principles"><h3>Four principles for the redesign</h3><ul><li><strong>Simplify data</strong> through visual summaries without losing depth.</li><li><strong>Improve visibility</strong> of operational indicators without opening multiple sub-screens.</li><li><strong>Streamline workflows</strong> through task-focused forms and contextual actions.</li><li><strong>Modernize familiar patterns</strong> to support everyday enterprise work without unnecessary relearning.</li></ul></div>
+</section>
+<section id="dashboard" class="ut-chapter page-frame" aria-labelledby="dashboard-title">
+<h2 id="dashboard-title">Reading the Operation<br /><em>at a Glance</em></h2>
+<p class="ut-prose">The dashboard separates overview from investigation: work-summary counts establish status, charts make patterns visible, and the table retains the underlying work detail. The goal is to help managers identify where to look before reading individual records.</p>
+<div class="ut-charts"><Screen name="assets" caption="Asset Overview uses grouped monthly bars. This detail preserves the chart and its labels together." /><div><h3>Different questions.<br /><em>Different views.</em></h3><p>Asset Overview and Spare Part Consumption sit above the work table. The consumption chart uses single-series bars with a Monthly/Weekly control; it is not a stacked-bar chart.</p><Screen name="spares" caption="Spare Part Consumption: single-series bars and a Monthly/Weekly selector." /></div></div>
+<p class="ut-prose"><strong>Navigation architecture:</strong> a persistent sidebar keeps modules available as the product grows. Top navigation would preserve more vertical space, but the sidebar follows familiar enterprise conventions such as Salesforce and ServiceNow.</p>
+</section>
+<section id="workorders" class="ut-chapter page-frame" aria-labelledby="workorders-title">
+<h2 id="workorders-title">Keeping Work Orders<br /><em>in Context</em></h2>
+<p class="ut-prose">Fault details, asset assignment, scheduling, personnel and documentation demand different kinds of attention. Instead of a single long form, the documented workflow divides that work into five named stages.</p>
+<ol class="ut-flow">{stages.map(s=><li>{s}</li>)}</ol><p class="ut-note">Workflow summary from the project account; not a depiction of an on-screen progress indicator.</p>
+<div id="screens" class="ut-work-pair"><div><h3>Capture the fault.<br /><em>Then define the work.</em></h3><p>The preliminary report collects observations, findings, attachments and follow-up. Notification creation adds the asset, category and priority so the next action has a defined context.</p></div><Screen name="preliminary" detail caption="Preliminary Report: fault observation, findings, attachments and follow-up inside a contextual form." /><Screen name="notification" detail caption="Notification Creation: description, asset, category and priority collected in a task-specific modal." /></div>
+<div class="ut-work-focus"><h3>Coordinate the resources.<br /><em>Close the loop.</em></h3><p class="ut-prose">Scheduling brings technician assignment, spare parts, date and estimated hours into one task. The service report records findings, components, parts used, completion state and supporting attachments.</p><Screen name="scheduling" detail caption="Work Scheduling: technician, spare parts, scheduled date and estimated completion hours." /><Screen name="service" detail caption="Service Report: findings, asset component, parts used, completion state and attachments." /></div>
+<p class="ut-prose"><strong>Why contextual modals?</strong> Dedicated pages would move users away from the primary workflow for each secondary action. These forms keep the underlying work list in view. Reducing repeated navigation was the design intention; no measured time saving is claimed.</p>
+</section>
+<section id="maintenance" class="ut-chapter page-frame" aria-labelledby="maintenance-title">
+<h2 id="maintenance-title">Planning Maintenance<br /><em>Across Assets</em></h2>
+<p class="ut-prose">Preventive maintenance requires an overview of assets and dates, then enough task detail to coordinate people, parts and completion. The table supports scanning; the task modal supports acting on one item.</p>
+<Screen name="maintenance" caption="Preventive Maintenance Scheduler overview: asset, location, date and status, with Assign actions and Upload Excel." />
+<div class="ut-maintenance-details"><Screen name="task" detail caption="Preventive maintenance task: Assigned PIC, task details, spare parts, completion notes and attachments." /><div><h3>Make completion<br /><em>explicit.</em></h3><p>The task form brings personnel and supporting records together. A success confirmation provides a clear end state after completion.</p><Screen name="success" detail caption="Documented success state confirming completion of the work order." /></div></div>
+<p class="ut-note">Bulk management and recurrence were part of the documented design intention. The available exports show an Upload Excel entry point and a task modal; they do not establish a complete bulk editor or inline assignment behavior.</p>
+</section>
+<section id="reporting" class="ut-chapter page-frame" aria-labelledby="reporting-title">
+<h2 id="reporting-title">Defining the Report<br /><em>Before Reading the Records</em></h2>
+<p class="ut-prose">Reporting starts by narrowing the question. Date, asset and work-status controls sit above the records, alongside Export. This replaces the need to begin with an undifferentiated long table and find the relevant information afterward.</p>
+<Screen name="reporting" caption="Report Generation: Select Date, Asset ID, Work Status and Export controls above the report table." />
+<p class="ut-note">The documented intent includes date ranges and open, completed or overdue work. The export shows the filter entry points, not their expanded option states.</p>
+</section>
+<section id="impact" class="ut-chapter page-frame" aria-labelledby="impact-title">
+<h2 id="impact-title">Delivery, Limitations<br /><em>&amp; Reflection</em></h2>
+<p class="ut-prose">Formal usability metrics were not collected within the two-week scope. The following delivery outcomes were reported by the product team and client stakeholders post-delivery.</p>
+<dl class="ut-delivery"><div><dt>16</dt><dd>Screens</dd></div><div><dt>3</dt><dd>Operational roles</dd></div><div><dt>2 weeks</dt><dd>End-to-end delivery</dd></div><div><dt>0</dt><dd>Functionality changes</dd></div></dl>
+<p class="ut-note">The original portfolio reports seven operational workflows delivered without disrupting live operations. These are delivery and scope facts, not measured usability gains.</p>
+<div id="decisions" class="ut-tradeoffs"><h3>The trade-offs<br /><em>behind the interface.</em></h3>
+<article><h4>Sidebar over top navigation</h4><p>Top navigation offers more vertical space. A sidebar accommodates growing module counts and familiar enterprise navigation patterns. Familiarity was intended to reduce relearning.</p></article>
+<article><h4>Visual summaries alongside detailed tables</h4><p>Improved sorting, filtering and colored rows would be a lower-risk change. Charts were chosen to make trends easier to interpret, while records remained available for detail. Faster insight was an objective, not a timed result.</p></article>
+<article><h4>Five focused stages over one long form</h4><p>A single page could show every field at once. Separating fault, asset, scheduling, personnel and documentation tasks was intended to support focused attention and complete records, rather than prove a reduction in errors.</p></article>
+<article><h4>Contextual modals over separate pages</h4><p>Separate screens would interrupt the main workflow for secondary tasks. Keeping actions near the work list was intended to reduce repeated transitions during sessions containing multiple work orders.</p></article></div>
+<div id="learnings" class="ut-learnings"><h3>What enterprise design<br /><em>reinforced.</em></h3><article><h4>Structure data rather than remove its depth</h4><p>The same information can be organized around the decision it supports. Complexity is often a presentation problem rather than a reason to discard necessary records.</p></article><article><h4>Familiarity can be a design advantage</h4><p>For people working in the same tool for hours, precise use of established patterns matters more than novelty. The objective was to bring the work forward, with less effort spent interpreting the interface.</p></article><article><h4>Hierarchy matters under time pressure</h4><p>Priority signals, appropriate charts and contextual information were chosen to support decisions at the point of need. Their effect on speed and effort remains to be tested.</p></article></div>
+<div id="reflection" class="ut-reflection"><h3>What I would<br /><em>do differently.</em></h3><p>The two-week timeline left an important gap: formal user testing. In retrospect, a half-day session with three to five current users on work-order creation and preventive maintenance would have helped replace assumptions with evidence. That session is a reflection, not completed research.</p><p>The redesign addressed presentation and workflow clarity. Predictive maintenance alerts, proactive scheduling suggestions and anomaly detection were outside scope. The original project account identifies existing platform data as a starting point for exploring that intelligence layer.</p></div>
+<details class="ut-presentation"><summary>View the original project presentation</summary><Screen name="presentation" caption="Original UTWorX portfolio presentation composite. The complete interface exports above provide the detailed evidence." /></details>
+</section>
+<div class="ut-ending page-frame"><a class="ut-next" href="/case-studies/barcode-studio-case-study.html"><span>Next case study · Barcode Studio</span><strong>A barcode generator that works<br /><em>entirely inside the browser.</em> <Arrow /></strong></a><a class="text-link" href="/case-studies.html">All Case Studies <Arrow /></a><div class="ut-contact"><h2>A complex enterprise product.<br /><em>A clearer way to work.</em></h2><p>From structured UX audit to interface redesign and delivery — let's discuss your product.</p><a class="text-link" href="https://calendly.com/sanaishaq/sana-uiux">Book a Free Strategy Call <Arrow /></a></div></div>
+</main><footer class="ut-footer page-frame"><p>UTWorX · UI Design by Sana Ishaq · Two-week enterprise delivery</p><a class="text-link" href="/homepage.html#selected-work">Back to selected work <Arrow /></a></footer>
+</body></html>
+

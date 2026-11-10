@@ -1,0 +1,108 @@
+/* Project-scoped composition; shared portfolio navigation and tokens are reused. */
+.subscribe-case { --car-reading:66ch; }
+.subscribe-case main [id],.subscribe-case :where(main,footer) a { scroll-margin-top:calc(var(--case-chapter-offset,80px) + 24px); scroll-margin-bottom:24px; }
+.subscribe-case section:focus { outline:none; }
+.subscribe-case :where(h2,h3,h4) { text-wrap:balance; color:var(--ink); }
+.subscribe-case :where(h2,h3) em { color:var(--link); }
+.subscribe-case p { font-size:17px; line-height:1.85; text-wrap:pretty; }
+.subscribe-case p+p { margin-top:24px; }
+.subscribe-case h2 { font-size:clamp(40px,5.1vw,76px); font-weight:450; letter-spacing:-.035em; line-height:1.13; }
+.subscribe-case h3 { font-size:clamp(30px,3.6vw,52px); font-weight:450; line-height:1.2; letter-spacing:-.025em; }
+.car-opening { padding-block:64px 88px; }
+.car-category { color:var(--muted); margin-bottom:32px; }
+.car-opening h1 { font-size:clamp(64px,8vw,112px); }
+.subscribe-case .car-deck { max-width:35ch; font-size:clamp(24px,2.7vw,38px); line-height:1.4; margin-top:32px; }
+.car-intro { display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr); gap:clamp(64px,9vw,144px); margin-top:96px; }
+.car-intro h2 { font-size:32px; margin-bottom:32px; }
+.car-facts { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-content:start; }
+.car-facts dt { color:var(--muted); font-size:14px; margin-bottom:12px; }
+.car-facts dd { font-size:16px; line-height:1.7; }
+.car-opening-art { display:flex; justify-content:center; align-items:start; gap:clamp(32px,6vw,96px); padding-block:64px; background:var(--image-ground); }
+.car-opening-art .car-screen { width:26%; max-width:330px; }
+.car-opening-art .car-screen:nth-child(2) { margin-top:64px; }
+.car-screen { margin:0; min-width:0; width:100%; max-width:360px; }
+.car-screen>a { display:block; }
+.car-screen img { display:block; width:100%; height:auto; }
+.car-screen figcaption { margin-top:20px; font-size:14px; line-height:1.7; color:var(--muted); }
+.car-screen figcaption span { display:block; }
+.car-screen figcaption a { margin-top:8px; font-size:14px; }
+.car-crop img { aspect-ratio:360/640; object-fit:cover; object-position:top; }
+.car-chapter { padding-block:clamp(96px,10vw,160px); }
+.car-prose { max-width:var(--car-reading); margin-top:40px; }
+.car-challenges { margin-top:64px; max-width:900px; }
+.car-challenges article { display:grid; grid-template-columns:56px 1fr; gap:32px; padding-block:40px; border-top:1px solid var(--edge); }
+.car-number { font-size:14px; color:var(--muted); padding-top:10px; }
+.car-challenges h3 { font-size:30px; margin-bottom:24px; }
+.car-challenges p { max-width:66ch; }
+.car-response { color:var(--muted); }
+.car-challenges a { margin-top:24px; }
+.car-flow { display:flex; flex-wrap:wrap; gap:24px 40px; padding-left:24px; margin-block:48px 0; font-size:15px; line-height:1.8; color:var(--muted); }
+.car-flow li { padding-left:4px; }
+.car-decision { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:96px; align-items:start; margin-top:96px; }
+.car-decision>.car-screen { justify-self:center; }
+.car-side-story { max-width:60ch; }
+.car-side-story>p { margin-top:32px; }
+.car-value,.car-commitment { margin-top:128px; }
+.car-value-art { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(48px,10vw,160px); align-items:start; margin-top:64px; max-width:1000px; }
+.car-value-art>.car-screen { max-width:400px; }
+.car-value-art>div { padding-top:96px; }
+.car-value-art>div>.car-screen+.car-screen { margin-top:96px; }
+.car-sequence { display:flex; justify-content:space-between; gap:48px; align-items:start; margin-top:64px; }
+.car-sequence>.car-screen { flex:1; }
+.car-secondary { justify-content:flex-start; gap:clamp(48px,10vw,160px); }
+.car-management { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:clamp(64px,10vw,160px); margin-top:64px; }
+.car-management .car-side-story { padding-top:80px; }
+.car-management .car-side-story>.car-screen { margin-top:64px; max-width:570px; }
+.car-subheading { margin-top:112px; }
+.car-specs { margin-top:64px; }
+.car-specs .car-screen { max-width:none; }
+.car-components { display:flex; gap:64px; margin-top:64px; }
+.car-components .car-screen { max-width:400px; }
+.subscribe-case .car-note { font-size:14px; line-height:1.8; color:var(--muted); max-width:78ch; margin-top:24px; }
+.car-outcomes { display:grid; grid-template-columns:1fr 1fr; gap:64px; margin-top:64px; }
+.car-outcomes dt { font-size:clamp(64px,7vw,100px); letter-spacing:-.035em; line-height:1.2; }
+.car-outcomes dd { margin-top:16px; font-size:20px; line-height:1.6; }
+.car-outcomes dd span { display:block; font-size:14px; color:var(--muted); margin-top:8px; }
+.car-delivery { display:grid; grid-template-columns:1fr 1fr; gap:64px; padding-top:48px; margin-top:64px; border-top:1px solid var(--edge); }
+.car-delivery dt { font-size:28px; margin-bottom:16px; }
+.car-delivery dd { max-width:50ch; color:var(--muted); line-height:1.8; }
+.car-review-intro { margin-top:112px; max-width:66ch; }
+.car-review-intro p { margin-top:32px; }
+.car-reviews { display:grid; grid-template-columns:1fr 1fr; gap:64px; margin-top:48px; }
+.car-reviews blockquote { font-size:24px; line-height:1.6; margin:0; }
+.car-reviews figcaption { font-size:14px; color:var(--muted); margin-top:24px; line-height:1.7; }
+.car-reflections { margin-top:112px; }
+.car-reflections article { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:64px; border-top:1px solid var(--edge); padding-block:40px; }
+.car-reflections article:first-of-type { margin-top:48px; }
+.car-reflections h4 { font-size:22px; font-weight:500; line-height:1.5; max-width:28ch; }
+.car-reflections p { max-width:66ch; }
+.subscribe-case .car-closing { font-size:24px; line-height:1.6; max-width:55ch; margin-top:48px; }
+.car-ending { padding-bottom:128px; }
+.car-next { display:block; border-top:1px solid var(--edge); padding-block:48px; }
+.car-next>span { display:block; }
+.car-next>span:first-child { font-size:15px; color:var(--muted); margin-bottom:24px; }
+.car-next>span:last-child { font-size:clamp(30px,4vw,56px); max-width:32ch; line-height:1.25; }
+.car-next svg { width:32px; height:32px; }
+.car-contact { margin-top:128px; }
+.car-contact p { max-width:60ch; margin-block:40px 24px; }
+.car-footer { border-top:1px solid var(--edge); padding-block:48px 64px; }
+.car-footer p { font-size:14px; color:var(--muted); }
+.car-footer a { margin-top:24px; margin-right:32px; }
+@media(min-width:1101px) { .subscribe-case .full-header { position:sticky; top:0; z-index:6; background:var(--canvas); } }
+@media(max-width:1100px) { .car-intro { grid-template-columns:1fr; gap:48px; }.car-intro>div{max-width:66ch}.car-sequence{gap:32px}.car-decision{gap:48px}.car-management{gap:48px} }
+@media(max-width:650px) {
+ .subscribe-case p { font-size:16px; line-height:1.8; }
+ .subscribe-case h2 { font-size:38px; }.subscribe-case h3{font-size:32px;}
+ .car-opening { padding-block:40px 64px; }.car-opening h1{font-size:58px;line-height:1.1}.car-opening h1 em{display:block;margin-left:0;}
+ .car-intro{margin-top:64px}.car-intro h2{font-size:28px}.car-facts{gap:24px}.car-facts dd{font-size:15px}
+ .car-opening-art { flex-direction:column; gap:48px; padding-block:40px; }.car-opening-art .car-screen{width:100%;max-width:360px;margin:auto!important}.car-opening-art .car-screen:not(:first-child){display:none}
+ .car-chapter{padding-block:80px}.car-prose{margin-top:32px}.car-challenges{margin-top:40px}.car-challenges article{grid-template-columns:1fr;gap:16px}.car-number{padding:0}.car-challenges h3{font-size:26px}
+ .car-flow{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px}
+ .car-decision,.car-value-art,.car-management,.car-reviews,.car-reflections article{grid-template-columns:1fr;gap:40px}
+ .car-decision,.car-value,.car-commitment,.car-subheading{margin-top:80px}.car-value-art{margin-top:40px}.car-value-art>div,.car-management .car-side-story{padding:0}
+ .car-value-art>div>.car-screen+.car-screen{margin-top:48px}
+ .car-sequence,.car-components{flex-direction:column;gap:48px;margin-top:40px}.car-screen{margin-inline:auto}.car-sequence>.car-screen{flex:auto}
+ .car-outcomes{gap:40px;grid-template-columns:1fr}.car-outcomes dt{font-size:64px}.car-delivery{grid-template-columns:1fr;gap:40px}
+ .car-review-intro,.car-reflections{margin-top:80px}.car-reviews blockquote{font-size:22px}.car-reflections article{gap:24px}.car-reflections h4{max-width:100%}
+ .car-contact{margin-top:88px}.car-ending{padding-bottom:80px}.car-next svg{width:24px;height:24px}
+}

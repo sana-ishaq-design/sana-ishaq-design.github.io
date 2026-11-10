@@ -12,13 +12,17 @@ import Arrow from './Arrow.astro';
   <div class="service-list">{copy.services.map((service,index)=><article class="service-row"><div><h3>{service.title}</h3><p class="service-audience">{service.audience}</p></div><div><p>{service.description}</p>{index===0&&<a class="text-link" href="/ux-audit-service-page.html">UX Audit service <Arrow /></a>}</div></article>)}</div>
 </section>
 <section id="about" class="about-section editorial-section page-frame" aria-labelledby="about-title" tabindex="-1">
-  <div class="about-aside"><p class="about-location">Based in<br /><em>Pakistan.</em></p><p>Product Designer</p><p>Working remotely with clients across the UAE, UK, US, and beyond.</p></div>
-  <div class="about-copy"><h2 id="about-title" class="editorial-title">Designing for outcomes,<br /><em>not just interfaces</em></h2>{copy.about.paragraphs.slice(0,3).map(paragraph=><p>{paragraph}</p>)}
+  <div class="about-copy">
+    <p class="about-eyebrow">A little about me</p>
+    <h2 id="about-title" class="editorial-title">Designing for outcomes,<br /><em>not just interfaces.</em></h2>
+    <!-- Owner-proposed condensed copy for local review; published baseline remains in homepage.json. -->
+    <p class="about-introduction">I help SaaS products and ecommerce brands turn complex product challenges into clear, intuitive digital experiences.</p>
+    <p>With 5+ years of experience, I've worked with startups, growing businesses, and enterprise teams across SaaS, ecommerce, mobile, and complex digital products. My approach connects user needs, business goals, and thoughtful execution.</p>
+    <div class="about-details"><p>Based in Pakistan. Collaborating worldwide.</p><p>Product Designer · Working remotely with clients across the UAE, UK, US, and beyond.</p></div>
     <div class="about-links"><a class="text-link" href="https://www.linkedin.com/in/sanaishaq/">LinkedIn <Arrow /></a><a class="text-link" href="/assets/Sana-Ishaq-UI-UX-Designer-Resume.pdf" download>Download Resume <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" /></svg></a></div>
   </div>
 </section>
 <section id="contact" class="contact-section editorial-section page-frame" aria-labelledby="contact-title" tabindex="-1">
 
   <div class="contact-composition"><h2 id="contact-title">Let's fix what's<br /><em>costing you conversions.</em></h2><div><p>{copy.contact.description}</p><div class="contact-actions"><a class="text-link" href="https://calendly.com/sanaishaq/sana-uiux">Book a Discovery Call <Arrow /></a><a class="text-link" href="mailto:sanaishaq47@gmail.com?subject=Product%20design%20opportunity">Discuss a product design role <Arrow /></a></div><p class="contact-note">{copy.contact.note}</p></div></div>
-  <a class="contact-email" href="mailto:sanaishaq47@gmail.com">sanaishaq47@gmail.com <Arrow /></a>
 </section>

@@ -1,0 +1,18 @@
+# HaierMall representative slice — local review
+
+Preview: http://127.0.0.1:4321/haiermall-preview.html. Same feature branch; no push, merge or deployment. Legacy case-studies/haiermall-case-study.html remains byte-identical, with unchanged canonical URL and substantive content. The preview imports its exact case-specific SEO block at build time and adds noindex, follow; analytics are not run in the review route.
+
+Scope: opening with original title/context/role/status/deliverables/focus; full-width authentic homepage image; four static owner-verified outcomes with exact labels, definitions and complete reporting attribution; one purchase-decision chapter. Existing React static outcomes and theme controls are reused. Isolated CSS imports approved homepage tokens/fonts. No dependencies or homepage files changed in this task.
+
+Desktop opening uses generous title scale, balanced context/role metadata and immersive artwork. The decision chapter shifts to an left-aligned argument capped at 66ch, focused original desktop detail and visible reasoning. Mobile uses a natural reading order, stacked result rows and a tighter detail crop of the same source pixels. Full original product export is linked. No mobile screen, before-state, research participant or component-board asset is fabricated.
+
+All five audit findings and their reasoning, remaining decisions/research, source credits, and system/handoff content remain in the complete legacy case study. They are not implemented as new full sections here. Additional chapter composition remains subject to review; this slice is not a repeated template commitment.
+
+Results are +31% Online sales / 3 months post-launch; −20% Bounce rate / Homepage → category; +40% Faster product discovery / Usability testing; +15% Session duration / Average session. Conflicting −32%, absolute 20%, and +25% annotations remain separately documented in HAIERMALL-EVIDENCE.md, not silently reconciled or added to the slice. The existing Baymard 95% citation is retained as published research reasoning, not a HaierMall metric; precise external citation remains a content follow-up.
+
+Validation: build succeeds, Astro check reports zero errors/warnings/hints, 20 tests pass including static preview content, exact title and legacy asset/route preservation. Browser report review/haiermall-slice/verification.json covers 1440/768/390/320 in First Light and Juniper Dusk, image decode, no overflow, visible keyboard focus, keyboard theme switching/persistence and zero axe A/AA-tag violations. Essential content/outcomes also checked without JavaScript. Actual screen reader journeys, physical devices and other engines are not certified. Raw Impeccable detector output contains 14 font-size documentation advisories, not functional failures or a claimed clean detector pass.
+
+Captures: review/haiermall-slice/previews/. Stop for owner approval before expanding the case study. New descriptive captions and scope notes are proposed editorial helper copy in a private preview, not changes to the original source.
+
+## Targeted navigation and alignment refinement
+The decision explanation now aligns to its heading at every width. Heading, copy, art, colors and section structure remain unchanged. HaierMall and project-note previews share FullNavigation with the homepage, with cross-page section links. Existing Archive-return footer links remain. Per the owner's explicit clarification, the legacy catalog and published case pages remain unchanged; no catalog redesign was added. The shared header retains the existing theme component, compact menu, Escape/focus behavior and original homepage layout. Review captures are in review/haiermall-refinement/.
