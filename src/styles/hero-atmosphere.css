@@ -4,34 +4,34 @@
   --terrain-blue:#567c91;
   --terrain-sage:#a8bdb7;
   --terrain-forest:#293c34;
-  --terrain-far-opacity:.11;
-  --terrain-middle-opacity:.16;
-  --terrain-near-opacity:.04;
-  --grain-opacity:.025;
+  --terrain-far-opacity:.18;
+  --terrain-middle-opacity:.27;
+  --terrain-near-opacity:.13;
+  --grain-opacity:.13;
 }
 :root[data-preference='dark'] .complete-homepage .hero {
   --terrain-sage:#a1c3ba;
-  --terrain-far-opacity:.19;
-  --terrain-middle-opacity:.12;
-  --terrain-near-opacity:.16;
+  --terrain-far-opacity:.22;
+  --terrain-middle-opacity:.19;
+  --terrain-near-opacity:.25;
   --terrain-forest:#567c91;
-  --grain-opacity:.025;
+  --grain-opacity:.13;
 }
 @media(prefers-color-scheme:dark) {
   :root:not([data-preference='light']) .complete-homepage .hero {
-    --terrain-sage:#a1c3ba; --terrain-far-opacity:.19;
-    --terrain-middle-opacity:.12; --terrain-near-opacity:.16;
-    --terrain-forest:#567c91; --grain-opacity:.025;
+    --terrain-sage:#a1c3ba; --terrain-far-opacity:.22;
+    --terrain-middle-opacity:.19; --terrain-near-opacity:.25;
+    --terrain-forest:#567c91; --grain-opacity:.13;
   }
 }
 .hero-atmosphere {
   position:absolute; z-index:-1; pointer-events:none;
-  inset:auto 0 0; height:clamp(260px,39vw,470px); overflow:hidden;
+  inset:auto 0 0; height:clamp(260px,30vw,370px); overflow:hidden;
   /* Fade every layer together, including the texture: no rectangular edge. */
-  mask-image:linear-gradient(transparent,#000 15%,#000 70%,transparent),radial-gradient(ellipse 74% 86% at 4% 57%,#000 12%,#0009 43%,transparent 76%);
+  mask-image:linear-gradient(transparent,#000 38%,#000 74%,transparent),linear-gradient(90deg,#000,#000b 45%,transparent 95%);
   mask-composite:intersect;
 }
-.hero-terrain { position:absolute; inset:0; width:100%; height:100%; stroke:none; filter:blur(5px); }
+.hero-terrain { position:absolute; inset:0; width:100%; height:100%; stroke:none; filter:blur(.6px); }
 .terrain-far { fill:var(--terrain-blue); opacity:var(--terrain-far-opacity); }
 .terrain-middle { fill:var(--terrain-sage); opacity:var(--terrain-middle-opacity); }
 .terrain-near { fill:var(--terrain-forest); opacity:var(--terrain-near-opacity); }
@@ -42,7 +42,7 @@
   .hero-mist { animation:hero-mist-drift 36s ease-in-out infinite; }
 }
 @media(max-width:900px) {
-  .hero-atmosphere { height:300px; mask-image:linear-gradient(transparent,#000 15%,#000 70%,transparent),radial-gradient(ellipse 110% 83% at 0% 60%,#000 5%,#0007 40%,transparent 77%); }
+  .hero-atmosphere { height:230px; mask-image:linear-gradient(transparent,#000 42%,#000 76%,transparent),linear-gradient(90deg,#000,#0009); }
 }
 @media(prefers-reduced-motion:reduce) { .hero-mist { animation:none; transform:none; } }
 @media(forced-colors:active),print { .hero-atmosphere { display:none; } }

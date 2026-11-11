@@ -17,3 +17,7 @@ Motion QA programmatically samples the animation midpoint (6px horizontal, zero 
 Local production build, Astro diagnostics, 36 regression tests, preview exclusion checks, 20 motion/theme/viewport states and 20 homepage/Archive accessibility/layout/theme/viewport states passed. Public evidence is recorded after staging deployment in review/hero-atmosphere/public; full homepage accessibility results remain in review/homepage-refinement/public. Automated checks are not manual screen-reader certification.
 
 Hero content, navigation, CTA placement, About/Core Expertise, Contact, footer, Archive, metrics and case-study sources are unchanged. Production main and publishing settings must remain unchanged; staging pricing-page exclusion remains asserted before deployment.
+
+## Texture reference refinement — 11 November 2026
+
+Applied the supplied two-theme reference to background treatment only: static fine grain increased to .13 opacity, irregular layered ridgelines, reduced contour blur (.6px), and a broader horizontal fade. Hero copy, fonts, navigation and CTA composition are untouched. Atmosphere height is capped at 370px on desktop and 230px below 901px to keep stronger decoration below the reading area. Mist behavior is unchanged. Actual-background contrast checks pass all 20 viewport/theme/motion combinations after lowering the texture away from the secondary CTA. No external assets or new dependencies.
