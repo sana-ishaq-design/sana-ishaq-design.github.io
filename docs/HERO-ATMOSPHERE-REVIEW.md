@@ -21,3 +21,9 @@ Hero content, navigation, CTA placement, About/Core Expertise, Contact, footer, 
 ## Texture reference refinement — 11 November 2026
 
 Applied the supplied two-theme reference to background treatment only: static fine grain increased to .13 opacity, irregular layered ridgelines, reduced contour blur (.6px), and a broader horizontal fade. Hero copy, fonts, navigation and CTA composition are untouched. Atmosphere height is capped at 370px on desktop and 230px below 901px to keep stronger decoration below the reading area. Mist behavior is unchanged. Actual-background contrast checks pass all 20 viewport/theme/motion combinations after lowering the texture away from the secondary CTA. No external assets or new dependencies.
+
+## Superseding atmospheric correction — 11 November 2026
+
+The previous repeated curves were not visually approved. Replaced three similar ridgelines with two unequal silhouettes: a distant sage summit and an offset lower Mineral Blue slope. Separate fixed softness (4px and 1.5px), restrained color washes and a left-weighted radial mask establish depth. Grain reduced from .13 to .035 opacity. Dark-theme sage and silhouette opacities are tuned independently over the forest canvas, without inversion.
+
+Hero content, layout and spacing remain unchanged. Only mist animates (6px / 36 seconds); mobile and reduced motion remain static. Browser screenshots reviewed in both desktop themes: distinct forms, blue/sage lower-left color and quiet upper/right regions. Visual acceptance remains with the owner. All 20 viewport/theme/motion checks passed, including composited-background contrast and no overflow. Astro: zero diagnostics; 36 regression tests passed. Homepage/Archive accessibility and navigation suite passed 20 states.
