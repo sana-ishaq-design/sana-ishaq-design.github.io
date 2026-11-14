@@ -17,11 +17,10 @@ try{for(const width of [1440,1024,768,390,320])for(const theme of ['light','dark
  const state=await p.evaluate(()=>{const layer=document.querySelector('.hero-atmosphere'),mist=document.querySelector('.hero-mist'),terrain=document.querySelector('.hero-terrain'),grain=document.querySelector('.hero-grain');const anim=mist.getAnimations()[0];let midpoint=null;if(anim){anim.pause();anim.currentTime=18000;midpoint={transform:getComputedStyle(mist).transform,opacity:Number(getComputedStyle(mist).opacity)};anim.currentTime=0}const rect=document.querySelector('.hero').getBoundingClientRect();layer.style.display='none';const hidden=document.querySelector('.hero').getBoundingClientRect();layer.style.removeProperty('display');return {hidden:layer.getAttribute('aria-hidden'),pointer:getComputedStyle(layer).pointerEvents,overflow:document.documentElement.scrollWidth>innerWidth,terrainAnimations:terrain.getAnimations({subtree:true}).length,grainAnimations:grain.getAnimations().length,mistAnimations:mist.getAnimations().length,duration:anim?.effect.getTiming().duration,midpoint,layoutStable:rect.height===hidden.height&&rect.y===hidden.y}});
  assert.equal(state.hidden,'true');assert.equal(state.pointer,'none');assert.equal(state.overflow,false);assert.equal(state.layoutStable,true);assert.equal(state.terrainAnimations,0);assert.equal(state.grainAnimations,0);assert.deepEqual(errors,[]);
  if(width>900&&motion==='no-preference'){assert.equal(state.mistAnimations,1);assert.equal(state.duration,36000);assert.equal(state.midpoint.transform,'matrix(1, 0, 0, 1, 6, 0)');assert.equal(state.midpoint.opacity,.15)}else assert.equal(state.mistAnimations,0);
- if([1440,390].includes(width)&&motion==='no-preference')await p.screenshot({path:out+'/'+width+'-'+theme+'.png'});
+ if(motion==='no-preference')await p.screenshot({path:out+'/'+width+'-'+theme+'.png'});
  // Keyboard and pointer feedback must agree without moving link boxes.
  const links=p.locator('.hero-actions a');assert.equal(await links.count(),2);
- const stablePlacement=await p.evaluate(()=>{const group=document.querySelector('.hero-actions'),hero=document.querySelector('.hero'),terrain=document.querySelector('.hero-atmosphere');const before=[hero.getBoundingClientRect().height,terrain.getBoundingClientRect().y];group.style.gap=innerWidth<=650?'8px':'12px';group.style.paddingBottom='0px';const baseline=[hero.getBoundingClientRect().height,terrain.getBoundingClientRect().y];group.style.removeProperty('gap');group.style.removeProperty('padding-bottom');return before.every((v,i)=>v===baseline[i])});assert.equal(stablePlacement,true);
- const gap=await p.locator('.hero-actions').evaluate(e=>getComputedStyle(e).rowGap);assert.equal(gap,'6px');
+ const arrangement=await p.locator('.hero-actions').evaluate(e=>{const r=[...e.children].map(a=>a.getBoundingClientRect());return {gap:getComputedStyle(e).columnGap,wrap:getComputedStyle(e).flexWrap,sameRow:Math.abs(r[0].y-r[1].y)<2}});assert.equal(arrangement.gap,'36px');assert.equal(arrangement.wrap,'wrap');if(width>=768)assert.equal(arrangement.sameRow,true);
  await links.first().focus();await p.keyboard.press('Tab');
  for(const index of [1,0]){if(index===0)await p.keyboard.press('Shift+Tab');await p.waitForTimeout(220);
  const focus=await links.nth(index).evaluate(e=>({active:e===document.activeElement,visible:e.matches(':focus-visible'),outline:getComputedStyle(e).outlineWidth,arrow:getComputedStyle(e.querySelector('svg')).transform,underline:getComputedStyle(e).textUnderlineOffset}));
@@ -29,9 +28,9 @@ try{for(const width of [1440,1024,768,390,320])for(const theme of ['light','dark
  const expected=motion==='reduce'?'none':index===0?'matrix(1, 0, 0, 1, 0, 3)':'matrix(1, 0, 0, 1, 2.5, -2.5)';assert.equal(focus.arrow,expected);assert.equal(focus.underline,motion==='reduce'?'7px':'9px');
  await links.nth(index).hover();await p.waitForTimeout(220);assert.equal(await links.nth(index).locator('svg').evaluate(e=>getComputedStyle(e).transform),expected);
  }
- await p.mouse.move(0,0);await p.evaluate(()=>document.activeElement.blur());
+ await p.mouse.move(0,0);await p.evaluate(()=>{document.activeElement.blur();window.scrollTo({top:0,behavior:"instant"})});
  // Sample the actual composited decorative background, not just the base token.
- const textAreas=await p.locator('.hero-role,h1,h1 em,.hero-bottom>p,.hero-actions a').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,color:s.color.match(/[\d.]+/g).slice(0,3).map(Number),threshold:parseFloat(s.fontSize)>=24?3:4.5}}));
+ const textAreas=await p.locator('.hero-role,h1,h1 em,.hero-bottom>p,.hero-actions a').evaluateAll(es=>es.map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,color:s.color.match(/[\d.]+/g).slice(0,3).map(v=>Number(v)*(s.color.startsWith('color(srgb')?255:1)),threshold:parseFloat(s.fontSize)>=24?3:4.5}}));
  await p.evaluate(()=>document.querySelectorAll('.hero-heading,.hero-bottom').forEach(e=>e.style.visibility='hidden'));
  let minimum=100;state.contrastFrames=[];
  for(const time of state.mistAnimations?[0,9000,18000,27000,36000]:[0]){
@@ -40,5 +39,14 @@ try{for(const width of [1440,1024,768,390,320])for(const theme of ['light','dark
  for(const area of textAreas){const foreground=luminance(area.color);let worst=100;for(let y=Math.max(0,Math.ceil(area.y));y<Math.min(pixels.info.height,area.bottom);y+=2)for(let x=Math.max(0,Math.ceil(area.x));x<Math.min(pixels.info.width,area.right);x+=2){const offset=(y*pixels.info.width+x)*3,background=luminance([...pixels.data.subarray(offset,offset+3)]);worst=Math.min(worst,(Math.max(foreground,background)+.05)/(Math.min(foreground,background)+.05))}assert.ok(worst>=area.threshold,`${width} ${theme} actual backdrop contrast ${worst} < ${area.threshold}`);minimum=Math.min(minimum,worst)}
  state.contrastFrames.push(time);}
  state.minimumSampledContrast=minimum;
+ await p.evaluate(()=>document.querySelectorAll('.hero-heading,.hero-bottom').forEach(e=>e.style.removeProperty('visibility')));
+ const targets=motion==='reduce'?['selected-work','process','archive','services','about','contact']:['selected-work'];
+ for(const id of targets){
+  await p.evaluate(target=>document.querySelector('.full-header nav a[href="#'+target+'"]').click(),id);
+  await p.waitForFunction(target=>{const y=document.getElementById(target).getBoundingClientRect().top,h=document.querySelector('.full-header').getBoundingClientRect();return Math.abs(h.top)<1&&y>=h.bottom+10&&(y<=h.bottom+80||(Math.abs(scrollY+innerHeight-document.documentElement.scrollHeight)<2&&y<innerHeight))},id,{timeout:10000}).catch(async error=>{console.log({width,theme,motion,id,geometry:await p.evaluate(target=>({target:document.getElementById(target).getBoundingClientRect().top,header:document.querySelector(".full-header").getBoundingClientRect().toJSON(),position:getComputedStyle(document.querySelector(".full-header")).position,padding:getComputedStyle(document.documentElement).scrollPaddingTop,margin:getComputedStyle(document.getElementById(target)).scrollMarginTop}),id)});throw error});
+  const sticky=await p.locator('.full-header').evaluate(e=>({top:e.getBoundingClientRect().top,scrolled:e.classList.contains('is-scrolled'),background:getComputedStyle(e).backgroundColor,canvas:getComputedStyle(document.body).backgroundColor,divider:getComputedStyle(e).boxShadow}));
+  assert.equal(sticky.top,0);assert.equal(sticky.scrolled,true);assert.equal(sticky.background,sticky.canvas);assert.notEqual(sticky.divider,'none'); if(id==='selected-work'&&motion==='no-preference'&&[1440,390].includes(width))await p.screenshot({path:out+'/'+width+'-'+theme+'-sticky.png'});
+ }
+ state.anchorsChecked=targets;
  results.push({width,theme,motion,...state});await c.close();
 }await writeFile(out+'/results.json',JSON.stringify(results,null,2));console.log('PASS 20 motion/theme/viewport states: stationary terrain and grain, mist-only 6px/36s, mobile/reduced-motion static, no layout change or overflow.');}finally{await browser.close();if(server)server.close()}

@@ -17,7 +17,7 @@
 }
 .hero-atmosphere {
   position:absolute; z-index:-1; pointer-events:none;
-  inset:auto 0 0; height:clamp(260px,30vw,370px); overflow:hidden;
+  inset:auto 0 12px; height:clamp(260px,30vw,370px); overflow:hidden;
   /* Fade every layer together, including the texture: no rectangular edge. */
   mask-image:linear-gradient(transparent 42%,#000 74%,#000 82%,transparent),linear-gradient(90deg,#000,#000b 48%,#0004);
   mask-composite:intersect;

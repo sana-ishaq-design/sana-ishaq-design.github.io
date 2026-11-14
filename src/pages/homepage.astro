@@ -52,3 +52,13 @@ import HeroAtmosphere from '../components/HeroAtmosphere.astro';
 </section>
 <HomepageSections><Archive /></HomepageSections>
 </main><Footer /></body></html>
+
+<script>
+  const header=document.querySelector<HTMLElement>('.complete-homepage .full-header');
+  if(header){
+    const measure=()=>document.documentElement.style.setProperty('--homepage-header-height',header.getBoundingClientRect().height+'px');
+    const scrolled=()=>header.classList.toggle('is-scrolled',window.scrollY>8);
+    new ResizeObserver(measure).observe(header);measure();scrolled();
+    window.addEventListener('scroll',scrolled,{passive:true});
+  }
+</script>
