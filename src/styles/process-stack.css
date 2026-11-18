@@ -1,0 +1,40 @@
+/* Process only. Static reading order is the default; no client-side runtime. */
+.complete-homepage .process-section { align-items:start; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(48px,6vw,96px); }
+.complete-homepage .process-list { margin:0; min-width:0; }
+.complete-homepage .process-list li {
+  --step:0;
+  display:grid; grid-template-columns:56px minmax(0,1fr); gap:24px;
+  padding:28px; margin:0 0 32px; min-height:300px;
+  border:1px solid var(--edge); border-radius:18px;
+  background:color-mix(in srgb,var(--canvas) calc(96% - var(--step)*5%),var(--image-ground));
+}
+.complete-homepage .process-list li:nth-child(2) { --step:1; }
+.complete-homepage .process-list li:nth-child(3) { --step:2; }
+.complete-homepage .process-list li:nth-child(4) { --step:3; }
+.complete-homepage .process-list li:nth-child(5) { --step:4; }
+.complete-homepage .process-list li:last-child { margin-bottom:0; }
+.complete-homepage .process-list li:first-child { padding-top:28px; }
+.complete-homepage .process-number { font-family:'Instrument Serif',Georgia,serif; font-size:64px; line-height:1; color:var(--link); }
+.complete-homepage .process-list h3 { min-height:44px; margin:4px 0 28px; }
+.complete-homepage .process-list p { max-width:48ch; }
+@media (min-width:1001px) and (min-height:900px) and (prefers-reduced-motion:no-preference) {
+  .complete-homepage .process-intro { position:sticky; top:calc(var(--homepage-header-height,128px) + 24px); }
+  .complete-homepage .process-list { padding-bottom:80px; }
+  .complete-homepage .process-list li { position:sticky; top:calc(var(--homepage-header-height,128px) + 24px + var(--step)*100px); z-index:calc(1 + var(--step)); margin-bottom:80px; }
+}
+@media (max-width:1000px) {
+  .complete-homepage .process-section { grid-template-columns:minmax(0,1fr); gap:48px; }
+  .complete-homepage .process-list li { min-height:0; }
+}
+@media (max-width:480px) {
+  .complete-homepage .process-list li { grid-template-columns:38px minmax(0,1fr); gap:16px; padding:24px 20px; }
+  .complete-homepage .process-number { font-size:48px; }
+  .complete-homepage .process-list li:first-child { padding-top:24px; }
+  .complete-homepage .process-list h3 { margin-top:0; font-size:21px; }
+}
+@media print {
+  .complete-homepage .process-section { display:block; }
+  .complete-homepage .process-intro,.complete-homepage .process-list li { position:static; }
+  .complete-homepage .process-list { padding:0; margin-top:32px; }
+  .complete-homepage .process-list li { break-inside:avoid; min-height:0; margin-bottom:24px; }
+}

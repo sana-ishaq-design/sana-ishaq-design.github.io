@@ -1,3 +1,4 @@
+@import './process-stack.css';
 /* Complete candidate only. The approved Hero/HaierMall stylesheet is immutable. */
 .complete-homepage { --section-space:clamp(96px,11vw,168px); }
 .complete-homepage main:focus { outline:none; }
