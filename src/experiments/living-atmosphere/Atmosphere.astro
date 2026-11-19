@@ -1,0 +1,37 @@
+---
+import OriginalAtmosphere from '../../components/HeroAtmosphere.astro';
+import light from '../../assets/hero-mountains-light.svg?raw';
+import dark from '../../assets/hero-mountains-dark.svg?raw';
+import './atmosphere.css';
+// Derived presentation only: original paths, coordinates, colors and filters stay intact.
+function foreground(svg:string) {
+ const paths=[...svg.matchAll(/<path\b[^>]*\/>/g)].map(m=>m[0]);
+
+ const ridge=paths[paths.length-1].replace(/fill="[^"]*"/,'fill="black"');
+ return svg.replace(/<path\b[^>]*\/>/g,'').replace('</svg>',`<defs><mask id="cloud-ridge" mask-type="luminance"><rect width="2400" height="640" fill="white"/>${ridge}</mask></defs><rect width="2400" height="640" fill="white" mask="url(#cloud-ridge)"/></svg>`);
+}
+const uri=(s:string)=>`url("data:image/svg+xml,${encodeURIComponent(s)}")`;
+---
+<OriginalAtmosphere />
+<div class="volume-landscape" aria-hidden="true" style={{'--front-light':uri(foreground(light)),'--front-dark':uri(foreground(dark))}}>
+ <canvas id="cloud-volume"></canvas><div class="volume-foreground"></div>
+</div>
+<details class="atmosphere-controls">
+ <summary>Living Atmosphere · prototype controls</summary>
+ <div class="atmosphere-settings">
+  <p>Isolated experiment. The regular homepage is unchanged.</p>
+  <label>Cloud density <input id="cloud-density" type="range" min="0.3" max="2.5" step="0.05" value="1.2" /><output for="cloud-density">1.2</output></label>
+  <label>Movement speed <input id="cloud-speed" type="range" min="0.2" max="2" step="0.05" value="1" /><output for="cloud-speed">1</output></label>
+  <label>Lighting intensity <input id="cloud-light" type="range" min="0.3" max="1.8" step="0.05" value="1" /><output for="cloud-light">1</output></label>
+  <label>Atmospheric depth <input id="cloud-depth" type="range" min="0.3" max="1.5" step="0.05" value="1" /><output for="cloud-depth">1</output></label>
+  <button type="button" id="cloud-pause" aria-pressed="false">Pause atmosphere</button>
+  <button type="button" id="cloud-reset">Reset controls</button>
+  <p id="cloud-status" role="status">Static mountain fallback. JavaScript and supported desktop graphics enable the experiment.</p>
+ </div>
+</details>
+<script>
+ import {startAtmosphere} from './runtime';
+ import {revealHeadline} from './reveal';
+ revealHeadline();
+ startAtmosphere();
+</script>
