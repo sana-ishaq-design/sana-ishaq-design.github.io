@@ -1,9 +1,13 @@
-.living-prototype .hero { position:relative; isolation:isolate; }
-.artwork-landscape,.volume-landscape { position:absolute; z-index:-1; inset:auto 0 0; height:clamp(390px,37vw,560px); overflow:hidden; pointer-events:none; mask-image:linear-gradient(transparent var(--sky-start,40%),rgb(0 0 0 / .35) var(--sky-soft,49%),#000 var(--sky-clear,60%),#000 86%,rgb(0 0 0 / .88) 90%,rgb(0 0 0 / .5) 94%,rgb(0 0 0 / .12) 98%,transparent); }
+.living-prototype .hero { position:relative; isolation:isolate; --landscape-extension:100px; padding-bottom:calc(136px + var(--landscape-extension)); }
+.artwork-landscape,.volume-landscape { position:absolute; z-index:-1; inset:auto 0 0; height:calc(clamp(390px,37vw,560px) + var(--landscape-extension)); overflow:hidden; pointer-events:none; mask-image:linear-gradient(transparent var(--sky-start,40%),rgb(0 0 0 / .35) var(--sky-soft,49%),#000 var(--sky-clear,60%),#000 86%,rgb(0 0 0 / .88) 90%,rgb(0 0 0 / .5) 94%,rgb(0 0 0 / .12) 98%,transparent); }
 .artwork-landscape { background-image:var(--art-light); background-size:cover; background-position:center bottom; background-repeat:no-repeat; }
 :root[data-preference='dark'] .artwork-landscape { background-image:var(--art-dark); }
-:root[data-preference='dark'] .living-prototype .hero { --sky-start:30%; --sky-soft:44%; --sky-clear:60%; --veil-mid:72%; --veil-outer:35%; }
-@media(prefers-color-scheme:dark) { :root:not([data-preference='light']) .living-prototype .hero { --sky-start:30%; --sky-soft:44%; --sky-clear:60%; --veil-mid:72%; --veil-outer:35%; } }
+:root[data-preference='dark'] .living-prototype .hero { --sky-start:12%; --sky-soft:36%; --sky-clear:60%; --veil-mid:72%; --veil-outer:35%; }
+@media(prefers-color-scheme:dark) { :root:not([data-preference='light']) .living-prototype .hero { --sky-start:12%; --sky-soft:36%; --sky-clear:60%; --veil-mid:72%; --veil-outer:35%; } }
+/* Ease the evening sky into the ridges without a shared horizontal onset. */
+:root[data-preference='dark'] .living-prototype .hero { --sky-mask:linear-gradient(transparent 10%,rgb(0 0 0 / .025) 18%,rgb(0 0 0 / .08) 26%,rgb(0 0 0 / .18) 34%,rgb(0 0 0 / .34) 42%,rgb(0 0 0 / .55) 49%,rgb(0 0 0 / .78) 55%,#000 63%,#000 86%,rgb(0 0 0 / .88) 90%,rgb(0 0 0 / .5) 94%,rgb(0 0 0 / .12) 98%,transparent); }
+:root[data-preference='dark'] .artwork-landscape,:root[data-preference='dark'] .volume-landscape { mask-image:var(--sky-mask); }
+@media(prefers-color-scheme:dark) { :root:not([data-preference='light']) .living-prototype .hero { --sky-mask:linear-gradient(transparent 10%,rgb(0 0 0 / .025) 18%,rgb(0 0 0 / .08) 26%,rgb(0 0 0 / .18) 34%,rgb(0 0 0 / .34) 42%,rgb(0 0 0 / .55) 49%,rgb(0 0 0 / .78) 55%,#000 63%,#000 86%,rgb(0 0 0 / .88) 90%,rgb(0 0 0 / .5) 94%,rgb(0 0 0 / .12) 98%,transparent); } :root:not([data-preference='light']) .artwork-landscape,:root:not([data-preference='light']) .volume-landscape { mask-image:var(--sky-mask); } }
 .volume-landscape { opacity:0; }
 .living-prototype.volume-ready .volume-landscape { opacity:1; }
 #cloud-volume { position:absolute; inset:0; width:100%; height:100%; opacity:.48; mask-image:var(--front-light); mask-size:cover; mask-position:center bottom; mask-repeat:no-repeat; }
@@ -24,8 +28,11 @@
 .headline-reveal-copy { position:absolute!important; inset:0; margin:0!important; pointer-events:none; }
 @media(max-width:900px),(prefers-reduced-motion:reduce) { .volume-landscape { display:none; } }
 @media(max-width:900px) {
- .artwork-landscape { height:320px; background-image:var(--art-light-mobile); background-position:58% bottom; }
+ .living-prototype .hero { --landscape-extension:64px; }
+ .artwork-landscape { height:calc(320px + var(--landscape-extension)); background-image:var(--art-light-mobile); background-position:58% bottom; }
  :root[data-preference='dark'] .artwork-landscape { background-image:var(--art-dark-mobile); }
 }
 @media(max-width:900px) and (prefers-color-scheme:dark) { :root:not([data-preference='light']) .artwork-landscape { background-image:var(--art-dark-mobile); } }
 @media print,(forced-colors:active) { .artwork-landscape,.volume-landscape,.atmosphere-controls { display:none; } }
+
+@media(max-width:650px) { .living-prototype .hero { --landscape-extension:40px; padding-bottom:calc(96px + var(--landscape-extension)); } }
