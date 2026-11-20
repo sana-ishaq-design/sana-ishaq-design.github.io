@@ -1,20 +1,15 @@
 ---
-import OriginalAtmosphere from '../../components/HeroAtmosphere.astro';
-import light from '../../assets/hero-mountains-light.svg?raw';
-import dark from '../../assets/hero-mountains-dark.svg?raw';
+import light from './artwork/first-light.webp';
+import lightMobile from './artwork/first-light-mobile.webp';
+import dark from './artwork/juniper-dusk.webp';
+import darkMobile from './artwork/juniper-dusk-mobile.webp';
+import lightMask from './artwork/first-light-cloud-mask.svg?url';
+import darkMask from './artwork/juniper-dusk-cloud-mask.svg?url';
 import './atmosphere.css';
-// Derived presentation only: original paths, coordinates, colors and filters stay intact.
-function foreground(svg:string) {
- const paths=[...svg.matchAll(/<path\b[^>]*\/>/g)].map(m=>m[0]);
-
- const ridge=paths[paths.length-1].replace(/fill="[^"]*"/,'fill="black"');
- return svg.replace(/<path\b[^>]*\/>/g,'').replace('</svg>',`<defs><mask id="cloud-ridge" mask-type="luminance"><rect width="2400" height="640" fill="white"/>${ridge}</mask></defs><rect width="2400" height="640" fill="white" mask="url(#cloud-ridge)"/></svg>`);
-}
-const uri=(s:string)=>`url("data:image/svg+xml,${encodeURIComponent(s)}")`;
 ---
-<OriginalAtmosphere />
-<div class="volume-landscape" aria-hidden="true" style={{'--front-light':uri(foreground(light)),'--front-dark':uri(foreground(dark))}}>
- <canvas id="cloud-volume"></canvas><div class="volume-foreground"></div>
+<div class="artwork-landscape" aria-hidden="true" style={{'--art-light':`url(${light.src})`,'--art-dark':`url(${dark.src})`,'--art-light-mobile':`url(${lightMobile.src})`,'--art-dark-mobile':`url(${darkMobile.src})`}}></div>
+<div class="volume-landscape" aria-hidden="true" style={{'--front-light':`url(${lightMask})`,'--front-dark':`url(${darkMask})`}}>
+ <canvas id="cloud-volume"></canvas>
 </div>
 <details class="atmosphere-controls">
  <summary>Living Atmosphere · prototype controls</summary>

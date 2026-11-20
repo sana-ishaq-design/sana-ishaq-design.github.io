@@ -17,7 +17,7 @@ try{
   if(width>900){await p.waitForFunction(()=>document.body.classList.contains('volume-ready'),{timeout:20000});await p.waitForTimeout(width===1440?12000:3000);}else await p.waitForTimeout(1500);
   assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   assert.equal((await p.locator('#hero-title').innerText()).replace(/\s+/g,' '),'Helping SaaS Products & Ecommerce Brands Build Better Digital Experiences');
-  assert.equal(await p.locator('.hero-mist').evaluate(e=>getComputedStyle(e).animationName),'none');
+  assert.equal(await p.locator('.hero-mist').count(),0); const art=await p.locator('.artwork-landscape').evaluate(e=>getComputedStyle(e).backgroundImage); assert.ok(art.includes(theme==='light'?'first-light':'juniper-dusk')); assert.equal(art.includes('-mobile'),width<=900); await p.evaluate(async()=>{const image=new Image(); image.src=getComputedStyle(document.querySelector('.artwork-landscape')).backgroundImage.slice(5,-2);await image.decode();});
   await p.screenshot({path:`${out}/${width}-${theme}.png`});
   const m=await p.evaluate(()=>window.atmosphereMetrics);assert.equal(m.mode,width>900?'animated':'static');
   const axe=await new AxeBuilder({page:p}).include('.hero').include('.full-header').withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();assert.deepEqual(axe.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.html)})),[]);

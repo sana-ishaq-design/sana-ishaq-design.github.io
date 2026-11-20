@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1741" height="903" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+<!-- Cloud transmission only: hand-traced foreground silhouettes; source WebP unchanged. -->
+<defs><filter id="soft"><feGaussianBlur stdDeviation="2.5"/></filter><mask id="ridges" mask-type="luminance"><rect width="1000" height="1000" fill="white"/>
+<g fill="black" filter="url(#soft)">
+<path d="M0 856L30 872 60 900 100 932 140 950 188 978 235 1000H0Z"/>
+<path d="M150 947L190 933 230 909 270 884 310 863 355 840 400 810 443 782 480 765 520 746 553 738 580 735 600 747 626 763 650 780 680 792 710 810 740 834 777 858 810 886 820 1000H150Z"/>
+<path d="M400 1000L455 976 500 963 550 943 600 923 640 909 680 883 720 864 760 842 800 820 840 800 875 778 910 761 940 745 965 731 985 713 1000 704V1000Z"/>
+</g></mask></defs><rect width="1000" height="1000" fill="white" mask="url(#ridges)"/></svg>

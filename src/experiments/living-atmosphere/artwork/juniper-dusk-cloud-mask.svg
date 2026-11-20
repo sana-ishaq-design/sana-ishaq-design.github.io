@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+<!-- Separate evening ridge trace; no image recoloring or synthesized terrain. -->
+<defs><filter id="soft"><feGaussianBlur stdDeviation="2.5"/></filter><mask id="ridges" mask-type="luminance"><rect width="1000" height="1000" fill="white"/>
+<g fill="black" filter="url(#soft)">
+<path d="M0 854L35 873 70 901 110 926 150 945 190 970 235 1000H0Z"/>
+<path d="M150 945L200 925 250 900 300 878 350 849 390 822 430 795 470 772 510 750 550 741 580 740 605 750 640 771 675 788 710 811 745 838 780 864 820 894 835 1000H150Z"/>
+<path d="M390 1000L440 982 480 965 520 951 570 931 615 913 655 897 700 871 740 847 780 829 820 808 860 786 900 762 940 739 970 718 1000 694V1000Z"/>
+</g></mask></defs><rect width="1000" height="1000" fill="white" mask="url(#ridges)"/></svg>

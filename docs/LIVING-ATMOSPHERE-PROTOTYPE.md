@@ -18,3 +18,11 @@ QA: both themes at 1440/1024/768/390/320; no horizontal overflow or page errors;
 Limitations: desktop Chrome measurements only, no physical-phone battery/thermal or Safari/Firefox certification. Mobile intentionally uses the original static hero. Occlusion follows 2D original ridge masks, not a new 3D mountain scene. Adaptive downshift exists but sustained weak-device conditions still need hardware testing. Existing imagery is preserved, so the photographic visual reference informs atmosphere rather than replacing mountains with photographs, trees or a moon.
 
 Review outputs live under ignored `review/living-atmosphere/`. Source license is retained beside the shader. Prototype is noindex; never set as the staging entry point or production homepage without separate approval.
+
+## Approved landscape replacement — 20 November 2026
+
+The isolated prototype now uses the four user-supplied WebPs from hero-artwork.zip, unchanged: First Light 1741×903 (105,490 bytes), Juniper Dusk 1672×941 (103,484 bytes), and their 900px mobile variants (33,022 / 32,908 bytes). This supersedes the original-SVG imagery and fallback descriptions above. The normal homepage remains unchanged.
+
+Upper-sky alpha blending protects the existing headline; the lower landscape retains original color. Separate hand-traced, softly feathered foreground masks protect near ridges from the volumetric pass. Matching cover sizing and bottom alignment register each mask to its artwork. These are approximate 2D occlusion masks, not per-tree depth maps. At widths up to 900px, the supplied mobile WebP is a static fallback. No new rendering dependencies or shader changes.
+
+Final desktop backdrop samples after the sky adjustment: minimum 5.62:1 First Light and 8.08:1 Juniper Dusk, with no sampled failures at default controls. This is not a guarantee for arbitrary experimental slider settings. All existing content, layout, navigation, controls and progressive reveal remain intact. Physical-device battery and cross-browser certification remain outside the measured Chrome evidence.
