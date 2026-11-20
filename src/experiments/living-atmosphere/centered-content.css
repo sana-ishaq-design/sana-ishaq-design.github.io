@@ -1,0 +1,16 @@
+/* Reversible alignment experiment. Remove hero-centered to restore the
+   approved left composition; landscape, veil and motion rules stay untouched. */
+.living-prototype.hero-centered .hero-heading { text-align:center; position:relative; top:-20px; padding-bottom:18px; }
+.living-prototype.hero-centered .hero-role { margin-bottom:8px; }
+.living-prototype.hero-centered #hero-title { max-width:1120px; margin-inline:auto; }
+.living-prototype.hero-centered .hero-bottom>p { margin-inline:auto; text-align:center; position:relative; top:-54px; }
+.living-prototype.hero-centered .hero-actions { justify-content:center; align-items:center; position:relative; top:-64px; }
+@media(max-width:650px) {
+  .living-prototype.hero-centered .hero-heading { top:0; padding-bottom:0; }
+  .living-prototype.hero-centered .hero-role { margin-bottom:24px; }
+  .living-prototype.hero-centered .hero-bottom>p,
+  .living-prototype.hero-centered .hero-actions { top:0; }
+}
+@media(max-width:420px) {
+  .living-prototype.hero-centered .hero-actions { flex-direction:column; }
+}
