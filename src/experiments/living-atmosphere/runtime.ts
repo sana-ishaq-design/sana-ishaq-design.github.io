@@ -3,7 +3,7 @@ import NoiseWorker from './noise.worker?worker';
 type Metrics={mode:string;frames:number;startupMs:number;cpuMs:number[];gpuMs:number[];intervalMs:number[];quality:number;canvas:number[];error?:string};
 declare global {interface Window {atmosphereMetrics:Metrics}}
 export function startAtmosphere(){
- // Keep fixed review controls outside the hero's isolated stacking context.
+ // Keep review controls in document flow after the page, outside the hero.
  document.body.append(document.querySelector('.atmosphere-controls')!);
  const canvas=document.querySelector<HTMLCanvasElement>('#cloud-volume')!,hero=document.querySelector<HTMLElement>('.hero')!,status=document.querySelector<HTMLElement>('#cloud-status')!;
  const reduced=matchMedia('(prefers-reduced-motion:reduce)'),mobile=matchMedia('(max-width:900px)'),forced=matchMedia('(forced-colors:active)');
@@ -40,10 +40,10 @@ export function startAtmosphere(){
   }raf=requestAnimationFrame(tick);
  }
  function update(){
-  stop();if(!eligible()){document.body.classList.remove('volume-ready');stats.mode=failed?'fallback':'static';status.textContent=failed?'Static fallback: '+stats.error:'Static fallback — mobile, reduced motion or forced colors.';return;}
+  stop();if(!eligible()){document.body.classList.remove('volume-ready');stats.mode=failed?'fallback':'static';status.textContent=failed?'Static fallback: '+stats.error:reduced.matches?'Static fallback — your reduced-motion preference is enabled.':mobile.matches?'Static fallback — viewport is 900px or narrower. Animation runs on wider desktop viewports.':'Static fallback — forced-colors accessibility mode is enabled.';return;}
   if(!gl&&!worker&&!failed){init();return;}
   if(!ready)return;document.body.classList.add('volume-ready');draw();
-  stats.mode=paused?'paused':(!visible||document.hidden?'suspended':'animated');status.textContent=stats.mode==='animated'?'Live volumetric mist · adaptive quality · maximum 30 fps':stats.mode==='paused'?'Atmosphere paused.':'Rendering suspended while offscreen.';
+  stats.mode=paused?'paused':(!visible||document.hidden?'suspended':'animated');status.textContent=stats.mode==='animated'?'Live volumetric mist · adaptive quality · maximum 30 fps':stats.mode==='paused'?'Atmosphere paused.':document.hidden?'Rendering suspended — browser tab is hidden.':'Rendering suspended — Hero is outside the viewport. Scroll back to the Hero to resume.';
   if(stats.mode==='animated')raf=requestAnimationFrame(tick);
  }
  function init(){started=performance.now();status.textContent='Preparing volume; original mountain fallback remains visible.';

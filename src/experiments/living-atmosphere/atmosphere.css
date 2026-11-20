@@ -16,7 +16,7 @@
 /* One continuous, feathered veil avoids separate paragraph/action bands. */
 .living-prototype .hero-bottom { position:relative; }
 .living-prototype .hero-bottom::before { content:''; position:absolute; z-index:-1; top:-60px; bottom:-55px; left:calc(-1 * var(--gutter)); width:min(1250px,100vw); pointer-events:none; mask-image:linear-gradient(transparent,#000 60px,#000 calc(100% - 55px),transparent),linear-gradient(90deg,#000 65%,transparent); mask-composite:intersect; background:radial-gradient(ellipse at 10% 60%,color-mix(in srgb,var(--canvas) 88%,transparent) 0%,color-mix(in srgb,var(--canvas) 78%,transparent) 35%,color-mix(in srgb,var(--canvas) var(--veil-mid,42%),transparent) 55%,color-mix(in srgb,var(--canvas) var(--veil-outer,8%),transparent) 76%,transparent 100%); }
-.atmosphere-controls { position:fixed; bottom:16px; right:16px; z-index:20; max-width:calc(100vw - 32px); width:340px; background:var(--canvas); color:var(--ink); border:1px solid var(--edge); border-radius:8px; font:14px/1.5 'Manrope Variable',sans-serif; }
+.atmosphere-controls { position:relative; margin:24px auto; max-width:calc(100vw - 32px); width:680px; background:var(--canvas); color:var(--ink); border:1px solid var(--edge); border-radius:8px; font:14px/1.5 'Manrope Variable',sans-serif; }
 .atmosphere-controls summary { min-height:44px; padding:12px 16px; cursor:pointer; }
 .atmosphere-settings { padding:0 16px 16px; max-height:65vh; overflow:auto; }
 .atmosphere-settings p { font-size:13px; margin:12px 0; }

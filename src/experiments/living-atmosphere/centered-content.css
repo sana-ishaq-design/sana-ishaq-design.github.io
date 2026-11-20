@@ -1,5 +1,5 @@
-/* Reversible alignment experiment. Remove hero-centered to restore the
-   approved left composition; landscape, veil and motion rules stay untouched. */
+/* Scoped centered composition. The original approved centered version remains
+   available at commit a440310; compact desktop rules follow below. */
 .living-prototype.hero-centered .hero-heading { text-align:center; position:relative; top:-20px; padding-bottom:18px; }
 .living-prototype.hero-centered .hero-role { margin-bottom:8px; }
 .living-prototype.hero-centered #hero-title { max-width:1120px; margin-inline:auto; }
@@ -13,4 +13,18 @@
 }
 @media(max-width:420px) {
   .living-prototype.hero-centered .hero-actions { flex-direction:column; }
+}
+/* Desktop-only compact study: retain image scale and move its registered
+   cloud/mask plane together. Mobile/tablet keep their approved dimensions. */
+@media(min-width:901px) {
+  .living-prototype.hero-centered .hero { padding-bottom:124px; }
+  .living-prototype.hero-centered .artwork-landscape { background-position:center calc(100% + 32px); }
+  .living-prototype.hero-centered #cloud-volume { top:32px; bottom:auto; }
+  .living-prototype.hero-centered .hero-bottom>p { top:-60px; }
+  .living-prototype.hero-centered .hero-actions { top:-72px; }
+  .living-prototype.hero-centered .hero-bottom::before {
+    left:50%; transform:translateX(-50%); top:-190px; bottom:-20px; width:100%;
+    mask-image:linear-gradient(transparent,#000 55px,#000 calc(100% - 70px),transparent),linear-gradient(90deg,transparent,#000 15%,#000 85%,transparent);
+    background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,var(--canvas) 88%,transparent),color-mix(in srgb,var(--canvas) 78%,transparent) 40%,transparent 85%);
+  }
 }
