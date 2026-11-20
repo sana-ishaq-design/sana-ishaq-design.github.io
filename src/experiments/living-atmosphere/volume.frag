@@ -19,7 +19,7 @@ float densityAt(vec3 p){
  float large=texture(uNoise,q*.8).r;
  float detail=texture(uNoise,q*2.8+vec3(0.,uTime*.003,0.)).r;
  float n=large*.78+detail*.22;
- float band=exp(-pow((p.y+.035+sin(p.x*5.+p.z*3.)*.055)/(.13*uDepth+.055),2.));
+ float band=exp(-pow((p.y+.16+sin(p.x*5.+p.z*3.)*.045)/(.06*uDepth+.025),2.));
  float edges=smoothstep(-.5,-.34,p.x)*(1.-smoothstep(.25,.5,p.x));
  return smoothstep(.35,.67,n)*band*edges*uDensity*10.;
 }
