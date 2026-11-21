@@ -14,8 +14,10 @@ float HenyeyGreenstein(float g,float mu){float gg=g*g;return (1.0/(4.0*PI))*((1.
 float PhaseFunction(float g,float costh){return mix(HenyeyGreenstein(-g,costh),HenyeyGreenstein(g,costh),0.8);}
 vec2 hitBox(vec3 orig,vec3 dir){vec3 inv=1.0/dir;vec3 a=(-vec3(.5)-orig)*inv,b=(vec3(.5)-orig)*inv;vec3 lo=min(a,b),hi=max(a,b);return vec2(max(lo.x,max(lo.y,lo.z)),min(hi.x,min(hi.y,hi.z)));}
 float densityAt(vec3 p){
- vec3 drift=vec3(uTime*.027,0.,uTime*.009);
- vec3 q=vec3(p.x*1.65,p.y*2.3,p.z*.85)+drift;
+ // Coherent horizontal advection: retain wisps through the ray depth rather
+ // than averaging many unrelated noise cells into an almost static haze.
+ vec3 drift=vec3(uTime*.018,0.,uTime*.002);
+ vec3 q=vec3(p.x*1.65,p.y*2.3,p.z*.28)+drift;
  float large=texture(uNoise,q*.8).r;
  float detail=texture(uNoise,q*2.8+vec3(0.,uTime*.003,0.)).r;
  float n=large*.78+detail*.22;
