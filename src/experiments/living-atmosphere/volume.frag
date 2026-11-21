@@ -23,7 +23,17 @@ float densityAt(vec3 p){
  float n=large*.78+detail*.22;
  float band=exp(-pow((p.y+.16+sin(p.x*5.+p.z*3.)*.045)/(.06*uDepth+.025),2.));
  float edges=smoothstep(-.5,-.34,p.x)*(1.-smoothstep(.25,.5,p.x));
- return smoothstep(.35,.67,n)*band*edges*uDensity*10.;
+ // Two elongated valley wisps retain their identity for several seconds.
+ // Wrap only outside the viewport; the edge envelope conceals re-entry.
+ // Different speeds avoid a conspicuous synchronized short loop.
+ float x1=mod(uTime*.008+.52,1.6)-.8;
+ float x2=mod(uTime*.006+.98,1.6)-.8;
+ vec2 a=vec2((p.x-x1)/.065,(p.y+.19)/(.014*uDepth));
+ vec2 b=vec2((p.x-x2)/.09,(p.y+.155)/(.014*uDepth));
+ float wisps=exp(-dot(a,a))*1.15+exp(-dot(b,b))*.85;
+ float textureShape=.72+.28*smoothstep(.3,.7,n);
+ float haze=smoothstep(.35,.67,n)*band*5.5;
+ return (haze+wisps*textureShape*7.)*edges*uDensity;
 }
 void main(){
  vec2 uv=gl_FragCoord.xy/uResolution;
@@ -42,7 +52,7 @@ void main(){
   float d=densityAt(p);
   if(d>.005){
    float shadow=exp(-(densityAt(p+lightDir*.08)+densityAt(p+lightDir*.17))*.09);
-   vec3 illumination=ambient*.45+sunlight*shadow*(.45+phase*1.5)*uLight;
+   vec3 illumination=ambient*.45+sunlight*max(shadow,.65)*(.45+phase*1.5)*uLight;
    float stepTrans=exp(-d*ds*1.6);
    accumulated+=trans*(1.-stepTrans)*illumination;
    trans*=stepTrans;
