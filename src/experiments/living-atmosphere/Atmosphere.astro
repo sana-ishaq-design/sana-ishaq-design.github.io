@@ -9,7 +9,7 @@ import './atmosphere.css';
 ---
 <div class="artwork-landscape" aria-hidden="true" style={{'--art-light':`url(${light.src})`,'--art-dark':`url(${dark.src})`,'--art-light-mobile':`url(${lightMobile.src})`,'--art-dark-mobile':`url(${darkMobile.src})`}}></div>
 <div class="volume-landscape" aria-hidden="true" style={{'--front-light':`url(${lightMask})`,'--front-dark':`url(${darkMask})`}}>
- <canvas id="cloud-volume"></canvas>
+ <canvas id="cloud-volume" data-light={light.src} data-dark={dark.src}></canvas>
 </div>
 <details class="atmosphere-controls">
  <summary>Living Atmosphere · prototype controls</summary>

@@ -1,0 +1,15 @@
+import {chromium} from 'playwright';
+import AxeBuilder from '@axe-core/playwright';
+import {createServer} from 'node:http';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {resolve,extname} from 'node:path';
+import assert from 'node:assert/strict';
+const remote=process.env.PREVIEW_URL,root=resolve('dist-preview');
+const server=remote?null:createServer(async(req,res)=>{try{const pathname=new URL(req.url,'http://local').pathname;if(!pathname.startsWith('/portfolio-preview/'))throw Error();const file=resolve(root,pathname.slice(19)||'index.html');if(!file.startsWith(root))throw Error();res.setHeader('Content-Type',({'.svg':'image/svg+xml','.html':'text/html','.js':'application/javascript','.css':'text/css','.woff2':'font/woff2'})[extname(file)]||'application/octet-stream');res.end(await readFile(file))}catch{res.statusCode=404;res.end()}});
+if(server)await new Promise(r=>server.listen(4405,'127.0.0.1',r));
+const base=remote||'http://127.0.0.1:4405/portfolio-preview/',out='review/living-atmosphere/'+(remote?'public':'local');await mkdir(out,{recursive:true});
+const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe'});
+try{const c=await browser.newContext({viewport:{width:1440,height:1000}});const p=await c.newPage();await p.goto(base+'living-atmosphere.html');await p.waitForFunction(()=>window.atmosphereMetrics?.mode==='animated');
+for(const theme of ['dark','light','dark','light']){await p.evaluate(t=>document.documentElement.dataset.preference=t,theme);await p.waitForFunction(()=>window.atmosphereMetrics.mode==='animated'&&document.body.classList.contains('volume-ready'));const result=await p.evaluate(async t=>{const c=document.querySelector('canvas'),gl=c.getContext('webgl2'),program=gl.getParameter(gl.CURRENT_PROGRAM),i=new Image();i.src=c.dataset[t];await i.decode();return {actual:[...gl.getUniform(program,gl.getUniformLocation(program,'uImageSize'))],expected:[i.naturalWidth,i.naturalHeight],error:gl.getError()};},theme);assert.deepEqual(result.actual,result.expected);assert.equal(result.error,0);}
+console.log('PASS: repeated live theme changes bind the correct artwork without WebGL errors');await c.close();
+const f=await browser.newContext({viewport:{width:1440,height:1000}});await f.addInitScript(()=>{HTMLImageElement.prototype.decode=()=>Promise.reject(new Error('test image decode failure'))});const q=await f.newPage();await q.goto(base+'living-atmosphere.html');await q.waitForFunction(()=>window.atmosphereMetrics?.mode==='fallback');assert.equal(await q.locator('.hero').isVisible(),true);assert.equal(await q.locator('body').evaluate(e=>e.classList.contains('volume-ready')),false);console.log('PASS: artwork decode failure retains static Hero');await f.close();}finally{await browser.close();server?.close();}
