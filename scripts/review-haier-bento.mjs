@@ -1,0 +1,22 @@
+import {chromium} from 'playwright';
+import AxeBuilder from '@axe-core/playwright';
+import {createServer} from 'node:http';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {resolve,extname} from 'node:path';
+import assert from 'node:assert/strict';
+const remote=process.env.PREVIEW_URL,root=resolve('dist-preview');
+const server=remote?null:createServer(async(req,res)=>{try{const pathname=new URL(req.url,'http://local').pathname;if(!pathname.startsWith('/portfolio-preview/'))throw Error();const file=resolve(root,pathname.slice(19)||'index.html');if(!file.startsWith(root))throw Error();res.setHeader('Content-Type',({'.svg':'image/svg+xml','.html':'text/html','.js':'application/javascript','.css':'text/css','.woff2':'font/woff2'})[extname(file)]||'application/octet-stream');res.end(await readFile(file))}catch{res.statusCode=404;res.end()}});
+if(server)await new Promise(r=>server.listen(4406,'127.0.0.1',r));
+const base=remote||'http://127.0.0.1:4406/portfolio-preview/',out='review/living-atmosphere/'+(remote?'public':'local');await mkdir(out,{recursive:true});
+const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe'}),folder='review/haier-bento/'+(remote?'public':'local');await mkdir(folder,{recursive:true});const results=[];
+try{for(const width of [1440,1024,768,390,320])for(const theme of ['light','dark']){
+ const c=await browser.newContext({viewport:{width,height:1000},deviceScaleFactor:1});await c.addInitScript(t=>localStorage.setItem('portfolio-review-theme',t),theme);const p=await c.newPage();const errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(base+'haiermall-bento.html');await p.evaluate(()=>document.fonts.ready);await p.locator('.hb-showcase').scrollIntoViewIfNeeded();await p.locator('.hb-showcase img').evaluate(i=>i.decode());await p.emulateMedia({reducedMotion:'reduce'});
+ assert.equal(await p.evaluate(()=>visualViewport.scale),1);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+ assert.deepEqual(await p.locator('.hb-value').allTextContents(),['+31%','−20%','+40%','+15%']);assert.ok((await p.locator('.hb-action a').getAttribute('href')).endsWith('/case-studies/haiermall-case-study.html'));
+ const axe=await new AxeBuilder({page:p}).include('.haier-bento').withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze();assert.deepEqual(axe.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.html)})),[]);
+ await p.locator('.hb-image-link').focus();assert.notEqual(await p.locator('.hb-image-link').evaluate(e=>getComputedStyle(e).outlineStyle),'none');await p.keyboard.press('Tab');assert.equal(await p.locator('.hb-action a').evaluate(e=>e===document.activeElement),true);await p.locator('.hb-action a').evaluate(e=>e.blur());
+ const captureHeight=await p.locator('.haier-bento').evaluate(e=>Math.ceil(e.getBoundingClientRect().height+document.querySelector('.full-header').getBoundingClientRect().height+80));await p.setViewportSize({width,height:Math.max(1000,captureHeight)});await p.evaluate(()=>scrollTo({top:document.querySelector('.haier-bento').getBoundingClientRect().top+scrollY-document.querySelector('.full-header').getBoundingClientRect().height-30,behavior:'instant'}));await p.locator('.haier-bento').screenshot({path:folder+'/'+width+'-'+theme+'.png'});
+ const geometry=await p.locator('.hb-description').evaluate(e=>({height:e.getBoundingClientRect().height,lineHeight:parseFloat(getComputedStyle(e).lineHeight)}));
+ await p.locator('.hb-image-link').hover();assert.equal(await p.locator('.hb-showcase img').evaluate(e=>getComputedStyle(e).transform),'none');
+ await p.emulateMedia({reducedMotion:'no-preference'});if(width>800){await p.locator('.hb-image-link').hover();await p.waitForTimeout(650);assert.notEqual(await p.locator('.hb-showcase img').evaluate(e=>getComputedStyle(e).transform),'none');}results.push({width,theme,zoom:1,axeViolations:0,descriptionLines:Math.round(geometry.height/geometry.lineHeight)});assert.deepEqual(errors,[]);await c.close();
+}await writeFile(folder+'/results.json',JSON.stringify(results,null,2));console.log(JSON.stringify(results));}finally{await browser.close();server?.close();}
