@@ -55,9 +55,3 @@ try{
  const c=await browser.newContext({javaScriptEnabled:false,viewport:{width:1440,height:1000}}),p=await c.newPage();await p.goto(base+'layered-work.html');assert.equal(await p.locator('.ridge-panel').count(),3);assert.equal(await p.locator('.ridge-panel').first().evaluate(e=>getComputedStyle(e).position),'relative');assert.equal(await p.locator('h1').count(),1);assert.equal(await p.locator('meta[name="robots"]').getAttribute('content'),'noindex, nofollow, noarchive');await c.close();
  await writeFile(folder+'/results.json',JSON.stringify(results,null,2));
 }finally{await browser.close();server?.close();}
-
-
-
-
-
-

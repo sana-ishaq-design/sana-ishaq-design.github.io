@@ -43,5 +43,3 @@ Limitations: native sticky effect is deliberately unavailable on small/short scr
 ## Load stability correction (prototype only)
 
 A cold-load comparison reproduced the existing controls-row removal and font-swap shifts in the approved bento page (approximately 0.46 cumulative shift in that run). This new route preloads the exact existing Latin font files and suppresses the temporary controls row while it is inside the Hero; the existing runtime still moves the controls after the footer and makes them available there. No Hero component, typography or animation source was edited. The repeated local comparison measured zero load/scroll shifts for this route. Final public recordings retain measured performance evidence; results are environment-specific, not a Lighthouse/Core Web Vitals guarantee.
-
-
